@@ -1,0 +1,1232 @@
+﻿/* =========================================================
+   SUCCESS STORIES PAGE
+   FULL SEPARATE CSS
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL PAGE
+   ========================================================= */
+
+.success-page {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    overflow-x: clip;
+}
+
+
+/* Fallback */
+
+@supports not (overflow: clip) {
+
+    .success-page {
+        overflow-x: hidden;
+    }
+}
+
+
+/* =========================================================
+   BOX SIZING
+   ========================================================= */
+
+.success-page,
+.success-page *,
+.success-page *::before,
+.success-page *::after {
+    box-sizing: border-box;
+}
+
+
+    /* =========================================================
+   IMAGE CONTROL
+   ========================================================= */
+
+    .success-page img {
+        display: block;
+        max-width: 100%;
+    }
+
+
+/* =========================================================
+   TOP SPACE
+   ========================================================= */
+
+.success-top-space {
+    width: 100%;
+    height: 30px;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.success-hero {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient( 135deg, #102a43 0%, #164e63 45%, #0f766e 100% );
+}
+
+
+    /* =========================================================
+   HERO DARK OVERLAY
+   ========================================================= */
+
+    .success-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -4;
+        background: linear-gradient( 90deg, rgba(10,31,51,.96), rgba(18,78,94,.75), rgba(15,118,110,.90) );
+    }
+
+
+    /* =========================================================
+   HERO GRID
+   ========================================================= */
+
+    .success-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        opacity: .65;
+        background-image: linear-gradient( rgba(255,255,255,.035) 1px, transparent 1px ), linear-gradient( 90deg, rgba(255,255,255,.035) 1px, transparent 1px );
+        background-size: 45px 45px;
+        mask-image: linear-gradient( to bottom, black, transparent );
+        -webkit-mask-image: linear-gradient( to bottom, black, transparent );
+    }
+
+
+/* =========================================================
+   HERO CONTAINER
+   ========================================================= */
+
+.success-hero-container {
+    position: relative;
+    z-index: 10;
+}
+
+
+/* =========================================================
+   GLOW CIRCLES
+   ========================================================= */
+
+.success-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* LEFT GLOW */
+
+.success-glow-1 {
+    width: 320px;
+    height: 320px;
+    left: -110px;
+    top: -130px;
+    background: rgba(45,212,191,.20);
+    filter: blur(8px);
+    animation: successGlowOne 8s ease-in-out infinite;
+}
+
+
+/* RIGHT GLOW */
+
+.success-glow-2 {
+    width: 400px;
+    height: 400px;
+    right: -160px;
+    bottom: -220px;
+    background: rgba(59,130,246,.20);
+    filter: blur(12px);
+    animation: successGlowTwo 10s ease-in-out infinite;
+}
+
+
+/* CENTER GLOW */
+
+.success-glow-3 {
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    top: 5%;
+    background: rgba(255,255,255,.055);
+    filter: blur(25px);
+    animation: successGlowThree 6s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.success-particles span {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.60);
+    box-shadow: 0 0 12px rgba(255,255,255,.45);
+    pointer-events: none;
+    z-index: -1;
+    animation: successParticleFloat 6s ease-in-out infinite;
+}
+
+
+    .success-particles span:nth-child(1) {
+        left: 10%;
+        top: 25%;
+        animation-delay: 0s;
+    }
+
+
+    .success-particles span:nth-child(2) {
+        left: 25%;
+        top: 70%;
+        animation-delay: 1s;
+    }
+
+
+    .success-particles span:nth-child(3) {
+        left: 48%;
+        top: 20%;
+        animation-delay: 2s;
+    }
+
+
+    .success-particles span:nth-child(4) {
+        right: 25%;
+        top: 65%;
+        animation-delay: 1.5s;
+    }
+
+
+    .success-particles span:nth-child(5) {
+        right: 12%;
+        top: 25%;
+        animation-delay: 3s;
+    }
+
+
+    .success-particles span:nth-child(6) {
+        right: 40%;
+        top: 80%;
+        animation-delay: 2.5s;
+    }
+
+
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+
+.success-title-wrapper {
+    position: relative;
+}
+
+
+.success-small-title {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #5eead4;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: successFadeUp .8s ease forwards;
+}
+
+
+.success-title {
+    margin: 0 !important;
+    color: whitesmoke !important;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: successTitleReveal 1s cubic-bezier(.16,1,.3,1) .15s forwards;
+}
+
+
+/* =========================================================
+   TITLE LINE
+   ========================================================= */
+
+.success-title-line {
+    width: 0;
+    height: 3px;
+    margin-top: 13px;
+    border-radius: 10px;
+    background: linear-gradient( 90deg, #2dd4bf, #60a5fa );
+    animation: successLineReveal .8s ease .8s forwards;
+}
+
+
+/* =========================================================
+   HERO SUBTITLE
+   ========================================================= */
+
+.success-subtitle {
+    max-width: 470px;
+    margin-top: 14px;
+    margin-bottom: 0;
+    color: rgba(255,255,255,.76);
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: successFadeUp .8s ease .55s forwards;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.success-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 50px;
+    background: rgba(255,255,255,.08);
+    box-shadow: 0 10px 35px rgba(0,0,0,.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    animation: successBreadcrumbReveal .9s cubic-bezier(.16,1,.3,1) .4s forwards;
+}
+
+
+/* =========================================================
+   HOME BUTTON
+   ========================================================= */
+
+.success-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 30px;
+    color: #ffffff;
+    background: rgba(255,255,255,.10);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .35s ease;
+}
+
+
+    .success-btn i {
+        color: #5eead4;
+        transition: transform .35s ease, color .35s ease;
+    }
+
+
+    .success-btn:hover {
+        color: #ffffff;
+        text-decoration: none;
+        background: #14b8a6;
+        border-color: #14b8a6;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(20,184,166,.30);
+    }
+
+
+        .success-btn:hover i {
+            color: #ffffff;
+            transform: scale(1.15);
+        }
+
+
+/* =========================================================
+   BREADCRUMB ARROW
+   ========================================================= */
+
+.success-arrow {
+    color: #5eead4;
+    font-size: 14px;
+    animation: successArrowPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CURRENT PAGE
+   ========================================================= */
+
+.success-current-page {
+    color: rgba(255,255,255,.85);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.success-content {
+    width: 100%;
+    background: #ffffff;
+    padding-top: 45px;
+    padding-bottom: 40px;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN ROW
+   ========================================================= */
+
+.success-main-row {
+    width: 100%;
+    margin: 0 !important;
+    align-items: flex-start;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
+
+.success-left-content {
+    padding-right: 30px;
+}
+
+
+/* =========================================================
+   SECTION
+   ========================================================= */
+
+.success-section {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 42px;
+    padding: 0;
+}
+
+
+    /* FIRST SECTION */
+
+    .success-section:first-child {
+        margin-top: 0;
+    }
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.success-page .scroll-reveal {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(70px);
+    transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1);
+}
+
+
+    .success-page .scroll-reveal.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.success-section h4 {
+    position: relative;
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 22px;
+    color: #222222;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+    /* =========================================================
+   HEADING UNDERLINE
+   ========================================================= */
+
+    .success-section h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0;
+        height: 3px;
+        border-radius: 10px;
+        background: #14b8a6;
+        transition: width .7s ease .25s;
+    }
+
+
+.success-section.show h4::after {
+    width: 60%;
+}
+
+
+/* =========================================================
+   PARAGRAPH
+   ========================================================= */
+
+.success-section p {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #536174;
+    font-size: 15px;
+    line-height: 1.8;
+    text-align: justify;
+    transition: color .3s ease, transform .3s ease;
+}
+
+
+    .success-section p:hover {
+        color: #303b4d;
+        transform: translateX(3px);
+    }
+
+
+/* =========================================================
+   H5
+   ========================================================= */
+
+.success-section h5 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #536174;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   LIST
+   ========================================================= */
+
+.success-list {
+    margin: 0;
+    padding-left: 22px;
+}
+
+
+    /* =========================================================
+   LIST ITEM
+   ========================================================= */
+
+    .success-list li {
+        margin-bottom: 12px;
+        padding-left: 5px;
+        color: #536174;
+        font-size: 15px;
+        line-height: 1.8;
+        text-align: justify;
+        transition: transform .3s ease, color .3s ease;
+    }
+
+
+        /* =========================================================
+   LIST MARKER
+   ========================================================= */
+
+        .success-list li::marker {
+            color: #14b8a6;
+            font-size: 17px;
+        }
+
+
+        /* =========================================================
+   LIST HOVER
+   ========================================================= */
+
+        .success-list li:hover {
+            color: #222222;
+            transform: translateX(7px);
+        }
+
+
+    /* =========================================================
+   BOLD
+   ========================================================= */
+
+    .success-list b {
+        color: #3d4b60;
+    }
+
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.success-right-content {
+    padding-left: 15px;
+}
+
+
+/* =========================================================
+   RIGHT SCROLL
+   ========================================================= */
+
+.success-page .scroll-right {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(80px);
+    transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+
+    .success-page .scroll-right.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+
+/* =========================================================
+   IMAGE BOX
+   ========================================================= */
+
+.success-image-box {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #f8fafb;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    .success-image-box:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.10);
+    }
+
+
+    /* =========================================================
+   IMAGE
+   ========================================================= */
+
+    .success-image-box img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+    }
+
+
+    .success-image-box:hover img {
+        transform: scale(1.04);
+        filter: brightness(1.04);
+    }
+
+
+    /* =========================================================
+   IMAGE SHINE
+   ========================================================= */
+
+    .success-image-box::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 70%;
+        height: 100%;
+        pointer-events: none;
+        background: linear-gradient( 90deg, transparent, rgba(255,255,255,.28), transparent );
+        transform: skewX(-20deg);
+        transition: left .8s ease;
+    }
+
+
+    .success-image-box:hover::after {
+        left: 140%;
+    }
+
+
+/* =========================================================
+   IMPORTANT INFORMATION
+   ========================================================= */
+
+.success-important-box {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 35px;
+    padding: 22px;
+    border-left: 4px solid #14b8a6;
+    border-radius: 14px;
+    background: #f7fbfb;
+    box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    overflow: hidden;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    .success-important-box:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(20,184,166,.14);
+    }
+
+
+    .success-important-box::before {
+        content: "";
+        position: absolute;
+        top: -45px;
+        right: -45px;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: rgba(20,184,166,.08);
+        animation: successInfoGlow 4s ease-in-out infinite;
+    }
+
+
+.success-important-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+    .success-important-content h2 {
+        margin: 0 0 10px;
+        color: #202838;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+
+    .success-important-content p {
+        margin: 0;
+        color: #536174;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   SECOND IMAGE
+   ========================================================= */
+
+.success-second-image {
+    margin-top: 40px;
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+   ========================================================= */
+
+.success-final-message {
+    padding-bottom: 20px;
+}
+
+
+.success-final-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient( 90deg, transparent, #dce7e8, transparent );
+}
+
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+
+.success-back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #ffffff;
+    background: #14b8a6;
+    box-shadow: 0 8px 25px rgba(20,184,166,.25);
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+
+    .success-back-to-top:hover {
+        color: #ffffff;
+        background: #0f766e;
+        transform: translateY(-4px);
+        text-decoration: none;
+    }
+
+
+/* =========================================================
+   ANIMATION - TITLE
+   ========================================================= */
+
+@keyframes successTitleReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(35px) translateX(-20px);
+        filter: blur(6px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - FADE
+   ========================================================= */
+
+@keyframes successFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - BREADCRUMB
+   ========================================================= */
+
+@keyframes successBreadcrumbReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(45px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - LINE
+   ========================================================= */
+
+@keyframes successLineReveal {
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100px;
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - LEFT GLOW
+   ========================================================= */
+
+@keyframes successGlowOne {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(80px,40px) scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - RIGHT GLOW
+   ========================================================= */
+
+@keyframes successGlowTwo {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(-70px,-50px) scale(1.12);
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - CENTER GLOW
+   ========================================================= */
+
+@keyframes successGlowThree {
+
+    0%, 100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - PARTICLES
+   ========================================================= */
+
+@keyframes successParticleFloat {
+
+    0% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-25px) scale(1.2);
+    }
+
+    100% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - ARROW
+   ========================================================= */
+
+@keyframes successArrowPulse {
+
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - INFO
+   ========================================================= */
+
+@keyframes successInfoGlow {
+
+    0% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .success-hero {
+        min-height: 320px;
+    }
+
+
+    .success-title {
+        font-size: 34px;
+    }
+
+
+    .success-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .success-breadcrumb {
+        margin-top: 25px;
+    }
+
+
+    .success-left-content {
+        padding-right: 15px;
+    }
+
+
+    .success-right-content {
+        padding-left: 15px;
+        margin-top: 40px;
+    }
+
+
+    .success-page .scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .success-page .scroll-right.show {
+            transform: translateY(0);
+        }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .success-top-space {
+        height: 15px;
+    }
+
+
+    .success-content {
+        padding-top: 35px;
+    }
+
+
+    .success-hero {
+        min-height: 360px;
+        text-align: center;
+    }
+
+
+    .success-title {
+        font-size: 28px;
+        color: whitesmoke !important;
+    }
+
+
+    .success-small-title {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+
+    .success-subtitle {
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+
+    .success-breadcrumb {
+        gap: 7px;
+        padding: 8px 10px;
+    }
+
+
+    .success-btn {
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+
+
+    .success-current-page {
+        font-size: 12px;
+    }
+
+
+    .success-glow-1 {
+        width: 220px;
+        height: 220px;
+    }
+
+
+    .success-glow-2 {
+        width: 250px;
+        height: 250px;
+    }
+
+
+    .success-left-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .success-right-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .success-section {
+        margin-bottom: 40px;
+    }
+
+
+        .success-section h4 {
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+
+        .success-section p,
+        .success-list li {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+    .success-page .scroll-reveal {
+        transform: translateY(50px);
+    }
+
+
+        .success-page .scroll-reveal.show {
+            transform: translateY(0);
+        }
+
+
+    .success-page .scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .success-page .scroll-right.show {
+            transform: translateY(0);
+        }
+
+
+    .success-important-box {
+        padding: 18px;
+    }
+
+
+    .success-important-content h2 {
+        font-size: 21px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .success-hero {
+        min-height: 380px;
+    }
+
+
+    .success-title {
+        font-size: 24px;
+        color: whitesmoke !important;
+    }
+
+
+    .success-subtitle {
+        font-size: 13px;
+    }
+
+
+    .success-breadcrumb {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 18px;
+    }
+
+
+    .success-arrow {
+        display: none;
+    }
+
+
+    .success-section h4 {
+        font-size: 20px;
+    }
+
+
+    .success-list {
+        padding-left: 20px;
+    }
+
+
+        .success-list li {
+            font-size: 14px;
+            text-align: left;
+        }
+
+
+    .success-back-to-top {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .success-page *,
+    .success-page::before,
+    .success-page::after,
+    .success-glow,
+    .success-particles span {
+        animation: none !important;
+        transition: none !important;
+    }
+
+
+    .success-page .scroll-reveal,
+    .success-page .scroll-right {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+}

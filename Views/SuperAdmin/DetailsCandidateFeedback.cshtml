@@ -1,0 +1,608 @@
+﻿@model ErJobPortal.Models.SACandidateFeedbackDetailsM
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    ViewData["Title"] = "Trainee Feedback Details";
+
+    ViewData["Panel"] = "SuperAdmin";
+
+    ViewData["UserName"] = "Super Admin";
+}
+<style>
+
+    /* ================================
+               MAIN PAGE
+               ================================ */
+
+    .feedback-details-page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 20px 30px;
+        box-sizing: border-box;
+        background: #ffffff;
+    }
+
+
+    /* ================================
+               MAIN CARD
+               ================================ */
+
+    .feedback-details-card {
+        width: 830px;
+        max-width: calc(100% - 100px);
+        margin: 0 auto;
+        background: #eef4ff;
+        border-top: 6px solid #1687ff;
+        border-radius: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+
+    /* ================================
+               CANDIDATE HEADER
+               ================================ */
+
+    .candidate-header {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        margin-bottom: 30px;
+    }
+
+
+    .candidate-image-box {
+        width: 215px;
+        height: 125px;
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+
+    .candidate-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    .no-image {
+        font-size: 16px;
+        color: #777;
+    }
+
+
+    .candidate-name {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 700;
+        color: #111111;
+    }
+
+
+    /* ================================
+               QUESTION / ANSWER ROW
+               ================================ */
+
+    .feedback-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 55px;
+        margin-top: 30px;
+    }
+
+
+    .question-title,
+    .answer-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111111;
+        margin-bottom: 16px;
+    }
+
+
+    .question-text,
+    .answer-text {
+        font-size: 16px;
+        line-height: 1.45;
+        color: #606a78;
+        word-break: break-word;
+    }
+
+
+    .answer-text {
+        color: #555555;
+    }
+
+
+    /* ================================
+               STAR RATING
+               ================================ */
+
+    .star {
+        font-size: 20px;
+        margin-right: 2px;
+    }
+
+    .star-filled {
+        color: #555555;
+    }
+
+    .star-empty {
+        color: #b7b7b7;
+    }
+
+
+    /* ================================
+               STATUS
+               ================================ */
+
+    .feedback-status {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #d8dfeb;
+        font-size: 16px;
+    }
+
+
+    .status-enabled {
+        color: #198754;
+        font-weight: 700;
+    }
+
+
+    .status-disabled {
+        color: #dc3545;
+        font-weight: 700;
+    }
+
+
+    /* ================================
+               RIGHT SIDE BUTTONS
+               ================================ */
+
+    .side-buttons {
+        position: fixed;
+        right: 25px;
+        top: 60px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        z-index: 1000;
+    }
+
+
+    .side-button {
+        width: 53px;
+        height: 35px;
+        background: #168cf5;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 17px;
+        border-radius: 0;
+    }
+
+
+        .side-button:hover {
+            background: #0877dc;
+            color: #ffffff;
+        }
+
+
+    /* ================================
+               MOBILE
+               ================================ */
+
+    @@media (max-width: 900px) {
+
+        .feedback-details-page {
+            padding: 15px;
+        }
+
+        .feedback-details-card {
+            width: 100%;
+            max-width: 100%;
+            padding: 25px;
+        }
+
+        .candidate-header {
+            gap: 25px;
+        }
+
+        .candidate-name {
+            font-size: 24px;
+        }
+
+        .feedback-row {
+            grid-template-columns: 1fr;
+            row-gap: 15px;
+        }
+
+        .side-buttons {
+            position: static;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+    }
+
+
+    /* ================================
+               PRINT
+               ================================ */
+
+    @@media print {
+
+        .side-buttons {
+            display: none;
+        }
+
+        .feedback-details-page {
+            padding: 0;
+        }
+
+        .feedback-details-card {
+            margin: 0 auto;
+            box-shadow: none;
+        }
+    }
+
+</style>
+
+
+<div class="feedback-details-page">
+
+
+    <!-- =================================
+         RIGHT SIDE BUTTONS
+         ================================= -->
+
+    <div class="side-buttons">
+
+        <!-- BACK -->
+
+        <a href="javascript:history.back();"
+           class="side-button"
+           title="Back">
+
+            <i class="fas fa-arrow-left"></i>
+
+        </a>
+
+
+        <!-- HOME -->
+
+        <a asp-controller="SuperAdmin"
+           asp-action="Dashboard"
+           class="side-button"
+           title="Home">
+
+            <i class="fas fa-home"></i>
+
+        </a>
+
+
+        <!-- PRINT -->
+
+        <a href="javascript:window.print();"
+           class="side-button"
+           title="Print">
+
+            <i class="fas fa-print"></i>
+
+        </a>
+
+    </div>
+
+
+    <!-- =================================
+         MAIN CARD
+         ================================= -->
+
+    <div class="feedback-details-card">
+
+
+        <!-- =================================
+             CANDIDATE INFORMATION
+             ================================= -->
+
+        <div class="candidate-header">
+
+
+            <!-- PROFILE IMAGE -->
+
+            <div class="candidate-image-box">
+
+                @if (!string.IsNullOrWhiteSpace(Model.sProfileImage))
+                {
+                    <img src="@Model.sProfileImage"
+                         class="candidate-image"
+                         alt="Candidate Image" />
+                }
+                else
+                {
+                    <span class="no-image">
+                        No Image
+                    </span>
+                }
+
+            </div>
+
+
+            <!-- NAME -->
+
+            <h1 class="candidate-name">
+
+                @Model.sFName @Model.sLName
+
+            </h1>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             QUESTION 1
+             ================================= -->
+
+        <div class="feedback-row">
+
+            <div>
+
+                <div class="question-title">
+                    Question 1
+                </div>
+
+                <div class="question-text">
+
+                    The resource &amp; contents provided on the
+                    1 Trainee portal to be relevant &amp; useful
+                    for your internship needs.
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="answer-title">
+                    Answer 1
+                </div>
+
+                <div class="answer-text">
+
+                    @if (Model.sQue1 == 1)
+                    {
+                        @:True
+                    }
+                    else
+                    {
+                        @:False
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             QUESTION 2
+             ================================= -->
+
+        <div class="feedback-row">
+
+            <div>
+
+                <div class="question-title">
+                    Question 2
+                </div>
+
+                <div class="question-text">
+
+                    How would you rate the responsiveness
+                    &amp; accessibility of 1trainee.com for
+                    getting an internship opportunity?
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="answer-title">
+                    Answer 2
+                </div>
+
+                <div class="answer-text">
+
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        if (i <= Model.sQue2)
+                        {
+                            <span class="star star-filled">
+                                ★
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="star star-empty">
+                                ☆
+                            </span>
+                        }
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             QUESTION 3
+             ================================= -->
+
+        <div class="feedback-row">
+
+            <div>
+
+                <div class="question-title">
+                    Question 3
+                </div>
+
+                <div class="question-text">
+
+                    Would you like to recommend
+                    1trainee.com to your friends &amp; family?
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="answer-title">
+                    Answer 3
+                </div>
+
+                <div class="answer-text">
+
+                    @if (Model.sQue3 == 1)
+                    {
+                        @:Yes
+                    }
+                    else
+                    {
+                        @:No
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             QUESTION 4
+             ================================= -->
+
+        <div class="feedback-row">
+
+            <div>
+
+                <div class="question-title">
+                    Question 4
+                </div>
+
+                <div class="question-text">
+
+                    How satisfied are you overall with the
+                    details available on the 1 Trainee portal?
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="answer-title">
+                    Answer 4
+                </div>
+
+                <div class="answer-text">
+
+                    @switch (Model.sQue4)
+                    {
+                        case 1:
+                            @:😞
+                            break;
+
+                        case 2:
+                            @:😐
+                            break;
+
+                        case 3:
+                            @:🙂
+                            break;
+
+                        case 4:
+                            @:😊
+                            break;
+
+                        case 5:
+                            @:😍
+                            break;
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================
+             QUESTION 5
+             ================================= -->
+
+        <div class="feedback-row">
+
+            <div>
+
+                <div class="question-title">
+                    Question 5
+                </div>
+
+                <div class="question-text">
+
+                    What suggestions do you have for improving
+                    the 1 Trainee portal to better meet your
+                    internships objective &amp; preferences?
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <div class="answer-title">
+                    Answer 5
+                </div>
+
+                <div class="answer-text">
+
+                    @Model.sQue5
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>

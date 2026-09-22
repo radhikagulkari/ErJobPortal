@@ -1,0 +1,805 @@
+﻿
+@{
+     ViewData["Title"] = "Top Searches";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    // ViewData["Title"] = "Candidate Dashboard";
+    ViewData["Panel"] = "Candidate";
+    ViewData["UserName"] = "Candidate";
+}
+@section Styles {
+
+    <link rel="stylesheet"
+          href="~/css/TopSearches.css"
+          asp-append-version="true" />
+
+}
+
+<!-- =========================================================
+     TOP SEARCHES PAGE
+     ========================================================= -->
+
+<div class="top-search-page">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="top-search-hero">
+
+        <div class="top-search-hero-content">
+
+            <div class="top-search-hero-icon">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="top-search-hero-text">
+
+                <span class="top-search-eyebrow">
+                    SEARCH ANALYTICS
+                </span>
+
+                <h1>
+                    Top Searches
+                </h1>
+
+                <p>
+                    Explore the most searched skills, fields and cities
+                    across the platform.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Decorative elements -->
+
+        <div class="top-search-hero-glow top-search-glow-one"></div>
+
+        <div class="top-search-hero-glow top-search-glow-two"></div>
+
+        <div class="top-search-grid"></div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TOP SKILLS
+         ===================================================== -->
+
+    <section class="top-search-skills-card">
+
+        <div class="top-search-card-header">
+
+            <div class="top-search-card-title">
+
+                <div class="top-search-card-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        MOST POPULAR
+                    </span>
+
+                    <h2>
+                        Top Skills
+                    </h2>
+
+                    <p>
+                        Skills receiving the highest search interest.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="top-search-header-badge">
+                <i class="fas fa-chart-line"></i>
+                Trending
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             SKILLS GRID
+             ================================================= -->
+
+        <div class="top-skills-grid">
+
+
+            <!-- Skill 1 -->
+
+            <div class="top-skill-item">
+
+                <div class="top-skill-top">
+
+                    <div class="top-skill-name">
+
+                        <div class="skill-small-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+
+                        <span>
+                            C#
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        82%
+                    </strong>
+
+                </div>
+
+
+                <div class="top-skill-progress">
+
+                    <div class="top-skill-progress-fill"
+                         style="--skill-width:82%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Skill 2 -->
+
+            <div class="top-skill-item">
+
+                <div class="top-skill-top">
+
+                    <div class="top-skill-name">
+
+                        <div class="skill-small-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+
+                        <span>
+                            ASP.NET Core
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        74%
+                    </strong>
+
+                </div>
+
+
+                <div class="top-skill-progress">
+
+                    <div class="top-skill-progress-fill"
+                         style="--skill-width:74%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Skill 3 -->
+
+            <div class="top-skill-item">
+
+                <div class="top-skill-top">
+
+                    <div class="top-skill-name">
+
+                        <div class="skill-small-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+
+                        <span>
+                            SQL Server
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        68%
+                    </strong>
+
+                </div>
+
+
+                <div class="top-skill-progress">
+
+                    <div class="top-skill-progress-fill"
+                         style="--skill-width:68%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Skill 4 -->
+
+            <div class="top-skill-item">
+
+                <div class="top-skill-top">
+
+                    <div class="top-skill-name">
+
+                        <div class="skill-small-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+
+                        <span>
+                            React.js
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        61%
+                    </strong>
+
+                </div>
+
+
+                <div class="top-skill-progress">
+
+                    <div class="top-skill-progress-fill"
+                         style="--skill-width:61%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =========================================================
+     SKILL - AZURE
+     ========================================================= -->
+
+<div class="top-skill-item">
+
+    <div class="top-skill-top">
+
+        <div class="top-skill-name">
+
+            <div class="skill-small-icon">
+                <i class="fas fa-cloud"></i>
+            </div>
+
+            <span>
+                Azure
+            </span>
+
+        </div>
+
+        <strong>
+            54%
+        </strong>
+
+    </div>
+
+
+    <div class="top-skill-progress">
+
+        <div class="top-skill-progress-fill"
+             style="--skill-width:54%;">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SKILL - PYTHON
+     ========================================================= -->
+
+<div class="top-skill-item">
+
+    <div class="top-skill-top">
+
+        <div class="top-skill-name">
+
+            <div class="skill-small-icon">
+                <i class="fab fa-python"></i>
+            </div>
+
+            <span>
+                Python
+            </span>
+
+        </div>
+
+        <strong>
+            51%
+        </strong>
+
+    </div>
+
+
+    <div class="top-skill-progress">
+
+        <div class="top-skill-progress-fill"
+             style="--skill-width:51%;">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SKILL - JAVASCRIPT
+     ========================================================= -->
+
+<div class="top-skill-item">
+
+    <div class="top-skill-top">
+
+        <div class="top-skill-name">
+
+            <div class="skill-small-icon">
+                <i class="fab fa-js"></i>
+            </div>
+
+            <span>
+                JavaScript
+            </span>
+
+        </div>
+
+        <strong>
+            47%
+        </strong>
+
+    </div>
+
+
+    <div class="top-skill-progress">
+
+        <div class="top-skill-progress-fill"
+             style="--skill-width:47%;">
+        </div>
+
+    </div>
+
+</div>
+
+
+            <!-- Skill 5 -->
+
+            <div class="top-skill-item">
+
+                <div class="top-skill-top">
+
+                    <div class="top-skill-name">
+
+                        <div class="skill-small-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+
+                        <span>
+                            Azure
+                        </span>
+
+                    </div>
+
+                    <strong>
+                        54%
+                    </strong>
+
+                </div>
+
+
+                <div class="top-skill-progress">
+
+                    <div class="top-skill-progress-fill"
+                         style="--skill-width:54%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FIELDS + CITIES
+         ===================================================== -->
+
+    <section class="top-search-bottom-grid">
+
+
+        <!-- =================================================
+             TOP FIELDS
+             ================================================= -->
+
+        <div class="top-search-fields-card">
+
+            <div class="top-search-card-header">
+
+                <div class="top-search-card-title">
+
+                    <div class="top-search-card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            INDUSTRY INTEREST
+                        </span>
+
+                        <h2>
+                            Top Fields
+                        </h2>
+
+                        <p>
+                            Most searched professional fields.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="top-fields-list">
+
+
+                <!-- Field 1 -->
+
+                <div class="top-field-item">
+
+                    <div class="top-field-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+
+
+                    <div class="top-field-content">
+
+                        <div class="top-field-info">
+
+                            <span>
+                                Software Development
+                            </span>
+
+                            <strong>
+                                48%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="top-field-progress">
+
+                            <div style="--field-width:48%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Field 2 -->
+
+                <div class="top-field-item">
+
+                    <div class="top-field-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+
+
+                    <div class="top-field-content">
+
+                        <div class="top-field-info">
+
+                            <span>
+                                Web Development
+                            </span>
+
+                            <strong>
+                                41%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="top-field-progress">
+
+                            <div style="--field-width:41%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Field 3 -->
+
+                <div class="top-field-item">
+
+                    <div class="top-field-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+
+
+                    <div class="top-field-content">
+
+                        <div class="top-field-info">
+
+                            <span>
+                                Cloud Computing
+                            </span>
+
+                            <strong>
+                                32%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="top-field-progress">
+
+                            <div style="--field-width:32%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Field 4 -->
+
+                <div class="top-field-item">
+
+                    <div class="top-field-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+
+
+                    <div class="top-field-content">
+
+                        <div class="top-field-info">
+
+                            <span>
+                                Data Science
+                            </span>
+
+                            <strong>
+                                27%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="top-field-progress">
+
+                            <div style="--field-width:27%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TOP CITIES
+             ================================================= -->
+
+        <div class="top-search-cities-card">
+
+            <div class="top-search-card-header">
+
+                <div class="top-search-card-title">
+
+                    <div class="top-search-card-icon">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            LOCATION INSIGHTS
+                        </span>
+
+                        <h2>
+                            Top Cities
+                        </h2>
+
+                        <p>
+                            Cities with the highest search activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- City list -->
+
+            <div class="top-cities-list">
+
+
+                <!-- City 1 -->
+
+                <div class="top-city-item">
+
+                    <div class="top-city-rank">
+                        01
+                    </div>
+
+                    <div class="top-city-icon">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+
+                    <div class="top-city-name">
+                        Mumbai
+                    </div>
+
+                    <div class="top-city-value">
+                        42
+                    </div>
+
+                </div>
+
+
+
+                <!-- City 2 -->
+
+                <div class="top-city-item">
+
+                    <div class="top-city-rank">
+                        02
+                    </div>
+
+                    <div class="top-city-icon">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+
+                    <div class="top-city-name">
+                        Pune
+                    </div>
+
+                    <div class="top-city-value">
+                        36
+                    </div>
+
+                </div>
+
+
+
+                <!-- City 3 -->
+
+                <div class="top-city-item">
+
+                    <div class="top-city-rank">
+                        03
+                    </div>
+
+                    <div class="top-city-icon">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+
+                    <div class="top-city-name">
+                        Nagpur
+                    </div>
+
+                    <div class="top-city-value">
+                        29
+                    </div>
+
+                </div>
+
+
+
+                <!-- City 4 -->
+
+                <div class="top-city-item">
+
+                    <div class="top-city-rank">
+                        04
+                    </div>
+
+                    <div class="top-city-icon">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+
+                    <div class="top-city-name">
+                        Bengaluru
+                    </div>
+
+                    <div class="top-city-value">
+                        24
+                    </div>
+
+                </div>
+
+
+
+                <!-- City 5 -->
+
+                <div class="top-city-item">
+
+                    <div class="top-city-rank">
+                        05
+                    </div>
+
+                    <div class="top-city-icon">
+                        <i class="fas fa-location-dot"></i>
+                    </div>
+
+                    <div class="top-city-name">
+                        Hyderabad
+                    </div>
+
+                    <div class="top-city-value">
+                        21
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const page =
+                document.querySelector(".top-search-page");
+
+            if (page) {
+
+                setTimeout(function () {
+
+                    page.classList.add("top-search-loaded");
+
+                }, 100);
+
+            }
+
+        });
+
+    </script>
+
+}

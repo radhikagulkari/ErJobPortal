@@ -1,0 +1,334 @@
+﻿@model ErJobPortal.Models.SAOrgFeedbackM
+
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    ViewData["Title"] = "Edit Feedback";
+    ViewData["Panel"] = "SuperAdmin";
+    ViewData["UserName"] = "Super Admin";
+}
+@section Styles {
+
+    <link rel="stylesheet"
+          href="~/css/EditSAOrgFeedback.css"
+          asp-append-version="true" />
+
+}
+ 
+
+<div class="feedback-edit-card">
+
+    <h1 class="feedback-title">
+        Edit Feedback
+    </h1>
+
+    <form asp-controller="SuperAdmin"
+          asp-action="EditSAOrgFeedback"
+          method="post">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="nID" />
+
+
+        <!-- QUESTION 1 -->
+
+        <div class="question-section">
+
+            <label class="question-label">
+                  
+            </label>
+
+            <textarea asp-for="Que1"
+                      class="question-textarea"></textarea>
+
+
+            <div class="answer-area">
+
+                <label class="radio-option">
+
+                    <input type="radio"
+                           name="Ans1Radio"
+                           value="True"
+                           onclick="setAnswer1('True')"
+                           @(Model.Ans1 == "True" ? "checked" : "") />
+
+                    True
+
+                </label>
+
+                <label class="radio-option">
+
+                    <input type="radio"
+                           name="Ans1Radio"
+                           value="False"
+                           onclick="setAnswer1('False')"
+                           @(Model.Ans1 == "False" ? "checked" : "") />
+
+                    False
+
+                </label>
+
+            </div>
+
+            <input type="hidden"
+                   asp-for="Ans1"
+                   id="Ans1" />
+
+        </div>
+
+
+        <!-- QUESTION 2 -->
+
+        <div class="question-section">
+
+            <label class="question-label">
+                  
+            </label>
+
+            <textarea asp-for="Que2"
+                      class="question-textarea"></textarea>
+
+
+            <div class="answer-area">
+
+                <div class="star-rating">
+
+                    <span class="star"
+                          data-value="1"
+                          onclick="setStarRating(1)">★</span>
+
+                    <span class="star"
+                          data-value="2"
+                          onclick="setStarRating(2)">★</span>
+
+                    <span class="star"
+                          data-value="3"
+                          onclick="setStarRating(3)">★</span>
+
+                    <span class="star"
+                          data-value="4"
+                          onclick="setStarRating(4)">★</span>
+
+                    <span class="star"
+                          data-value="5"
+                          onclick="setStarRating(5)">★</span>
+
+                </div>
+
+            </div>
+
+            <input type="hidden"
+                   asp-for="Ans2"
+                   id="Ans2" />
+
+        </div>
+
+
+        <!-- QUESTION 3 -->
+
+        <div class="question-section">
+
+            <label class="question-label">
+                  
+            </label>
+
+            <textarea asp-for="Que3"
+                      class="question-textarea"></textarea>
+
+
+            <div class="answer-area">
+
+                <label class="radio-option">
+
+                    <input type="radio"
+                           name="Ans3Radio"
+                           value="Yes"
+                           onclick="setAnswer3('Yes')"
+                           @(Model.Ans3 == "Yes" ? "checked" : "") />
+
+                    Yes
+
+                </label>
+
+                <label class="radio-option">
+
+                    <input type="radio"
+                           name="Ans3Radio"
+                           value="No"
+                           onclick="setAnswer3('No')"
+                           @(Model.Ans3 == "No" ? "checked" : "") />
+
+                    No
+
+                </label>
+
+            </div>
+
+            <input type="hidden"
+                   asp-for="Ans3"
+                   id="Ans3" />
+
+        </div>
+
+
+        <!-- QUESTION 4 -->
+
+        <div class="question-section">
+
+            <label class="question-label">
+                  
+            </label>
+
+            <textarea asp-for="Que4"
+                      class="question-textarea"></textarea>
+
+
+            <div class="answer-area">
+
+                <div class="emoji-rating">
+
+                    <span class="emoji"
+                          data-value="1"
+                          onclick="setEmojiRating(1)">😟</span>
+
+                    <span class="emoji"
+                          data-value="2"
+                          onclick="setEmojiRating(2)">😧</span>
+
+                    <span class="emoji"
+                          data-value="3"
+                          onclick="setEmojiRating(3)">😃</span>
+
+                    <span class="emoji"
+                          data-value="4"
+                          onclick="setEmojiRating(4)">😄</span>
+
+                    <span class="emoji"
+                          data-value="5"
+                          onclick="setEmojiRating(5)">😍</span>
+
+                </div>
+
+            </div>
+
+            <input type="hidden"
+                   asp-for="Ans4"
+                   id="Ans4" />
+
+        </div>
+
+
+        <!-- QUESTION 5 -->
+
+        <div class="question-section">
+
+            <label class="question-label">
+                  
+            </label>
+
+            <textarea asp-for="Que5"
+                      class="question-textarea"></textarea>
+
+
+            <div class="description-label">
+                Description
+            </div>
+
+            <textarea asp-for="Ans5"
+                      class="question-textarea"></textarea>
+
+        </div>
+
+
+        <!-- SAVE -->
+
+        <div class="save-area">
+
+            <button type="submit"
+                    class="save-button">
+
+                Save
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+
+    function setAnswer1(value) {
+        document.getElementById("Ans1").value = value;
+    }
+
+
+    function setAnswer3(value) {
+        document.getElementById("Ans3").value = value;
+    }
+
+
+    function setStarRating(value) {
+
+        document.getElementById("Ans2").value = value;
+
+        document.querySelectorAll(".star").forEach(function (star) {
+
+            var starValue =
+                parseInt(star.getAttribute("data-value"));
+
+            if (starValue <= value) {
+                star.classList.add("active");
+            }
+            else {
+                star.classList.remove("active");
+            }
+
+        });
+    }
+
+
+    function setEmojiRating(value) {
+
+        document.getElementById("Ans4").value = value;
+
+        document.querySelectorAll(".emoji").forEach(function (emoji) {
+
+            var emojiValue =
+                parseInt(emoji.getAttribute("data-value"));
+
+            if (emojiValue === value) {
+                emoji.classList.add("active");
+            }
+            else {
+                emoji.classList.remove("active");
+            }
+
+        });
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var starValue =
+            parseInt(document.getElementById("Ans2").value);
+
+        if (!isNaN(starValue)) {
+            setStarRating(starValue);
+        }
+
+
+        var emojiValue =
+            parseInt(document.getElementById("Ans4").value);
+
+        if (!isNaN(emojiValue)) {
+            setEmojiRating(emojiValue);
+        }
+
+    });
+
+</script>

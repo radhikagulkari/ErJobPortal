@@ -1,0 +1,594 @@
+﻿@model ErJobPortal.Models.SAOrgFeedbackDetailsM
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    ViewData["Title"] = "Organization Feedback Details";
+
+    ViewData["Panel"] = "SuperAdmin";
+
+    ViewData["UserName"] = "Super Admin";
+
+    // =========================================================
+    // ANSWER DISPLAY CONVERSION
+    // =========================================================
+
+    string GetAnswer1(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return "";
+
+        if (value == "1")
+            return "True";
+
+        if (value == "0")
+            return "False";
+
+        return value;
+    }
+
+    string GetAnswer2(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return "";
+
+        if (value == "1")
+            return "★☆☆☆☆";
+
+        if (value == "2")
+            return "★★★★★";
+
+        if (value == "3")
+            return "★★★★☆";
+
+        if (value == "4")
+            return "★★★★☆";
+
+        if (value == "5")
+            return "★★★★★";
+
+        return value;
+    }
+
+    string GetAnswer3(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return "";
+
+        if (value == "1")
+            return "Yes";
+
+        if (value == "0")
+            return "No";
+
+        return value;
+    }
+
+    string GetAnswer4(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return "";
+
+        if (value == "1")
+            return "😊";
+
+        if (value == "2")
+            return "😍";
+
+        if (value == "3")
+            return "😐";
+
+        if (value == "4")
+            return "😞";
+
+        if (value == "5")
+            return "😡";
+
+        return value;
+    }
+}
+
+<style>
+
+    body {
+        background: #ffffff !important;
+    }
+
+    /* =====================================================
+                   MAIN WRAPPER
+                   ===================================================== */
+
+    .feedback-details-wrapper {
+        width: 100%;
+        min-height: calc(100vh - 20px);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 15px;
+        padding-bottom: 30px;
+    }
+
+    /* =====================================================
+                   MAIN CARD
+                   ===================================================== */
+
+    .feedback-details-card {
+        width: 830px;
+        background: #eef4ff;
+        border-top: 5px solid #1683f8;
+        border-radius: 15px;
+        padding: 30px;
+        box-sizing: border-box;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    /* =====================================================
+                   HEADER
+                   ===================================================== */
+
+    .feedback-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+
+    .organization-logo {
+        width: 215px;
+        height: 125px;
+        object-fit: contain;
+        background: #ffffff;
+        border-radius: 10px;
+        border: 1px solid #e1e1e1;
+        flex-shrink: 0;
+    }
+
+    .organization-name {
+        flex: 1;
+        text-align: center !important;
+        font-size: 29px;
+        font-weight: 700;
+        color: #000000;
+        margin: 0 0 0 45px;
+        white-space: nowrap;
+    }
+
+    /* =====================================================
+                   QUESTION / ANSWER ROW
+                   ===================================================== */
+
+    .feedback-row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 45px;
+        margin-bottom: 27px;
+    }
+
+    .feedback-column {
+        min-width: 0;
+        text-align: left !important;
+    }
+
+    /* =====================================================
+                   TITLES
+                   ===================================================== */
+
+    .feedback-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #000000;
+        margin-bottom: 17px;
+        text-align: left !important;
+    }
+
+    /* =====================================================
+                   QUESTION TEXT
+                   ===================================================== */
+
+    .feedback-text {
+        font-size: 16px;
+        line-height: 1.45;
+        color: #555555;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        text-align: left !important;
+    }
+
+    /* =====================================================
+                   ANSWER TEXT
+                   ===================================================== */
+
+    .answer-text {
+        font-size: 16px;
+        line-height: 1.45;
+        color: #555555;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: pre-wrap;
+        text-align: left !important;
+    }
+
+    /* =====================================================
+                   STAR ANSWER
+                   ===================================================== */
+
+    .star-answer {
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: #555555;
+        text-align: left !important;
+    }
+
+    /* =====================================================
+                   EMOJI ANSWER
+                   ===================================================== */
+
+    .emoji-answer {
+        font-size: 20px;
+        text-align: left !important;
+    }
+
+    /* =====================================================
+                   RIGHT SIDE BUTTONS
+                   ===================================================== */
+
+    .side-buttons {
+        position: fixed;
+        right: 32px;
+        top: 23px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        z-index: 1000;
+    }
+
+    .side-button {
+        width: 53px;
+        height: 35px;
+        background: #168cf5;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border-radius: 0;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .side-button:hover {
+            background: #0877dc;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+    /* =====================================================
+                   PRINT
+                   ===================================================== */
+
+    @@media print {
+
+        body {
+            background: #ffffff !important;
+        }
+
+        .side-buttons {
+            display: none !important;
+        }
+
+        .feedback-details-wrapper {
+            display: block;
+            padding: 0;
+        }
+
+        .feedback-details-card {
+            width: 100%;
+            box-shadow: none;
+            border: none;
+        }
+    }
+
+    /* =====================================================
+                   RESPONSIVE
+                   ===================================================== */
+
+    @@media (max-width: 1000px) {
+
+        .feedback-details-card {
+            width: calc(100% - 120px);
+        }
+
+        .organization-name {
+            font-size: 26px;
+        }
+    }
+
+    @@media (max-width: 700px) {
+
+        .feedback-details-wrapper {
+            padding: 15px;
+        }
+
+        .feedback-details-card {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .feedback-header {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .organization-logo {
+            margin-bottom: 20px;
+        }
+
+        .organization-name {
+            margin: 0;
+            font-size: 24px;
+            white-space: normal;
+            text-align: center !important;
+        }
+
+        .feedback-row {
+            grid-template-columns: 1fr;
+            row-gap: 15px;
+        }
+
+        .side-buttons {
+            right: 10px;
+        }
+    }
+
+</style>
+
+
+<!-- =====================================================
+     RIGHT SIDE BUTTONS
+     ===================================================== -->
+
+<div class="side-buttons">
+
+    <!-- BACK -->
+    <a href="javascript:history.back();"
+       class="side-button"
+       title="Back">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- HOME -->
+    <a asp-controller="SuperAdmin"
+       asp-action="Dashboard"
+       class="side-button"
+       title="Home">
+        <i class="fas fa-home"></i>
+    </a>
+
+    <!-- PRINT -->
+    <button type="button"
+            class="side-button"
+            onclick="window.print();"
+            title="Print">
+        <i class="fas fa-print"></i>
+    </button>
+
+    <!-- DOWNLOAD -->
+    <button type="button"
+            class="side-button"
+            onclick="window.print();"
+            title="Download">
+        <i class="fas fa-download"></i>
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN CARD
+     ===================================================== -->
+
+<div class="feedback-details-wrapper">
+
+    <div class="feedback-details-card">
+
+        <!-- =================================================
+             ORGANIZATION HEADER
+             ================================================= -->
+
+        <div class="feedback-header">
+
+            @if (!string.IsNullOrWhiteSpace(Model.sOrgLogo))
+            {
+                <img src="@Url.Content("~/uploads/organization/" + Model.sOrgLogo)"
+                     class="organization-logo"
+                     alt="Organization Logo" />
+            }
+            else
+            {
+                <div class="organization-logo"
+                     style="
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            color:#777;
+                            font-size:15px;">
+                    No Logo
+                </div>
+            }
+
+            <h1 class="organization-name">
+                @Model.sOrgName
+            </h1>
+
+        </div>
+
+
+        <!-- =================================================
+             QUESTION 1 / ANSWER 1
+             ================================================= -->
+
+        <div class="feedback-row">
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Question 1
+                </div>
+
+                <div class="feedback-text">
+                    @Model.sQue1
+                </div>
+
+            </div>
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Answer 1
+                </div>
+
+                <div class="answer-text">
+                    @GetAnswer1(Model.sAns1)
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             QUESTION 2 / ANSWER 2
+             ================================================= -->
+
+        <div class="feedback-row">
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Question 2
+                </div>
+
+                <div class="feedback-text">
+                    @Model.sQue2
+                </div>
+
+            </div>
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Answer 2
+                </div>
+
+                <div class="star-answer">
+                    @GetAnswer2(Model.sAns2)
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             QUESTION 3 / ANSWER 3
+             ================================================= -->
+
+        <div class="feedback-row">
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Question 3
+                </div>
+
+                <div class="feedback-text">
+                    @Model.sQue3
+                </div>
+
+            </div>
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Answer 3
+                </div>
+
+                <div class="answer-text">
+                    @GetAnswer3(Model.sAns3)
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             QUESTION 4 / ANSWER 4
+             ================================================= -->
+
+        <div class="feedback-row">
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Question 4
+                </div>
+
+                <div class="feedback-text">
+                    @Model.sQue4
+                </div>
+
+            </div>
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Answer 4
+                </div>
+
+                <div class="emoji-answer">
+                    @GetAnswer4(Model.sAns4)
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             QUESTION 5 / ANSWER 5
+             ================================================= -->
+
+        <div class="feedback-row" style="margin-bottom:0;">
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Question 5
+                </div>
+
+                <div class="feedback-text">
+                    @Model.sQue5
+                </div>
+
+            </div>
+
+            <div class="feedback-column">
+
+                <div class="feedback-title">
+                    Answer 5
+                </div>
+
+                <div class="answer-text">
+                    @Model.sAns5
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

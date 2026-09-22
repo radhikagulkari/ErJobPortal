@@ -1,0 +1,1737 @@
+﻿@{
+    ViewData["Title"] = "Top Career Options";
+}
+
+<style>
+
+    /* =========================================================
+           1TRAINEE - TOP CAREERS PAGE
+           ========================================================= */
+
+    .career-page {
+        --career-primary: #0d9488;
+        --career-primary-dark: #0f766e;
+        --career-primary-light: #ccfbf1;
+        --career-primary-soft: #f0fdfa;
+        --career-text: #172033;
+        --career-muted: #667085;
+        --career-border: #e6eceb;
+        --career-white: #ffffff;
+        width: 100%;
+        overflow: hidden;
+        background: #ffffff;
+        color: var(--career-text);
+    }
+
+
+    /* =========================================================
+           COMMON CONTAINER
+           ========================================================= */
+
+    .career-container {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+           HERO
+           ========================================================= */
+
+    .career-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 90px 0 100px;
+        background: radial-gradient( circle at 10% 20%, rgba(13, 148, 136, .12), transparent 35% ), radial-gradient( circle at 90% 10%, rgba(13, 148, 136, .08), transparent 30% ), linear-gradient( 135deg, #f0fdfa 0%, #ffffff 55%, #f8fffe 100% );
+    }
+
+
+        .career-hero::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(13, 148, 136, .06);
+            right: -90px;
+            bottom: -100px;
+        }
+
+
+    .career-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: auto;
+        text-align: center;
+    }
+
+
+    .career-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 15px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(13, 148, 136, .15);
+        border-radius: 50px;
+        background: rgba(255,255,255,.8);
+        color: var(--career-primary-dark);
+        font-size: 13px;
+        font-weight: 700;
+        box-shadow: 0 8px 25px rgba(13,148,136,.08);
+    }
+
+
+        .career-badge i {
+            font-size: 13px;
+        }
+
+
+    .career-hero h1 {
+        margin: 0;
+        font-size: clamp(34px, 5vw, 58px);
+        line-height: 1.08;
+        font-weight: 800;
+        letter-spacing: -1.8px;
+        color: var(--career-text);
+    }
+
+
+        .career-hero h1 span {
+            color: var(--career-primary);
+        }
+
+
+    .career-hero p {
+        max-width: 720px;
+        margin: 20px auto 0;
+        color: var(--career-muted);
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+
+    /* =========================================================
+           CAREER STATS
+           ========================================================= */
+
+    .career-stats {
+        position: relative;
+        z-index: 5;
+        margin-top: -45px;
+        margin-bottom: 75px;
+    }
+
+
+    .career-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+
+    .career-stat {
+        min-height: 120px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: #ffffff;
+        border: 1px solid var(--career-border);
+        border-radius: 18px;
+        box-shadow: 0 12px 35px rgba(15, 42, 39, .08);
+        transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+
+        .career-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 42px rgba(15, 42, 39, .12);
+        }
+
+
+    .career-stat-icon {
+        width: 52px;
+        height: 52px;
+        flex: 0 0 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        background: var(--career-primary-soft);
+        color: var(--career-primary);
+        font-size: 21px;
+    }
+
+
+    .career-stat h3 {
+        margin: 0;
+        color: var(--career-text);
+        font-size: 25px;
+        font-weight: 800;
+    }
+
+
+    .career-stat p {
+        margin: 3px 0 0;
+        color: var(--career-muted);
+        font-size: 13px;
+    }
+
+
+    /* =========================================================
+           SECTION HEADER
+           ========================================================= */
+
+    .career-section {
+        padding: 10px 0 85px;
+    }
+
+
+    .career-section-header {
+        max-width: 700px;
+        margin: 0 auto 45px;
+        text-align: center;
+    }
+
+
+    .career-section-label {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: var(--career-primary);
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+    }
+
+
+    .career-section-header h2 {
+        margin: 0;
+        color: var(--career-text);
+        font-size: clamp(28px, 4vw, 40px);
+        line-height: 1.2;
+        font-weight: 800;
+    }
+
+
+    .career-section-header p {
+        margin: 13px auto 0;
+        color: var(--career-muted);
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+           CAREER CATEGORY
+           ========================================================= */
+
+    .career-category {
+        margin-bottom: 34px;
+        padding: 28px;
+        background: #ffffff;
+        border: 1px solid var(--career-border);
+        border-radius: 22px;
+        box-shadow: 0 8px 30px rgba(15, 42, 39, .05);
+        transition: box-shadow .3s ease, transform .3s ease;
+    }
+
+
+        .career-category:hover {
+            box-shadow: 0 15px 38px rgba(15, 42, 39, .09);
+            transform: translateY(-2px);
+        }
+
+
+    /* =========================================================
+           CATEGORY HEADER
+           ========================================================= */
+
+    .career-category-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 24px;
+    }
+
+
+    .career-category-icon {
+        width: 52px;
+        height: 52px;
+        flex: 0 0 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        background: linear-gradient( 135deg, var(--career-primary), var(--career-primary-dark) );
+        color: #ffffff;
+        font-size: 20px;
+        box-shadow: 0 8px 18px rgba(13,148,136,.20);
+    }
+
+
+    .career-category-header h3 {
+        margin: 0;
+        font-size: 21px;
+        font-weight: 750;
+        color: var(--career-text);
+    }
+
+
+    .career-category-header span {
+        display: block;
+        margin-top: 3px;
+        color: var(--career-muted);
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+           CAREER CARDS
+           ========================================================= */
+
+    .career-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+    }
+
+
+    .career-card {
+        position: relative;
+        min-height: 170px;
+        padding: 20px 18px;
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        border: 1px solid var(--career-border);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+
+        .career-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient( 90deg, var(--career-primary), #2dd4bf );
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .3s ease;
+        }
+
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(13,148,136,.25);
+            box-shadow: 0 12px 28px rgba(13,148,136,.10);
+        }
+
+
+            .career-card:hover::before {
+                transform: scaleX(1);
+            }
+
+
+    .career-card-icon {
+        width: 38px;
+        height: 38px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 11px;
+        background: var(--career-primary-soft);
+        color: var(--career-primary);
+        font-size: 16px;
+        transition: transform .3s ease, background .3s ease;
+    }
+
+
+    .career-card:hover .career-card-icon {
+        transform: scale(1.08);
+        background: var(--career-primary-light);
+    }
+
+
+    .career-card h4 {
+        margin: 0 0 7px;
+        color: var(--career-text);
+        font-size: 15px;
+        line-height: 1.4;
+        font-weight: 750;
+    }
+
+
+    .career-card p {
+        margin: 0;
+        color: var(--career-muted);
+        font-size: 12.5px;
+        line-height: 1.6;
+    }
+
+
+    /* =========================================================
+           EXPLORE CTA
+           ========================================================= */
+
+    .career-cta {
+        position: relative;
+        overflow: hidden;
+        margin: 5px 0 90px;
+        padding: 55px 50px;
+        border-radius: 25px;
+        background: radial-gradient( circle at 90% 10%, rgba(255,255,255,.15), transparent 30% ), linear-gradient( 135deg, #0d9488, #0f766e );
+        color: #ffffff;
+    }
+
+
+        .career-cta::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            right: -50px;
+            bottom: -80px;
+            border: 35px solid rgba(255,255,255,.06);
+            border-radius: 50%;
+        }
+
+
+    .career-cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+    }
+
+
+    .career-cta h2 {
+        margin: 0 0 12px;
+        color: #ffffff;
+        font-size: clamp(25px, 4vw, 36px);
+        font-weight: 800;
+    }
+
+
+    .career-cta p {
+        max-width: 650px;
+        margin: 0;
+        color: rgba(255,255,255,.82);
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    .career-cta-btn {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 25px;
+        padding: 12px 21px;
+        border-radius: 10px;
+        background: #ffffff;
+        color: var(--career-primary-dark);
+        font-size: 13px;
+        font-weight: 750;
+        text-decoration: none;
+        transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+
+        .career-cta-btn:hover {
+            color: var(--career-primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,.15);
+        }
+
+
+    /* =========================================================
+           LARGE LAPTOP
+           ========================================================= */
+
+    @@media (max-width: 1199px) {
+
+        .career-container {
+            width: min(1100px, calc(100% - 35px));
+        }
+
+
+        .career-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+
+        .career-card {
+            min-height: 155px;
+        }
+    }
+
+
+    /* =========================================================
+           TABLET
+           ========================================================= */
+
+    @@media (max-width: 991px) {
+
+        .career-hero {
+            padding: 70px 0 85px;
+        }
+
+
+        .career-stats {
+            margin-top: -30px;
+            margin-bottom: 55px;
+        }
+
+
+        .career-stats-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+
+        .career-stat {
+            padding: 18px;
+        }
+
+
+        .career-stat-icon {
+            width: 45px;
+            height: 45px;
+            flex-basis: 45px;
+            font-size: 18px;
+        }
+
+
+        .career-stat h3 {
+            font-size: 21px;
+        }
+
+
+        .career-stat p {
+            font-size: 12px;
+        }
+
+
+        .career-category {
+            padding: 22px;
+        }
+
+
+        .career-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+
+        .career-card {
+            min-height: 145px;
+        }
+
+
+        .career-cta {
+            padding: 42px 35px;
+        }
+    }
+
+
+    /* =========================================================
+           MOBILE
+           ========================================================= */
+
+    @@media (max-width: 767px) {
+
+        .career-container {
+            width: calc(100% - 28px);
+        }
+
+
+        .career-hero {
+            padding: 55px 0 70px;
+        }
+
+
+        .career-badge {
+            font-size: 11px;
+            padding: 7px 12px;
+        }
+
+
+        .career-hero h1 {
+            font-size: 34px;
+            letter-spacing: -1px;
+        }
+
+
+        .career-hero p {
+            margin-top: 15px;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+
+        .career-stats {
+            margin-top: -20px;
+            margin-bottom: 45px;
+        }
+
+
+        .career-stats-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+
+        .career-stat {
+            min-height: auto;
+            padding: 17px;
+        }
+
+
+        .career-section {
+            padding-bottom: 55px;
+        }
+
+
+        .career-section-header {
+            margin-bottom: 30px;
+        }
+
+
+            .career-section-header h2 {
+                font-size: 28px;
+            }
+
+
+            .career-section-header p {
+                font-size: 13px;
+            }
+
+
+        .career-category {
+            margin-bottom: 18px;
+            padding: 18px;
+            border-radius: 17px;
+        }
+
+
+        .career-category-header {
+            margin-bottom: 18px;
+        }
+
+
+        .career-category-icon {
+            width: 44px;
+            height: 44px;
+            flex-basis: 44px;
+            font-size: 17px;
+        }
+
+
+        .career-category-header h3 {
+            font-size: 18px;
+        }
+
+
+        .career-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+
+        .career-card {
+            min-height: 155px;
+            padding: 15px;
+            border-radius: 13px;
+        }
+
+
+        .career-card-icon {
+            width: 34px;
+            height: 34px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+
+        .career-card h4 {
+            font-size: 13px;
+        }
+
+
+        .career-card p {
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+
+        .career-cta {
+            margin-bottom: 55px;
+            padding: 32px 22px;
+            border-radius: 18px;
+        }
+
+
+            .career-cta h2 {
+                font-size: 25px;
+            }
+
+
+            .career-cta p {
+                font-size: 13px;
+            }
+    }
+
+
+    /* =========================================================
+           SMALL MOBILE
+           ========================================================= */
+
+    @@media (max-width: 420px) {
+
+        .career-container {
+            width: calc(100% - 22px);
+        }
+
+
+        .career-hero {
+            padding: 45px 0 60px;
+        }
+
+
+            .career-hero h1 {
+                font-size: 29px;
+            }
+
+
+            .career-hero p {
+                font-size: 12px;
+            }
+
+
+        .career-grid {
+            grid-template-columns: 1fr;
+        }
+
+
+        .career-card {
+            min-height: auto;
+        }
+
+
+            .career-card p {
+                font-size: 12px;
+            }
+
+
+        .career-category-header h3 {
+            font-size: 17px;
+        }
+    }
+
+</style>
+
+
+<div class="career-page">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="career-hero">
+
+        <div class="career-container">
+
+            <div class="career-hero-content">
+
+                <div class="career-badge">
+                    <i class="fa-solid fa-compass"></i>
+                    Explore Your Future
+                </div>
+
+                <h1>
+                    Discover the Right
+                    <span>Career Path</span>
+                    for You
+                </h1>
+
+                <p>
+                    Explore career opportunities across technology,
+                    engineering, business, healthcare, creative fields,
+                    education, science, law and skilled trades.
+                    Find a path that matches  interests, skills and goals.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATS
+    ====================================================== -->
+
+    <section class="career-stats">
+
+        <div class="career-container">
+
+            <div class="career-stats-grid">
+
+                <div class="career-stat">
+
+                    <div class="career-stat-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+
+                    <div>
+                        <h3>9+</h3>
+                        <p>Career Fields</p>
+                    </div>
+
+                </div>
+
+
+                <div class="career-stat">
+
+                    <div class="career-stat-icon">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+
+                    <div>
+                        <h3>40+</h3>
+                        <p>Career Options</p>
+                    </div>
+
+                </div>
+
+
+                <div class="career-stat">
+
+                    <div class="career-stat-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div>
+                        <h3>1Trainee</h3>
+                        <p>Build Your Career</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CAREER OPTIONS
+    ====================================================== -->
+
+    <section class="career-section">
+
+        <div class="career-container">
+
+            <div class="career-section-header">
+
+                <span class="career-section-label">
+                    Career Opportunities
+                </span>
+
+                <h2>
+                    Top Career Options
+                </h2>
+
+                <p>
+                    Each career field offers different opportunities.
+                    Explore the options below and discover careers
+                    that align with  strengths and ambitions.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 TECHNOLOGY
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+
+                    <div>
+                        <h3>Technology & IT</h3>
+                        <span>Build the technology of tomorrow</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h4>Software Developer / Engineer</h4>
+                        <p>
+                            Design and create software applications,
+                            platforms and digital systems.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h4>Data Scientist / Analyst</h4>
+                        <p>
+                            Analyze data and transform information
+                            into useful business insights.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4>Cybersecurity Specialist</h4>
+                        <p>
+                            Protect systems, applications and
+                            networks from cyber threats.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h4>IT Consultant</h4>
+                        <p>
+                            Help organizations use technology
+                            to achieve business objectives.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <h4>Cloud Engineer</h4>
+                        <p>
+                            Manage cloud infrastructure, services
+                            and scalable digital environments.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ENGINEERING
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+
+                    <div>
+                        <h3>Engineering</h3>
+                        <span>Design, build and solve real-world problems</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <h4>Mechanical Engineer</h4>
+                        <p>
+                            Design and develop mechanical systems,
+                            machines and devices.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <h4>Civil Engineer</h4>
+                        <p>
+                            Plan, design and oversee construction
+                            and infrastructure projects.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h4>Electrical Engineer</h4>
+                        <p>
+                            Work with electrical systems,
+                            electronics and power technologies.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <h4>Chemical Engineer</h4>
+                        <p>
+                            Apply chemical processes to create
+                            useful products and solutions.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h4>Software Engineer</h4>
+                        <p>
+                            Develop reliable and scalable software
+                            systems and applications.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 BUSINESS
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+
+                    <div>
+                        <h3>Business & Finance</h3>
+                        <span>Turn ideas into business growth</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+                        <h4>Financial Analyst</h4>
+                        <p>
+                            Analyze financial information to
+                            support business and investment decisions.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h4>Marketing Manager</h4>
+                        <p>
+                            Develop and implement marketing
+                            strategies and campaigns.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h4>Management Consultant</h4>
+                        <p>
+                            Advise organizations on business
+                            improvement and growth strategies.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <h4>Accountant</h4>
+                        <p>
+                            Manage financial records and
+                            support financial compliance.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h4>Human Resources Manager</h4>
+                        <p>
+                            Manage recruitment, employee relations
+                            and organizational development.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 HEALTHCARE
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+
+                    <div>
+                        <h3>Healthcare</h3>
+                        <span>Make a meaningful difference in people's lives</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <h4>Doctor / Physician</h4>
+                        <p>
+                            Diagnose and treat medical conditions
+                            while supporting patient health.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-user-nurse"></i>
+                        </div>
+                        <h4>Nurse</h4>
+                        <p>
+                            Provide professional care,
+                            assistance and patient support.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-pills"></i>
+                        </div>
+                        <h4>Pharmacist</h4>
+                        <p>
+                            Dispense medications and provide
+                            guidance on their appropriate use.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <h4>Medical Researcher</h4>
+                        <p>
+                            Conduct research to advance medical
+                            knowledge and treatments.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-hospital"></i>
+                        </div>
+                        <h4>Healthcare Administrator</h4>
+                        <p>
+                            Manage healthcare facilities,
+                            services and operations.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ARTS & MEDIA
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+
+                    <div>
+                        <h3>Arts & Media</h3>
+                        <span>Turn creativity into a career</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+                        <h4>Graphic Designer</h4>
+                        <p>
+                            Create visual content for digital
+                            and traditional media.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-newspaper"></i>
+                        </div>
+                        <h4>Journalist / Reporter</h4>
+                        <p>
+                            Research, investigate and report
+                            news and events.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-film"></i>
+                        </div>
+                        <h4>Film Director / Producer</h4>
+                        <p>
+                            Manage creative and production
+                            processes for film projects.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <h4>Content Writer</h4>
+                        <p>
+                            Develop useful and engaging content
+                            for different platforms.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <h4>Public Relations Specialist</h4>
+                        <p>
+                            Manage the public image and
+                            communication of organizations.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EDUCATION
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+
+                    <div>
+                        <h3>Education</h3>
+                        <span>Shape the next generation</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                        </div>
+                        <h4>Teacher</h4>
+                        <p>
+                            Educate and support students across
+                            different subjects and levels.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <h4>Educational Consultant</h4>
+                        <p>
+                            Advise institutions on educational
+                            strategies and improvements.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <h4>Curriculum Developer</h4>
+                        <p>
+                            Design educational programs,
+                            resources and learning materials.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <h4>Academic Advisor</h4>
+                        <p>
+                            Guide students in academic planning
+                            and career development.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-school"></i>
+                        </div>
+                        <h4>Education Administrator</h4>
+                        <p>
+                            Manage educational institutions
+                            and learning programs.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SCIENCE
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+
+                    <div>
+                        <h3>Science & Research</h3>
+                        <span>Explore, discover and innovate</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-dna"></i>
+                        </div>
+                        <h4>Biologist</h4>
+                        <p>
+                            Study living organisms and their
+                            interactions with the environment.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <h4>Chemist</h4>
+                        <p>
+                            Conduct experiments and research
+                            chemical processes.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <h4>Environmental Scientist</h4>
+                        <p>
+                            Address environmental challenges
+                            and develop sustainable solutions.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-atom"></i>
+                        </div>
+                        <h4>Physicist</h4>
+                        <p>
+                            Research and analyze physical
+                            phenomena and scientific principles.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-square-root-variable"></i>
+                        </div>
+                        <h4>Mathematician</h4>
+                        <p>
+                            Apply mathematical theories and
+                            techniques to solve complex problems.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SOCIAL SCIENCES
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+
+                    <div>
+                        <h3>Social Sciences</h3>
+                        <span>Understand people and society</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h4>Psychologist</h4>
+                        <p>
+                            Study behavior and mental processes
+                            to support individuals.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h4>Sociologist</h4>
+                        <p>
+                            Research social behavior and
+                            structures within society.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <h4>Economist</h4>
+                        <p>
+                            Analyze economic data, trends
+                            and market behavior.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <h4>Political Scientist</h4>
+                        <p>
+                            Study political systems and
+                            political behavior.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h4>Social Worker</h4>
+                        <p>
+                            Support individuals and communities
+                            facing social challenges.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 LAW
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+
+                    <div>
+                        <h3>Law & Criminal Justice</h3>
+                        <span>Support justice and legal systems</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-gavel"></i>
+                        </div>
+                        <h4>Lawyer / Attorney</h4>
+                        <p>
+                            Provide legal advice and represent
+                            clients in legal matters.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h4>Judge</h4>
+                        <p>
+                            Preside over court proceedings
+                            and make legal judgments.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-user-secret"></i>
+                        </div>
+                        <h4>Criminal Investigator</h4>
+                        <p>
+                            Investigate crimes and gather
+                            relevant evidence.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <h4>Paralegal</h4>
+                        <p>
+                            Assist lawyers with research,
+                            documents and case preparation.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <h4>Legal Consultant</h4>
+                        <p>
+                            Provide expert guidance on
+                            legal matters and requirements.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SKILLED TRADES
+            ================================================== -->
+
+            <div class="career-category">
+
+                <div class="career-category-header">
+
+                    <div class="career-category-icon">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+
+                    <div>
+                        <h3>Skilled Trades</h3>
+                        <span>Build practical skills for valuable careers</span>
+                    </div>
+
+                </div>
+
+
+                <div class="career-grid">
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h4>Skilled Electrician</h4>
+                        <p>
+                            Install, maintain and repair
+                            electrical systems.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </div>
+                        <h4>HVAC Technician</h4>
+                        <p>
+                            Install and maintain heating,
+                            ventilation and cooling systems.
+                        </p>
+                    </div>
+
+
+                    <div class="career-card">
+                        <div class="career-card-icon">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <h4>Welder</h4>
+                        <p>
+                            Join metal components using
+                            professional welding techniques.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FINAL CTA
+            ================================================== -->
+
+            <div class="career-cta">
+
+                <div class="career-cta-content">
+
+                    <h2>
+                        Your Career Starts With One Decision
+                    </h2>
+
+                    <p>
+                        Every career requires different skills,
+                        education and experience. Explore 
+                        interests, understand  strengths and
+                        choose a path that supports  long-term goals.
+                    </p>
+
+                    <a asp-controller="Account"
+                       asp-action="Register"
+                       class="career-cta-btn">
+
+                        Start Your Journey
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

@@ -1,0 +1,415 @@
+﻿@{
+    ViewData["Title"] = "Our Team";
+}
+
+<link rel="stylesheet" href="~/css/Our_team.css" asp-append-version="true" />
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<section class="team-page">
+
+    <section class="team-section">
+
+        <div class="container">
+
+            <!-- ================= HEADING ================= -->
+
+            <div class="team-heading">
+
+                <span class="team-label">
+                    OUR TEAM
+                </span>
+
+                <h1>
+                    Meet Our <span>Team Members</span>
+                </h1>
+
+                <p>
+                    Meet the passionate people behind our platform.
+                    Our team works together to create meaningful
+                    opportunities for trainees and organizations.
+                </p>
+
+            </div>
+
+
+            <!-- ================= SLIDER ================= -->
+
+            <div class="team-slider-wrapper">
+
+                <!-- PREVIOUS BUTTON -->
+
+                <button type="button"
+                        class="team-slider-btn team-prev"
+                        id="teamPrev"
+                        aria-label="Previous team member">
+
+                    <span aria-hidden="true">‹</span>
+
+                </button>
+
+
+                <!-- SLIDER VIEWPORT -->
+
+                <div class="team-slider"
+                     id="teamSlider">
+
+                    <div class="team-track"
+                         id="teamTrack">
+
+
+                        <!-- ================= MEMBER 1 ================= -->
+
+                        <div class="team-slide">
+
+                            <div class="team-card">
+
+                                <div class="team-image">
+
+                                    <img src="https://i.pravatar.cc/600?img=12"
+                                         alt="Rahul Sharma"
+                                         loading="lazy">
+
+                                    <div class="team-image-overlay"></div>
+
+                                    <div class="team-social">
+
+                                        <a href="#"
+                                           aria-label="LinkedIn">
+                                            <i class="bi bi-linkedin"></i>
+                                        </a>
+
+                                        <a href="#"
+                                           aria-label="Twitter">
+                                            <i class="bi bi-twitter-x"></i>
+                                        </a>
+
+                                        <a href="mailto:info@example.com"
+                                           aria-label="Email">
+                                            <i class="bi bi-envelope"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="team-content">
+
+                                    <h3>Rahul Sharma</h3>
+
+                                    <span class="team-role">
+                                        Founder & CEO
+                                    </span>
+
+                                    <p>
+                                        Driving the vision and building
+                                        meaningful opportunities for the
+                                        next generation of talent.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================= MEMBER 2 ================= -->
+
+                        <div class="team-slide">
+
+                            <div class="team-card">
+
+                                <div class="team-image">
+
+                                    <img src="https://i.pravatar.cc/600?img=47"
+                                         alt="Priya Mehta"
+                                         loading="lazy">
+
+                                    <div class="team-image-overlay"></div>
+
+                                    <div class="team-social">
+
+                                        <a href="#" aria-label="LinkedIn">
+                                            <i class="bi bi-linkedin"></i>
+                                        </a>
+
+                                        <a href="#" aria-label="Twitter">
+                                            <i class="bi bi-twitter-x"></i>
+                                        </a>
+
+                                        <a href="mailto:info@example.com"
+                                           aria-label="Email">
+                                            <i class="bi bi-envelope"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="team-content">
+
+                                    <h3>Priya Mehta</h3>
+
+                                    <span class="team-role">
+                                        HR & Operations
+                                    </span>
+
+                                    <p>
+                                        Connecting organizations and trainees
+                                        while ensuring a smooth experience
+                                        across the platform.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================= MEMBER 3 ================= -->
+
+                        <div class="team-slide">
+
+                            <div class="team-card">
+
+                                <div class="team-image">
+
+                                    <img src="https://i.pravatar.cc/600?img=32"
+                                         alt="Amit Verma"
+                                         loading="lazy">
+
+                                    <div class="team-image-overlay"></div>
+
+                                    <div class="team-social">
+
+                                        <a href="#" aria-label="LinkedIn">
+                                            <i class="bi bi-linkedin"></i>
+                                        </a>
+
+                                        <a href="#" aria-label="Twitter">
+                                            <i class="bi bi-twitter-x"></i>
+                                        </a>
+
+                                        <a href="mailto:info@example.com"
+                                           aria-label="Email">
+                                            <i class="bi bi-envelope"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="team-content">
+
+                                    <h3>Amit Verma</h3>
+
+                                    <span class="team-role">
+                                        Technology Lead
+                                    </span>
+
+                                    <p>
+                                        Building reliable technology and
+                                        creating simple digital experiences
+                                        for our users.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================= MEMBER 4 ================= -->
+
+                        <div class="team-slide">
+
+                            <div class="team-card">
+
+                                <div class="team-image">
+
+                                    <img src="https://i.pravatar.cc/600?img=44"
+                                         alt="Sneha Patil"
+                                         loading="lazy">
+
+                                    <div class="team-image-overlay"></div>
+
+                                    <div class="team-social">
+
+                                        <a href="#" aria-label="LinkedIn">
+                                            <i class="bi bi-linkedin"></i>
+                                        </a>
+
+                                        <a href="#" aria-label="Twitter">
+                                            <i class="bi bi-twitter-x"></i>
+                                        </a>
+
+                                        <a href="mailto:info@example.com"
+                                           aria-label="Email">
+                                            <i class="bi bi-envelope"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="team-content">
+
+                                    <h3>Sneha Patil</h3>
+
+                                    <span class="team-role">
+                                        Marketing Manager
+                                    </span>
+
+                                    <p>
+                                        Helping our community discover new
+                                        opportunities and grow together.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================= MEMBER 5 ================= -->
+
+                        <div class="team-slide">
+
+                            <div class="team-card">
+
+                                <div class="team-image">
+
+                                    <img src="https://i.pravatar.cc/600?img=11"
+                                         alt="Karan Joshi"
+                                         loading="lazy">
+
+                                    <div class="team-image-overlay"></div>
+
+                                    <div class="team-social">
+
+                                        <a href="#" aria-label="LinkedIn">
+                                            <i class="bi bi-linkedin"></i>
+                                        </a>
+
+                                        <a href="#" aria-label="Twitter">
+                                            <i class="bi bi-twitter-x"></i>
+                                        </a>
+
+                                        <a href="mailto:info@example.com"
+                                           aria-label="Email">
+                                            <i class="bi bi-envelope"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="team-content">
+
+                                    <h3>Karan Joshi</h3>
+
+                                    <span class="team-role">
+                                        Product Manager
+                                    </span>
+
+                                    <p>
+                                        Turning ideas into useful products
+                                        that solve real problems for our
+                                        community.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ================= MEMBER 6 ================= -->
+
+                        <div class="team-slide">
+
+                            <div class="team-card">
+
+                                <div class="team-image">
+
+                                    <img src="https://i.pravatar.cc/600?img=5"
+                                         alt="Neha Kulkarni"
+                                         loading="lazy">
+
+                                    <div class="team-image-overlay"></div>
+
+                                    <div class="team-social">
+
+                                        <a href="#" aria-label="LinkedIn">
+                                            <i class="bi bi-linkedin"></i>
+                                        </a>
+
+                                        <a href="#" aria-label="Twitter">
+                                            <i class="bi bi-twitter-x"></i>
+                                        </a>
+
+                                        <a href="mailto:info@example.com"
+                                           aria-label="Email">
+                                            <i class="bi bi-envelope"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="team-content">
+
+                                    <h3>Neha Kulkarni</h3>
+
+                                    <span class="team-role">
+                                        Community Manager
+                                    </span>
+
+                                    <p>
+                                        Supporting our community and helping
+                                        users get the most from the platform.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- NEXT BUTTON -->
+
+                <button type="button"
+                        class="team-slider-btn team-next"
+                        id="teamNext"
+                        aria-label="Next team member">
+
+                    <span aria-hidden="true">›</span>
+
+                </button>
+
+            </div>
+
+
+            <!-- ================= DOTS ================= -->
+
+            <div class="team-dots"
+                 id="teamDots">
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+<script src="~/js/our_team.js" asp-append-version="true"></script>

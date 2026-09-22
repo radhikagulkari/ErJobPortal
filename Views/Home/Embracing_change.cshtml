@@ -1,0 +1,824 @@
+﻿@{
+    ViewData["Title"] = "Embracing Change";
+}
+
+<style>
+
+    /* =========================================================
+           1TRAINEE - EMBRACING CHANGE PAGE
+           TEAL + WHITE PROFESSIONAL THEME
+           ========================================================= */
+
+    body.site-modern .embracing-page {
+        width: 100%;
+        margin-top: 100px;
+        padding-bottom: 70px;
+        background: #f5faf9;
+        color: #172033;
+        overflow: hidden;
+        border-radius: 30px 30px 30px 30px;
+    }
+
+
+    /* =========================================================
+           HERO
+           ========================================================= */
+
+    body.site-modern .embracing-hero {
+        position: relative;
+        overflow: hidden;
+        padding: 65px 25px 85px;
+        background: linear-gradient( 135deg, #0d9488 0%, #0f766e 55%, #115e59 100% );
+        border-radius: 30px 30px 30px 30px;
+        text-align: center;
+    }
+
+        body.site-modern .embracing-hero::before {
+            content: "";
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            top: -190px;
+            right: -80px;
+            background: rgba(255,255,255,.07);
+        }
+
+        body.site-modern .embracing-hero::after {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            bottom: -170px;
+            left: -90px;
+            background: rgba(255,255,255,.05);
+        }
+
+
+    /* =========================================================
+           HERO CONTENT
+           ========================================================= */
+
+    body.site-modern .embracing-hero-inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    body.site-modern .embracing-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 7px 16px;
+        margin-bottom: 18px;
+        border: 1px solid rgba(255,255,255,.25);
+        border-radius: 50px;
+        background: rgba(255,255,255,.12);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: .5px;
+    }
+
+        body.site-modern .embracing-badge i {
+            font-size: 13px;
+        }
+
+    body.site-modern .embracing-hero h1 {
+        margin: 0 auto;
+        max-width: 850px;
+        color: #fff !important;
+        font-size: 38px;
+        line-height: 1.25;
+        font-weight: 800;
+    }
+
+
+    /* =========================================================
+           MAIN CONTAINER
+           ========================================================= */
+
+    body.site-modern .embracing-container {
+        width: 100%;
+        max-width: 1180px;
+        margin: -45px auto 0;
+        padding: 0 20px;
+        position: relative;
+        z-index: 5;
+    }
+
+
+    /* =========================================================
+           INTRO
+           ========================================================= */
+
+    body.site-modern .embracing-intro {
+        width: 100%;
+        background: #fff;
+        border: 1px solid #e1ecea;
+        border-radius: 20px;
+        padding: 28px 32px;
+        margin-bottom: 35px;
+        box-shadow: 0 15px 40px rgba(15,42,39,.07);
+    }
+
+        body.site-modern .embracing-intro p {
+            margin: 0;
+            color: #596671;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+
+    /* =========================================================
+           TWO COLUMN AREA
+           ========================================================= */
+
+    body.site-modern .embracing-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 25px;
+        width: 100%;
+        margin-bottom: 35px;
+        align-items: stretch;
+    }
+
+
+    /* =========================================================
+           MAIN SECTION CARD
+           ========================================================= */
+
+    body.site-modern .embracing-section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: #fff;
+        border: 1px solid #e0ecea;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 10px 30px rgba(15,42,39,.05);
+        overflow: hidden;
+    }
+
+        body.site-modern .embracing-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #0d9488;
+        }
+
+
+    /* =========================================================
+           SECTION HEADER
+           ========================================================= */
+
+    body.site-modern .embracing-section-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-bottom: 23px;
+        margin-bottom: 4px;
+        border-bottom: 1px solid #edf3f2;
+    }
+
+    body.site-modern .embracing-icon {
+        flex: 0 0 48px;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: #e7f7f5;
+        color: #0d9488;
+        font-size: 19px;
+    }
+
+    body.site-modern .embracing-section-header h2 {
+        margin: 0;
+        color: #172033;
+        font-size: 20px;
+        line-height: 1.35;
+        font-weight: 800;
+    }
+
+
+    /* =========================================================
+           CONTENT ITEMS
+           ========================================================= */
+
+    body.site-modern .embracing-item {
+        position: relative;
+        padding: 20px 0 20px 27px;
+        border-left: 2px solid #dcefeb;
+    }
+
+        body.site-modern .embracing-item::before {
+            content: "";
+            position: absolute;
+            top: 24px;
+            left: -6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #0d9488;
+            box-shadow: 0 0 0 5px #e7f7f5;
+        }
+
+        body.site-modern .embracing-item:last-child {
+            padding-bottom: 4px;
+        }
+
+        body.site-modern .embracing-item strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #172033;
+            font-size: 14px;
+            line-height: 1.4;
+            font-weight: 750;
+        }
+
+        body.site-modern .embracing-item p {
+            margin: 0;
+            color: #65727d;
+            font-size: 13.5px;
+            line-height: 1.75;
+        }
+
+
+    /* =========================================================
+           POWER OF CHANGE
+           ========================================================= */
+
+    body.site-modern .power-change {
+        position: relative;
+        width: 100%;
+        padding: 38px 40px;
+        border-radius: 22px;
+        background: linear-gradient( 135deg, #0d9488, #0f766e );
+        overflow: hidden;
+    }
+
+        body.site-modern .power-change::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            right: -100px;
+            top: -120px;
+            background: rgba(255,255,255,.06);
+        }
+
+        body.site-modern .power-change::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            left: -100px;
+            bottom: -100px;
+            background: rgba(255,255,255,.04);
+        }
+
+    body.site-modern .power-change-content {
+        position: relative;
+        z-index: 2;
+        max-width: 950px;
+        margin: 0 auto;
+    }
+
+    body.site-modern .power-change h2 {
+        margin: 0 0 18px;
+        color: #fff !important;
+        font-size: 28px;
+        line-height: 1.3;
+        font-weight: 800;
+    }
+
+    body.site-modern .power-change p {
+        margin: 0 0 15px;
+        color: rgba(255,255,255,.9);
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+
+    /* =========================================================
+           REMEMBER BOX
+           ========================================================= */
+
+    body.site-modern .remember-box {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 25px;
+        padding: 17px 20px;
+        border-radius: 14px;
+        background: rgba(255,255,255,.12);
+        border: 1px solid rgba(255,255,255,.18);
+    }
+
+        body.site-modern .remember-box > i {
+            flex: 0 0 40px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 11px;
+            background: #fff;
+            color: #0d9488;
+            font-size: 17px;
+        }
+
+        body.site-modern .remember-box span {
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        body.site-modern .remember-box strong {
+            color: #fff;
+            font-weight: 800;
+        }
+
+
+    /* =========================================================
+           LARGE TABLET
+           ========================================================= */
+
+    @@media only screen and (max-width: 1100px) {
+
+        body.site-modern .embracing-hero h1 {
+            font-size: 34px;
+        }
+
+        body.site-modern .embracing-container {
+            max-width: 1000px;
+        }
+
+        body.site-modern .embracing-section {
+            padding: 25px;
+        }
+
+        body.site-modern .embracing-section-header h2 {
+            font-size: 19px;
+        }
+    }
+
+
+    /* =========================================================
+           TABLET
+           ========================================================= */
+
+    @@media only screen and (max-width: 991px) {
+
+        body.site-modern .embracing-page {
+            margin-top: 100px;
+        }
+
+        body.site-modern .embracing-hero {
+            padding: 55px 25px 75px;
+        }
+
+            body.site-modern .embracing-hero h1 {
+                font-size: 31px;
+            }
+
+        body.site-modern .embracing-container {
+            padding: 0 18px;
+        }
+
+        body.site-modern .embracing-columns {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        body.site-modern .embracing-section {
+            height: auto;
+        }
+
+        body.site-modern .power-change {
+            padding: 32px;
+        }
+    }
+
+
+    /* =========================================================
+           MOBILE
+           ========================================================= */
+
+    @@media only screen and (max-width: 767px) {
+
+        body.site-modern .embracing-page {
+            margin-top: 100px;
+            padding-bottom: 45px;
+        }
+
+        body.site-modern .embracing-hero {
+            padding: 45px 18px 65px;
+            border-radius: 0 0 28px 28px;
+        }
+
+        body.site-modern .embracing-badge {
+            font-size: 11px;
+            padding: 6px 13px;
+        }
+
+        body.site-modern .embracing-hero h1 {
+            font-size: 27px;
+            line-height: 1.3;
+        }
+
+        body.site-modern .embracing-container {
+            margin-top: -28px;
+            padding: 0 14px;
+        }
+
+        body.site-modern .embracing-intro {
+            padding: 21px;
+            border-radius: 17px;
+            margin-bottom: 25px;
+        }
+
+            body.site-modern .embracing-intro p {
+                font-size: 13.5px;
+                line-height: 1.75;
+            }
+
+        body.site-modern .embracing-columns {
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        body.site-modern .embracing-section {
+            padding: 21px;
+            border-radius: 17px;
+        }
+
+        body.site-modern .embracing-section-header {
+            gap: 11px;
+            padding-bottom: 18px;
+        }
+
+        body.site-modern .embracing-icon {
+            flex: 0 0 43px;
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            font-size: 17px;
+        }
+
+        body.site-modern .embracing-section-header h2 {
+            font-size: 18px;
+        }
+
+        body.site-modern .embracing-item {
+            padding: 18px 0 18px 23px;
+        }
+
+            body.site-modern .embracing-item strong {
+                font-size: 13.5px;
+            }
+
+            body.site-modern .embracing-item p {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+        body.site-modern .power-change {
+            padding: 26px 21px;
+            border-radius: 18px;
+        }
+
+            body.site-modern .power-change h2 {
+                font-size: 24px;
+            }
+
+            body.site-modern .power-change p {
+                font-size: 13.5px;
+            }
+
+        body.site-modern .remember-box {
+            align-items: flex-start;
+            padding: 15px;
+        }
+
+            body.site-modern .remember-box span {
+                font-size: 13px;
+            }
+    }
+
+
+    /* =========================================================
+           SMALL MOBILE
+           ========================================================= */
+
+    @@media only screen and (max-width: 480px) {
+
+        body.site-modern .embracing-page {
+            margin-top: 100px;
+        }
+
+        body.site-modern .embracing-hero {
+            padding: 38px 14px 55px;
+        }
+
+            body.site-modern .embracing-hero h1 {
+                font-size: 23px;
+            }
+
+        body.site-modern .embracing-container {
+            padding: 0 10px;
+        }
+
+        body.site-modern .embracing-intro {
+            padding: 18px;
+        }
+
+        body.site-modern .embracing-section {
+            padding: 18px;
+        }
+
+        body.site-modern .embracing-section-header h2 {
+            font-size: 17px;
+        }
+
+        body.site-modern .embracing-item {
+            padding-left: 21px;
+        }
+
+            body.site-modern .embracing-item p {
+                font-size: 12.5px;
+            }
+
+        body.site-modern .power-change {
+            padding: 22px 17px;
+        }
+
+            body.site-modern .power-change h2 {
+                font-size: 22px;
+            }
+
+        body.site-modern .remember-box {
+            gap: 10px;
+        }
+
+            body.site-modern .remember-box > i {
+                flex: 0 0 36px;
+                width: 36px;
+                height: 36px;
+            }
+    }
+
+</style>
+
+
+<div class="embracing-page">
+
+    <!-- =====================================================
+         HERO
+         ====================================================== -->
+
+    <section class="embracing-hero">
+
+        <div class="embracing-hero-inner">
+
+            <div class="embracing-badge">
+                <i class="ti-reload"></i>
+                Transformation & Adaptability
+            </div>
+
+            <h1>
+                Transformation & Adaptability is the Key :
+                A Call to Action for Trainees & Recruiters
+            </h1>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ====================================================== -->
+
+    <main class="embracing-container">
+
+
+        <!-- =================================================
+             INTRODUCTION
+             ================================================== -->
+
+        <section class="embracing-intro">
+
+            <p>
+                In today’s fast-paced technological landscape, the ability to adapt and evolve is more critical than ever. The stories of Kodak and Nokia serve as powerful reminders of the consequences of stagnation in an age defined by innovation. Both companies were once leaders in their fields but failed to embrace change, leading to their decline. As we move forward, it’s essential for both job seekers and recruiters to learn from these lessons.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             TRAINEES + RECRUITERS
+             ================================================== -->
+
+        <div class="embracing-columns">
+
+
+            <!-- =============================================
+                 JOB SEEKERS
+                 ============================================== -->
+
+            <section class="embracing-section">
+
+                <div class="embracing-section-header">
+
+                    <div class="embracing-icon">
+                        <i class="ti-user"></i>
+                    </div>
+
+                    <h2>
+                        For Job Seekers: Embrace Lifelong Learning
+                    </h2>
+
+                </div>
+
+
+                <div class="embracing-item">
+
+                    <strong>
+                        Stay Curious
+                    </strong>
+
+                    <p>
+                        The tech landscape is constantly evolving. Cultivate a mindset of curiosity. Explore new tools, platforms, and trends. Take online courses, attend workshops, and join industry groups to stay updated.
+                    </p>
+
+                </div>
+
+
+                <div class="embracing-item">
+
+                    <strong>
+                        Adaptability is Key
+                    </strong>
+
+                    <p>
+                        Employers are looking for candidates who can pivot with changing demands. Showcase  ability to learn quickly and adapt to new environments.
+                    </p>
+
+                </div>
+
+
+                <div class="embracing-item">
+
+                    <strong>
+                        Network and Collaborate
+                    </strong>
+
+                    <p>
+                        Build connections in  industry. Engage with thought leaders, attend networking events, and collaborate on projects. Networking not only opens doors but also provides insights into emerging technologies.
+                    </p>
+
+                </div>
+
+
+                <div class="embracing-item">
+
+                    <strong>
+                        Be Open to New Roles
+                    </strong>
+
+                    <p>
+                        Don’t limit self to traditional career paths. Be willing to explore roles that leverage  skills in new ways, whether in AI, data analytics, or digital marketing.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 RECRUITERS
+                 ============================================== -->
+
+            <section class="embracing-section">
+
+                <div class="embracing-section-header">
+
+                    <div class="embracing-icon">
+                        <i class="ti-briefcase"></i>
+                    </div>
+
+                    <h2>
+                        For Recruiters: Lead the Change
+                    </h2>
+
+                </div>
+
+
+                <div class="embracing-item">
+
+                    <strong>
+                        Prioritize Agility
+                    </strong>
+
+                    <p>
+                        Seek candidates who demonstrate adaptability and a willingness to learn. Build teams that can respond to change swiftly, ensuring  organization stays competitive.
+                    </p>
+
+                </div>
+
+
+                <div class="embracing-item">
+
+                    <strong>
+                        Embrace Diversity of Thought
+                    </strong>
+
+                    <p>
+                        Diverse teams bring unique perspectives, fostering innovation. Prioritize inclusivity in  hiring processes to cultivate a dynamic and forward-thinking workforce.
+                    </p>
+
+                </div>
+
+
+                <div class="embracing-item">
+
+                    <strong>
+                        Invest in Continuous Development
+                    </strong>
+
+                    <p>
+                        Encourage a culture of learning within  organization. Provide training and development opportunities that empower employees to stay ahead of technological trends.
+                    </p>
+
+                </div>
+
+
+                <div class="embracing-item">
+
+                    <strong>
+                        Foster an Innovation Mindset
+                    </strong>
+
+                    <p>
+                        Create an environment where new ideas are encouraged and experimentation is welcomed. This can lead to breakthroughs that keep  company at the forefront of  industry.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================================
+             POWER OF CHANGE
+             ================================================== -->
+
+        <section class="power-change">
+
+            <div class="power-change-content">
+
+                <h2>
+                    The Power of Change
+                </h2>
+
+                <p>
+                    Both seekers and recruiters play a vital role in shaping the future of their organizations. By embracing change and learning from the past, we can avoid the pitfalls that befell Kodak and Nokia.
+                </p>
+
+                <p>
+                    Let’s commit to a future where we are not just reacting to technology but actively shaping it. Together, we can build a workforce that is resilient, innovative, and ready to tackle the challenges of tomorrow.
+                </p>
+
+
+                <div class="remember-box">
+
+                    <i class="ti-light-bulb"></i>
+
+                    <span>
+                        <strong>Remember:</strong>
+                        Change is not just an obstacle; it’s an opportunity. Embrace it!
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>

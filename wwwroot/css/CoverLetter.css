@@ -1,0 +1,1555 @@
+﻿/* =========================================================
+   COVER LETTER GUIDANCE PAGE
+   COMPLETE SEPARATE CSS
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL PAGE
+   ========================================================= */
+
+.cover-letter-page {
+    width: 100%;
+    max-width: 100%;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+    .cover-letter-page,
+    .cover-letter-page * {
+        box-sizing: border-box;
+    }
+
+
+/* Prevent horizontal scrollbar from animations */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   COVER LETTER HERO
+   ========================================================= */
+
+.cover-letter-hero {
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient( 135deg, #102a43 0%, #164e63 45%, #0f766e 100% );
+}
+
+
+.cover-letter-page .cover-section h4 {
+    position: relative;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #222222;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: normal;
+    clear: both;
+}
+
+    .cover-letter-page .cover-section h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -7px;
+        width: 60px;
+        height: 3px;
+        border-radius: 10px;
+        background: #14b8a6;
+    }
+
+    /* =========================================================
+   HERO DARK OVERLAY
+   ========================================================= */
+
+    .cover-letter-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -4;
+        background: linear-gradient( 90deg, rgba(10, 31, 51, .96), rgba(18, 78, 94, .75), rgba(15, 118, 110, .90) );
+    }
+
+
+    /* =========================================================
+   HERO GRID PATTERN
+   ========================================================= */
+
+    .cover-letter-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        opacity: .65;
+        background-image: linear-gradient( rgba(255,255,255,.035) 1px, transparent 1px ), linear-gradient( 90deg, rgba(255,255,255,.035) 1px, transparent 1px );
+        background-size: 45px 45px;
+        mask-image: linear-gradient( to bottom, black, transparent );
+        -webkit-mask-image: linear-gradient( to bottom, black, transparent );
+    }
+
+
+    /* =========================================================
+   HERO CONTAINER
+   ========================================================= */
+
+    .cover-letter-hero .container {
+        position: relative;
+        z-index: 10;
+    }
+
+
+/* =========================================================
+   HERO GLOW BASE
+   ========================================================= */
+
+.cover-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* =========================================================
+   LEFT GLOW
+   ========================================================= */
+
+.cover-glow-1 {
+    width: 320px;
+    height: 320px;
+    left: -110px;
+    top: -130px;
+    background: rgba(45, 212, 191, .20);
+    filter: blur(8px);
+    animation: coverGlowOne 8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   RIGHT GLOW
+   ========================================================= */
+
+.cover-glow-2 {
+    width: 400px;
+    height: 400px;
+    right: -160px;
+    bottom: -220px;
+    background: rgba(59, 130, 246, .20);
+    filter: blur(12px);
+    animation: coverGlowTwo 10s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CENTER GLOW
+   ========================================================= */
+
+.cover-glow-3 {
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    top: 5%;
+    background: rgba(255,255,255,.055);
+    filter: blur(25px);
+    animation: coverGlowThree 6s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   HERO PARTICLES
+   ========================================================= */
+
+.cover-particles span {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.60);
+    box-shadow: 0 0 12px rgba(255,255,255,.45);
+    pointer-events: none;
+    z-index: -1;
+    animation: coverParticleFloat 6s ease-in-out infinite;
+}
+
+
+    /* =========================================================
+   PARTICLE 1
+   ========================================================= */
+
+    .cover-particles span:nth-child(1) {
+        left: 10%;
+        top: 25%;
+        animation-delay: 0s;
+    }
+
+
+    /* =========================================================
+   PARTICLE 2
+   ========================================================= */
+
+    .cover-particles span:nth-child(2) {
+        left: 25%;
+        top: 70%;
+        animation-delay: 1s;
+    }
+
+
+    /* =========================================================
+   PARTICLE 3
+   ========================================================= */
+
+    .cover-particles span:nth-child(3) {
+        left: 48%;
+        top: 20%;
+        animation-delay: 2s;
+    }
+
+
+    /* =========================================================
+   PARTICLE 4
+   ========================================================= */
+
+    .cover-particles span:nth-child(4) {
+        right: 25%;
+        top: 65%;
+        animation-delay: 1.5s;
+    }
+
+
+    /* =========================================================
+   PARTICLE 5
+   ========================================================= */
+
+    .cover-particles span:nth-child(5) {
+        right: 12%;
+        top: 25%;
+        animation-delay: 3s;
+    }
+
+
+    /* =========================================================
+   PARTICLE 6
+   ========================================================= */
+
+    .cover-particles span:nth-child(6) {
+        right: 40%;
+        top: 80%;
+        animation-delay: 2.5s;
+    }
+
+
+/* =========================================================
+   HERO TITLE WRAPPER
+   ========================================================= */
+
+.cover-title-wrapper {
+    position: relative;
+}
+
+
+/* =========================================================
+   SMALL TITLE
+   ========================================================= */
+
+.cover-small-title {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #5eead4;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: coverFadeUp .8s ease forwards;
+}
+
+
+/* =========================================================
+   MAIN HERO TITLE
+   ========================================================= */
+
+.cover-title {
+    margin: 0 !important;
+    color: whitesmoke !important;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: coverTitleReveal 1s cubic-bezier(.16,1,.3,1) .15s forwards;
+}
+
+
+/* =========================================================
+   FORCE HERO TITLE COLOR
+   ========================================================= */
+
+.cover-letter-page
+.cover-letter-hero
+.cover-title {
+    color: whitesmoke !important;
+}
+
+
+/* =========================================================
+   TITLE UNDERLINE
+   ========================================================= */
+
+.cover-title-line {
+    width: 0;
+    height: 3px;
+    margin-top: 13px;
+    border-radius: 10px;
+    background: linear-gradient( 90deg, #2dd4bf, #60a5fa );
+    animation: coverLineReveal .8s ease .8s forwards;
+}
+
+
+/* =========================================================
+   HERO SUBTITLE
+   ========================================================= */
+
+.cover-subtitle {
+    max-width: 500px;
+    margin-top: 14px;
+    margin-bottom: 0;
+    color: rgba(255,255,255,.76);
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: coverFadeUp .8s ease .55s forwards;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.cover-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 50px;
+    background: rgba(255,255,255,.08);
+    box-shadow: 0 10px 35px rgba(0,0,0,.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    animation: coverBreadcrumbReveal .9s cubic-bezier(.16,1,.3,1) .4s forwards;
+}
+
+
+/* =========================================================
+   HOME BUTTON
+   ========================================================= */
+
+.cover-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 30px;
+    color: #ffffff;
+    background: rgba(255,255,255,.10);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .35s ease;
+}
+
+
+    /* =========================================================
+   HOME ICON
+   ========================================================= */
+
+    .cover-btn i {
+        color: #5eead4;
+        transition: transform .35s ease, color .35s ease;
+    }
+
+
+    /* =========================================================
+   HOME BUTTON HOVER
+   ========================================================= */
+
+    .cover-btn:hover {
+        color: #ffffff;
+        text-decoration: none;
+        background: #14b8a6;
+        border-color: #14b8a6;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(20,184,166,.30);
+    }
+
+
+        /* =========================================================
+   ICON HOVER
+   ========================================================= */
+
+        .cover-btn:hover i {
+            color: #ffffff;
+            transform: scale(1.15);
+        }
+
+
+/* =========================================================
+   BREADCRUMB ARROW
+   ========================================================= */
+
+.cover-arrow {
+    color: #5eead4;
+    font-size: 14px;
+    animation: coverArrowPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CURRENT PAGE
+   ========================================================= */
+
+.cover-current-page {
+    color: rgba(255,255,255,.85);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.cover-letter-content {
+    width: 100%;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background: #ffffff;
+}
+
+
+    /* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+    .cover-letter-content .container {
+        max-width: 1200px;
+    }
+
+
+    /* =========================================================
+   LEFT COLUMN
+   ========================================================= */
+
+    .cover-letter-content .col-lg-7 {
+        padding-right: 25px;
+    }
+
+
+    /* =========================================================
+   RIGHT COLUMN
+   ========================================================= */
+
+    .cover-letter-content .col-lg-4 {
+        padding-left: 15px;
+    }
+
+
+/* =========================================================
+   COVER SECTION
+   ========================================================= */
+
+.cover-section {
+    position: relative;
+    margin-bottom: 55px;
+    width: 100%;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.cover-letter-page .scroll-reveal {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(70px);
+    transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1), visibility 0s linear .75s;
+}
+
+
+    /* =========================================================
+   SCROLL REVEAL ACTIVE
+   ========================================================= */
+
+    .cover-letter-page .scroll-reveal.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1), visibility 0s linear 0s;
+    }
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.cover-section h4 {
+    position: relative;
+    display: inline-block;
+    margin-top: 18px;
+    margin-bottom: 25px;
+    color: #222222;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+    /* =========================================================
+   HEADING UNDERLINE
+   ========================================================= */
+
+    .cover-section h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -7px;
+        width: 0;
+        height: 3px;
+        border-radius: 10px;
+        background: #14b8a6;
+        transition: width .7s ease .25s;
+    }
+
+
+/* =========================================================
+   SHOW HEADING LINE
+   ========================================================= */
+
+.cover-section.show h4::after {
+    width: 60%;
+}
+
+
+/* =========================================================
+   PARAGRAPH
+   ========================================================= */
+
+.cover-section p {
+    color: #536174;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: justify;
+    transition: color .3s ease, transform .3s ease;
+}
+
+
+    /* =========================================================
+   PARAGRAPH HOVER
+   ========================================================= */
+
+    .cover-section p:hover {
+        color: #303b4d;
+        transform: translateX(3px);
+    }
+
+
+/* =========================================================
+   LETTER SAMPLE BOX
+   ========================================================= */
+
+.letter-box {
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding: 28px;
+    border-left: 4px solid #14b8a6;
+    border-radius: 14px;
+    background: #f7fbfb;
+    box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    overflow: hidden;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    /* =========================================================
+   LETTER BOX GLOW
+   ========================================================= */
+
+    .letter-box::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: rgba(20,184,166,.07);
+        pointer-events: none;
+        animation: letterGlow 5s ease-in-out infinite;
+    }
+
+
+    /* =========================================================
+   LETTER BOX HOVER
+   ========================================================= */
+
+    .letter-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(20,184,166,.12);
+    }
+
+
+    /* =========================================================
+   LETTER BOX PARAGRAPH
+   ========================================================= */
+
+    .letter-box p {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 18px;
+        color: #536174;
+        font-size: 15px;
+        line-height: 1.8;
+        text-align: left;
+    }
+
+
+    /* =========================================================
+   LETTER BOX BOLD
+   ========================================================= */
+
+    .letter-box strong {
+        color: #263548;
+        font-weight: 700;
+    }
+
+
+/* =========================================================
+   IMPORTANT INFORMATION
+   ========================================================= */
+
+.cover-important {
+    position: relative;
+    overflow: hidden;
+    padding: 25px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-left: 4px solid #14b8a6;
+    border-radius: 14px;
+    background: #f7fbfb;
+    box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    /* =========================================================
+   IMPORTANT INFORMATION HOVER
+   ========================================================= */
+
+    .cover-important:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(20,184,166,.14);
+    }
+
+
+    /* =========================================================
+   IMPORTANT INFORMATION GLOW
+   ========================================================= */
+
+    .cover-important::before {
+        content: "";
+        position: absolute;
+        top: -45px;
+        right: -45px;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: rgba(20,184,166,.08);
+        animation: coverInfoGlow 4s ease-in-out infinite;
+    }
+
+
+    /* =========================================================
+   IMPORTANT HEADING
+   ========================================================= */
+
+    .cover-important h2 {
+        position: relative;
+        z-index: 2;
+        margin: 0 0 10px;
+        color: #202838;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+
+    /* =========================================================
+   IMPORTANT TEXT
+   ========================================================= */
+
+    .cover-important p {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        color: #536174;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   RIGHT SIDEBAR
+   ========================================================= */
+
+.cover-sidebar {
+    width: 100%;
+}
+
+
+/* =========================================================
+   RIGHT SIDE SCROLL REVEAL
+   ========================================================= */
+
+.cover-letter-page .scroll-right {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(80px);
+    transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1), visibility 0s linear .9s;
+}
+
+
+    /* =========================================================
+   RIGHT SIDE ACTIVE
+   ========================================================= */
+
+    .cover-letter-page .scroll-right.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+        transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1), visibility 0s linear 0s;
+    }
+
+
+/* =========================================================
+   ADVERTISEMENT / IMAGE BOX
+   ========================================================= */
+
+.cover-ad-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #f8fafb;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    /* =========================================================
+   AD BOX HOVER
+   ========================================================= */
+
+    .cover-ad-box:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.10);
+    }
+
+
+/* =========================================================
+   IMAGE CONTAINER
+   ========================================================= */
+
+.cover-ad-image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+
+    /* =========================================================
+   SIDEBAR IMAGE
+   ========================================================= */
+
+    .cover-ad-image img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+    }
+
+
+    /* =========================================================
+   SMALL IMAGE
+   ========================================================= */
+
+    .cover-ad-image.small-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+
+/* =========================================================
+   IMAGE HOVER
+   ========================================================= */
+
+.cover-ad-box:hover
+.cover-ad-image img {
+    transform: scale(1.04);
+    filter: brightness(1.04);
+}
+
+
+/* =========================================================
+   IMAGE SHINE
+   ========================================================= */
+
+.cover-ad-box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient( 90deg, transparent, rgba(255,255,255,.28), transparent );
+    transform: skewX(-20deg);
+    transition: left .8s ease;
+}
+
+
+/* =========================================================
+   SHINE HOVER
+   ========================================================= */
+
+.cover-ad-box:hover::after {
+    left: 140%;
+}
+
+
+/* =========================================================
+   IMPORTANT CARD RIGHT SIDE
+   ========================================================= */
+
+.cover-important-card {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 22px;
+    margin-bottom: 35px;
+    border-left: 4px solid #14b8a6;
+    border-radius: 14px;
+    background: #f7fbfb;
+    box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    /* =========================================================
+   RIGHT IMPORTANT HOVER
+   ========================================================= */
+
+    .cover-important-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(20,184,166,.14);
+    }
+
+
+    /* =========================================================
+   RIGHT IMPORTANT GLOW
+   ========================================================= */
+
+    .cover-important-card::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(20,184,166,.08);
+        animation: coverInfoGlow 4s ease-in-out infinite;
+    }
+
+
+    /* =========================================================
+   RIGHT CARD HEADING
+   ========================================================= */
+
+    .cover-important-card h2 {
+        position: relative;
+        z-index: 2;
+        margin: 0 0 10px;
+        color: #202838;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+
+    /* =========================================================
+   RIGHT CARD TEXT
+   ========================================================= */
+
+    .cover-important-card p {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        color: #536174;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+
+.cover-letter-page .back-to-top {
+    z-index: 999;
+    border: none;
+    background: #14b8a6;
+    transition: all .3s ease;
+}
+
+
+    .cover-letter-page .back-to-top:hover {
+        background: #0f766e;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(20,184,166,.30);
+    }
+
+
+/* =========================================================
+   HERO TITLE ANIMATION
+   ========================================================= */
+
+@keyframes coverTitleReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(35px) translateX(-20px);
+        filter: blur(6px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   FADE UP
+   ========================================================= */
+
+@keyframes coverFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   BREADCRUMB REVEAL
+   ========================================================= */
+
+@keyframes coverBreadcrumbReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(45px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   TITLE LINE
+   ========================================================= */
+
+@keyframes coverLineReveal {
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100px;
+    }
+}
+
+
+/* =========================================================
+   LEFT GLOW
+   ========================================================= */
+
+@keyframes coverGlowOne {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(80px,40px) scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   RIGHT GLOW
+   ========================================================= */
+
+@keyframes coverGlowTwo {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(-70px,-50px) scale(1.12);
+    }
+}
+
+
+/* =========================================================
+   CENTER GLOW
+   ========================================================= */
+
+@keyframes coverGlowThree {
+
+    0%, 100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PARTICLE ANIMATION
+   ========================================================= */
+
+@keyframes coverParticleFloat {
+
+    0% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-25px) scale(1.2);
+    }
+
+    100% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+}
+
+
+/* =========================================================
+   BREADCRUMB ARROW
+   ========================================================= */
+
+@keyframes coverArrowPulse {
+
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+
+/* =========================================================
+   INFORMATION GLOW
+   ========================================================= */
+
+@keyframes coverInfoGlow {
+
+    0% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+}
+
+
+/* =========================================================
+   LETTER BOX GLOW
+   ========================================================= */
+
+@keyframes letterGlow {
+
+    0%, 100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .cover-letter-hero {
+        min-height: 320px;
+    }
+
+
+    .cover-title {
+        font-size: 34px;
+    }
+
+
+    .cover-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .cover-breadcrumb {
+        margin-top: 25px;
+    }
+
+
+    .cover-letter-content {
+        padding-top: 55px;
+    }
+
+
+        .cover-letter-content .col-lg-7 {
+            padding-right: 15px;
+        }
+
+
+        .cover-letter-content .col-lg-4 {
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+
+    /* Right sidebar becomes vertical animation */
+
+    .cover-letter-page .scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .cover-letter-page .scroll-right.show {
+            transform: translateY(0);
+        }
+
+
+    .cover-section {
+        margin-bottom: 45px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .cover-letter-hero {
+        min-height: 360px;
+        text-align: center;
+    }
+
+
+    .cover-title {
+        font-size: 28px;
+        color: whitesmoke !important;
+    }
+
+
+    .cover-small-title {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+
+    .cover-subtitle {
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+
+    .cover-breadcrumb {
+        gap: 7px;
+        padding: 8px 10px;
+    }
+
+
+    .cover-btn {
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+
+
+    .cover-current-page {
+        font-size: 12px;
+    }
+
+
+    .cover-glow-1 {
+        width: 220px;
+        height: 220px;
+    }
+
+
+    .cover-glow-2 {
+        width: 250px;
+        height: 250px;
+    }
+
+
+    .cover-letter-content {
+        padding-top: 45px;
+        padding-bottom: 50px;
+    }
+
+
+    .cover-section {
+        margin-bottom: 40px;
+    }
+
+
+        .cover-section h4 {
+            font-size: 21px;
+            margin-top: 15px;
+            margin-bottom: 23px;
+        }
+
+
+        .cover-section p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+    /* Mobile scroll reveal */
+
+    .cover-letter-page .scroll-reveal {
+        transform: translateY(50px);
+    }
+
+
+        .cover-letter-page .scroll-reveal.show {
+            transform: translateY(0);
+        }
+
+
+    /* Mobile right side */
+
+    .cover-letter-page .scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .cover-letter-page .scroll-right.show {
+            transform: translateY(0);
+        }
+
+
+    .letter-box {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+
+        .letter-box p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+    .cover-important {
+        padding: 20px;
+    }
+
+
+        .cover-important h2 {
+            font-size: 21px;
+        }
+
+
+        .cover-important p {
+            font-size: 14px;
+        }
+
+
+    .cover-important-card {
+        padding: 20px;
+    }
+
+
+        .cover-important-card h2 {
+            font-size: 20px;
+        }
+
+
+        .cover-important-card p {
+            font-size: 14px;
+        }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .cover-letter-hero {
+        min-height: 380px;
+    }
+
+
+    .cover-title {
+        font-size: 24px;
+        color: whitesmoke !important;
+    }
+
+
+    .cover-subtitle {
+        font-size: 13px;
+    }
+
+
+    .cover-breadcrumb {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 18px;
+    }
+
+
+    .cover-arrow {
+        display: none;
+    }
+
+
+    .cover-section h4 {
+        font-size: 20px;
+    }
+
+
+    .letter-box {
+        padding: 17px;
+    }
+
+
+        .letter-box p {
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+
+    .cover-important {
+        padding: 18px;
+    }
+
+
+        .cover-important h2 {
+            font-size: 20px;
+        }
+
+
+    .cover-important-card {
+        padding: 18px;
+    }
+
+
+        .cover-important-card h2 {
+            font-size: 19px;
+        }
+
+
+    .cover-ad-box {
+        border-radius: 12px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .cover-letter-hero {
+        min-height: 400px;
+    }
+
+
+    .cover-title {
+        font-size: 22px;
+    }
+
+
+    .cover-small-title {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+
+    .cover-subtitle {
+        font-size: 12px;
+    }
+
+
+    .cover-btn {
+        padding: 7px 11px;
+        font-size: 12px;
+    }
+
+
+    .cover-current-page {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cover-letter-hero *,
+    .cover-letter-hero::before,
+    .cover-letter-hero::after,
+    .cover-glow,
+    .cover-particles span {
+        animation: none !important;
+        transition: none !important;
+    }
+
+
+    .cover-letter-page .scroll-reveal,
+    .cover-letter-page .scroll-right {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* =========================================================
+   SAFETY - NO HORIZONTAL SCROLL
+   ========================================================= */
+
+.cover-letter-page,
+.cover-letter-page .container,
+.cover-letter-page .row,
+.cover-letter-page img,
+.cover-letter-page .letter-box,
+.cover-letter-page .cover-important,
+.cover-letter-page .cover-important-card {
+    max-width: 100%;
+}
+
+
+    /* =========================================================
+   IMAGE SAFETY
+   ========================================================= */
+
+    .cover-letter-page img {
+        height: auto;
+        max-width: 100%;
+    }
+
+
+    /* =========================================================
+   BOOTSTRAP ROW SAFETY
+   ========================================================= */
+
+    .cover-letter-page .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    /* =========================================================
+   LINK RESET
+   ========================================================= */
+
+    .cover-letter-page a {
+        text-decoration: none;
+    }
+
+
+        /* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+        .cover-letter-page a:focus-visible {
+            outline: 2px solid #5eead4;
+            outline-offset: 3px;
+        }

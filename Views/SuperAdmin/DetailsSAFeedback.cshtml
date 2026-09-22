@@ -1,0 +1,358 @@
+﻿@model ErJobPortal.Models.SAFeedbackM
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    ViewData["Title"] = "Super Admin Dashboard";
+
+    ViewData["Panel"] = "SuperAdmin";
+
+    ViewData["UserName"] = "Super Admin";
+}
+@section Styles {
+
+    <link rel="stylesheet"
+          href="~/css/DetailsSAFeedback.css"
+          asp-append-version="true" />
+
+}
+@{
+
+    ViewData["Title"] = "Trainee Feedback";
+}
+
+@* <style>
+
+    .feedback-page {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Main Card */
+    .feedback-main-card {
+        width: 100%;
+        min-height: 650px;
+        background: #eef4ff;
+        border: 1px solid #d8d8d8;
+        border-top: 8px solid #087cf5;
+        border-radius: 0 0 22px 22px;
+        padding: 62px 45px 45px 45px;
+        box-sizing: border-box;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Title */
+    .feedback-heading {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 30px;
+        font-weight: 700;
+        color: #111;
+        margin: 0 0 55px 0;
+    }
+
+    /* Each Question */
+    .feedback-question {
+        margin-bottom: 2px;
+    }
+
+    .question-number {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 25px;
+        color: #111;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .question-content {
+        margin-left: 60px;
+        margin-top: 0;
+    }
+
+    .question-text {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 23px;
+        color: #111;
+        line-height: 1.45;
+        margin: 0;
+    }
+
+    /* Answers */
+    .answer-area {
+        margin-top: 2px;
+        margin-left: 60px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 23px;
+        color: #111;
+    }
+
+    /* Radio Answer */
+    .radio-answer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 3px;
+    }
+
+    .radio-circle {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #cfcfcf;
+        border-radius: 50%;
+        background: #f8f8f8;
+        display: inline-block;
+        box-sizing: border-box;
+    }
+
+    .radio-text {
+        margin-right: 12px;
+    }
+
+    /* Stars */
+    .star-answer {
+        font-size: 27px;
+        letter-spacing: 1px;
+        color: #000;
+        line-height: 1;
+        margin-top: 3px;
+    }
+
+    /* Emoji */
+    .emoji-answer {
+        font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+        font-size: 27px;
+        letter-spacing: 10px;
+        line-height: 1;
+        margin-top: 7px;
+    }
+
+    /* Description */
+    .description-answer {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 23px;
+        color: #111;
+        line-height: 1.4;
+        margin-top: 3px;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    /* Bottom Buttons */
+    .feedback-buttons {
+        margin-top: 35px;
+        margin-left: 60px;
+        display: flex;
+        gap: 12px;
+    }
+
+    .back-btn,
+    .edit-btn {
+        padding: 9px 22px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        color: white;
+    }
+
+    .back-btn {
+        background: #6c757d;
+    }
+
+        .back-btn:hover {
+            background: #5a6268;
+            color: white;
+        }
+
+    .edit-btn {
+        background: #087cf5;
+    }
+
+        .edit-btn:hover {
+            background: #0069d9;
+            color: white;
+        }
+
+</style> *@
+
+
+<div class="feedback-page">
+
+    <div class="feedback-main-card">
+
+        <!-- TITLE -->
+
+        <h1 class="feedback-heading">
+            Trainee Feedback
+        </h1>
+
+
+        <!-- ================================================= -->
+        <!-- QUESTION 1 -->
+        <!-- ================================================= -->
+
+        <div class="feedback-question">
+
+            <div class="question-number">
+                  1.
+            </div>
+
+            <div class="question-content">
+
+                <div class="question-text">
+                    @Model.Que1
+                </div>
+
+                <div class="answer-area">
+
+                    <div class="radio-answer">
+
+                        <span class="radio-circle"></span>
+
+                        <span class="radio-text">
+                            True
+                        </span>
+
+                        <span class="radio-circle"></span>
+
+                        <span class="radio-text">
+                            False
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- QUESTION 2 -->
+        <!-- ================================================= -->
+
+        <div class="feedback-question">
+
+            <div class="question-number">
+                  2.
+            </div>
+
+            <div class="question-content">
+
+                <div class="question-text">
+                    @Model.Que2
+                </div>
+
+                <div class="answer-area">
+
+                    <div class="star-answer">
+
+                        ★★★★★
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- QUESTION 3 -->
+        <!-- ================================================= -->
+
+        <div class="feedback-question">
+
+            <div class="question-number">
+                  3.
+            </div>
+
+            <div class="question-content">
+
+                <div class="question-text">
+                    @Model.Que3
+                </div>
+
+                <div class="answer-area">
+
+                    <div class="radio-answer">
+
+                        <span class="radio-circle"></span>
+
+                        <span class="radio-text">
+                            Yes
+                        </span>
+
+                        <span class="radio-circle"></span>
+
+                        <span class="radio-text">
+                            No
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- QUESTION 4 -->
+        <!-- ================================================= -->
+
+        <div class="feedback-question">
+
+            <div class="question-number">
+                  4.
+            </div>
+
+            <div class="question-content">
+
+                <div class="question-text">
+                    @Model.Que4
+                </div>
+
+                <div class="answer-area">
+
+                    <div class="emoji-answer">
+                        😞 😟 😐 🙂 😍
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- QUESTION 5 -->
+        <!-- ================================================= -->
+
+        <div class="feedback-question">
+
+            <div class="question-number">
+                  5.
+            </div>
+
+            <div class="question-content">
+
+                <div class="question-text">
+                    @Model.Que5
+                </div>
+
+                <div class="description-answer">
+                    @Model.Ans5
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

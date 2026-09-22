@@ -1,0 +1,1353 @@
+﻿@model JobPortalTrainee.Models.OrgProfile
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @(string.IsNullOrWhiteSpace(Model.sOrganizationName)
+            ? "Organization Profile"
+            : Model.sOrganizationName)
+    </title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+
+        /* =========================================================
+           ROOT THEME
+        ========================================================= */
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #eff6ff;
+            --primary-soft: #dbeafe;
+
+            --text: #0f172a;
+            --text-light: #475569;
+            --muted: #64748b;
+
+            --border: #e2e8f0;
+            --background: #f6f8fc;
+            --white: #ffffff;
+
+            --sidebar: #172e9c;
+
+            --shadow:
+                0 15px 40px rgba(15, 23, 42, 0.10);
+        }
+
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--background);
+            font-family:
+                "Inter",
+                "Segoe UI",
+                Arial,
+                sans-serif;
+            color: var(--text);
+        }
+
+        body {
+            padding: 35px 20px;
+        }
+
+
+        /* =========================================================
+           RESUME
+        ========================================================= */
+
+        .resume {
+            width: 210mm;
+            min-height: 297mm;
+            max-width: 100%;
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: 72mm 1fr;
+
+            background: var(--white);
+
+            box-shadow: var(--shadow);
+
+            overflow: hidden;
+        }
+
+
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
+
+        .resume-sidebar {
+            background:
+                linear-gradient(
+                    180deg,
+                    #172e9c 0%,
+                    #1d4ed8 55%,
+                    #2563eb 100%
+                );
+
+            color: var(--white);
+
+            padding: 42px 28px;
+
+            position: relative;
+        }
+
+
+        /* =========================================================
+           PROFILE PHOTO / LOGO
+        ========================================================= */
+
+        .profile-photo {
+            width: 145px;
+            height: 145px;
+
+            margin: 0 auto 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255, 255, 255, 0.12);
+
+            border: 5px solid rgba(255, 255, 255, 0.90);
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            background: #ffffff;
+
+            padding: 10px;
+        }
+
+
+        /* =========================================================
+           DEFAULT LOGO
+        ========================================================= */
+
+        .default-company-logo {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #ffffff;
+
+            color: var(--primary);
+
+            font-size: 62px;
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           SIDEBAR SECTIONS
+        ========================================================= */
+
+        .resume-section {
+            margin-top: 30px;
+        }
+
+        .resume-section:first-of-type {
+            margin-top: 0;
+        }
+
+        .resume-section h3 {
+            margin: 0 0 13px;
+
+            padding-bottom: 9px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 1.6px;
+
+            color: #ffffff;
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.30);
+        }
+
+        .resume-section p {
+            margin: 0 0 11px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            color: rgba(255, 255, 255, 0.90);
+
+            font-size: 12.5px;
+            line-height: 1.65;
+
+            word-break: break-word;
+        }
+
+        .resume-section p i {
+            width: 16px;
+            min-width: 16px;
+
+            margin-top: 4px;
+
+            color: #bfdbfe;
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           MAIN AREA
+        ========================================================= */
+
+        .resume-main {
+            background: #ffffff;
+
+            padding: 48px 48px 55px;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .resume-header {
+            padding-bottom: 30px;
+
+            border-bottom:
+                2px solid var(--primary-soft);
+
+            position: relative;
+        }
+
+        .resume-header::before {
+            content: "";
+
+            display: block;
+
+            width: 55px;
+            height: 5px;
+
+            margin-bottom: 18px;
+
+            background: var(--primary);
+
+            border-radius: 10px;
+        }
+
+        .resume-header h1 {
+            margin: 0;
+
+            color: var(--text);
+
+            font-size: 34px;
+            line-height: 1.15;
+
+            font-weight: 800;
+
+            letter-spacing: -0.7px;
+
+            word-break: break-word;
+        }
+
+        .resume-subtitle {
+            margin-top: 10px;
+
+            color: var(--primary);
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        /* =========================================================
+           CONTENT SECTION
+        ========================================================= */
+
+        .resume-content-section {
+            margin-top: 34px;
+        }
+
+
+        /* =========================================================
+           SECTION TITLE
+        ========================================================= */
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            color: var(--text);
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.8px;
+        }
+
+        .section-title::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background: var(--border);
+        }
+
+        .section-title span {
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: var(--primary-light);
+
+            color: var(--primary);
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           ORGANIZATION INFORMATION
+        ========================================================= */
+
+        .organization-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+        .organization-info > div {
+            padding: 17px 18px;
+
+            background: #ffffff;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 12px;
+
+            border-left:
+                3px solid var(--primary);
+        }
+
+        .organization-info strong {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.9px;
+        }
+
+        .organization-info p {
+            margin: 0;
+
+            color: var(--text);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            line-height: 1.5;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================================================
+           ORGANIZATION DETAILS
+        ========================================================= */
+
+        .organization-details {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 14px;
+        }
+
+        .organization-details p {
+            margin: 0;
+
+            padding: 17px 18px;
+
+            background: var(--primary-light);
+
+            border:
+                1px solid var(--primary-soft);
+
+            border-radius: 12px;
+
+            color: var(--text-light);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .organization-details strong {
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: var(--primary-dark);
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        /* =========================================================
+           COMPANY ADDRESS
+        ========================================================= */
+
+        .resume-content-section > p {
+            margin: 0;
+
+            padding: 20px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 12px;
+
+            color: var(--text-light);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            word-break: break-word;
+        }
+
+
+      
+
+        /* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.resume-actions {
+    position: fixed;
+    top: 22px;
+    right: 25px;
+
+    display: flex;
+    gap: 10px;
+
+    z-index: 9999;
+}
+
+.resume-action-btn {
+    border: none;
+    outline: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 145px;
+    height: 42px;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    background: var(--primary);
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px rgba(37, 99, 235, 0.25);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.resume-action-btn:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 9px 22px rgba(37, 99, 235, 0.30);
+}
+
+.resume-action-btn i {
+    font-size: 14px;
+}
+
+
+/* PRINT BUTTON */
+
+.resume-action-btn.print-btn {
+    background: #ffffff;
+
+    color: var(--primary);
+
+    border:
+        1px solid var(--primary);
+}
+
+.resume-action-btn.print-btn:hover {
+    background: var(--primary-light);
+}
+
+
+/* DOWNLOAD BUTTON */
+
+.resume-action-btn.download-btn {
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   MOBILE ACTION BUTTONS
+========================================================= */
+
+@@media (max-width: 650px) {
+
+    .resume-actions {
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        width: 100%;
+
+        padding: 15px;
+
+        display: flex;
+
+        justify-content: center;
+
+        background: #ffffff;
+
+        border-bottom:
+            1px solid var(--border);
+
+        box-shadow:
+            0 4px 15px rgba(15, 23, 42, 0.08);
+    }
+
+    .resume-action-btn {
+        flex: 1;
+
+        min-width: 0;
+
+        height: 40px;
+
+        padding: 0 12px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   PRINT - HIDE BUTTONS
+========================================================= */
+
+@@media print {
+
+    .resume-actions {
+        display: none !important;
+    }
+
+}
+
+.resume {
+    width: 210mm;
+    height: 297mm;
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 72mm 1fr;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+    /* No border */
+    border: none;
+
+    /* No shadow */
+    box-shadow: none;
+}
+
+@@media print {
+
+    @@page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    html,
+    body {
+        width: 210mm;
+        height: 297mm;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        background: #ffffff !important;
+    }
+
+    .resume-actions {
+        display: none !important;
+    }
+
+    .resume {
+        width: 210mm !important;
+        height: 297mm !important;
+
+        min-height: 297mm !important;
+        max-width: none !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        border: none !important;
+        outline: none !important;
+
+        box-shadow: none !important;
+
+        overflow: hidden !important;
+
+        page-break-after: avoid;
+        page-break-before: avoid;
+    }
+
+    .resume-sidebar {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .resume-main {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .section-title span,
+    .organization-details p,
+    .organization-info > div,
+    .profile-photo,
+    .default-company-logo {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         RESUME ACTION BUTTONS
+    ====================================================== -->
+
+    <div class="resume-actions">
+
+        <button type="button"
+                class="resume-action-btn print-btn"
+                onclick="printResume()">
+
+            <i class="fa-solid fa-print"></i>
+
+            Print Resume
+
+        </button>
+
+
+        <button type="button"
+                class="resume-action-btn download-btn"
+                onclick="downloadResume()">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            Download PDF
+
+        </button>
+
+    </div>
+
+
+    <div class="resume">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+
+        <div class="resume-sidebar">
+
+            <!-- COMPANY LOGO -->
+
+            <div class="profile-photo">
+
+                @if (!string.IsNullOrWhiteSpace(Model.sCompanyLogo))
+                {
+                    <img src="~/uploads/organization/@Model.sCompanyLogo"
+                         alt="Company Logo" />
+                }
+                else
+                {
+                    <div class="default-company-logo">
+
+                        @if (!string.IsNullOrWhiteSpace(Model.sOrganizationName))
+                        {
+                            @Model.sOrganizationName.Substring(
+                                0,
+                                Math.Min(
+                                    1,
+                                    Model.sOrganizationName.Length))
+                        }
+                        else
+                        {
+                            <span>O</span>
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <section class="resume-section">
+
+                <h3>ADDRESS</h3>
+
+                @if (!string.IsNullOrWhiteSpace(Model.sCompanyAddress))
+                {
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>@Model.sCompanyAddress</span>
+                    </p>
+                }
+
+            </section>
+
+
+            <!-- CONTACT -->
+
+            <section class="resume-section">
+
+                <h3>CONTACT</h3>
+
+                @if (!string.IsNullOrWhiteSpace(Model.sMobile))
+                {
+                    <p>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>@Model.sMobile</span>
+                    </p>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.sOrganizationEmail))
+                {
+                    <p>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>@Model.sOrganizationEmail</span>
+                    </p>
+                }
+
+            </section>
+
+
+            <!-- ORGANIZATION -->
+
+            <section class="resume-section">
+
+                <h3>ORGANIZATION</h3>
+
+                @if (Model.nEstablishmentYear > 0)
+                {
+                    <p>
+                        <i class="fa-regular fa-calendar"></i>
+                        <span>
+                            Establishment:
+                            @Model.nEstablishmentYear
+                        </span>
+                    </p>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.nEmployeeStrength))
+                {
+                    <p>
+                        <i class="fa-solid fa-users"></i>
+                        <span>
+                            Employees:
+                            @Model.nEmployeeStrength
+                        </span>
+                    </p>
+                }
+
+            </section>
+
+
+            <!-- GST -->
+
+            @if (!string.IsNullOrWhiteSpace(Model.sGSTNo))
+            {
+                <section class="resume-section">
+
+                    <h3>GST NO.</h3>
+
+                    <p>
+                        <i class="fa-solid fa-file-invoice"></i>
+                        <span>@Model.sGSTNo</span>
+                    </p>
+
+                </section>
+            }
+
+
+            <!-- CIN -->
+
+            @if (!string.IsNullOrWhiteSpace(Model.sCINNo))
+            {
+                <section class="resume-section">
+
+                    <h3>CIN NO.</h3>
+
+                    <p>
+                        <i class="fa-solid fa-building"></i>
+                        <span>@Model.sCINNo</span>
+                    </p>
+
+                </section>
+            }
+
+        </div>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+
+        <div class="resume-main">
+
+            <!-- HEADER -->
+
+            <header class="resume-header">
+
+                <h1>
+                    @Model.sOrganizationName
+                </h1>
+
+                @if (!string.IsNullOrWhiteSpace(Model.sDesignation))
+                {
+                    <div class="resume-subtitle">
+                        @Model.sDesignation
+                    </div>
+                }
+
+            </header>
+
+
+            <!-- ORGANIZATION PROFILE -->
+
+            <section class="resume-content-section">
+
+                <div class="section-title">
+
+                    <span>
+                        <i class="fa-solid fa-building"></i>
+                    </span>
+
+                    ORGANIZATION PROFILE
+
+                </div>
+
+
+                <div class="organization-info">
+
+                    <div>
+
+                        <strong>
+                            Organization Name
+                        </strong>
+
+                        <p>
+                            @Model.sOrganizationName
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Designation
+                        </strong>
+
+                        <p>
+                            @Model.sDesignation
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Email
+                        </strong>
+
+                        <p>
+                            @Model.sOrganizationEmail
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Mobile
+                        </strong>
+
+                        <p>
+                            @Model.sMobile
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ORGANIZATION DETAILS -->
+
+            <section class="resume-content-section">
+
+                <div class="section-title">
+
+                    <span>
+                        <i class="fa-solid fa-chart-simple"></i>
+                    </span>
+
+                    ORGANIZATION DETAILS
+
+                </div>
+
+
+                <div class="organization-details">
+
+                    @if (Model.nEstablishmentYear > 0)
+                    {
+                        <p>
+
+                            <strong>
+                                Established
+                            </strong>
+
+                            @Model.nEstablishmentYear
+
+                        </p>
+                    }
+
+
+                    @if (!string.IsNullOrWhiteSpace(Model.nEmployeeStrength))
+                    {
+                        <p>
+
+                            <strong>
+                                Employee Strength
+                            </strong>
+
+                            @Model.nEmployeeStrength
+
+                        </p>
+                    }
+
+                </div>
+
+            </section>
+
+
+            <!-- COMPANY ADDRESS -->
+
+            @if (!string.IsNullOrWhiteSpace(Model.sCompanyAddress))
+            {
+                <section class="resume-content-section">
+
+                    <div class="section-title">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                        </span>
+
+                        COMPANY ADDRESS
+
+                    </div>
+
+
+                    <p>
+                        @Model.sCompanyAddress
+                    </p>
+
+                </section>
+            }
+
+
+            <!-- LEGAL INFORMATION -->
+
+            @if (!string.IsNullOrWhiteSpace(Model.sGSTNo) ||
+                 !string.IsNullOrWhiteSpace(Model.sCINNo))
+            {
+                <section class="resume-content-section">
+
+                    <div class="section-title">
+
+                        <span>
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </span>
+
+                        REGISTRATION INFORMATION
+
+                    </div>
+
+
+                    <div class="organization-info">
+
+                        @if (!string.IsNullOrWhiteSpace(Model.sGSTNo))
+                        {
+                            <div>
+
+                                <strong>
+                                    GST Number
+                                </strong>
+
+                                <p>
+                                    @Model.sGSTNo
+                                </p>
+
+                            </div>
+                        }
+
+
+                        @if (!string.IsNullOrWhiteSpace(Model.sCINNo))
+                        {
+                            <div>
+
+                                <strong>
+                                    CIN Number
+                                </strong>
+
+                                <p>
+                                    @Model.sCINNo
+                                </p>
+
+                            </div>
+                        }
+
+                    </div>
+
+                </section>
+            }
+
+        </div>
+
+    </div>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+
+    function printResume() {
+        window.print();
+    }
+
+
+    async function downloadResume() {
+
+        const resume = document.querySelector(".resume");
+
+        if (!resume) {
+            return;
+        }
+
+        const button = document.querySelector(".download-btn");
+
+        try {
+
+            /* Disable button while generating */
+
+            if (button) {
+                button.disabled = true;
+                button.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
+            }
+
+
+            /* -------------------------------------------------
+               Temporarily remove effects which should not
+               appear in PDF
+            ------------------------------------------------- */
+
+            const originalBoxShadow = resume.style.boxShadow;
+
+            resume.style.boxShadow = "none";
+
+
+            /* -------------------------------------------------
+               Capture resume
+            ------------------------------------------------- */
+
+            const canvas = await html2canvas(resume, {
+
+                scale: 2,
+
+                useCORS: true,
+
+                allowTaint: false,
+
+                backgroundColor: "#ffffff",
+
+                imageTimeout: 15000,
+
+                logging: false,
+
+                scrollX: 0,
+
+                scrollY: 0,
+
+                windowWidth: resume.scrollWidth,
+
+                windowHeight: resume.scrollHeight
+            });
+
+
+            /* Restore */
+
+            resume.style.boxShadow = originalBoxShadow;
+
+
+            /* -------------------------------------------------
+               A4 PDF
+            ------------------------------------------------- */
+
+            const { jsPDF } = window.jspdf;
+
+            const pdf = new jsPDF({
+
+                orientation: "portrait",
+
+                unit: "mm",
+
+                format: "a4",
+
+                compress: true
+            });
+
+
+            const pageWidth = 210;
+            const pageHeight = 297;
+
+
+            /* -------------------------------------------------
+               Calculate image ratio
+            ------------------------------------------------- */
+
+            const imageWidth = pageWidth;
+
+            const imageHeight =
+                (canvas.height / canvas.width) *
+                imageWidth;
+
+
+            /* -------------------------------------------------
+               Fit into ONE A4 page
+            ------------------------------------------------- */
+
+            let finalWidth = imageWidth;
+            let finalHeight = imageHeight;
+
+            if (finalHeight > pageHeight) {
+
+                const scale =
+                    pageHeight / finalHeight;
+
+                finalWidth =
+                    finalWidth * scale;
+
+                finalHeight =
+                    pageHeight;
+
+            }
+
+
+            /* -------------------------------------------------
+               Center horizontally
+            ------------------------------------------------- */
+
+            const x =
+                (pageWidth - finalWidth) / 2;
+
+            const y = 0;
+
+
+            /* -------------------------------------------------
+               Add image
+            ------------------------------------------------- */
+
+            pdf.addImage(
+
+                canvas.toDataURL(
+                    "image/jpeg",
+                    1.0
+                ),
+
+                "JPEG",
+
+                x,
+                y,
+
+                finalWidth,
+                finalHeight,
+
+                undefined,
+
+                "FAST"
+            );
+
+
+            /* -------------------------------------------------
+               File name
+            ------------------------------------------------- */
+
+            const organizationName =
+                "@(string.IsNullOrWhiteSpace(Model.sOrganizationName)
+                    ? "Organization-Profile"
+                    : Model.sOrganizationName)";
+
+
+            const fileName =
+                organizationName
+                    .trim()
+                    .replace(/[^a-zA-Z0-9-_ ]/g, "")
+                    .replace(/\s+/g, "-")
+                    + "-Resume.pdf";
+
+
+            /* -------------------------------------------------
+               DIRECT DOWNLOAD
+            ------------------------------------------------- */
+
+            pdf.save(fileName);
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "PDF generation error:",
+                error
+            );
+
+            alert(
+                "Unable to generate PDF. Please try again."
+            );
+
+        }
+        finally {
+
+            if (button) {
+
+                button.disabled = false;
+
+                button.innerHTML =
+                    '<i class="fa-solid fa-file-pdf"></i> Download PDF';
+
+            }
+
+        }
+
+    }
+
+</script>
+</body>
+</html>

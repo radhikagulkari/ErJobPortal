@@ -1,0 +1,1054 @@
+﻿/* =========================================================
+   CAREER TRENDS PAGE
+   COMPLETE SEPARATE CSS
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL PAGE
+   ========================================================= */
+
+.career-page {
+    width: 100%;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+    .career-page,
+    .career-page * {
+        box-sizing: border-box;
+    }
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.career-hero {
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient( 135deg, #102a43 0%, #164e63 45%, #0f766e 100% );
+}
+
+
+    /* =========================================================
+   HERO OVERLAY
+   ========================================================= */
+
+    .career-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -4;
+        background: linear-gradient( 90deg, rgba(10, 31, 51, .96), rgba(18, 78, 94, .75), rgba(15, 118, 110, .90) );
+    }
+
+
+    /* =========================================================
+   HERO GRID
+   ========================================================= */
+
+    .career-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        opacity: .65;
+        background-image: linear-gradient( rgba(255,255,255,.035) 1px, transparent 1px ), linear-gradient( 90deg, rgba(255,255,255,.035) 1px, transparent 1px );
+        background-size: 45px 45px;
+        mask-image: linear-gradient( to bottom, black, transparent );
+    }
+
+
+    /* =========================================================
+   HERO CONTAINER
+   ========================================================= */
+
+    .career-hero .container {
+        position: relative;
+        z-index: 10;
+    }
+
+
+/* =========================================================
+   GLOW
+   ========================================================= */
+
+.career-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* =========================================================
+   LEFT GLOW
+   ========================================================= */
+
+.career-glow-1 {
+    width: 320px;
+    height: 320px;
+    left: -110px;
+    top: -130px;
+    background: rgba(45, 212, 191, .20);
+    filter: blur(8px);
+    animation: careerGlowOne 8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   RIGHT GLOW
+   ========================================================= */
+
+.career-glow-2 {
+    width: 400px;
+    height: 400px;
+    right: -160px;
+    bottom: -220px;
+    background: rgba(59, 130, 246, .20);
+    filter: blur(12px);
+    animation: careerGlowTwo 10s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CENTER GLOW
+   ========================================================= */
+
+.career-glow-3 {
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    top: 5%;
+    background: rgba(255,255,255,.055);
+    filter: blur(25px);
+    animation: careerGlowThree 6s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.career-particles span {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.60);
+    box-shadow: 0 0 12px rgba(255,255,255,.45);
+    pointer-events: none;
+    z-index: -1;
+    animation: careerParticleFloat 6s ease-in-out infinite;
+}
+
+
+    /* =========================================================
+   PARTICLE POSITIONS
+   ========================================================= */
+
+    .career-particles span:nth-child(1) {
+        left: 10%;
+        top: 25%;
+        animation-delay: 0s;
+    }
+
+    .career-particles span:nth-child(2) {
+        left: 25%;
+        top: 70%;
+        animation-delay: 1s;
+    }
+
+    .career-particles span:nth-child(3) {
+        left: 48%;
+        top: 20%;
+        animation-delay: 2s;
+    }
+
+    .career-particles span:nth-child(4) {
+        right: 25%;
+        top: 65%;
+        animation-delay: 1.5s;
+    }
+
+    .career-particles span:nth-child(5) {
+        right: 12%;
+        top: 25%;
+        animation-delay: 3s;
+    }
+
+    .career-particles span:nth-child(6) {
+        right: 40%;
+        top: 80%;
+        animation-delay: 2.5s;
+    }
+
+
+/* =========================================================
+   TITLE WRAPPER
+   ========================================================= */
+
+.career-title-wrapper {
+    position: relative;
+}
+
+
+/* =========================================================
+   SMALL TITLE
+   ========================================================= */
+
+.career-small-title {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #5eead4;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: careerFadeUp .8s ease forwards;
+}
+
+
+/* =========================================================
+   MAIN TITLE
+   ========================================================= */
+
+.career-hero-title {
+    margin: 0 !important;
+    color: whitesmoke !important;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: careerTitleReveal 1s cubic-bezier(.16,1,.3,1) .15s forwards;
+}
+
+
+/* =========================================================
+   TITLE LINE
+   ========================================================= */
+
+.career-title-line {
+    width: 0;
+    height: 3px;
+    margin-top: 13px;
+    border-radius: 10px;
+    background: linear-gradient( 90deg, #2dd4bf, #60a5fa );
+    animation: careerLineReveal .8s ease .8s forwards;
+}
+
+
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
+
+.career-subtitle {
+    max-width: 470px;
+    margin-top: 14px;
+    margin-bottom: 0;
+    color: rgba(255,255,255,.76);
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: careerFadeUp .8s ease .55s forwards;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.career-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 50px;
+    background: rgba(255,255,255,.08);
+    box-shadow: 0 10px 35px rgba(0,0,0,.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    animation: careerBreadcrumbReveal .9s cubic-bezier(.16,1,.3,1) .4s forwards;
+}
+
+
+/* =========================================================
+   HOME BUTTON
+   ========================================================= */
+
+.career-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 30px;
+    color: #ffffff;
+    background: rgba(255,255,255,.10);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .35s ease;
+}
+
+
+    .career-home-btn i {
+        color: #5eead4;
+        transition: transform .35s ease, color .35s ease;
+    }
+
+
+    .career-home-btn:hover {
+        color: #ffffff;
+        text-decoration: none;
+        background: #14b8a6;
+        border-color: #14b8a6;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(20,184,166,.30);
+    }
+
+
+        .career-home-btn:hover i {
+            color: #ffffff;
+            transform: scale(1.15);
+        }
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.career-arrow {
+    color: #5eead4;
+    font-size: 14px;
+    animation: careerArrowPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CURRENT PAGE
+   ========================================================= */
+
+.career-current-page {
+    color: rgba(255,255,255,.85);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.career-page .container.py-5 {
+    max-width: 1200px;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
+
+.career-left-content {
+    padding-right: 25px;
+}
+
+
+/* =========================================================
+   CAREER SECTION
+   ========================================================= */
+
+.career-section {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.career-scroll-reveal {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(70px);
+    transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1), visibility 0s linear .75s;
+}
+
+
+    /* =========================================================
+   SCROLL REVEAL ACTIVE
+   ========================================================= */
+
+    .career-scroll-reveal.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1), visibility 0s linear 0s;
+    }
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.career-section h4 {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+    color: #222222;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+    /* =========================================================
+   HEADING UNDERLINE
+   ========================================================= */
+
+    .career-section h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -7px;
+        width: 0;
+        height: 3px;
+        border-radius: 10px;
+        background: #14b8a6;
+        transition: width .7s ease .25s;
+    }
+
+
+.career-section.show h4::after {
+    width: 60%;
+}
+
+
+/* =========================================================
+   PARAGRAPH
+   ========================================================= */
+
+.career-section p {
+    color: #536174;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: justify;
+    transition: color .3s ease, transform .3s ease;
+}
+
+
+    .career-section p:hover {
+        color: #303b4d;
+        transform: translateX(3px);
+    }
+
+
+/* =========================================================
+   RIGHT CONTENT
+   ========================================================= */
+
+.career-right-content {
+    padding-left: 15px;
+}
+
+
+/* =========================================================
+   RIGHT SIDE REVEAL
+   ========================================================= */
+
+.career-scroll-right {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(80px);
+    transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1), visibility 0s linear .9s;
+}
+
+
+    .career-scroll-right.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+        transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1), visibility 0s linear 0s;
+    }
+
+
+/* =========================================================
+   ADVERTISEMENT
+   ========================================================= */
+
+.career-advertisement {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #f8fafb;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    .career-advertisement:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.10);
+    }
+
+
+/* =========================================================
+   ADVERTISEMENT IMAGE
+   ========================================================= */
+
+.career-advertisement-image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+
+    .career-advertisement-image img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+    }
+
+
+/* =========================================================
+   IMAGE HOVER
+   ========================================================= */
+
+.career-advertisement:hover
+.career-advertisement-image img {
+    transform: scale(1.04);
+    filter: brightness(1.04);
+}
+
+
+/* =========================================================
+   SHINE EFFECT
+   ========================================================= */
+
+.career-advertisement::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient( 90deg, transparent, rgba(255,255,255,.28), transparent );
+    transform: skewX(-20deg);
+    transition: left .8s ease;
+}
+
+
+.career-advertisement:hover::after {
+    left: 140%;
+}
+
+
+/* =========================================================
+   IMPORTANT INFORMATION
+   ========================================================= */
+
+.career-important {
+    position: relative;
+    overflow: hidden;
+    padding: 22px;
+    margin-bottom: 45px;
+    border-left: 4px solid #14b8a6;
+    border-radius: 14px;
+    background: #f7fbfb;
+    box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    .career-important:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(20,184,166,.14);
+    }
+
+
+    /* =========================================================
+   INFORMATION GLOW
+   ========================================================= */
+
+    .career-important::before {
+        content: "";
+        position: absolute;
+        top: -45px;
+        right: -45px;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: rgba(20,184,166,.08);
+        animation: careerInfoGlow 4s ease-in-out infinite;
+    }
+
+
+    /* =========================================================
+   INFORMATION HEADING
+   ========================================================= */
+
+    .career-important h2 {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 10px;
+        color: #202838;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+
+    /* =========================================================
+   INFORMATION TEXT
+   ========================================================= */
+
+    .career-important p {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        color: #536174;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   FINAL MESSAGE
+   ========================================================= */
+
+.career-final-message {
+    padding-bottom: 20px;
+}
+
+
+/* =========================================================
+   HERO TITLE ANIMATION
+   ========================================================= */
+
+@keyframes careerTitleReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(35px) translateX(-20px);
+        filter: blur(6px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   FADE UP
+   ========================================================= */
+
+@keyframes careerFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+@keyframes careerBreadcrumbReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(45px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   TITLE LINE
+   ========================================================= */
+
+@keyframes careerLineReveal {
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100px;
+    }
+}
+
+
+/* =========================================================
+   LEFT GLOW
+   ========================================================= */
+
+@keyframes careerGlowOne {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(80px,40px) scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   RIGHT GLOW
+   ========================================================= */
+
+@keyframes careerGlowTwo {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(-70px,-50px) scale(1.12);
+    }
+}
+
+
+/* =========================================================
+   CENTER GLOW
+   ========================================================= */
+
+@keyframes careerGlowThree {
+
+    0%, 100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+@keyframes careerParticleFloat {
+
+    0% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-25px) scale(1.2);
+    }
+
+    100% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+@keyframes careerArrowPulse {
+
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+
+/* =========================================================
+   INFORMATION GLOW
+   ========================================================= */
+
+@keyframes careerInfoGlow {
+
+    0% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .career-hero {
+        min-height: 320px;
+    }
+
+
+    .career-hero-title {
+        font-size: 34px;
+    }
+
+
+    .career-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .career-breadcrumb {
+        margin-top: 25px;
+    }
+
+
+    .career-left-content {
+        padding-right: 15px;
+    }
+
+
+    .career-right-content {
+        padding-left: 15px;
+        margin-top: 40px;
+    }
+
+
+    .career-scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .career-scroll-right.show {
+            transform: translateY(0);
+        }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .career-hero {
+        min-height: 360px;
+        text-align: center;
+    }
+
+
+    .career-hero-title {
+        font-size: 28px;
+        color: whitesmoke !important;
+    }
+
+
+    .career-small-title {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+
+    .career-subtitle {
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+
+    .career-breadcrumb {
+        gap: 7px;
+        padding: 8px 10px;
+    }
+
+
+    .career-home-btn {
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+
+
+    .career-current-page {
+        font-size: 12px;
+    }
+
+
+    .career-glow-1 {
+        width: 220px;
+        height: 220px;
+    }
+
+
+    .career-glow-2 {
+        width: 250px;
+        height: 250px;
+    }
+
+
+    .career-section {
+        margin-bottom: 40px;
+    }
+
+
+        .career-section h4 {
+            font-size: 21px;
+        }
+
+
+        .career-section p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+    .career-scroll-reveal {
+        transform: translateY(50px);
+    }
+
+
+        .career-scroll-reveal.show {
+            transform: translateY(0);
+        }
+
+
+    .career-scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .career-scroll-right.show {
+            transform: translateY(0);
+        }
+
+
+    .career-important {
+        padding: 18px;
+    }
+
+
+        .career-important h2 {
+            font-size: 21px;
+        }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .career-hero {
+        min-height: 380px;
+    }
+
+
+    .career-hero-title {
+        font-size: 24px;
+        color: whitesmoke !important;
+    }
+
+
+    .career-subtitle {
+        font-size: 13px;
+    }
+
+
+    .career-breadcrumb {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 18px;
+    }
+
+
+    .career-arrow {
+        display: none;
+    }
+
+
+    .career-section h4 {
+        font-size: 20px;
+    }
+
+
+    .career-section p {
+        font-size: 14px;
+        text-align: left;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .career-hero *,
+    .career-hero::before,
+    .career-hero::after,
+    .career-glow,
+    .career-particles span {
+        animation: none !important;
+        transition: none !important;
+    }
+
+
+    .career-page .career-scroll-reveal,
+    .career-page .career-scroll-right {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}

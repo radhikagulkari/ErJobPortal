@@ -1,0 +1,1024 @@
+﻿@{
+    ViewData["Title"] = "Trainee - Important Tips";
+}
+
+<style>
+    /* =========================================================
+           TRAINEE IMPORTANT TIPS
+           Teal + White | Responsive | Medium Font
+           ========================================================= */
+
+    .trainee-tips-page {
+        --primary: #1e7b67;
+        --primary-dark: #155f51;
+        --primary-light: #eaf7f3;
+        --secondary: #f5fbf9;
+        --white: #ffffff;
+        --text: #24332f;
+        --muted: #667772;
+        --border: #dcebe6;
+        --shadow: 0 12px 35px rgba(30, 123, 103, 0.10);
+        width: 100%;
+        min-height: 100vh;
+        background: var(--white);
+        color: var(--text);
+        margin-top: 120px;
+        overflow: hidden;
+    }
+
+
+    /* =========================================================
+           HERO SECTION
+           ========================================================= */
+
+    .tips-hero {
+        position: relative;
+        padding: 55px 20px 60px;
+        background: radial-gradient( circle at 90% 20%, rgba(30, 123, 103, 0.12), transparent 30% ), radial-gradient( circle at 10% 80%, rgba(30, 123, 103, 0.08), transparent 28% ), linear-gradient( 135deg, #f7fcfa 0%, #ffffff 55%, #eff9f6 100% );
+        overflow: hidden;
+    }
+
+        .tips-hero::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 1px solid rgba(30, 123, 103, 0.12);
+            border-radius: 50%;
+            top: -120px;
+            right: -70px;
+        }
+
+        .tips-hero::after {
+            content: "";
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            border: 1px solid rgba(30, 123, 103, 0.10);
+            border-radius: 50%;
+            bottom: -90px;
+            left: -60px;
+        }
+
+    .tips-container {
+        width: min(1160px, 100%);
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    .tips-hero-content {
+        max-width: 760px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .tips-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 14px;
+        border-radius: 50px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        margin-bottom: 16px;
+    }
+
+        .tips-badge i {
+            font-size: 13px;
+        }
+
+    .tips-hero h1 {
+        margin: 0;
+        color: var(--primary);
+        font-size: clamp(30px, 4vw, 46px);
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: -0.8px;
+    }
+
+        .tips-hero h1 span {
+            color: var(--text);
+        }
+
+    .tips-hero-description {
+        max-width: 680px;
+        margin: 16px auto 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+
+    /* =========================================================
+           INTRODUCTION
+           ========================================================= */
+
+    .tips-intro-section {
+        padding: 50px 20px 20px;
+        background: var(--white);
+    }
+
+    .tips-section-heading {
+        max-width: 720px;
+        margin: 0 auto 38px;
+        text-align: center;
+    }
+
+        .tips-section-heading h2 {
+            margin: 0 0 10px;
+            color: var(--text);
+            font-size: clamp(24px, 3vw, 32px);
+            line-height: 1.25;
+            font-weight: 750;
+        }
+
+            .tips-section-heading h2 span {
+                color: var(--primary);
+            }
+
+        .tips-section-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+
+    /* =========================================================
+           TIPS GRID
+           ========================================================= */
+
+    .tips-grid-section {
+        padding: 20px 20px 70px;
+        background: var(--white);
+    }
+
+    .tips-grid {
+        width: min(1160px, 100%);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+
+    /* =========================================================
+           TIP CARD
+           ========================================================= */
+
+    .tip-card {
+        position: relative;
+        min-height: 270px;
+        padding: 26px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: 0 7px 25px rgba(23, 69, 59, 0.06);
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(25px);
+        transition: transform 0.35s ease, opacity 0.5s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+        .tip-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tip-card::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            right: -45px;
+            bottom: -45px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            transition: transform 0.35s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(30, 123, 103, 0.35);
+            box-shadow: var(--shadow);
+        }
+
+            .tip-card:hover::after {
+                transform: scale(1.3);
+            }
+
+
+    /* =========================================================
+           NUMBER
+           ========================================================= */
+
+    .tip-number {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        color: rgba(30, 123, 103, 0.10);
+        font-size: 36px;
+        line-height: 1;
+        font-weight: 900;
+        z-index: 1;
+    }
+
+
+    /* =========================================================
+           ICON
+           ========================================================= */
+
+    .tip-icon {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        border-radius: 15px;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-size: 21px;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+
+    .tip-card:hover .tip-icon {
+        background: var(--primary);
+        color: var(--white);
+        transform: rotate(-5deg) scale(1.05);
+    }
+
+
+    /* =========================================================
+           CARD CONTENT
+           ========================================================= */
+
+    .tip-card h3 {
+        position: relative;
+        z-index: 2;
+        margin: 0 0 10px;
+        color: var(--text);
+        font-size: 18px;
+        line-height: 1.35;
+        font-weight: 700;
+    }
+
+    .tip-card p {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+           SUCCESS SECTION
+           ========================================================= */
+
+    .tips-success-section {
+        padding: 65px 20px;
+        background: var(--secondary);
+    }
+
+    .tips-success-box {
+        width: min(1080px, 100%);
+        margin: 0 auto;
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.75fr 1.5fr;
+        gap: 50px;
+        align-items: center;
+        padding: 48px;
+        background: var(--primary);
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(30, 123, 103, 0.18);
+    }
+
+        .tips-success-box::before {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            left: -140px;
+            top: -120px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+        }
+
+        .tips-success-box::after {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -110px;
+            bottom: -120px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 50%;
+        }
+
+
+    /* =========================================================
+           SUCCESS ICON
+           ========================================================= */
+
+    .success-icon-wrap {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+    }
+
+    .success-icon {
+        width: 135px;
+        height: 135px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        color: var(--white);
+        font-size: 55px;
+    }
+
+
+    /* =========================================================
+           SUCCESS CONTENT
+           ========================================================= */
+
+    .success-content {
+        position: relative;
+        z-index: 2;
+    }
+
+        .success-content h2 {
+            margin: 0 0 12px;
+            color: var(--white);
+            font-size: clamp(24px, 3vw, 32px);
+            line-height: 1.25;
+            font-weight: 750;
+        }
+
+        .success-content p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+    /* =========================================================
+           BUTTON
+           ========================================================= */
+
+    .success-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 22px;
+        padding: 10px 17px;
+        border-radius: 9px;
+        background: var(--white);
+        color: var(--primary);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+
+        .success-link:hover {
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+        }
+
+
+    /* =========================================================
+           BOTTOM SECTION
+           ========================================================= */
+
+    .tips-bottom {
+        padding: 55px 20px;
+        background: var(--white);
+        text-align: center;
+    }
+
+    .tips-bottom-inner {
+        width: min(720px, 100%);
+        margin: 0 auto;
+    }
+
+    .tips-bottom i {
+        display: inline-flex;
+        width: 50px;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        border-radius: 50%;
+        background: var(--primary-light);
+        color: var(--primary);
+        font-size: 20px;
+    }
+
+    .tips-bottom h2 {
+        margin: 0 0 10px;
+        color: var(--text);
+        font-size: 25px;
+        font-weight: 750;
+    }
+
+    .tips-bottom p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+           TABLET
+           ========================================================= */
+
+    @@media (max-width: 991px) {
+
+        .tips-hero {
+            padding: 50px 20px 55px;
+        }
+
+            .tips-hero h1 {
+                font-size: 38px;
+            }
+
+        .tips-hero-description {
+            font-size: 14px;
+        }
+
+        .tips-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .tip-card {
+            min-height: 255px;
+            padding: 23px;
+        }
+
+            .tip-card h3 {
+                font-size: 17px;
+            }
+
+            .tip-card p {
+                font-size: 13px;
+            }
+
+        .tips-success-box {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 42px 35px;
+            text-align: center;
+        }
+
+        .success-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+            .success-content h2 {
+                font-size: 28px;
+            }
+    }
+
+
+    /* =========================================================
+           MOBILE
+           ========================================================= */
+
+    @@media (max-width: 767px) {
+
+        .tips-hero {
+            padding: 42px 16px 48px;
+        }
+
+        .tips-badge {
+            font-size: 11px;
+            padding: 6px 12px;
+        }
+
+        .tips-hero h1 {
+            font-size: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .tips-hero-description {
+            font-size: 13px;
+            line-height: 1.65;
+        }
+        /* INTRO */
+
+        .tips-intro-section {
+            padding: 42px 16px 15px;
+        }
+
+        .tips-section-heading {
+            margin-bottom: 28px;
+        }
+
+            .tips-section-heading h2 {
+                font-size: 24px;
+            }
+
+            .tips-section-heading p {
+                font-size: 13px;
+            }
+        /* GRID */
+
+        .tips-grid-section {
+            padding: 15px 16px 50px;
+        }
+
+        .tips-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        /* CARD */
+
+        .tip-card {
+            min-height: auto;
+            padding: 22px;
+            border-radius: 18px;
+        }
+
+        .tip-number {
+            font-size: 32px;
+            top: 17px;
+            right: 17px;
+        }
+
+        .tip-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 19px;
+            margin-bottom: 16px;
+            border-radius: 14px;
+        }
+
+        .tip-card h3 {
+            font-size: 17px;
+        }
+
+        .tip-card p {
+            font-size: 13px;
+            line-height: 1.65;
+        }
+        /* SUCCESS */
+
+        .tips-success-section {
+            padding: 50px 16px;
+        }
+
+        .tips-success-box {
+            padding: 38px 23px;
+            border-radius: 22px;
+        }
+
+        .success-icon {
+            width: 110px;
+            height: 110px;
+            font-size: 45px;
+        }
+
+        .success-content h2 {
+            font-size: 25px;
+        }
+
+        .success-content p {
+            font-size: 13px;
+        }
+
+        .success-link {
+            font-size: 13px;
+            padding: 9px 15px;
+        }
+        /* BOTTOM */
+
+        .tips-bottom {
+            padding: 45px 16px;
+        }
+
+            .tips-bottom h2 {
+                font-size: 23px;
+            }
+
+            .tips-bottom p {
+                font-size: 13px;
+            }
+    }
+
+
+    /* =========================================================
+           SMALL MOBILE
+           ========================================================= */
+
+    @@media (max-width: 400px) {
+
+        .tips-hero h1 {
+            font-size: 28px;
+        }
+
+        .tips-hero-description {
+            font-size: 12.5px;
+        }
+
+        .tips-section-heading h2 {
+            font-size: 22px;
+        }
+
+        .tips-section-heading p {
+            font-size: 12.5px;
+        }
+
+        .tip-card {
+            padding: 20px;
+        }
+
+            .tip-card h3 {
+                font-size: 16px;
+            }
+
+            .tip-card p {
+                font-size: 12.5px;
+            }
+
+        .success-content h2 {
+            font-size: 23px;
+        }
+
+        .success-content p {
+            font-size: 12.5px;
+        }
+
+        .tips-bottom h2 {
+            font-size: 22px;
+        }
+
+        .tips-bottom p {
+            font-size: 12.5px;
+        }
+    }
+</style>
+
+
+<!-- =========================================================
+     TRAINEE IMPORTANT TIPS PAGE
+     ========================================================= -->
+
+<div class="trainee-tips-page">
+
+
+    <!-- =====================================================
+         HERO
+         ====================================================== -->
+
+    <section class="tips-hero">
+
+        <div class="tips-container">
+
+            <div class="tips-hero-content">
+
+                <div class="tips-badge">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    Trainee Guide
+                </div>
+
+                <h1>
+                    Important <span>Tips</span>
+                    for Trainees
+                </h1>
+
+                <p class="tips-hero-description">
+                    Starting an internship is an exciting opportunity to gain
+                    practical experience, build valuable skills, and connect
+                    with professionals. Make  internship experience count
+                    with these essential tips.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INTRODUCTION
+         ====================================================== -->
+
+    <section class="tips-intro-section">
+
+        <div class="tips-container">
+
+            <div class="tips-section-heading">
+
+                <h2>
+                    Make the Most of Your
+                    <span>Internship</span>
+                </h2>
+
+                <p>
+                    An internship is more than just completing assigned tasks.
+                    It is an opportunity to learn, contribute, build relationships,
+                    and prepare self for  future career.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TIPS
+         ====================================================== -->
+
+    <section class="tips-grid-section">
+
+        <div class="tips-grid">
+
+
+            <!-- 01 -->
+
+            <article class="tip-card">
+
+                <span class="tip-number">01</span>
+
+                <div class="tip-icon">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+
+                <h3>
+                    Set Clear Goals
+                </h3>
+
+                <p>
+                    Before you begin, identify what you hope to achieve.
+                    Whether it is learning a specific skill, understanding
+                    industry dynamics, or building  professional network,
+                    clear goals will help you stay focused and motivated.
+                </p>
+
+            </article>
+
+
+            <!-- 02 -->
+
+            <article class="tip-card">
+
+                <span class="tip-number">02</span>
+
+                <div class="tip-icon">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+
+                <h3>
+                    Be Proactive
+                </h3>
+
+                <p>
+                    Do not wait for tasks to be assigned to you. Look for ways
+                    to contribute and offer to help with projects. Showing
+                    initiative demonstrates  enthusiasm and commitment
+                    to  role.
+                </p>
+
+            </article>
+
+
+            <!-- 03 -->
+
+            <article class="tip-card">
+
+                <span class="tip-number">03</span>
+
+                <div class="tip-icon">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+
+                <h3>
+                    Seek Feedback
+                </h3>
+
+                <p>
+                    Regularly ask for feedback from  supervisor and
+                    colleagues. Constructive feedback is a valuable tool for
+                    growth and will help you improve  performance and
+                    adapt to the workplace.
+                </p>
+
+            </article>
+
+
+            <!-- 04 -->
+
+            <article class="tip-card">
+
+                <span class="tip-number">04</span>
+
+                <div class="tip-icon">
+                    <i class="fa-solid fa-people-group"></i>
+                </div>
+
+                <h3>
+                    Build Relationships
+                </h3>
+
+                <p>
+                    Take the time to connect with  colleagues and mentors.
+                    Strong professional relationships can provide valuable
+                    insights, career advice, and future opportunities.
+                </p>
+
+            </article>
+
+
+            <!-- 05 -->
+
+            <article class="tip-card">
+
+                <span class="tip-number">05</span>
+
+                <div class="tip-icon">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </div>
+
+                <h3>
+                    Reflect on Your Experience
+                </h3>
+
+                <p>
+                    Periodically reflect on what you have learned and how it
+                    aligns with  career goals. This will help you assess
+                     progress and make necessary adjustments to 
+                    approach.
+                </p>
+
+            </article>
+
+
+            <!-- 06 -->
+
+            <article class="tip-card">
+
+                <span class="tip-number">06</span>
+
+                <div class="tip-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <h3>
+                    Focus on Growth
+                </h3>
+
+                <p>
+                    Every task is an opportunity to learn something new.
+                    Stay curious, accept challenges, and continuously work
+                    on improving  skills throughout  internship.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUCCESS / BLOG SECTION
+         ====================================================== -->
+
+    <section class="tips-success-section">
+
+        <div class="tips-success-box">
+
+
+            <div class="success-icon-wrap">
+
+                <div class="success-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+            </div>
+
+
+            <div class="success-content">
+
+                <h2>
+                    Turn Your Internship Into
+                    a Career Opportunity
+                </h2>
+
+                <p>
+                    By following these tips, you can make the most of 
+                    internship experience and build a strong foundation
+                    for future success. Stay curious, be proactive, learn
+                    from others, and make every opportunity count.
+                </p>
+
+                <a href="#" class="success-link">
+
+                    Explore 1Trainee Blog
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL MESSAGE
+         ====================================================== -->
+
+    <section class="tips-bottom">
+
+        <div class="tips-bottom-inner">
+
+            <i class="fa-solid fa-star"></i>
+
+            <h2>
+                Your Growth Starts Here
+            </h2>
+
+            <p>
+                Your internship is the beginning of  professional journey.
+                Learn continuously, build meaningful connections, and take
+                every experience as a step toward  future goals.
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const cards = document.querySelectorAll(".tip-card");
+
+        if (!cards.length) {
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        observer.unobserve(entry.target);
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+        cards.forEach(function (card, index) {
+
+            card.style.transitionDelay =
+                (index * 80) + "ms";
+
+            observer.observe(card);
+
+        });
+
+    });
+
+</script>

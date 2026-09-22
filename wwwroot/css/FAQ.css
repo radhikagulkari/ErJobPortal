@@ -1,0 +1,1174 @@
+﻿/* =========================================================
+   FAQ PAGE
+   COMPLETE SEPARATE CSS
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+.faq-page {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+    .faq-page,
+    .faq-page *,
+    .faq-page *::before,
+    .faq-page *::after {
+        box-sizing: border-box;
+    }
+
+
+        /* =========================================================
+   IMAGE
+   ========================================================= */
+
+        .faq-page img {
+            display: block;
+            max-width: 100%;
+        }
+
+
+/* =========================================================
+   TOP SPACE
+   ========================================================= */
+
+.faq-top-space {
+    width: 100%;
+    height: 30px;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.faq-hero {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient( 135deg, #102a43 0%, #164e63 45%, #0f766e 100% );
+}
+
+
+    /* =========================================================
+   HERO OVERLAY
+   ========================================================= */
+
+    .faq-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -4;
+        background: linear-gradient( 90deg, rgba(10, 31, 51, .96), rgba(18, 78, 94, .75), rgba(15, 118, 110, .90) );
+    }
+
+
+    /* =========================================================
+   HERO GRID
+   ========================================================= */
+
+    .faq-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        opacity: .65;
+        background-image: linear-gradient( rgba(255,255,255,.035) 1px, transparent 1px ), linear-gradient( 90deg, rgba(255,255,255,.035) 1px, transparent 1px );
+        background-size: 45px 45px;
+        mask-image: linear-gradient( to bottom, black, transparent );
+        -webkit-mask-image: linear-gradient( to bottom, black, transparent );
+    }
+
+
+/* =========================================================
+   HERO CONTAINER
+   ========================================================= */
+
+.faq-hero-container {
+    position: relative;
+    z-index: 10;
+}
+
+
+/* =========================================================
+   GLOW
+   ========================================================= */
+
+.faq-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* LEFT */
+
+.faq-glow-1 {
+    width: 320px;
+    height: 320px;
+    left: -110px;
+    top: -130px;
+    background: rgba(45,212,191,.20);
+    filter: blur(8px);
+    animation: faqGlowOne 8s ease-in-out infinite;
+}
+
+
+/* RIGHT */
+
+.faq-glow-2 {
+    width: 400px;
+    height: 400px;
+    right: -160px;
+    bottom: -220px;
+    background: rgba(59,130,246,.20);
+    filter: blur(12px);
+    animation: faqGlowTwo 10s ease-in-out infinite;
+}
+
+
+/* CENTER */
+
+.faq-glow-3 {
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    top: 5%;
+    background: rgba(255,255,255,.055);
+    filter: blur(25px);
+    animation: faqGlowThree 6s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.faq-particles span {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.60);
+    box-shadow: 0 0 12px rgba(255,255,255,.45);
+    pointer-events: none;
+    z-index: -1;
+    animation: faqParticleFloat 6s ease-in-out infinite;
+}
+
+
+    .faq-particles span:nth-child(1) {
+        left: 10%;
+        top: 25%;
+    }
+
+    .faq-particles span:nth-child(2) {
+        left: 25%;
+        top: 70%;
+        animation-delay: 1s;
+    }
+
+    .faq-particles span:nth-child(3) {
+        left: 48%;
+        top: 20%;
+        animation-delay: 2s;
+    }
+
+    .faq-particles span:nth-child(4) {
+        right: 25%;
+        top: 65%;
+        animation-delay: 1.5s;
+    }
+
+    .faq-particles span:nth-child(5) {
+        right: 12%;
+        top: 25%;
+        animation-delay: 3s;
+    }
+
+    .faq-particles span:nth-child(6) {
+        right: 40%;
+        top: 80%;
+        animation-delay: 2.5s;
+    }
+
+
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+
+.faq-title-wrapper {
+    position: relative;
+}
+
+
+.faq-small-title {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #5eead4;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: faqFadeUp .8s ease forwards;
+}
+
+
+.faq-title {
+    margin: 0 !important;
+    color: whitesmoke !important;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: faqTitleReveal 1s cubic-bezier(.16,1,.3,1) .15s forwards;
+}
+
+
+.faq-title-line {
+    width: 0;
+    height: 3px;
+    margin-top: 13px;
+    border-radius: 10px;
+    background: linear-gradient( 90deg, #2dd4bf, #60a5fa );
+    animation: faqLineReveal .8s ease .8s forwards;
+}
+
+
+.faq-subtitle {
+    max-width: 470px;
+    margin-top: 14px;
+    margin-bottom: 0;
+    color: rgba(255,255,255,.76);
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: faqFadeUp .8s ease .55s forwards;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.faq-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 50px;
+    background: rgba(255,255,255,.08);
+    box-shadow: 0 10px 35px rgba(0,0,0,.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    animation: faqBreadcrumbReveal .9s cubic-bezier(.16,1,.3,1) .4s forwards;
+}
+
+
+/* =========================================================
+   HOME BUTTON
+   ========================================================= */
+
+.faq-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 30px;
+    color: #ffffff !important;
+    background: rgba(255,255,255,.10);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all .35s ease;
+}
+
+
+    .faq-btn i {
+        color: #5eead4;
+        transition: transform .35s ease, color .35s ease;
+    }
+
+
+    .faq-btn:hover {
+        color: #ffffff !important;
+        background: #14b8a6;
+        border-color: #14b8a6;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(20,184,166,.30);
+    }
+
+
+        .faq-btn:hover i {
+            color: #ffffff;
+            transform: scale(1.15);
+        }
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.faq-arrow {
+    color: #5eead4;
+    font-size: 14px;
+    animation: faqArrowPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CURRENT PAGE
+   ========================================================= */
+
+.faq-current-page {
+    color: rgba(255,255,255,.85);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.faq-content {
+    width: 100%;
+    background: #ffffff;
+    padding-top: 45px;
+    padding-bottom: 40px;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN ROW
+   ========================================================= */
+
+.faq-main-row {
+    width: 100%;
+    margin: 0 !important;
+    align-items: flex-start;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
+
+.faq-left-content {
+    padding-right: 30px;
+}
+
+
+/* =========================================================
+   FAQ SECTION
+   ========================================================= */
+
+.faq-section {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 50px;
+    padding: 0;
+}
+
+
+    /* =========================================================
+   IMPORTANT FIX
+   FIRST SECTION ALWAYS VISIBLE
+   ========================================================= */
+
+    .faq-section:first-child {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+    }
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.faq-page .scroll-reveal {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(70px);
+    transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1);
+}
+
+
+    .faq-page .scroll-reveal.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+
+/* =========================================================
+   FAQ HEADING
+   ========================================================= */
+
+.faq-section h4 {
+    position: relative;
+    display: block; /* IMPORTANT */
+
+    width: 100%; /* Each heading gets its own line */
+
+    margin-top: 0;
+    margin-bottom: 22px;
+    color: #222222 !important;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.5;
+    clear: both;
+}
+
+
+    /* =========================================================
+   HEADING UNDERLINE
+   ========================================================= */
+
+    .faq-section h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width:0;
+        height: 3px;
+        border-radius: 10px;
+        background: #14b8a6;
+        transition: width .7s ease .25s;
+    }
+
+.faq-section.show h4::after {
+    width: 30%;
+}
+
+.faq-section:first-child h4::after {
+    width: 30%;
+}
+
+
+/* =========================================================
+   PARAGRAPH
+   ========================================================= */
+
+.faq-section p {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #536174 !important;
+    font-size: 15px;
+    line-height: 1.8;
+    text-align: justify;
+    transition: color .3s ease, transform .3s ease;
+}
+
+
+    .faq-section p:hover {
+        color: #303b4d !important;
+        transform: translateX(3px);
+    }
+
+
+/* =========================================================
+   LIST
+   ========================================================= */
+
+.faq-list {
+    margin: 0 0 20px;
+    padding-left: 22px;
+}
+
+
+    .faq-list li {
+        margin-bottom: 12px;
+        padding-left: 5px;
+        color: #536174 !important;
+        font-size: 15px;
+        line-height: 1.8;
+        text-align: justify;
+        transition: transform .3s ease, color .3s ease;
+    }
+
+
+        .faq-list li::marker {
+            color: #14b8a6;
+            font-size: 17px;
+        }
+
+
+        .faq-list li:hover {
+            color: #222222 !important;
+            transform: translateX(7px);
+        }
+
+
+    .faq-list b {
+        color: #3d4b60 !important;
+    }
+
+
+/* =========================================================
+   RIGHT CONTENT
+   ========================================================= */
+
+.faq-right-content {
+    padding-left: 15px;
+}
+
+
+/* =========================================================
+   RIGHT SCROLL
+   ========================================================= */
+
+.faq-page .scroll-right {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(80px);
+    transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+
+    .faq-page .scroll-right.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+
+/* =========================================================
+   RIGHT STICKY
+   ========================================================= */
+
+.faq-sticky {
+    position: sticky;
+    top: 100px;
+}
+
+
+/* =========================================================
+   IMAGE BOX
+   ========================================================= */
+
+.faq-image-box {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #f8fafb;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    .faq-image-box:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.10);
+    }
+
+
+    .faq-image-box img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+    }
+
+
+    .faq-image-box:hover img {
+        transform: scale(1.04);
+        filter: brightness(1.04);
+    }
+
+
+    /* =========================================================
+   IMAGE SHINE
+   ========================================================= */
+
+    .faq-image-box::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 70%;
+        height: 100%;
+        pointer-events: none;
+        background: linear-gradient( 90deg, transparent, rgba(255,255,255,.28), transparent );
+        transform: skewX(-20deg);
+        transition: left .8s ease;
+    }
+
+
+    .faq-image-box:hover::after {
+        left: 140%;
+    }
+
+
+/* =========================================================
+   IMPORTANT BOX
+   ========================================================= */
+
+.faq-important-box {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 35px;
+    padding: 22px;
+    border-left: 4px solid #14b8a6;
+    border-radius: 14px;
+    background: #f7fbfb;
+    box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    overflow: hidden;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    .faq-important-box:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(20,184,166,.14);
+    }
+
+
+    .faq-important-box::before {
+        content: "";
+        position: absolute;
+        top: -45px;
+        right: -45px;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: rgba(20,184,166,.08);
+        animation: faqInfoGlow 4s ease-in-out infinite;
+    }
+
+
+/* =========================================================
+   IMPORTANT CONTENT
+   ========================================================= */
+
+.faq-important-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+    .faq-important-content h2 {
+        margin: 0 0 10px;
+        color: #202838 !important;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+
+    .faq-important-content p {
+        margin: 0;
+        color: #536174 !important;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+
+.faq-back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #ffffff !important;
+    background: #14b8a6;
+    box-shadow: 0 8px 25px rgba(20,184,166,.25);
+    text-decoration: none !important;
+    transition: all .3s ease;
+}
+
+
+    .faq-back-to-top:hover {
+        color: #ffffff !important;
+        background: #0f766e;
+        transform: translateY(-4px);
+    }
+
+
+/* =========================================================
+   ANIMATION - TITLE
+   ========================================================= */
+
+@keyframes faqTitleReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(35px) translateX(-20px);
+        filter: blur(6px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   ANIMATION - FADE
+   ========================================================= */
+
+@keyframes faqFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+@keyframes faqBreadcrumbReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(45px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   LINE
+   ========================================================= */
+
+@keyframes faqLineReveal {
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100px;
+    }
+}
+
+
+/* =========================================================
+   GLOW 1
+   ========================================================= */
+
+@keyframes faqGlowOne {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(80px,40px) scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   GLOW 2
+   ========================================================= */
+
+@keyframes faqGlowTwo {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(-70px,-50px) scale(1.12);
+    }
+}
+
+
+/* =========================================================
+   GLOW 3
+   ========================================================= */
+
+@keyframes faqGlowThree {
+
+    0%, 100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+@keyframes faqParticleFloat {
+
+    0% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-25px) scale(1.2);
+    }
+
+    100% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+@keyframes faqArrowPulse {
+
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+
+/* =========================================================
+   INFO GLOW
+   ========================================================= */
+
+@keyframes faqInfoGlow {
+
+    0% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .faq-hero {
+        min-height: 320px;
+    }
+
+
+    .faq-title {
+        font-size: 34px;
+    }
+
+
+    .faq-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .faq-breadcrumb {
+        margin-top: 25px;
+    }
+
+
+    .faq-left-content {
+        padding-right: 15px;
+    }
+
+
+    .faq-right-content {
+        padding-left: 15px;
+        margin-top: 40px;
+    }
+
+
+    .faq-sticky {
+        position: relative;
+        top: auto;
+    }
+
+
+    .faq-page .scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .faq-page .scroll-right.show {
+            transform: translateY(0);
+        }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .faq-top-space {
+        height: 15px;
+    }
+
+
+    .faq-content {
+        padding-top: 35px;
+    }
+
+
+    .faq-hero {
+        min-height: 360px;
+        text-align: center;
+    }
+
+
+    .faq-title {
+        font-size: 28px;
+        color: whitesmoke !important;
+    }
+
+
+    .faq-small-title {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+
+    .faq-subtitle {
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+
+    .faq-breadcrumb {
+        gap: 7px;
+        padding: 8px 10px;
+    }
+
+
+    .faq-btn {
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+
+
+    .faq-current-page {
+        font-size: 12px;
+    }
+
+
+    .faq-glow-1 {
+        width: 220px;
+        height: 220px;
+    }
+
+
+    .faq-glow-2 {
+        width: 250px;
+        height: 250px;
+    }
+
+
+    .faq-left-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .faq-right-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .faq-section {
+        margin-bottom: 40px;
+    }
+
+
+        .faq-section h4 {
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+
+        .faq-section p,
+        .faq-list li {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+
+    .faq-page .scroll-reveal {
+        transform: translateY(50px);
+    }
+
+
+        .faq-page .scroll-reveal.show {
+            transform: translateY(0);
+        }
+
+
+    .faq-page .scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .faq-page .scroll-right.show {
+            transform: translateY(0);
+        }
+
+
+    .faq-important-box {
+        padding: 18px;
+    }
+
+
+    .faq-important-content h2 {
+        font-size: 21px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .faq-hero {
+        min-height: 380px;
+    }
+
+
+    .faq-title {
+        font-size: 24px;
+        color: whitesmoke !important;
+    }
+
+
+    .faq-subtitle {
+        font-size: 13px;
+    }
+
+
+    .faq-breadcrumb {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 18px;
+    }
+
+
+    .faq-arrow {
+        display: none;
+    }
+
+
+    .faq-section h4 {
+        font-size: 20px;
+    }
+
+
+    .faq-list {
+        padding-left: 20px;
+    }
+
+
+        .faq-list li {
+            font-size: 14px;
+            text-align: left;
+        }
+
+
+    .faq-back-to-top {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .faq-page *,
+    .faq-page::before,
+    .faq-page::after,
+    .faq-glow,
+    .faq-particles span {
+        animation: none !important;
+        transition: none !important;
+    }
+
+
+    .faq-page .scroll-reveal,
+    .faq-page .scroll-right {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+}

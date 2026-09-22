@@ -1,0 +1,1064 @@
+﻿/* =========================================================
+   INDUSTRY NEWS PAGE
+   COMPLETELY SEPARATE CSS
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+.industry-news-page {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+    .industry-news-page,
+    .industry-news-page *,
+    .industry-news-page *::before,
+    .industry-news-page *::after {
+        box-sizing: border-box;
+    }
+
+
+/* =========================================================
+   TOP SPACE
+   ========================================================= */
+
+.industry-news-top-space {
+    width: 100%;
+    height: 30px;
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.industry-news-hero {
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient( 135deg, #071e34 0%, #123f58 45%, #087f78 100% );
+}
+
+
+    /* =========================================================
+   HERO OVERLAY
+   ========================================================= */
+
+    .industry-news-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -4;
+        background: linear-gradient( 90deg, rgba(5, 25, 43, .98), rgba(12, 67, 85, .88), rgba(7, 112, 105, .92) );
+    }
+
+
+    /* =========================================================
+   HERO GRID
+   ========================================================= */
+
+    .industry-news-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        opacity: .7;
+        background-image: linear-gradient( rgba(255,255,255,.045) 1px, transparent 1px ), linear-gradient( 90deg, rgba(255,255,255,.045) 1px, transparent 1px );
+        background-size: 45px 45px;
+        mask-image: linear-gradient( to bottom, black, transparent );
+        -webkit-mask-image: linear-gradient( to bottom, black, transparent );
+    }
+
+
+/* =========================================================
+   HERO CONTAINER
+   ========================================================= */
+
+.industry-news-hero-container {
+    position: relative;
+    z-index: 20;
+}
+
+
+/* =========================================================
+   GLOWS
+   ========================================================= */
+
+.industry-news-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* LEFT */
+
+.industry-news-glow-1 {
+    width: 330px;
+    height: 330px;
+    left: -120px;
+    top: -140px;
+    background: rgba(45,212,191,.28);
+    filter: blur(12px);
+    animation: industryNewsGlowOne 8s ease-in-out infinite;
+}
+
+
+/* RIGHT */
+
+.industry-news-glow-2 {
+    width: 400px;
+    height: 400px;
+    right: -160px;
+    bottom: -220px;
+    background: rgba(59,130,246,.25);
+    filter: blur(15px);
+    animation: industryNewsGlowTwo 10s ease-in-out infinite;
+}
+
+
+/* CENTER */
+
+.industry-news-glow-3 {
+    width: 220px;
+    height: 220px;
+    left: 48%;
+    top: 5%;
+    background: rgba(255,255,255,.08);
+    filter: blur(30px);
+    animation: industryNewsGlowThree 6s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.industry-news-particles span {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.7);
+    box-shadow: 0 0 12px rgba(255,255,255,.5);
+    pointer-events: none;
+    z-index: -1;
+    animation: industryNewsParticleFloat 6s ease-in-out infinite;
+}
+
+
+    .industry-news-particles span:nth-child(1) {
+        left: 10%;
+        top: 25%;
+    }
+
+
+    .industry-news-particles span:nth-child(2) {
+        left: 25%;
+        top: 70%;
+        animation-delay: 1s;
+    }
+
+
+    .industry-news-particles span:nth-child(3) {
+        left: 48%;
+        top: 20%;
+        animation-delay: 2s;
+    }
+
+
+    .industry-news-particles span:nth-child(4) {
+        right: 25%;
+        top: 65%;
+        animation-delay: 1.5s;
+    }
+
+
+    .industry-news-particles span:nth-child(5) {
+        right: 12%;
+        top: 25%;
+        animation-delay: 3s;
+    }
+
+
+    .industry-news-particles span:nth-child(6) {
+        right: 40%;
+        top: 80%;
+        animation-delay: 2.5s;
+    }
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.industry-news-title-wrapper {
+    position: relative;
+}
+
+
+/* SMALL TITLE */
+
+.industry-news-small-title {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #5eead4 !important;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    opacity: 0;
+    animation: industryNewsFadeUp .8s ease forwards;
+}
+
+
+/* MAIN TITLE */
+
+.industry-news-title {
+    display: block;
+    margin: 0 !important;
+    color: #ffffff !important;
+    font-size: 44px !important;
+    font-weight: 700 !important;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: industryNewsTitleReveal 1s cubic-bezier(.16,1,.3,1) .15s forwards;
+}
+
+
+/* TITLE LINE */
+
+.industry-news-title-line {
+    width: 0;
+    height: 3px;
+    margin-top: 14px;
+    border-radius: 10px;
+    background: linear-gradient( 90deg, #2dd4bf, #60a5fa );
+    animation: industryNewsLineReveal .8s ease .8s forwards;
+}
+
+
+/* SUBTITLE */
+
+.industry-news-subtitle {
+    max-width: 580px;
+    margin-top: 15px;
+    margin-bottom: 0;
+    color: rgba(255,255,255,.82) !important;
+    font-size: 16px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: industryNewsFadeUp .8s ease .55s forwards;
+}
+
+
+/* =========================================================
+   BREADCRUMB
+   ========================================================= */
+
+.industry-news-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 50px;
+    background: rgba(255,255,255,.10);
+    box-shadow: 0 10px 35px rgba(0,0,0,.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    animation: industryNewsBreadcrumbReveal .9s cubic-bezier(.16,1,.3,1) .4s forwards;
+}
+
+
+/* =========================================================
+   HOME BUTTON
+   ========================================================= */
+
+.industry-news-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 30px;
+    color: #ffffff !important;
+    background: rgba(255,255,255,.10);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all .35s ease;
+}
+
+
+    .industry-news-btn i {
+        color: #5eead4;
+        transition: transform .35s ease, color .35s ease;
+    }
+
+
+    .industry-news-btn:hover {
+        color: #ffffff !important;
+        background: #14b8a6;
+        border-color: #14b8a6;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(20,184,166,.30);
+    }
+
+
+        .industry-news-btn:hover i {
+            color: #ffffff;
+            transform: scale(1.15);
+        }
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.industry-news-arrow {
+    color: #5eead4 !important;
+    font-size: 14px;
+    animation: industryNewsArrowPulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   CURRENT PAGE
+   ========================================================= */
+
+.industry-news-current-page {
+    color: rgba(255,255,255,.9) !important;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.industry-news-content {
+    width: 100%;
+    padding-top: 55px;
+    padding-bottom: 50px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MAIN ROW
+   ========================================================= */
+
+.industry-news-main-row {
+    width: 100%;
+    margin: 0 !important;
+    align-items: flex-start;
+}
+
+
+/* =========================================================
+   LEFT
+   ========================================================= */
+
+.industry-news-left-content {
+    padding-right: 35px;
+}
+
+
+/* =========================================================
+   SECTION
+   ========================================================= */
+
+.industry-news-section {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 48px;
+    padding: 0;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.industry-news-page .scroll-reveal {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(70px);
+    transition: opacity .75s ease, transform .75s cubic-bezier(.22,1,.36,1);
+}
+
+
+    .industry-news-page .scroll-reveal.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.industry-news-section h4 {
+    position: relative;
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #172033 !important;
+    font-size: 25px !important;
+    font-weight: 600 !important;
+    line-height: 1.4;
+}
+
+
+    /* UNDERLINE */
+
+    .industry-news-section h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -9px;
+        width: 0;
+        height: 3px;
+        border-radius: 10px;
+        background: linear-gradient( 90deg, #14b8a6, #60a5fa );
+        transition: width .7s ease .25s;
+    }
+
+
+.industry-news-section.show h4::after {
+    width: 65%;
+}
+
+
+/* =========================================================
+   PARAGRAPH
+   ========================================================= */
+
+.industry-news-section p {
+    margin-top: 0;
+    margin-bottom: 19px;
+    color: #536174 !important;
+    font-size: 16px !important;
+    line-height: 1.8;
+    text-align: left;
+    transition: color .3s ease, transform .3s ease;
+}
+
+
+    .industry-news-section p:hover {
+        color: #303b4d !important;
+        transform: translateX(3px);
+    }
+
+
+/* =========================================================
+   LIST
+   ========================================================= */
+
+.industry-news-list {
+    margin: 0;
+    padding-left: 23px;
+}
+
+
+    .industry-news-list li {
+        margin-bottom: 13px;
+        padding-left: 5px;
+        color: #536174 !important;
+        font-size: 16px;
+        line-height: 1.8;
+        transition: transform .3s ease, color .3s ease;
+    }
+
+
+        .industry-news-list li::marker {
+            color: #14b8a6;
+        }
+
+
+        .industry-news-list li:hover {
+            color: #222222 !important;
+            transform: translateX(6px);
+        }
+
+
+    .industry-news-list b {
+        color: #34435a !important;
+    }
+
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.industry-news-right-content {
+    padding-left: 15px;
+}
+
+
+/* =========================================================
+   RIGHT SCROLL
+   ========================================================= */
+
+.industry-news-page .scroll-right {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(80px);
+    transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+
+    .industry-news-page .scroll-right.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+
+/* =========================================================
+   RIGHT STICKY
+   ========================================================= */
+
+.industry-news-sticky {
+    position: sticky;
+    top: 100px;
+}
+
+
+/* =========================================================
+   IMAGE BOX
+   ========================================================= */
+
+.industry-news-image-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #f4f8f9;
+    min-height: 80px;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    .industry-news-image-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,.10);
+    }
+
+
+    .industry-news-image-box img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+
+/* =========================================================
+   IMPORTANT BOX
+   ========================================================= */
+
+.industry-news-important-box {
+    position: relative;
+    width: 100%;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    padding: 25px;
+    border-left: 4px solid #14b8a6;
+    border-radius: 15px;
+    background: #f7fbfb;
+    box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    overflow: hidden;
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+    .industry-news-important-box::after {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        right: -45px;
+        top: -50px;
+        border-radius: 50%;
+        background: rgba(20,184,166,.08);
+    }
+
+
+    .industry-news-important-box:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 35px rgba(20,184,166,.13);
+    }
+
+
+.industry-news-important-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+    .industry-news-important-content h2 {
+        margin: 0 0 10px;
+        color: #172033 !important;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+
+    .industry-news-important-content p {
+        margin: 0;
+        color: #536174 !important;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   FINAL LINE
+   ========================================================= */
+
+.industry-news-final-line {
+    width: 0;
+    height: 3px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: linear-gradient( 90deg, #14b8a6, #60a5fa );
+    transition: width 1s ease;
+}
+
+
+.industry-news-final-section.show + .industry-news-final-line {
+    width: 110px;
+}
+
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+
+.industry-news-back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    color: #ffffff !important;
+    background: #14b8a6;
+    box-shadow: 0 8px 25px rgba(20,184,166,.25);
+    text-decoration: none !important;
+    transition: all .3s ease;
+}
+
+
+    .industry-news-back-to-top:hover {
+        color: #ffffff !important;
+        background: #0f766e;
+        transform: translateY(-4px);
+    }
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes industryNewsTitleReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(35px) translateX(-20px);
+        filter: blur(6px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+@keyframes industryNewsFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes industryNewsBreadcrumbReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(45px);
+        filter: blur(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+
+@keyframes industryNewsLineReveal {
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 110px;
+    }
+}
+
+
+@keyframes industryNewsGlowOne {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(80px,40px) scale(1.15);
+    }
+}
+
+
+@keyframes industryNewsGlowTwo {
+
+    0%, 100% {
+        transform: translate(0,0) scale(1);
+    }
+
+    50% {
+        transform: translate(-70px,-50px) scale(1.12);
+    }
+}
+
+
+@keyframes industryNewsGlowThree {
+
+    0%, 100% {
+        transform: scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+}
+
+
+@keyframes industryNewsParticleFloat {
+
+    0% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-25px) scale(1.2);
+    }
+
+    100% {
+        opacity: .2;
+        transform: translateY(0) scale(.8);
+    }
+}
+
+
+@keyframes industryNewsArrowPulse {
+
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .industry-news-hero {
+        min-height: 390px;
+    }
+
+
+    .industry-news-title {
+        font-size: 36px !important;
+    }
+
+
+    .industry-news-breadcrumb {
+        margin-top: 25px;
+    }
+
+
+    .industry-news-left-content {
+        padding-right: 15px;
+    }
+
+
+    .industry-news-right-content {
+        padding-left: 15px;
+        margin-top: 40px;
+    }
+
+
+    .industry-news-sticky {
+        position: relative;
+        top: auto;
+    }
+
+
+    .industry-news-page .scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .industry-news-page .scroll-right.show {
+            transform: translateY(0);
+        }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .industry-news-top-space {
+        height: 15px;
+    }
+
+
+    .industry-news-hero {
+        min-height: 430px;
+        text-align: center;
+    }
+
+
+    .industry-news-title {
+        font-size: 30px !important;
+        color: #ffffff !important;
+    }
+
+
+    .industry-news-small-title {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+
+    .industry-news-subtitle {
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+
+    .industry-news-breadcrumb {
+        gap: 8px;
+        padding: 8px 11px;
+    }
+
+
+    .industry-news-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+
+    .industry-news-current-page {
+        font-size: 12px;
+    }
+
+
+    .industry-news-left-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .industry-news-right-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .industry-news-section {
+        margin-bottom: 40px;
+    }
+
+
+        .industry-news-section h4 {
+            font-size: 22px !important;
+        }
+
+
+        .industry-news-section p,
+        .industry-news-list li {
+            font-size: 14px !important;
+            line-height: 1.7;
+        }
+
+
+    .industry-news-page .scroll-reveal {
+        transform: translateY(50px);
+    }
+
+
+        .industry-news-page .scroll-reveal.show {
+            transform: translateY(0);
+        }
+
+
+    .industry-news-page .scroll-right {
+        transform: translateY(50px);
+    }
+
+
+        .industry-news-page .scroll-right.show {
+            transform: translateY(0);
+        }
+
+
+    .industry-news-important-box {
+        padding: 20px;
+    }
+
+
+    .industry-news-important-content h2 {
+        font-size: 22px;
+    }
+
+
+    .industry-news-important-content p {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .industry-news-hero {
+        min-height: 450px;
+    }
+
+
+    .industry-news-title {
+        font-size: 25px !important;
+    }
+
+
+    .industry-news-subtitle {
+        font-size: 13px;
+    }
+
+
+    .industry-news-breadcrumb {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 18px;
+    }
+
+
+    .industry-news-arrow {
+        display: none;
+    }
+
+
+    .industry-news-section h4 {
+        font-size: 20px !important;
+    }
+
+
+    .industry-news-list {
+        padding-left: 20px;
+    }
+
+
+        .industry-news-list li {
+            text-align: left;
+        }
+
+
+    .industry-news-back-to-top {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .industry-news-page *,
+    .industry-news-page::before,
+    .industry-news-page::after,
+    .industry-news-glow,
+    .industry-news-particles span {
+        animation: none !important;
+        transition: none !important;
+    }
+
+
+    .industry-news-page .scroll-reveal,
+    .industry-news-page .scroll-right {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+    }
+}

@@ -1,0 +1,1520 @@
+﻿@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Organization Dashboard";
+    ViewData["Panel"] = "Organization";
+    ViewData["UserName"] = "Organization";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+    /* ============================================================
+               TOKENS
+               ============================================================ */
+    :root {
+        --ink: #16211c;
+        --ink-soft: #46564f;
+        --muted: #6c7a73;
+        --line: #dbe3de;
+        --line-soft: #e9efeb;
+        --bg: #eef1ef;
+        --surface: #ffffff;
+        --primary: #145c4b;
+        --primary-dark: #0d3f33;
+        --primary-tint: #e5efec;
+        --accent: #c98a2b;
+        --accent-tint: #f7ecd8;
+        --danger: #b3432f;
+        --danger-tint: #fbe9e4;
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 16px;
+        --shadow-1: 0 1px 2px rgba(15,32,25,.06);
+        --shadow-2: 0 10px 30px -12px rgba(13,40,32,.25);
+        --font-display: "Fraunces", serif;
+        --font-body: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+        --font-mono: "IBM Plex Mono", monospace;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: var(--font-body);
+        color: var(--ink);
+        background: var(--bg);
+        background-image: radial-gradient(circle at 100% 0%, rgba(20,92,75,.06), transparent 40%), radial-gradient(circle at 0% 100%, rgba(201,138,43,.05), transparent 40%);
+        line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    ::selection {
+        background: var(--primary-tint);
+        color: var(--primary-dark);
+    }
+
+    /* focus ring, kept visible everywhere */
+    :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    /* ============================================================
+               TOPBAR
+               ============================================================ */
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: var(--primary-dark);
+        color: #fff;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .topbar-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 14px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .topbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,.75);
+    }
+
+        .topbar-brand .mark {
+            width: 26px;
+            height: 26px;
+            border-radius: 7px;
+            background: linear-gradient(155deg,var(--accent),#e2b25f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .topbar-brand strong {
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            letter-spacing: .02em;
+        }
+
+    .topbar-meta {
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        color: rgba(255,255,255,.55);
+    }
+
+    /* ============================================================
+               PAGE HEADER
+               ============================================================ */
+    .container-fluid {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 28px;
+    }
+
+    .page-head {
+        padding: 40px 0 28px;
+    }
+
+    .breadcrumb {
+        list-style: none;
+        display: flex;
+        gap: 8px;
+        margin: 0 0 14px;
+        padding: 0;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    .breadcrumb-item {
+        position: relative;
+        padding-right: 16px;
+    }
+
+        .breadcrumb-item::after {
+            content: "/";
+            position: absolute;
+            right: 0;
+            color: var(--line);
+        }
+
+        .breadcrumb-item:last-child {
+            padding-right: 0;
+        }
+
+            .breadcrumb-item:last-child::after {
+                content: "";
+            }
+
+        .breadcrumb-item.active {
+            color: var(--primary);
+        }
+
+    .page-head h4 {
+        margin: 0 0 8px;
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 34px;
+        letter-spacing: -.01em;
+        color: var(--ink);
+    }
+
+    .page-head p {
+        margin: 0;
+        max-width: 560px;
+        color: var(--ink-soft);
+        font-size: 14.5px;
+    }
+
+    /* ============================================================
+               LAYOUT: form + sticky preview
+               ============================================================ */
+    .post-layout {
+        display: grid;
+        grid-template-columns: minmax(0,1fr) 320px;
+        gap: 32px;
+        align-items: start;
+        padding-bottom: 80px;
+    }
+    @@media (max-width: 980px) {
+        .post-layout {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ============================================================
+               SECTIONS (replace bootstrap .row/.card grid)
+               ============================================================ */
+    .form-section {
+        background: var(--surface);
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-1);
+        margin-bottom: 22px;
+        overflow: hidden;
+    }
+
+    .form-section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 22px 26px 6px;
+    }
+
+        .form-section-head .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .form-section-head h6 {
+            margin: 0;
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--ink);
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line-soft);
+            flex: 1;
+        }
+
+    .form-section-body {
+        padding: 8px 26px 26px;
+    }
+
+    /* legacy .row -> responsive field grid */
+    .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+        gap: 18px 20px;
+        margin: 0;
+    }
+
+        .row + .row {
+            margin-top: 18px;
+        }
+
+    /* ============================================================
+               FIELD "cards" -> clean inputs
+               restyle original .card/.card-body/.card-footer classes
+               ============================================================ */
+    .col-xl-3, .col-md-6 {
+        min-width: 0;
+    }
+
+    .card {
+        background: transparent !important;
+        border: none;
+        box-shadow: none;
+        margin: 0 !important;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .card-body {
+        padding: 0 !important;
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: .02em;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+        font-family: var(--font-mono);
+    }
+
+        .card-body span[style] {
+            color: var(--danger) !important;
+            font-family: var(--font-body);
+        }
+
+    .card-footer {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 11px 13px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: #fbfcfb;
+        font-family: var(--font-body);
+        font-size: 14.5px;
+        color: var(--ink);
+        transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+        appearance: none;
+    }
+
+    select.form-control {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9"><path d="M1 1l6 6 6-6" stroke="%2346564f" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 13px center;
+        padding-right: 34px;
+    }
+
+    .form-control:hover {
+        border-color: #b9c6bf;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary);
+        background: #fff;
+        box-shadow: 0 0 0 3px var(--primary-tint);
+        outline: none;
+    }
+
+    .form-control::placeholder {
+        color: #a3aca6;
+    }
+
+    .form-control:disabled {
+        background: #f1f2f0;
+        color: #a3aca6;
+        cursor: not-allowed;
+    }
+
+    .field-validation-valid {
+        display: block;
+        min-height: 15px;
+        font-size: 12px;
+        color: var(--danger);
+        font-weight: 500;
+    }
+
+    /* ============================================================
+               ACCORDIONS (weekly days / facilities / skills)
+               ============================================================ */
+    .accordion {
+        margin: 0;
+    }
+
+    .accordion-item {
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-md) !important;
+        overflow: hidden;
+        margin-bottom: 12px;
+        background: #fff;
+    }
+
+    .accordion-header {
+        margin: 0;
+    }
+
+    .accordion-button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 18px;
+        background: #fbfbfa;
+        border: none;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        text-align: left;
+    }
+
+        .accordion-button::after {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border-right: 1.6px solid var(--ink-soft);
+            border-bottom: 1.6px solid var(--ink-soft);
+            transform: rotate(45deg);
+            transition: transform .18s ease;
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+
+        .accordion-button.collapsed::after {
+            transform: rotate(-45deg);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--primary-tint);
+            color: var(--primary-dark);
+        }
+
+    .accordion-collapse {
+        display: none;
+        border-top: 1px solid var(--line-soft);
+    }
+
+        .accordion-collapse.show {
+            display: block;
+        }
+
+    .accordion-body {
+        padding: 18px;
+    }
+
+        .accordion-body .row {
+            grid-template-columns: repeat(auto-fill, minmax(170px,1fr));
+            gap: 10px;
+        }
+
+        /* pill-style checkbox cards inside accordions */
+        .accordion-body .card {
+            border: 1px solid var(--line) !important;
+            border-radius: 999px;
+            padding: 9px 14px !important;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: border-color .15s ease, background .15s ease;
+            background: #fff !important;
+        }
+
+            .accordion-body .card:hover {
+                border-color: var(--primary);
+            }
+
+        .accordion-body .card-body {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: none;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 13.5px;
+            color: var(--ink);
+            letter-spacing: 0;
+        }
+
+        .accordion-body input[type="checkbox"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1.6px solid #b9c6bf;
+            border-radius: 4px;
+            flex-shrink: 0;
+            cursor: pointer;
+            position: relative;
+            margin: 0;
+        }
+
+            .accordion-body input[type="checkbox"]:checked {
+                background: var(--primary);
+                border-color: var(--primary);
+            }
+
+                .accordion-body input[type="checkbox"]:checked::after {
+                    content: "";
+                    position: absolute;
+                    left: 4px;
+                    top: 1px;
+                    width: 4px;
+                    height: 8px;
+                    border: solid #fff;
+                    border-width: 0 2px 2px 0;
+                    transform: rotate(45deg);
+                }
+
+                .accordion-body input[type="checkbox"]:checked + * {
+                    color: var(--primary-dark);
+                }
+
+    /* section title row above each accordion group */
+    .skills-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 12px;
+    }
+
+        .skills-title h6 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .skills-title .req {
+            color: var(--danger);
+            font-size: 13px;
+        }
+
+        .skills-title #SkillError, .skills-title #WorkingDaysError {
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+        }
+
+    /* ============================================================
+               PREVIEW PANEL — signature element
+               ============================================================ */
+    .preview-panel {
+        position: sticky;
+        top: 84px;
+    }
+
+    .preview-card {
+        background: var(--primary-dark);
+        color: #fff;
+        border-radius: var(--radius-lg);
+        padding: 26px 24px 22px;
+        box-shadow: var(--shadow-2);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .preview-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 100% 0%, rgba(201,138,43,.25), transparent 55%);
+            pointer-events: none;
+        }
+
+    .preview-tag {
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .preview-role {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 23px;
+        line-height: 1.15;
+        margin: 0 0 14px;
+        min-height: 29px;
+    }
+
+        .preview-role .placeholder {
+            color: rgba(255,255,255,.4);
+            font-weight: 500;
+        }
+
+    .preview-facts {
+        list-style: none;
+        margin: 0 0 18px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+
+        .preview-facts li {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(255,255,255,.85);
+            border-bottom: 1px dashed rgba(255,255,255,.15);
+            padding-bottom: 9px;
+        }
+
+            .preview-facts li span:first-child {
+                color: rgba(255,255,255,.55);
+                font-family: var(--font-mono);
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: .04em;
+            }
+
+            .preview-facts li span:last-child {
+                text-align: right;
+                font-weight: 500;
+            }
+
+    .preview-progress {
+        margin-top: 6px;
+    }
+
+    .preview-progress-bar {
+        height: 5px;
+        border-radius: 99px;
+        background: rgba(255,255,255,.14);
+        overflow: hidden;
+    }
+
+    .preview-progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg,var(--accent),#e7bd75);
+        transition: width .3s ease;
+    }
+
+    .preview-progress-label {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        letter-spacing: .04em;
+        color: rgba(255,255,255,.55);
+        margin-top: 8px;
+    }
+
+    .preview-help {
+        margin-top: 16px;
+        background: var(--surface);
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-md);
+        padding: 16px 16px;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+    }
+
+        .preview-help strong {
+            display: block;
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+    /* ============================================================
+               SUBMIT BAR
+               ============================================================ */
+    .MyButton {
+        margin-top: 6px;
+    }
+
+    .button {
+        padding: 0 !important;
+    }
+
+    #submitButton {
+        appearance: none;
+        border: none;
+        cursor: pointer;
+        background: var(--primary);
+        color: #fff;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: .01em;
+        padding: 15px 34px;
+        border-radius: var(--radius-sm);
+        box-shadow: 0 8px 20px -8px rgba(20,92,75,.55);
+        transition: background .15s ease, transform .1s ease;
+    }
+
+        #submitButton:hover {
+            background: var(--primary-dark);
+        }
+
+        #submitButton:active {
+            transform: translateY(1px);
+        }
+
+    .submit-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding-top: 6px;
+    }
+
+    .submit-note {
+        font-size: 12.5px;
+        color: var(--muted);
+        max-width: 420px;
+    }
+
+    /* required marker consistency */
+    .req-mark {
+        color: var(--danger);
+        margin-left: 2px;
+    }
+</style>
+
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="topbar-brand">
+            <span class="mark">it</span>
+            <strong>Organization Console</strong>
+        </div>
+        <div class="topbar-meta">POST&nbsp;ID&nbsp;·&nbsp;it6848070164736</div>
+    </div>
+</div>
+
+<form action="/OrgCreatePost/OrgCreateNewPost/it6848070164736" enctype="multipart/form-data" method="post" onsubmit="return validateMyForm();" id="createPostForm">
+    <div class="container-fluid">
+
+        <div class="page-head">
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">Post details</li>
+                <li class="breadcrumb-item active">it6848070164736</li>
+            </ol>
+            <h4 class="mt-4">Create new post</h4>
+            <p>Publish an internship or traineeship opening. Fields marked <span class="req-mark">*</span> are required before this post can go live.</p>
+        </div>
+
+        <div class="post-layout">
+            <div class="post-main">
+
+                <!-- ROLE BASICS -->
+                <section class="form-section">
+                    <div class="form-section-head">
+                        <span class="eyebrow">01 · Role</span>
+                        <h6>Position &amp; eligibility</h6>
+                    </div>
+                    <div class="form-section-body">
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Position <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field PostPositionId must be a number." data-val-required="This field is required" id="PostPositionId" name="PostPositionId" oninput="updatePreview()">
+                                            <option value=""> -- Select a Position -- </option>
+                                            <option value="1">.Net Trainee</option>
+                                            <option value="2">Assistant Trainee</option>
+                                            <option value="3">Business Analyst</option>
+                                            <option value="4">Civil Trainee</option>
+                                            <option value="5">Data Analyst</option>
+                                            <option value="6">Fellow Intern</option>
+                                            <option value="7">GIS Trainee</option>
+                                            <option value="8">Intern</option>
+                                            <option value="9">Java Trainee</option>
+                                            <option value="10">Mech Trainee</option>
+                                            <option value="11">Mgmt Trainee</option>
+                                            <option value="12">Project Trainee</option>
+                                            <option value="13">QA Trainee</option>
+                                            <option value="14">S/W Trainee</option>
+                                            <option value="15">Support Engineer</option>
+                                            <option value="16">Trainee</option>
+                                            <option value="17">Trainee Admin</option>
+                                            <option value="18">Trainee Designer</option>
+                                            <option value="19">Trainee Engineer</option>
+                                            <option value="20">Trainee Full Stack</option>
+                                            <option value="21">Python Trainee</option>
+                                            <option value="22">Trainee GenAI</option>
+                                            <option value="23">Trainee Data Science</option>
+                                            <option value="24">SalesForce Trainee</option>
+                                            <option value="25">Network Trainee</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="PostPositionId" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Required trainees <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <input class="form-control text-box single-line" data-val="true" data-val-regex="Please enter a valid number up to 7 digits" data-val-regex-pattern="^\d{1,7}$" data-val-required="This field is required" id="NoOfRequiredTrainee" maxlength="7" name="NoOfRequiredTrainee" onkeypress="return isNumber(event)" oninput="updatePreview()" placeholder="e.g. 20" type="text" value="" />
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="NoOfRequiredTrainee" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Gender <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field GenderRequiredId must be a number." data-val-required="This field is required" id="GenderRequiredId" name="GenderRequiredId" oninput="updatePreview()">
+                                            <option value=""> -- Select a Gender -- </option>
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                            <option value="3">Other</option>
+                                            <option value="4">Any</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="GenderRequiredId" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Minimum qualification <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field MinQualificationId must be a number." data-val-required="This field is required" id="MinQualificationId" name="MinQualificationId">
+                                            <option value=""> -- Select Minimum Qualification -- </option>
+                                            <option value="1">SSC / 10th</option>
+                                            <option value="2">HSC / Diploma</option>
+                                            <option value="3">Under Graduate</option>
+                                            <option value="4">Graduate</option>
+                                            <option value="5">PG Diploma</option>
+                                            <option value="6">Post Graduate</option>
+                                            <option value="7">PhD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="MinQualificationId" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LOCATION -->
+                <section class="form-section">
+                    <div class="form-section-head">
+                        <span class="eyebrow">02 · Location</span>
+                        <h6>Where the work happens</h6>
+                    </div>
+                    <div class="form-section-body">
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Country<span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field CountryID must be a number." data-val-required="This field is required" id="CountryID" name="CountryID" oninput="updatePreview()">
+                                            <option value=""> -- Select Country Name -- </option>
+                                            <option value="101">India</option>
+                                            <option value="231">United States</option>
+                                            <option value="230">United Kingdom</option>
+                                            <option value="13">Australia</option>
+                                            <option value="38">Canada</option>
+                                            <option value="82">Germany</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="CountryID" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">State<span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field StateID must be a number." data-val-required="This field is required" id="StateID" name="StateID" oninput="updatePreview()">
+                                            <option value=""> -- Select State Name -- </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="StateID" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">City<span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field CityID must be a number." data-val-required="This field is required" id="CityID" name="CityID" oninput="updatePreview()">
+                                            <option value=""> -- Select City Name -- </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="CityID" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Internship mode <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field InternshipModeId must be a number." data-val-required="This field is required" id="InternshipModeId" name="InternshipModeId" oninput="updatePreview()">
+                                            <option value=""> -- Select Internship Mode -- </option>
+                                            <option value="1">Online</option>
+                                            <option value="2">Offline</option>
+                                            <option value="3">Hybrid</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="InternshipModeId" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SCHEDULE & COMPENSATION -->
+                <section class="form-section">
+                    <div class="form-section-head">
+                        <span class="eyebrow">03 · Terms</span>
+                        <h6>Schedule &amp; compensation</h6>
+                    </div>
+                    <div class="form-section-body">
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Working hrs / day <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field ExpectedWorkingHrsPerDayId must be a number." data-val-required="This field is required" id="ExpectedWorkingHrsPerDayId" name="ExpectedWorkingHrsPerDayId">
+                                            <option value=""> -- Select Working Hrs / Day -- </option>
+                                            <option value="1">Up to 4 Hrs</option>
+                                            <option value="2">Up to 8 Hrs</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="ExpectedWorkingHrsPerDayId" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Internship type <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field InternshipTimeTypeId must be a number." data-val-required="This field is required" id="InternshipTimeTypeId" name="InternshipTimeTypeId" oninput="updatePreview()">
+                                            <option value=""> -- Select Internship Type -- </option>
+                                            <option value="1">Full Time</option>
+                                            <option value="2">Part Time</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="InternshipTimeTypeId" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Working shift <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field WorkingShiftId must be a number." data-val-required="This field is required" id="WorkingShiftId" name="WorkingShiftId">
+                                            <option value=""> -- Select Working Shift -- </option>
+                                            <option value="1">Day</option>
+                                            <option value="2">Night</option>
+                                            <option value="3">Rotational</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="WorkingShiftId" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Internship / fellowship type <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field StipendFeesId must be a number." data-val-required="This field is required" id="InternshipType" name="StipendFeesId" oninput="HandleInternshipType(); updatePreview();">
+                                            <option value=""> -- Select Free / Paid Type -- </option>
+                                            <option value="1">Free</option>
+                                            <option value="2">Paid by Trainee</option>
+                                            <option value="3">Stipend / Sponsored</option>
+                                            <option value="4">Any (Free/Paid/Stipend/Sponsored)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="StipendFeesId" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Total charges</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <input class="form-control text-box single-line" data-val="true" data-val-length="The value cannot exceed 30 characters." data-val-length-max="30" id="TotalCharges" maxlength="30" name="PaidByIntern" oninput="validateForm(); updatePreview();" placeholder="Amount / Currency" type="text" value="" />
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="PaidByIntern" data-valmsg-replace="true"></span>
+                                <span id="TotalChargesError" style="color: red;"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Training involved <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field TrainingInvolvedId must be a number." data-val-required="This field is required" id="TrainingInvolvedId" name="TrainingInvolvedId">
+                                            <option value=""> -- Select Training Involved -- </option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="TrainingInvolvedId" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Internship duration <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field DurationOfTrainingInWeeksId must be a number." data-val-required="This field is required" id="TrainingDuration" name="DurationOfTrainingInWeeksId" onchange="updateCompletionDate()" oninput="updatePreview()">
+                                            <option value=""> -- Select Internship (Upto) -- </option>
+                                            <option value="1">4 Weeks</option>
+                                            <option value="2">6 Weeks</option>
+                                            <option value="3">12 Weeks</option>
+                                            <option value="4">24 Weeks</option>
+                                            <option value="5">1 Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="DurationOfTrainingInWeeksId" data-valmsg-replace="true"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6" id="languageForm">
+                                <div class="card">
+                                    <div class="card-body">Language known <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <input class="form-control text-box single-line" data-val="true" data-val-required="This field is required" id="compulsaryLanguage" maxlength="50" name="CompulsaryLanguage" oninput="validateForm1()" placeholder="e.g. English, Hindi, ...." type="text" value="" />
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="CompulsaryLanguage" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Start date <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <input class="form-control text-box single-line" data-val="true" data-val-required="This field is required" id="MyPostStartDate" name="PostStartDate" onchange="updateCompletionDate()" placeholder="Start Date" type="date" value="" />
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="PostStartDate" data-valmsg-replace="true"></span>
+                                <span id="StartDateErrorMessage" style="color:red"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Completion date <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <input class="form-control text-box single-line" id="PostEndDate" name="MyPostEndDate" placeholder="Completion Date" readonly="readonly" type="date" value="" />
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="MyPostEndDate" data-valmsg-replace="true"></span>
+                                <span id="EndDateErrorMessage" style="color:red"></span>
+                            </div>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">Divyang (allowed) <span style="color:red">&nbsp;*</span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <select class="form-control" data-val="true" data-val-number="The field DivyangId must be a number." data-val-required="This field is required" id="DivyangId" name="DivyangId">
+                                            <option value=""> -- Select Divyang -- </option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="field-validation-valid text-danger" data-valmsg-for="DivyangId" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- WEEKLY WORKING DAYS -->
+                <section class="form-section">
+                    <div class="form-section-head">
+                        <span class="eyebrow">04 · Availability</span>
+                        <h6 style="border:none; padding-bottom:0;">&nbsp;</h6>
+                    </div>
+                    <div class="form-section-body">
+                        <div class="skills-title">
+                            <h6 style="font-weight:bold">Weekly working days <span style="color:red">&nbsp;*</span></h6>
+                            <span id="WorkingDaysError" style="color: red;"></span>
+                        </div>
+                        <div class="accordion" id="accordionDays">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#weeklyworkingdays" aria-expanded="false">
+                                        Select weekly working days
+                                    </button>
+                                </h2>
+                                <div id="weeklyworkingdays" class="accordion-collapse collapse" data-bs-parent="#accordionDays">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <!-- Mon -->
+                                            <div class="col-xl-2 col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <input data-val="true" data-val-required="The IsChecked field is required." id="WeeklyWorkingDaysList_0__IsChecked" name="WeeklyWorkingDaysList[0].IsChecked" onclick="WorkingDaysSelection()" type="checkbox" value="true" /><input name="WeeklyWorkingDaysList[0].IsChecked" type="hidden" value="false" />
+                                                        <span>Monday</span>
+                                                        <input id="WeeklyWorkingDaysList_0__WeeklyWorkingDaysID" name="WeeklyWorkingDaysList[0].WeeklyWorkingDaysID" type="hidden" value="1" />
+                                                        <input id="WeeklyWorkingDaysList_0__WeeklyWorkingDays" name="WeeklyWorkingDaysList[0].WeeklyWorkingDays" type="hidden" value="Monday" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tue -->
+                                            <div class="col-xl-2 col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <input id="WeeklyWorkingDaysList_1__IsChecked" name="WeeklyWorkingDaysList[1].IsChecked" onclick="WorkingDaysSelection()" type="checkbox" value="true" /><input name="WeeklyWorkingDaysList[1].IsChecked" type="hidden" value="false" />
+                                                        <span>Tuesday</span>
+                                                        <input id="WeeklyWorkingDaysList_1__WeeklyWorkingDaysID" name="WeeklyWorkingDaysList[1].WeeklyWorkingDaysID" type="hidden" value="2" />
+                                                        <input id="WeeklyWorkingDaysList_1__WeeklyWorkingDays" name="WeeklyWorkingDaysList[1].WeeklyWorkingDays" type="hidden" value="Tuesday" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Wed -->
+                                            <div class="col-xl-2 col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <input id="WeeklyWorkingDaysList_2__IsChecked" name="WeeklyWorkingDaysList[2].IsChecked" onclick="WorkingDaysSelection()" type="checkbox" value="true" /><input name="WeeklyWorkingDaysList[2].IsChecked" type="hidden" value="false" />
+                                                        <span>Wednesday</span>
+                                                        <input id="WeeklyWorkingDaysList_2__WeeklyWorkingDaysID" name="WeeklyWorkingDaysList[2].WeeklyWorkingDaysID" type="hidden" value="3" />
+                                                        <input id="WeeklyWorkingDaysList_2__WeeklyWorkingDays" name="WeeklyWorkingDaysList[2].WeeklyWorkingDays" type="hidden" value="Wednesday" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Thu -->
+                                            <div class="col-xl-2 col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <input id="WeeklyWorkingDaysList_3__IsChecked" name="WeeklyWorkingDaysList[3].IsChecked" onclick="WorkingDaysSelection()" type="checkbox" value="true" /><input name="WeeklyWorkingDaysList[3].IsChecked" type="hidden" value="false" />
+                                                        <span>Thursday</span>
+                                                        <input id="WeeklyWorkingDaysList_3__WeeklyWorkingDaysID" name="WeeklyWorkingDaysList[3].WeeklyWorkingDaysID" type="hidden" value="4" />
+                                                        <input id="WeeklyWorkingDaysList_3__WeeklyWorkingDays" name="WeeklyWorkingDaysList[3].WeeklyWorkingDays" type="hidden" value="Thursday" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Fri -->
+                                            <div class="col-xl-2 col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <input id="WeeklyWorkingDaysList_4__IsChecked" name="WeeklyWorkingDaysList[4].IsChecked" onclick="WorkingDaysSelection()" type="checkbox" value="true" /><input name="WeeklyWorkingDaysList[4].IsChecked" type="hidden" value="false" />
+                                                        <span>Friday</span>
+                                                        <input id="WeeklyWorkingDaysList_4__WeeklyWorkingDaysID" name="WeeklyWorkingDaysList[4].WeeklyWorkingDaysID" type="hidden" value="5" />
+                                                        <input id="WeeklyWorkingDaysList_4__WeeklyWorkingDays" name="WeeklyWorkingDaysList[4].WeeklyWorkingDays" type="hidden" value="Friday" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Sat -->
+                                            <div class="col-xl-2 col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <input id="WeeklyWorkingDaysList_5__IsChecked" name="WeeklyWorkingDaysList[5].IsChecked" onclick="WorkingDaysSelection()" type="checkbox" value="true" /><input name="WeeklyWorkingDaysList[5].IsChecked" type="hidden" value="false" />
+                                                        <span>Saturday</span>
+                                                        <input id="WeeklyWorkingDaysList_5__WeeklyWorkingDaysID" name="WeeklyWorkingDaysList[5].WeeklyWorkingDaysID" type="hidden" value="6" />
+                                                        <input id="WeeklyWorkingDaysList_5__WeeklyWorkingDays" name="WeeklyWorkingDaysList[5].WeeklyWorkingDays" type="hidden" value="Saturday" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Sun -->
+                                            <div class="col-xl-2 col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <input id="WeeklyWorkingDaysList_6__IsChecked" name="WeeklyWorkingDaysList[6].IsChecked" onclick="WorkingDaysSelection()" type="checkbox" value="true" /><input name="WeeklyWorkingDaysList[6].IsChecked" type="hidden" value="false" />
+                                                        <span>Sunday</span>
+                                                        <input id="WeeklyWorkingDaysList_6__WeeklyWorkingDaysID" name="WeeklyWorkingDaysList[6].WeeklyWorkingDaysID" type="hidden" value="7" />
+                                                        <input id="WeeklyWorkingDaysList_6__WeeklyWorkingDays" name="WeeklyWorkingDaysList[6].WeeklyWorkingDays" type="hidden" value="Sunday" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skills-title" style="margin-top:22px;">
+                            <h6 style="font-weight:bold">Facilities available</h6>
+                        </div>
+                        <div class="accordion" id="accordionFacilities">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#facilityavailable" aria-expanded="false">
+                                        Select facilities available
+                                    </button>
+                                </h2>
+                                <div id="facilityavailable" class="accordion-collapse collapse" data-bs-parent="#accordionFacilities">
+                                    <div class="accordion-body">
+                                        <div class="row" id="facilitiesGrid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SKILLS -->
+                <section class="form-section">
+                    <div class="form-section-head">
+                        <span class="eyebrow">05 · Skills</span>
+                        <h6 style="border:none; padding-bottom:0;">&nbsp;</h6>
+                    </div>
+                    <div class="form-section-body">
+                        <div class="skills-title">
+                            <h6 style="font-weight:bold">Select skill type (any 1) <span style="color:red">&nbsp;*</span></h6>
+                            <span id="SkillError" style="color: red;"></span>
+                        </div>
+
+                        <div class="accordion" id="accordionSkills">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false">
+                                        Medical skills
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionSkills">
+                                    <div class="accordion-body row" id="medicalSkillsGrid"></div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false">
+                                        Technical skills
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionSkills">
+                                    <div class="accordion-body row" id="technicalSkillsGrid"></div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false">
+                                        Administrative / non-technical skills
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionSkills">
+                                    <div class="accordion-body row" id="nonTechnicalSkillsGrid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="submit-row">
+                    <div class="MyButton">
+                        <div class="button">
+                            <input type="submit" value="Publish post" id="submitButton" onclick="SkillSelection(),WorkingDaysSelection()">
+                        </div>
+                    </div>
+                    <p class="submit-note">This post becomes visible to candidates immediately after publishing. You can edit or pause it any time from <em>Previous Post</em>.</p>
+                </div>
+
+            </div><!-- /post-main -->
+            <!-- STICKY LIVE PREVIEW — signature element -->
+            <aside class="preview-panel">
+                <div class="preview-card">
+                    <span class="preview-tag">Live preview</span>
+                    <h3 class="preview-role" id="previewRole"><span class="placeholder">Select a position…</span></h3>
+                    <ul class="preview-facts">
+                        <li><span>Openings</span><span id="pfOpenings">—</span></li>
+                        <li><span>Location</span><span id="pfLocation">—</span></li>
+                        <li><span>Mode</span><span id="pfMode">—</span></li>
+                        <li><span>Type</span><span id="pfType">—</span></li>
+                        <li><span>Duration</span><span id="pfDuration">—</span></li>
+                        <li><span>Stipend</span><span id="pfStipend">—</span></li>
+                    </ul>
+                    <div class="preview-progress">
+                        <div class="preview-progress-bar"><div class="preview-progress-fill" id="progressFill"></div></div>
+                        <div class="preview-progress-label"><span id="progressPct">0% complete</span><span>Auto-saved</span></div>
+                    </div>
+                </div>
+                <div class="preview-help">
+                    <strong>Tip</strong>
+                    This card mirrors exactly what candidates will see on the listing card before they open the full post — fill in the core fields first.
+                </div>
+            </aside>
+        </div><!-- /post-layout -->
+
+    </div>
+</form>
+
+<script>
+    /* ---------------- data for demo select cascades ---------------- */
+    var statesByCountry = {
+      "101": [{v:"1",t:"Maharashtra"},{v:"2",t:"Karnataka"},{v:"3",t:"Delhi"},{v:"4",t:"Gujarat"}],
+      "231": [{v:"5",t:"California"},{v:"6",t:"New York"},{v:"7",t:"Texas"}],
+      "230": [{v:"8",t:"England"},{v:"9",t:"Scotland"}],
+      "13":  [{v:"10",t:"New South Wales"},{v:"11",t:"Victoria"}],
+      "38":  [{v:"12",t:"Ontario"},{v:"13",t:"British Columbia"}],
+      "82":  [{v:"14",t:"Bavaria"},{v:"15",t:"Berlin"}]
+    };
+    var citiesByState = {
+      "1":[{v:"101",t:"Nagpur"},{v:"102",t:"Pune"},{v:"103",t:"Mumbai"}],
+      "2":[{v:"104",t:"Bengaluru"},{v:"105",t:"Mysuru"}],
+      "3":[{v:"106",t:"New Delhi"}],
+      "4":[{v:"107",t:"Ahmedabad"},{v:"108",t:"Surat"}],
+      "5":[{v:"109",t:"San Francisco"},{v:"110",t:"Los Angeles"}],
+      "6":[{v:"111",t:"New York City"},{v:"112",t:"Buffalo"}],
+      "7":[{v:"113",t:"Austin"},{v:"114",t:"Dallas"}],
+      "8":[{v:"115",t:"London"},{v:"116",t:"Manchester"}],
+      "9":[{v:"117",t:"Edinburgh"}],
+      "10":[{v:"118",t:"Sydney"}],
+      "11":[{v:"119",t:"Melbourne"}],
+      "12":[{v:"120",t:"Toronto"}],
+      "13":[{v:"121",t:"Vancouver"}],
+      "14":[{v:"122",t:"Munich"}],
+      "15":[{v:"123",t:"Berlin City"}]
+    };
+
+    document.getElementById("CountryID").addEventListener("change", function(){
+      var stateSel = document.getElementById("StateID");
+      var citySel = document.getElementById("CityID");
+      stateSel.innerHTML = '<option value=""> -- Select State Name -- </option>';
+      citySel.innerHTML = '<option value=""> -- Select City Name -- </option>';
+      var list = statesByCountry[this.value] || [];
+      list.forEach(function(s){
+        var o = document.createElement("option");
+        o.value = s.v; o.textContent = s.t;
+        stateSel.appendChild(o);
+      });
+    });
+
+    document.getElementById("StateID").addEventListener("change", function(){
+      var citySel = document.getElementById("CityID");
+      citySel.innerHTML = '<option value=""> -- Select City Name -- </option>';
+      var list = citiesByState[this.value] || [];
+      list.forEach(function(c){
+        var o = document.createElement("option");
+        o.value = c.v; o.textContent = c.t;
+        citySel.appendChild(o);
+      });
+    });
+
+    /* ---------------- build facilities & skills grids ---------------- */
+    var facilities = ["Accommodation","Food","Flexible Schedule","Incentives","Medical","Offer & Completion Letter","Pick Up & Drop","Stipend","Training","Travelling","Work From Home","Wifi / Internet Expenses","LOR"];
+    var facilitiesGrid = document.getElementById("facilitiesGrid");
+    facilities.forEach(function(name, i){
+      facilitiesGrid.insertAdjacentHTML("beforeend",
+        '<div class="col-xl-2 col-md-4"><div class="card"><div class="card-body">'+
+        '<input id="FacilityAvailableList_'+i+'__IsChecked" name="FacilityAvailableList['+i+'].IsChecked" type="checkbox" value="true" /><input name="FacilityAvailableList['+i+'].IsChecked" type="hidden" value="false" />'+
+        '<span>'+name+'</span>'+
+        '<input id="FacilityAvailableList_'+i+'__FacilityAvailableID" name="FacilityAvailableList['+i+'].FacilityAvailableID" type="hidden" value="'+(i+1)+'" />'+
+        '<input id="FacilityAvailableList_'+i+'__FacilityAvailable" name="FacilityAvailableList['+i+'].FacilityAvailable" type="hidden" value="'+name+'" />'+
+        '</div></div></div>');
+    });
+
+    function buildSkillGrid(containerId, listName, items){
+      var el = document.getElementById(containerId);
+      items.forEach(function(name, i){
+        el.insertAdjacentHTML("beforeend",
+          '<div class="col-xl-2 col-md-4"><div class="card"><div class="card-body">'+
+          '<input id="'+listName+'List_'+i+'__IsChecked" name="'+listName+'List['+i+'].IsChecked" onclick="SkillSelection()" type="checkbox" value="true" /><input name="'+listName+'List['+i+'].IsChecked" type="hidden" value="false" />'+
+          '<span>'+name+'</span>'+
+          '<input id="'+listName+'List_'+i+'__'+listName+'ID" name="'+listName+'List['+i+'].'+listName+'ID" type="hidden" value="'+(i+1)+'" />'+
+          '<input id="'+listName+'List_'+i+'__'+listName+'" name="'+listName+'List['+i+'].'+listName+'" type="hidden" value="'+name+'" />'+
+          '</div></div></div>');
+      });
+    }
+
+    buildSkillGrid("medicalSkillsGrid","MedicalSkill",
+      ["Basic Computer Knowledge","Nursing","Patient Care","Registered Nurse","Phlebotomy","Diagnostic Testing","Medical Coding","Emergency Response","HIPAA Compliance","Telemedicine"]);
+
+    buildSkillGrid("technicalSkillsGrid","TechnicalSkill",
+      ["Python 3","JAVA","React JS","Node JS","SQL","AI & ML","Data Analytics","UI/UX Design","Cloud Computing","Cyber Security","DevOps","Web Development"]);
+
+    buildSkillGrid("nonTechnicalSkillsGrid","NonTechnicalSkill",
+      ["Communication Skills","Time Mgmt","Teamwork & Collaboration","MS (Excel / Word / PowerPoint)","Sales","Marketing","Customer  Support","Data Entry","Recruitment","Documentation"]);
+
+    /* ---------------- accordion toggling ---------------- */
+    document.querySelectorAll(".accordion-button").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var target = document.querySelector(this.getAttribute("data-bs-target"));
+        var isOpen = target.classList.contains("show");
+        // close siblings within same accordion group
+        var group = this.closest(".accordion");
+        group.querySelectorAll(".accordion-collapse.show").forEach(function(c){ c.classList.remove("show"); });
+        group.querySelectorAll(".accordion-button").forEach(function(b){ b.classList.add("collapsed"); });
+        if(!isOpen){
+          target.classList.add("show");
+          this.classList.remove("collapsed");
+        }
+      });
+    });
+
+    /* ---------------- original behaviours (kept) ---------------- */
+    function isNumber(evt){
+      evt = (evt) ? evt : window.event;
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+      return true;
+    }
+
+    function HandleInternshipType(){
+      var InternshipType = document.getElementById("InternshipType");
+      var TotalCharges = document.getElementById("TotalCharges");
+      if (InternshipType.value == "1" || InternshipType.value == "4") {
+        TotalCharges.value = "";
+        TotalCharges.setAttribute("disabled", true);
+      } else {
+        TotalCharges.removeAttribute("disabled");
+      }
+    }
+
+    function WorkingDaysSelection(){
+      var WeeklyWorkingDays = document.querySelectorAll('input[name^="WeeklyWorkingDaysList"]:checked').length;
+      if (WeeklyWorkingDays < 1) {
+        document.getElementById("WorkingDaysError").innerText = "This field is required";
+        return false;
+      } else {
+        document.getElementById("WorkingDaysError").innerText = "";
+        return true;
+      }
+    }
+
+    function SkillSelection(){
+      var MedicalSkillCount = document.querySelectorAll('input[name^="MedicalSkillList"]:checked').length;
+      var TechnicalSkillCount = document.querySelectorAll('input[name^="TechnicalSkillList"]:checked').length;
+      var NonTechnicalSkillCount = document.querySelectorAll('input[name^="NonTechnicalSkillList"]:checked').length;
+      var totalSkillCount = MedicalSkillCount + TechnicalSkillCount + NonTechnicalSkillCount;
+
+      if (totalSkillCount > 15) {
+        document.getElementById("SkillError").innerText = "Select up to 15 skills";
+        return false;
+      }
+
+      var med = document.querySelectorAll('input[name^="MedicalSkillList"][type="checkbox"]');
+      var tech = document.querySelectorAll('input[name^="TechnicalSkillList"][type="checkbox"]');
+      var non = document.querySelectorAll('input[name^="NonTechnicalSkillList"][type="checkbox"]');
+
+      function setDisabled(list, val){ list.forEach(function(el){ el.disabled = val; }); }
+
+      if (MedicalSkillCount > 0) { setDisabled(tech, true); setDisabled(non, true); }
+      else if (TechnicalSkillCount > 0) { setDisabled(med, true); setDisabled(non, true); }
+      else if (NonTechnicalSkillCount > 0) { setDisabled(med, true); setDisabled(tech, true); }
+      else { setDisabled(med, false); setDisabled(tech, false); setDisabled(non, false); }
+
+      document.getElementById("SkillError").innerText = totalSkillCount === 0 ? "This field is required" : "";
+      return true;
+    }
+
+    function updateCompletionDate(){
+      var durationDropdown = document.getElementById('TrainingDuration');
+      var startDateInput = document.getElementById('MyPostStartDate');
+      var completionDateInput = document.getElementById('PostEndDate');
+      var startDateError = document.getElementById('StartDateErrorMessage');
+      var endDateError = document.getElementById('EndDateErrorMessage');
+      var trainingDuration = parseInt(durationDropdown.value);
+      var startDate = new Date(startDateInput.value);
+
+      startDateError.textContent = "";
+      endDateError.textContent = "";
+      if (!startDateInput.value) return;
+
+      var completionDate = new Date(startDate);
+      switch (trainingDuration) {
+        case 1: completionDate.setDate(completionDate.getDate() + 28); break;
+        case 2: completionDate.setDate(completionDate.getDate() + 42); break;
+        case 3: completionDate.setDate(completionDate.getDate() + 84); break;
+        case 4: completionDate.setDate(completionDate.getDate() + 168); break;
+        case 5: completionDate.setFullYear(completionDate.getFullYear() + 1); break;
+        default: endDateError.textContent = "Please select a valid internship duration."; return;
+      }
+      completionDateInput.value = completionDate.toISOString().split('T')[0];
+      updatePreview();
+    }
+    document.getElementById('MyPostStartDate').min = new Date().toISOString().split('T')[0];
+
+    function validateForm(){
+      var v = document.getElementById('TotalCharges').value;
+      if (v.charAt(0) === ' ') document.getElementById('TotalCharges').value = v.slice(1);
+    }
+    function validateForm1(){
+      var v = document.getElementById('compulsaryLanguage').value;
+      var sanitized = v.replace(/[^a-zA-Z,\s]/g, '');
+      sanitized = sanitized.toLowerCase().replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+      if (sanitized.startsWith(' ')) sanitized = sanitized.substring(1);
+      sanitized = sanitized.replace(/,\s+/g, ', ');
+      document.getElementById('compulsaryLanguage').value = sanitized;
+    }
+    document.getElementById('compulsaryLanguage').addEventListener('input', function(){ validateForm1(); });
+
+    function validateMyForm(){
+      var ok = WorkingDaysSelection() && SkillSelection();
+      return ok;
+    }
+
+    /* ---------------- live preview panel ---------------- */
+    function updatePreview(){
+      var pos = document.getElementById("PostPositionId");
+      var role = pos.options[pos.selectedIndex] ? pos.options[pos.selectedIndex].text : "";
+      var roleEl = document.getElementById("previewRole");
+      roleEl.innerHTML = (role && role.indexOf("--") === -1) ? role : '<span class="placeholder">Select a position…</span>';
+
+      var openings = document.getElementById("NoOfRequiredTrainee").value;
+      document.getElementById("pfOpenings").textContent = openings ? openings : "—";
+
+      var citySel = document.getElementById("CityID");
+      var stateSel = document.getElementById("StateID");
+      var city = citySel.options[citySel.selectedIndex] ? citySel.options[citySel.selectedIndex].text : "";
+      var state = stateSel.options[stateSel.selectedIndex] ? stateSel.options[stateSel.selectedIndex].text : "";
+      var locBits = [city, state].filter(function(x){ return x && x.indexOf("--") === -1; });
+      document.getElementById("pfLocation").textContent = locBits.length ? locBits.join(", ") : "—";
+
+      var mode = document.getElementById("InternshipModeId");
+      var modeTxt = mode.options[mode.selectedIndex] ? mode.options[mode.selectedIndex].text : "";
+      document.getElementById("pfMode").textContent = (modeTxt.indexOf("--") === -1) ? modeTxt : "—";
+
+      var type = document.getElementById("InternshipTimeTypeId");
+      var typeTxt = type.options[type.selectedIndex] ? type.options[type.selectedIndex].text : "";
+      document.getElementById("pfType").textContent = (typeTxt.indexOf("--") === -1) ? typeTxt : "—";
+
+      var dur = document.getElementById("TrainingDuration");
+      var durTxt = dur.options[dur.selectedIndex] ? dur.options[dur.selectedIndex].text : "";
+      document.getElementById("pfDuration").textContent = (durTxt.indexOf("--") === -1) ? durTxt : "—";
+
+      var stipend = document.getElementById("InternshipType");
+      var stipendTxt = stipend.options[stipend.selectedIndex] ? stipend.options[stipend.selectedIndex].text : "";
+      var charges = document.getElementById("TotalCharges").value;
+      var stipendOut = (stipendTxt.indexOf("--") === -1) ? stipendTxt : "—";
+      if (charges && stipendOut !== "—") stipendOut += " · " + charges;
+      document.getElementById("pfStipend").textContent = stipendOut;
+
+      /* completion progress */
+      var requiredIds = ["PostPositionId","NoOfRequiredTrainee","GenderRequiredId","MinQualificationId",
+        "CountryID","StateID","CityID","ExpectedWorkingHrsPerDayId","InternshipTimeTypeId","WorkingShiftId",
+        "InternshipType","TrainingInvolvedId","TrainingDuration","MyPostStartDate","InternshipModeId",
+        "DivyangId","compulsaryLanguage"];
+      var filled = 0;
+      requiredIds.forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && el.value && el.value.trim() !== "") filled++;
+      });
+      var pct = Math.round((filled / requiredIds.length) * 100);
+      document.getElementById("progressFill").style.width = pct + "%";
+      document.getElementById("progressPct").textContent = pct + "% complete";
+    }
+
+    document.querySelectorAll("#createPostForm input, #createPostForm select").forEach(function(el){
+      el.addEventListener("input", updatePreview);
+      el.addEventListener("change", updatePreview);
+    });
+    updatePreview();
+</script>

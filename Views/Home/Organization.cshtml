@@ -1,0 +1,1702 @@
+﻿
+@*
+    Organization / Companies Page
+*@
+@{
+    ViewData["Title"] = "Organizations & Companies";
+}
+   
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+
+    /* ==========================================
+               ORGANIZATION PAGE
+            ========================================== */
+
+    .organization-page {
+        background: var(--surface);
+        color: var(--ink);
+        overflow: hidden;
+        margin-top: 110px!important ;
+    }
+
+    .section-padding {
+        padding: 85px 0;
+    }
+
+    .section-heading {
+        max-width: 760px;
+        margin: 0 auto 50px;
+    }
+
+        .section-heading > span {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--brand);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 13px;
+            color: var(--ink);
+            font-size: 34px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+
+    /* ==========================================
+               HERO
+            ========================================== */
+
+    .org-hero {
+        position: relative;
+        padding: 90px 0;
+        background: linear-gradient( 135deg, var(--brand-50) 0%, var(--white) 55%, var(--brand-50) 100% );
+        overflow: hidden;
+    }
+
+        .org-hero::before {
+            content: "";
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            right: -170px;
+            top: -180px;
+            border-radius: 50%;
+            background: rgba(20, 184, 166, .07);
+        }
+
+        .org-hero::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            left: -130px;
+            bottom: -140px;
+            border-radius: 50%;
+            background: rgba(13, 148, 136, .05);
+        }
+
+        .org-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+    .org-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        margin-bottom: 20px;
+        border-radius: var(--radius-pill);
+        background: var(--brand-100);
+        color: var(--brand-700);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .5px;
+    }
+
+    .org-hero h1 {
+        max-width: 720px;
+        margin: 0 0 20px;
+        color: var(--ink);
+        font-size: 48px;
+        line-height: 1.13;
+        font-weight: 800;
+    }
+
+        .org-hero h1 span {
+            color: var(--brand);
+        }
+
+    .org-hero-text {
+        max-width: 680px;
+        margin-bottom: 28px;
+        color: var(--ink-soft);
+        font-size: 16px;
+        line-height: 1.85;
+    }
+
+    .org-hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .org-btn-primary,
+    .org-btn-outline,
+    .org-btn-white,
+    .org-btn-transparent {
+        min-height: 46px;
+        padding: 0 21px;
+        border-radius: var(--radius-sm);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        transition: all .25s var(--ease);
+    }
+
+    .org-btn-primary {
+        background: var(--brand);
+        color: var(--white);
+        border: 1px solid var(--brand);
+        box-shadow: var(--shadow-sm);
+    }
+
+        .org-btn-primary:hover {
+            background: var(--brand-700);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+    .org-btn-outline {
+        background: var(--white);
+        color: var(--brand-700);
+        border: 1px solid var(--line);
+    }
+
+        .org-btn-outline:hover {
+            color: var(--brand-700);
+            border-color: var(--brand);
+            transform: translateY(-2px);
+        }
+
+
+    /* ==========================================
+               HERO VISUAL
+            ========================================== */
+
+    .org-hero-visual {
+        position: relative;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .org-main-visual {
+        position: relative;
+        z-index: 2;
+        width: 330px;
+        padding: 32px 28px;
+        text-align: center;
+        border: 1px solid rgba(255,255,255,.8);
+        border-radius: var(--radius-lg);
+        background: rgba(255,255,255,.92);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .org-visual-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        background: var(--brand-100);
+        color: var(--brand);
+        font-size: 29px;
+    }
+
+    .org-main-visual h3 {
+        margin-bottom: 10px;
+        color: var(--ink);
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    .org-main-visual p {
+        margin-bottom: 25px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .org-visual-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+    }
+
+        .org-visual-stats div {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .org-visual-stats strong {
+            color: var(--brand-700);
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .org-visual-stats span {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+    .org-floating-card {
+        position: absolute;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 13px 16px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: var(--white);
+        box-shadow: var(--shadow-md);
+    }
+
+    .org-card-top {
+        top: 35px;
+        left: 0;
+    }
+
+    .org-card-bottom {
+        right: -5px;
+        bottom: 35px;
+    }
+
+    .org-floating-icon {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: var(--brand-50);
+        color: var(--brand);
+    }
+
+    .org-floating-card strong,
+    .org-floating-card small {
+        display: block;
+    }
+
+    .org-floating-card strong {
+        color: var(--ink);
+        font-size: 12px;
+    }
+
+    .org-floating-card small {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 10px;
+    }
+
+
+    /* ==========================================
+               INTRODUCTION
+            ========================================== */
+
+    .org-intro {
+        background: var(--white);
+    }
+
+    .org-content-card {
+        display: flex;
+        gap: 25px;
+        padding: 35px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .org-content-icon {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        background: var(--brand-100);
+        color: var(--brand);
+        font-size: 24px;
+    }
+
+    .org-content-card h3 {
+        margin: 0 0 15px;
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    .org-content-card p {
+        margin-bottom: 12px;
+        color: var(--ink-soft);
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+        .org-content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+    .org-content-card strong {
+        color: var(--brand-700);
+    }
+
+
+    /* ==========================================
+               BENEFITS
+            ========================================== */
+
+    .org-benefits {
+        padding: 85px 0;
+        background: var(--surface);
+    }
+
+    .org-benefit-card {
+        position: relative;
+        height: 100%;
+        min-height: 245px;
+        padding: 28px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        box-shadow: var(--shadow-xs);
+        transition: all .25s var(--ease);
+    }
+
+        .org-benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(13,148,136,.22);
+            box-shadow: var(--shadow-md);
+        }
+
+    .benefit-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 13px;
+        background: var(--brand-100);
+        color: var(--brand);
+        font-size: 21px;
+    }
+
+    .org-benefit-card h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .org-benefit-card p {
+        max-width: 340px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.75;
+    }
+
+    .benefit-number {
+        position: absolute;
+        right: 18px;
+        bottom: 8px;
+        color: rgba(13,148,136,.06);
+        font-size: 65px;
+        line-height: 1;
+        font-weight: 900;
+    }
+
+
+    /* ==========================================
+               90 DAYS
+            ========================================== */
+
+    .org-highlight {
+        padding: 70px 0;
+        background: var(--white);
+    }
+
+    .org-highlight-box {
+        padding: 40px;
+        border-radius: var(--radius-lg);
+        background: linear-gradient( 135deg, var(--brand-700), var(--brand) );
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        position: relative;
+    }
+
+        .org-highlight-box::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            right: -100px;
+            top: -130px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.08);
+        }
+
+    .highlight-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 15px;
+        color: rgba(255,255,255,.75);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .org-highlight-box h2 {
+        max-width: 700px;
+        margin-bottom: 14px;
+        color: var(--white);
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+        .org-highlight-box h2 span {
+            color: var(--brand-100);
+        }
+
+    .org-highlight-box p {
+        max-width: 700px;
+        margin: 0;
+        color: rgba(255,255,255,.78);
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .days-card {
+        position: relative;
+        z-index: 2;
+        width: 180px;
+        height: 180px;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 1px solid rgba(255,255,255,.2);
+        border-radius: 50%;
+        background: rgba(255,255,255,.10);
+        text-align: center;
+    }
+
+        .days-card strong {
+            color: var(--white);
+            font-size: 50px;
+            line-height: 1;
+            font-weight: 900;
+        }
+
+        .days-card span {
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .days-card small {
+            margin-top: 3px;
+            color: rgba(255,255,255,.65);
+            font-size: 10px;
+        }
+
+
+    /* ==========================================
+               GUIDELINES
+            ========================================== */
+
+    .org-responsibility {
+        background: var(--surface);
+    }
+
+    .org-guideline-card {
+        height: 100%;
+        display: flex;
+        gap: 18px;
+        padding: 27px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        box-shadow: var(--shadow-xs);
+    }
+
+    .guideline-icon {
+        width: 48px;
+        height: 48px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: var(--brand-50);
+        color: var(--brand);
+        font-size: 20px;
+    }
+
+    .org-guideline-card h3 {
+        margin-bottom: 8px;
+        font-size: 17px;
+        font-weight: 800;
+    }
+
+    .org-guideline-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.75;
+    }
+
+
+    /* ==========================================
+               HOW TO USE
+            ========================================== */
+
+    .org-how {
+        background: var(--white);
+    }
+
+    .org-process {
+        max-width: 900px;
+        margin: auto;
+        position: relative;
+    }
+
+        .org-process::before {
+            content: "";
+            position: absolute;
+            left: 25px;
+            top: 25px;
+            bottom: 25px;
+            width: 1px;
+            background: var(--brand-100);
+        }
+
+    .process-item {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 25px;
+        margin-bottom: 28px;
+    }
+
+        .process-item:last-child {
+            margin-bottom: 0;
+        }
+
+    .process-number {
+        position: relative;
+        z-index: 2;
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 4px solid var(--white);
+        border-radius: 50%;
+        background: var(--brand);
+        color: var(--white);
+        box-shadow: 0 0 0 1px var(--brand-100);
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+    .process-content {
+        flex: 1;
+        padding: 17px 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        box-shadow: var(--shadow-xs);
+    }
+
+        .process-content h3 {
+            margin: 0 0 5px;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .process-content p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+    /* ==========================================
+               CTA
+            ========================================== */
+
+    .org-cta {
+        padding: 70px 0;
+        background: var(--surface);
+    }
+
+    .org-cta-box {
+        position: relative;
+        overflow: hidden;
+        padding: 55px;
+        border-radius: var(--radius-lg);
+        background: var(--brand-800);
+        box-shadow: var(--shadow-lg);
+    }
+
+        .org-cta-box::before {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            right: -160px;
+            top: -190px;
+            border-radius: 50%;
+            background: rgba(45,212,191,.10);
+        }
+
+    .org-cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 720px;
+    }
+
+        .org-cta-content > span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: var(--brand-400);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .org-cta-content h2 {
+            margin-bottom: 14px;
+            color: var(--white);
+            font-size: 34px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+
+        .org-cta-content p {
+            max-width: 650px;
+            margin-bottom: 25px;
+            color: rgba(255,255,255,.68);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+    .org-btn-white {
+        background: var(--white);
+        color: var(--brand-700);
+        border: 1px solid var(--white);
+    }
+
+        .org-btn-white:hover {
+            color: var(--brand-700);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+    .org-btn-transparent {
+        color: var(--white);
+        border: 1px solid rgba(255,255,255,.25);
+        background: transparent;
+    }
+
+        .org-btn-transparent:hover {
+            color: var(--white);
+            border-color: rgba(255,255,255,.55);
+        }
+
+    .org-cta-icon {
+        position: absolute;
+        right: 65px;
+        bottom: 35px;
+        color: rgba(255,255,255,.06);
+        font-size: 150px;
+    }
+
+
+    /* ==========================================
+               FEEDBACK
+            ========================================== */
+
+    .org-feedback {
+        background: var(--white);
+    }
+
+    .feedback-card {
+        height: 100%;
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: var(--white);
+        box-shadow: var(--shadow-xs);
+        transition: all .25s var(--ease);
+    }
+
+        .feedback-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+    .quote-icon {
+        width: 45px;
+        height: 45px;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: var(--brand-100);
+        color: var(--brand);
+        font-size: 22px;
+    }
+
+    .feedback-card > p {
+        min-height: 105px;
+        margin-bottom: 25px;
+        color: var(--ink-soft);
+        font-size: 14px;
+        line-height: 1.8;
+        font-style: italic;
+    }
+
+    .feedback-user {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+    }
+
+    .feedback-avatar {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--brand-100);
+        color: var(--brand-700);
+        font-weight: 800;
+    }
+
+    .feedback-user strong,
+    .feedback-user span {
+        display: block;
+    }
+
+    .feedback-user strong {
+        color: var(--ink);
+        font-size: 12px;
+    }
+
+    .feedback-user span {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 11px;
+    }
+
+
+    /* ==========================================
+               RESPONSIVE
+            ========================================== */
+
+    @@media (max-width: 991px) {
+
+        .org-hero {
+            padding: 70px 0;
+        }
+
+            .org-hero h1 {
+                font-size: 40px;
+            }
+
+        .org-hero-visual {
+            min-height: 350px;
+            margin-top: 15px;
+        }
+
+        .org-card-top {
+            left: 5%;
+        }
+
+        .org-card-bottom {
+            right: 5%;
+        }
+
+        .section-heading h2 {
+            font-size: 30px;
+        }
+
+        .days-card {
+            margin: 0 auto;
+        }
+
+        .org-cta-icon {
+            display: none;
+        }
+    }
+
+    @@media (max-width: 767px) {
+
+        .section-padding {
+            padding: 65px 0;
+        }
+
+        .org-hero {
+            padding: 60px 0;
+        }
+
+            .org-hero h1 {
+                font-size: 34px;
+            }
+
+        .org-hero-text {
+            font-size: 14px;
+        }
+
+        .org-hero-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .org-btn-primary,
+        .org-btn-outline,
+        .org-btn-white,
+        .org-btn-transparent {
+            width: 100%;
+        }
+
+        .org-hero-visual {
+            min-height: 330px;
+        }
+
+        .org-main-visual {
+            width: 290px;
+        }
+
+        .org-floating-card {
+            padding: 10px;
+        }
+
+        .org-card-top {
+            left: 0;
+            top: 20px;
+        }
+
+        .org-card-bottom {
+            right: 0;
+            bottom: 20px;
+        }
+
+        .org-content-card {
+            flex-direction: column;
+            padding: 25px;
+        }
+
+        .org-benefits {
+            padding: 65px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
+        }
+
+            .section-heading h2 {
+                font-size: 27px;
+            }
+
+        .org-highlight {
+            padding: 55px 0;
+        }
+
+        .org-highlight-box {
+            padding: 30px 22px;
+        }
+
+            .org-highlight-box h2 {
+                font-size: 25px;
+            }
+
+        .days-card {
+            width: 150px;
+            height: 150px;
+        }
+
+            .days-card strong {
+                font-size: 42px;
+            }
+
+        .org-guideline-card {
+            padding: 22px;
+        }
+
+        .org-process::before {
+            left: 20px;
+        }
+
+        .process-item {
+            gap: 16px;
+        }
+
+        .process-number {
+            width: 40px;
+            height: 40px;
+        }
+
+        .process-content {
+            padding: 14px;
+        }
+
+        .org-cta {
+            padding: 55px 0;
+        }
+
+        .org-cta-box {
+            padding: 35px 24px;
+        }
+
+        .org-cta-content h2 {
+            font-size: 27px;
+        }
+
+        .feedback-card > p {
+            min-height: auto;
+        }
+    }
+
+    @@media (max-width: 480px) {
+
+        .org-hero h1 {
+            font-size: 30px;
+        }
+
+        .org-main-visual {
+            width: 260px;
+            padding: 25px 20px;
+        }
+
+        .org-card-top {
+            left: -8px;
+        }
+
+        .org-card-bottom {
+            right: -8px;
+        }
+
+        .org-floating-card strong {
+            font-size: 10px;
+        }
+
+        .org-floating-card small {
+            font-size: 8px;
+        }
+
+        .org-visual-stats strong {
+            font-size: 15px;
+        }
+
+        .org-visual-stats span {
+            font-size: 8px;
+        }
+
+        .org-highlight-box h2 {
+            font-size: 23px;
+        }
+    }
+
+</style>
+
+<section class="organization-page">
+
+    <!-- ================= HERO ================= -->
+    <section class="org-hero">
+        <div class="container">
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-7">
+                    <div class="org-badge">
+                        <i class="bi bi-buildings"></i>
+                        For Organizations & Companies
+                    </div>
+
+                    <h1>
+                        Connect With the
+                        <span>Right Trainees</span>
+                        Faster
+                    </h1>
+
+                    <p class="org-hero-text">
+                        1trainee.com is an open platform for Trainees and
+                        Organizations such as Recruiters, Companies and
+                        Institutions to fulfill their academic and professional
+                        requirements.
+                    </p>
+
+                    <div class="org-hero-actions">
+                        <a href="#" class="org-btn-primary">
+                            <i class="bi bi-person-plus"></i>
+                            Create Organization Profile
+                        </a>
+
+                        <a href="#" class="org-btn-outline">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            Sign In
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="org-hero-visual">
+
+                        <div class="org-floating-card org-card-top">
+                            <div class="org-floating-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div>
+                                <strong>Find Trainees</strong>
+                                <small>Based on required skills</small>
+                            </div>
+                        </div>
+
+                        <div class="org-main-visual">
+                            <div class="org-visual-icon">
+                                <i class="bi bi-buildings"></i>
+                            </div>
+
+                            <h3>Organization Hub</h3>
+
+                            <p>
+                                Post requirements, find eligible trainees
+                                and manage  internship opportunities.
+                            </p>
+
+                            <div class="org-visual-stats">
+                                <div>
+                                    <strong>90</strong>
+                                    <span>Days Post</span>
+                                </div>
+
+                                <div>
+                                    <strong>Free</strong>
+                                    <span>Posting</span>
+                                </div>
+
+                                <div>
+                                    <strong>Easy</strong>
+                                    <span>Repost</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="org-floating-card org-card-bottom">
+                            <div class="org-floating-icon">
+                                <i class="bi bi-file-earmark-person"></i>
+                            </div>
+                            <div>
+                                <strong>View Resumes</strong>
+                                <small>Check eligible candidates</small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= INTRODUCTION ================= -->
+    <section class="org-intro section-padding">
+        <div class="container">
+
+            <div class="section-heading text-center">
+                <span>ESTEEMED CLIENTS</span>
+                <h2>Built for Organizations That Hire & Train</h2>
+                <p>
+                    A simple platform to help organizations discover,
+                    connect and work with the right trainees.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+
+                    <div class="org-content-card">
+
+                        <div class="org-content-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+
+                        <div>
+                            <h3>Organizations / Companies</h3>
+
+                            <p>
+                                1trainee.com is an open platform for Trainees
+                                and Organizations (Recruiters / Company /
+                                Institution) to fulfill their academic and
+                                professional search.
+                            </p>
+
+                            <p>
+                                Organizations are an important part of the
+                                platform and have free access to post their
+                                Internship, Fellowship and Trainee requirements
+                                in multiple numbers.
+                            </p>
+
+                            <p>
+                                Internship posts from Organizations collect
+                                relevant trainee data based on the required
+                                skill sets. Every post remains open for
+                                <strong>90 days</strong>, allowing
+                                Organizations enough time to fulfill their
+                                requirements.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= BENEFITS ================= -->
+    <section class="org-benefits">
+        <div class="container">
+
+            <div class="section-heading text-center">
+                <span>WHY ORGANIZATIONS CHOOSE US</span>
+                <h2>Everything You Need to Find the Right Trainee</h2>
+                <p>
+                    Manage  internship requirements with less effort
+                    and better visibility.
+                </p>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="org-benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-megaphone"></i>
+                        </div>
+
+                        <h3>Post Requirements</h3>
+
+                        <p>
+                            Publish Internship, Fellowship and Trainee
+                            requirements based on  organization's
+                            requirements.
+                        </p>
+
+                        <div class="benefit-number">01</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="org-benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+
+                        <h3>Find Eligible Trainees</h3>
+
+                        <p>
+                            View trainee information based on the skills
+                            and eligibility criteria mentioned in  post.
+                        </p>
+
+                        <div class="benefit-number">02</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="org-benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+
+                        <h3>Access Resumes</h3>
+
+                        <p>
+                            Review trainee resumes and history and download
+                            the required resumes for  selection process.
+                        </p>
+
+                        <div class="benefit-number">03</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="org-benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+
+                        <h3>Easy Reposting</h3>
+
+                        <p>
+                            If  requirement is not fulfilled within
+                            90 days, repost the same requirement with
+                            a single click.
+                        </p>
+
+                        <div class="benefit-number">04</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="org-benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-bar-chart"></i>
+                        </div>
+
+                        <h3>Manage Posts</h3>
+
+                        <p>
+                            View and manage  internship records and
+                            keep  posts enabled or disabled according
+                            to  requirements.
+                        </p>
+
+                        <div class="benefit-number">05</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="org-benefit-card">
+                        <div class="benefit-icon">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+
+                        <h3>Save Time & Effort</h3>
+
+                        <p>
+                            Connect with relevant trainees quickly and
+                            simplify  internship recruitment process.
+                        </p>
+
+                        <div class="benefit-number">06</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= 90 DAYS ================= -->
+    <section class="org-highlight">
+        <div class="container">
+
+            <div class="org-highlight-box">
+
+                <div class="row align-items-center g-4">
+
+                    <div class="col-lg-8">
+
+                        <div class="highlight-label">
+                            <i class="bi bi-clock-history"></i>
+                            FLEXIBLE REQUIREMENT MANAGEMENT
+                        </div>
+
+                        <h2>
+                            Your Internship Post Stays Open for
+                            <span>90 Days</span>
+                        </h2>
+
+                        <p>
+                            Every internship requirement remains active
+                            for 90 days. If the requirement is not fulfilled
+                            during this period, organizations can repost
+                            the same requirement with a single click.
+                        </p>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="days-card">
+                            <strong>90</strong>
+                            <span>Days</span>
+                            <small>Post Availability</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= ORGANIZATION RESPONSIBILITY ================= -->
+    <section class="org-responsibility section-padding">
+        <div class="container">
+
+            <div class="section-heading text-center">
+                <span>OUR ORGANIZATION GUIDELINES</span>
+                <h2>A Transparent & Responsible Hiring Environment</h2>
+                <p>
+                    We encourage organizations to provide clear and
+                    transparent internship opportunities.
+                </p>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-6">
+                    <div class="org-guideline-card">
+                        <div class="guideline-icon">
+                            <i class="bi bi-cash-coin"></i>
+                        </div>
+
+                        <div>
+                            <h3>Stipend-Friendly Opportunities</h3>
+                            <p>
+                                1trainee.com prefers organizations that
+                                provide a monthly stipend to trainees or
+                                offer internships without any cost.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="org-guideline-card">
+                        <div class="guideline-icon">
+                            <i class="bi bi-info-circle"></i>
+                        </div>
+
+                        <div>
+                            <h3>Clear Internship Charges</h3>
+                            <p>
+                                Organizations charging any cost for their
+                                internship must clearly highlight and
+                                mention the charges in their requirement.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="org-guideline-card">
+                        <div class="guideline-icon">
+                            <i class="bi bi-briefcase"></i>
+                        </div>
+
+                        <div>
+                            <h3>Full-Time / Part-Time Opportunities</h3>
+                            <p>
+                                Organizations can offer full-time or
+                                part-time employment to trainees after
+                                successful completion of their internship.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="org-guideline-card">
+                        <div class="guideline-icon">
+                            <i class="bi bi-handshake"></i>
+                        </div>
+
+                        <div>
+                            <h3>Mutual Agreement</h3>
+                            <p>
+                                Any employment offer and joining after
+                                internship completion should be carried
+                                out mutually between the Organization
+                                and the Trainee.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= HOW TO USE ================= -->
+    <section class="org-how section-padding">
+        <div class="container">
+
+            <div class="section-heading text-center">
+                <span>HOW TO USE</span>
+                <h2>Start Recruiting in Simple Steps</h2>
+                <p>
+                    Follow a simple process to create  organization
+                    profile and connect with eligible trainees.
+                </p>
+            </div>
+
+            <div class="org-process">
+
+                <div class="process-item">
+                    <div class="process-number">01</div>
+                    <div class="process-content">
+                        <h3>Register</h3>
+                        <p>
+                            New organizations can register and create
+                            their organization account.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">02</div>
+                    <div class="process-content">
+                        <h3>Create Profile</h3>
+                        <p>
+                            Add  organization details and create
+                             professional profile.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">03</div>
+                    <div class="process-content">
+                        <h3>Create Post</h3>
+                        <p>
+                            Publish  Internship, Fellowship or
+                            Trainee requirement.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">04</div>
+                    <div class="process-content">
+                        <h3>Check Eligible Trainees</h3>
+                        <p>
+                            Review trainee details, applications,
+                            eligibility and available resumes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">05</div>
+                    <div class="process-content">
+                        <h3>Download Resumes</h3>
+                        <p>
+                            Download required resumes and shortlist
+                            suitable trainees.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">06</div>
+                    <div class="process-content">
+                        <h3>Complete Selection</h3>
+                        <p>
+                            Contact trainees directly and complete
+                             selection process.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-item">
+                    <div class="process-number">07</div>
+                    <div class="process-content">
+                        <h3>Manage Your Post</h3>
+                        <p>
+                            Keep  post enabled or disabled according
+                            to  organization's requirement.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= CTA ================= -->
+    <section class="org-cta">
+        <div class="container">
+
+            <div class="org-cta-box">
+
+                <div class="org-cta-content">
+
+                    <span>
+                        <i class="bi bi-stars"></i>
+                        FOR RECRUITERS & ORGANIZATIONS
+                    </span>
+
+                    <h2>
+                        Find the Right Trainees
+                        With Less Effort
+                    </h2>
+
+                    <p>
+                        1trainee.com will always assist organizations
+                        in fulfilling their internship-related search
+                        quickly and efficiently.
+                    </p>
+
+                    <div class="org-hero-actions">
+
+                        <a href="#" class="org-btn-white">
+                            <i class="bi bi-person-plus"></i>
+                            Register Your Organization
+                        </a>
+
+                        <a href="#" class="org-btn-transparent">
+                            Sign In
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="org-cta-icon">
+                    <i class="bi bi-buildings"></i>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ================= FEEDBACK ================= -->
+    <section class="org-feedback section-padding">
+        <div class="container">
+
+            <div class="section-heading text-center">
+                <span>ORGANIZATION FEEDBACK</span>
+                <h2>What Our Organizations Say</h2>
+                <p>
+                    We value the organizations that use our platform
+                    to connect with the next generation of talent.
+                </p>
+            </div>
+
+            <div class="row justify-content-center g-4">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feedback-card">
+
+                        <div class="quote-icon">
+                            <i class="bi bi-quote"></i>
+                        </div>
+
+                        <p>
+                            "1trainee.com makes it easier for us to
+                            connect with trainees based on the skills
+                            we actually need."
+                        </p>
+
+                        <div class="feedback-user">
+                            <div class="feedback-avatar">
+                                O
+                            </div>
+
+                            <div>
+                                <strong>Organization Partner</strong>
+                                <span>Recruitment Team</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feedback-card">
+
+                        <div class="quote-icon">
+                            <i class="bi bi-quote"></i>
+                        </div>
+
+                        <p>
+                            "The ability to manage internship posts and
+                            review eligible trainee profiles helps us
+                            save considerable time."
+                        </p>
+
+                        <div class="feedback-user">
+                            <div class="feedback-avatar">
+                                C
+                            </div>
+
+                            <div>
+                                <strong>Company Partner</strong>
+                                <span>HR Department</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="feedback-card">
+
+                        <div class="quote-icon">
+                            <i class="bi bi-quote"></i>
+                        </div>
+
+                        <p>
+                            "A simple and useful platform for organizations
+                            looking to find interns and trainees with
+                            relevant skills."
+                        </p>
+
+                        <div class="feedback-user">
+                            <div class="feedback-avatar">
+                                I
+                            </div>
+
+                            <div>
+                                <strong>Institution Partner</strong>
+                                <span>Placement Team</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</section>
+

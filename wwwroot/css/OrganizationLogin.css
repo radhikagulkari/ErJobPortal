@@ -1,0 +1,718 @@
+﻿/* =====================================================
+                   GLOBAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: #f5faf8;
+    color: #344054;
+}
+
+
+/* =====================================================
+                   LOGIN PAGE
+===================================================== */
+
+.org-login-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 15px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient( circle at 10% 20%, rgba(30, 123, 103, .10), transparent 30% ), radial-gradient( circle at 90% 80%, rgba(30, 123, 103, .08), transparent 30% ), #f7fbf9;
+}
+
+
+/* =====================================================
+                   BACKGROUND DECORATION
+===================================================== */
+
+.org-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.org-bg-circle-one {
+    width: 230px;
+    height: 230px;
+    top: -100px;
+    left: -90px;
+    background: rgba(30, 123, 103, .06);
+}
+
+.org-bg-circle-two {
+    width: 300px;
+    height: 300px;
+    right: -130px;
+    bottom: -130px;
+    background: rgba(30, 123, 103, .07);
+}
+
+
+/* =====================================================
+                   LOGIN WRAPPER
+===================================================== */
+
+.org-login-wrapper {
+    width: 100%;
+    max-width: 410px;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =====================================================
+                   LOGIN CARD
+===================================================== */
+
+.org-login-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e5eeeb;
+    border-radius: 20px;
+    padding: 28px 30px 25px;
+    box-shadow: 0 20px 55px rgba(30, 123, 103, .11), 0 5px 18px rgba(0, 0, 0, .035);
+}
+
+
+/* =====================================================
+                   BRAND
+===================================================== */
+
+.org-login-brand {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+                   ORGANIZATION ICON
+===================================================== */
+
+.org-login-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 17px;
+    background: linear-gradient( 135deg, #1e7b67, #2d927d );
+    color: #ffffff;
+    font-size: 22px;
+    box-shadow: 0 9px 22px rgba(30, 123, 103, .22);
+}
+
+
+/* =====================================================
+                   TITLE
+===================================================== */
+
+.org-login-brand h2 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.3px;
+}
+
+
+/* =====================================================
+                   SUBTITLE
+===================================================== */
+
+.org-login-brand p {
+    margin: 6px 0 0;
+    color: #98a2b3;
+    font-size: 12px;
+}
+
+
+/* =====================================================
+             CANDIDATE / ORGANIZATION SWITCH
+===================================================== */
+
+.org-account-switch {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 0 0 20px;
+    gap: 4px;
+    background: #f3f8f6;
+    border: 1px solid #e0ebe7;
+    border-radius: 14px;
+    box-shadow: inset 0 1px 2px rgba(30, 123, 103, .04);
+    overflow: hidden;
+}
+
+
+/* =====================================================
+                   SWITCH LINK
+===================================================== */
+
+.org-switch-link {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 12px;
+    border-radius: 10px;
+    background: transparent;
+    color: #7b8794;
+    text-decoration: none !important;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color .25s ease, background .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+
+
+    /* =====================================================
+                   SWITCH ICON
+===================================================== */
+
+    .org-switch-link i {
+        font-size: 14px;
+        transition: transform .25s ease, color .25s ease;
+    }
+
+
+    /* =====================================================
+                   ACTIVE ORGANIZATION
+===================================================== */
+
+    .org-switch-link.active {
+        color: #ffffff !important;
+        background: linear-gradient( 135deg, #1e7b67 0%, #197861 50%, #2d927d 100% );
+        box-shadow: 0 6px 16px rgba(30, 123, 103, .28), inset 0 1px 0 rgba(255, 255, 255, .18);
+        transform: translateY(-1px);
+    }
+
+
+        /* ACTIVE ICON */
+
+        .org-switch-link.active i {
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+
+    /* =====================================================
+                   NON ACTIVE HOVER
+===================================================== */
+
+    .org-switch-link:not(.active):hover {
+        color: #1e7b67 !important;
+        background: #ffffff;
+        box-shadow: 0 3px 10px rgba(30, 123, 103, .08);
+    }
+
+        .org-switch-link:not(.active):hover i {
+            color: #1e7b67;
+            transform: translateY(-1px) scale(1.04);
+        }
+
+
+    /* =====================================================
+                   FOCUS
+===================================================== */
+
+    .org-switch-link:focus-visible {
+        outline: 2px solid rgba(30, 123, 103, .35);
+        outline-offset: 2px;
+    }
+
+
+/* =====================================================
+                   SECURITY BADGE
+===================================================== */
+
+.org-security-badge {
+    width: fit-content;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    border: 1px solid #d9eee7;
+    border-radius: 20px;
+    background: #eef8f5;
+    color: #1e7b67;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+    .org-security-badge i {
+        font-size: 9px;
+    }
+
+
+/* =====================================================
+                   ERROR
+===================================================== */
+
+.org-login-error {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 16px;
+    padding: 9px 11px;
+    border: 1px solid #f3c6c6;
+    border-radius: 8px;
+    background: #fff5f5;
+    color: #c53030;
+    font-size: 11px;
+}
+
+    .org-login-error i {
+        font-size: 11px;
+    }
+
+
+/* =====================================================
+                   SUCCESS
+===================================================== */
+
+.org-login-success {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 16px;
+    padding: 9px 11px;
+    border: 1px solid #c9e9df;
+    border-radius: 8px;
+    background: #f0faf7;
+    color: #1e7b67;
+    font-size: 11px;
+}
+
+    .org-login-success i {
+        font-size: 11px;
+    }
+
+
+/* =====================================================
+                   FORM GROUP
+===================================================== */
+
+.org-form-group {
+    margin-bottom: 16px;
+}
+
+
+/* =====================================================
+                   LABEL
+===================================================== */
+
+.org-form-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #475467;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+                   INPUT WRAPPER
+===================================================== */
+
+.org-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+
+/* =====================================================
+                   INPUT ICON
+===================================================== */
+
+.org-input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #98a2b3;
+    font-size: 12px;
+    pointer-events: none;
+    transition: color .2s ease;
+}
+
+.org-input-wrapper:focus-within
+.org-input-icon {
+    color: #1e7b67;
+}
+
+
+/* =====================================================
+                   INPUT
+===================================================== */
+
+.org-input {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #dfe7e4;
+    border-radius: 9px;
+    background: #ffffff;
+    padding: 7px 40px 7px 34px;
+    color: #344054;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    font-size: 12px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+    .org-input::placeholder {
+        color: #b2babf;
+        font-size: 11px;
+    }
+
+    .org-input:hover {
+        border-color: #c8d5d1;
+    }
+
+    .org-input:focus {
+        border-color: #1e7b67;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(30, 123, 103, .08);
+    }
+
+
+/* =====================================================
+                   PASSWORD TOGGLE
+===================================================== */
+
+.org-password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #98a2b3;
+    padding: 0;
+    cursor: pointer;
+    font-size: 12px;
+    transition: color .2s ease, background .2s ease;
+}
+
+    .org-password-toggle:hover {
+        color: #1e7b67;
+        background: #eef8f5;
+    }
+
+
+/* =====================================================
+                   VALIDATION
+===================================================== */
+
+.org-field-validation {
+    display: block;
+    margin-top: 4px;
+    font-size: 10px;
+    color: #dc3545;
+}
+
+.org-validation-summary {
+    margin-bottom: 15px;
+    font-size: 11px;
+    color: #dc3545;
+}
+
+
+/* =====================================================
+                   LOGIN BUTTON
+===================================================== */
+
+.org-login-button {
+    height: 45px;
+    margin: 7px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient( 135deg, #1e7b67 0%, #197861 50%, #2d927d 100% );
+    color: #ffffff;
+    padding: 0 20px;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(30, 123, 103, .25), inset 0 1px 0 rgba(255, 255, 255, .15);
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    margin:auto
+}
+
+
+    /* HOVER */
+
+    .org-login-button:hover {
+        color: #ffffff;
+        filter: brightness(.96);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(30, 123, 103, .32), inset 0 1px 0 rgba(255, 255, 255, .18);
+    }
+
+
+    /* ACTIVE */
+
+    .org-login-button:active {
+        transform: translateY(0);
+        box-shadow: 0 5px 12px rgba(30, 123, 103, .22);
+    }
+
+
+    /* ICON */
+
+    .org-login-button i {
+        font-size: 12px;
+        transition: transform .2s ease;
+    }
+
+    .org-login-button:hover i {
+        transform: translateX(2px);
+    }
+
+
+/* =====================================================
+                   REGISTER FOOTER
+===================================================== */
+
+.org-login-footer {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid #edf1ef;
+    text-align: center;
+    color: #a0a8b1;
+    font-size: 12px;
+}
+
+    .org-login-footer i {
+        color: #1e7b67;
+        margin-right: 4px;
+    }
+
+    .org-login-footer a {
+        color: #1e7b67;
+        font-weight: 700;
+        text-decoration: none;
+        margin-left: 4px;
+        transition: color .2s ease;
+    }
+
+        .org-login-footer a:hover {
+            color: #176653;
+            text-decoration: underline;
+        }
+
+
+/* =====================================================
+                   TABLET
+===================================================== */
+
+@media (max-width: 767px) {
+
+    .org-login-page {
+        padding: 20px 15px;
+    }
+
+    .org-login-wrapper {
+        max-width: 390px;
+    }
+
+    .org-login-card {
+        padding: 25px 25px 22px;
+        border-radius: 17px;
+    }
+
+    .org-login-brand h2 {
+        font-size: 21px;
+    }
+}
+
+
+/* =====================================================
+                   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .org-login-page {
+        padding: 15px;
+    }
+
+    .org-login-wrapper {
+        max-width: 100%;
+    }
+
+    .org-login-card {
+        padding: 23px 20px 20px;
+        border-radius: 15px;
+    }
+
+
+    /* ICON */
+
+    .org-login-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        font-size: 19px;
+    }
+
+
+    /* BRAND */
+
+    .org-login-brand {
+        margin-bottom: 18px;
+    }
+
+        .org-login-brand h2 {
+            font-size: 20px;
+        }
+
+        .org-login-brand p {
+            font-size: 11px;
+        }
+
+
+    /* ACCOUNT SWITCH */
+
+    .org-account-switch {
+        margin-bottom: 18px;
+        padding: 4px;
+        border-radius: 12px;
+        gap: 3px;
+    }
+
+    .org-switch-link {
+        height: 42px;
+        padding: 0 8px;
+        gap: 6px;
+        border-radius: 9px;
+        font-size: 12px;
+    }
+
+        .org-switch-link i {
+            font-size: 13px;
+        }
+
+
+    /* SECURITY */
+
+    .org-security-badge {
+        margin-bottom: 18px;
+    }
+
+
+    /* LABEL */
+
+    .org-form-label {
+        font-size: 11px;
+    }
+
+
+    /* INPUT */
+
+    .org-input {
+        height: 40px;
+        font-size: 11px;
+    }
+
+
+    /* LOGIN BUTTON */
+
+    .org-login-button {
+        height: 43px;
+        font-size: 12px;
+    }
+}
+
+
+/* =====================================================
+                   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .org-login-page {
+        padding: 10px;
+    }
+
+    .org-login-card {
+        padding: 20px 16px 18px;
+    }
+
+    .org-login-brand h2 {
+        font-size: 18px;
+    }
+
+    .org-login-brand p {
+        font-size: 10px;
+    }
+
+
+    /* SWITCH */
+
+    .org-account-switch {
+        padding: 3px;
+        margin-bottom: 16px;
+    }
+
+    .org-switch-link {
+        height: 40px;
+        padding: 0 6px;
+        font-size: 11px;
+        gap: 5px;
+    }
+
+        .org-switch-link i {
+            font-size: 12px;
+        }
+
+
+    /* INPUT */
+
+    .org-input {
+        height: 38px;
+        font-size: 11px;
+    }
+
+
+    /* BUTTON */
+
+    .org-login-button {
+        height: 41px;
+        font-size: 11px;
+    }
+}

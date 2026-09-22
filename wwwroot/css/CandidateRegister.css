@@ -1,0 +1,522 @@
+﻿/* =========================================================
+   CANDIDATE REGISTER
+========================================================= */
+
+.candidate-register-page {
+    min-height: 100vh;
+    width: 100%;
+    padding: 25px 15px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #f5faf9;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.candidate-register-card {
+    width: 100%;
+    max-width: 760px;
+    padding: 24px 30px 22px;
+    background: #ffffff;
+    border: 1px solid #e5eeec;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.07);
+}
+
+
+/* =========================================================
+   SWITCH
+========================================================= */
+
+.registration-switch {
+    width: fit-content;
+    margin: 0 auto 18px;
+    padding: 3px;
+    display: flex;
+    gap: 3px;
+    background: #edf7f5;
+    border-radius: 8px;
+}
+
+.switch-btn {
+    min-width: 88px;
+    padding: 6px 15px;
+    color: #667085;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px; /* 11px + 2 */
+    font-weight: 600;
+    border-radius: 6px;
+    transition: 0.2s ease;
+}
+
+    .switch-btn:hover {
+        color: #0d9488;
+    }
+
+    .switch-btn.active {
+        color: #ffffff;
+        background: #0d9488;
+    }
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.register-icon {
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: #e6f6f3;
+    color: #0d9488;
+    font-size: 20px; /* 18px + 2 */
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.register-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+    .register-heading h2 {
+        margin: 0;
+        color: #172033;
+        font-size: 23px; /* 21px + 2 */
+        font-weight: 700;
+    }
+
+    .register-heading p {
+        margin: 4px 0 0;
+        color: #98a2b3;
+        font-size: 13px; /* 11px + 2 */
+    }
+
+
+/* =========================================================
+   FORM ROW
+========================================================= */
+
+.register-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 11px;
+}
+
+
+/* =========================================================
+   GROUP
+========================================================= */
+
+.register-form-group {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.register-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #344054;
+    font-size: 13px; /* 11px + 2 */
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.register-field {
+    position: relative;
+    width: 100%;
+}
+
+    .register-field i {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #98a2b3;
+        font-size: 13px; /* 11px + 2 */
+        pointer-events: none;
+    }
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.register-input,
+.register-select {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px 0 10px;
+    border: 1px solid #dfe6e5;
+    border-radius: 7px;
+    background: #fbfdfd;
+    color: #344054;
+    font-size: 13px; /* 11px + 2 */
+    outline: none;
+    transition: 0.2s ease;
+}
+
+    .register-input::placeholder {
+        color: #a7afb9;
+    }
+
+    .register-input:focus,
+    .register-select:focus {
+        background: #ffffff;
+        border-color: #0d9488;
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.07);
+    }
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+input[type="date"] {
+    color: #667085;
+}
+
+
+/* =========================================================
+   FILE
+========================================================= */
+
+.register-file {
+    padding: 7px 8px 7px 9px;
+    cursor: pointer;
+}
+
+    .register-file::file-selector-button {
+        border: 0;
+        padding: 4px 8px;
+        margin-right: 6px;
+        border-radius: 5px;
+        background: #e6f6f3;
+        color: #0d9488;
+        font-size: 12px; /* 10px + 2 */
+        cursor: pointer;
+    }
+
+
+/* =========================================================
+   OTP
+========================================================= */
+
+.otp-section {
+    margin: 4px 0 12px;
+    padding: 10px 12px;
+    background: #f8fbfb;
+    border: 1px solid #e5efed;
+    border-radius: 8px;
+}
+
+.otp-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #344054;
+    font-size: 13px; /* 11px + 2 */
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   OTP MAIN ROW
+========================================================= */
+
+.otp-content {
+    display: grid;
+    grid-template-columns: 1fr 145px;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   OTP OPTIONS
+========================================================= */
+
+.otp-options {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    color: #667085;
+    font-size: 12px; /* 10px + 2 */
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+    .radio-option input {
+        width: 12px;
+        height: 12px;
+        margin: 0;
+        accent-color: #0d9488;
+    }
+
+
+/* =========================================================
+   SEND OTP
+========================================================= */
+
+.send-otp-btn {
+    height: 31px;
+    padding: 0 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 0;
+    border-radius: 6px;
+    background: #0d9488;
+    color: #ffffff;
+    font-size: 12px; /* 10px + 2 */
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+    .send-otp-btn i {
+        font-size: 11px; /* 9px + 2 */
+    }
+
+    .send-otp-btn:hover {
+        background: #0f766e;
+        transform: translateY(-1px);
+    }
+
+
+/* =========================================================
+   OTP INPUT
+========================================================= */
+
+.otp-input-container {
+    width: 100%;
+}
+
+.otp-input {
+    width: 100%;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid #dfe6e5;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #344054;
+    font-size: 12px; /* 10px + 2 */
+    outline: none;
+}
+
+    .otp-input:focus {
+        border-color: #0d9488;
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.07);
+    }
+
+
+/* =========================================================
+   VALIDATION
+========================================================= */
+
+.register-validation {
+    display: block;
+    margin-top: 3px;
+    font-size: 11px; /* 9px + 2 */
+    line-height: 1.2;
+}
+
+.register-summary {
+    margin-bottom: 8px;
+    font-size: 12px; /* 10px + 2 */
+}
+
+
+/* =========================================================
+   REGISTER BUTTON
+========================================================= */
+
+.register-main-btn {
+    width: 165px;
+    height: 38px;
+    display: block;
+    margin: 17px auto 0;
+    border: 0;
+    border-radius: 7px;
+    background: #0d9488;
+    color: #ffffff;
+    font-size: 13px; /* 11px + 2 */
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(13, 148, 136, 0.18);
+    transition: 0.2s ease;
+}
+
+    .register-main-btn:hover {
+        background: #0f766e;
+        transform: translateY(-1px);
+    }
+
+
+/* =========================================================
+   BOTTOM LOGIN
+========================================================= */
+
+.register-bottom-text {
+    margin-top: 13px;
+    padding-top: 11px;
+    border-top: 1px solid #edf1f0;
+    text-align: center;
+    color: #98a2b3;
+    font-size: 12px; /* 10px + 2 */
+}
+
+    .register-bottom-text a {
+        color: #0d9488;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .register-bottom-text a:hover {
+            text-decoration: underline;
+        }
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .candidate-register-card {
+        max-width: 650px;
+        padding: 22px 24px;
+    }
+
+    .register-form-row {
+        gap: 10px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 580px) {
+
+    .candidate-register-page {
+        padding: 15px 10px 25px;
+    }
+
+    .candidate-register-card {
+        padding: 20px 16px;
+        border-radius: 13px;
+    }
+
+    .register-form-row {
+        grid-template-columns: 1fr;
+        gap: 9px;
+        margin-bottom: 9px;
+    }
+
+    .otp-content {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .otp-options {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .otp-input-container {
+        width: 100%;
+    }
+
+    .send-otp-btn {
+        margin-left: auto;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .candidate-register-page {
+        padding: 10px 7px 20px;
+    }
+
+    .candidate-register-card {
+        padding: 18px 12px;
+    }
+
+    .registration-switch {
+        width: 100%;
+    }
+
+    .switch-btn {
+        flex: 1;
+        min-width: 0;
+        font-size: 12px;
+    }
+
+    .register-heading h2 {
+        font-size: 21px;
+    }
+
+    .register-heading p {
+        font-size: 12px;
+    }
+
+    .register-label {
+        font-size: 12px;
+    }
+
+    .register-input,
+    .register-select {
+        font-size: 12px;
+    }
+
+    .otp-options {
+        gap: 8px;
+    }
+
+    .send-otp-btn {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .register-main-btn {
+        width: 155px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Form</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="registration.css">
+
+</head>
+
+<body>
+
+<div class="background">
+
+    <div class="form-container">
+
+        <h1>Registration Form</h1>
+
+        <p>Create your account</p>
+
+        <form>
+
+            <!-- First Row -->
+
+            <div class="row">
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input type="text"
+                           placeholder="First Name"
+                           required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input type="text"
+                           placeholder="Last Name"
+                           required>
+
+                </div>
+
+            </div>
+
+            <!-- Second Row -->
+
+            <div class="row">
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                    <input type="date"
+                           required>
+
+                </div>
+
+                <div class="gender">
+
+                    <label>Gender</label>
+
+                    <div class="radio-group">
+
+                        <label>
+
+                            <input type="radio"
+                                   name="gender">
+
+                            Male
+
+                        </label>
+
+                        <label>
+
+                            <input type="radio"
+                                   name="gender">
+
+                            Female
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Third Row -->
+
+            <div class="row">
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input type="email"
+                           placeholder="Email"
+                           required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <input type="tel"
+                           placeholder="Phone Number"
+                           required>
+
+                </div>
+
+            </div>
+
+            <!-- Dropdown -->
+
+            <div class="input-box full">
+
+                <i class="fa-solid fa-book"></i>
+
+                <select required>
+
+                    <option>Select Subject</option>
+
+                    <option>Computer Science</option>
+
+                    <option>Information Technology</option>
+
+                    <option>Mechanical</option>
+
+                    <option>Electronics</option>
+
+                    <option>Business</option>
+
+                </select>
+
+            </div>
+
+            <!-- Address -->
+
+            <div class="input-box full">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <textarea placeholder="Address"></textarea>
+
+            </div>
+
+            <!-- Button -->
+
+            <button type="submit">
+
+                Register Now
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+﻿@model ErJobPortal.Models.OrganizationLogin
+
+@{
+    ViewData["Title"] = "Organization Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>Organization Login</title>
+
+
+    <!-- =========================================================
+         BOOTSTRAP
+    ========================================================== -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" />
+
+
+    <!-- =========================================================
+         FONT AWESOME
+    ========================================================== -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          rel="stylesheet" />
+
+
+    <!-- =========================================================
+         GOOGLE FONT
+    ========================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet" />
+
+
+    <!-- =========================================================
+         ORGANIZATION LOGIN CSS
+    ========================================================== -->
+
+    <link rel="stylesheet"
+          href="~/css/OrganizationLogin.css" />
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         ORGANIZATION LOGIN PAGE
+    ========================================================== -->
+
+    <div class="org-login-page">
+
+
+        <!-- =====================================================
+             BACKGROUND
+        ====================================================== -->
+
+        <div class="org-bg-circle org-bg-circle-one"></div>
+
+        <div class="org-bg-circle org-bg-circle-two"></div>
+
+
+        <!-- =====================================================
+             LOGIN WRAPPER
+        ====================================================== -->
+
+        <div class="org-login-wrapper">
+
+
+            <!-- =================================================
+                 LOGIN CARD
+            ================================================== -->
+
+            <div class="org-login-card">
+
+
+                <!-- =================================================
+                     BRAND
+                ================================================== -->
+
+                <div class="org-login-brand">
+
+
+                    <!-- ORGANIZATION ICON -->
+
+                    <div class="org-login-icon">
+
+                        <i class="fas fa-building"></i>
+
+                    </div>
+
+
+                    <h2>
+                        Organization Login
+                    </h2>
+
+
+                    <p>
+                        Sign in to manage organization account
+                    </p>
+
+                </div>
+
+
+                <!-- =================================================
+                     ACCOUNT TYPE SWITCH
+                ================================================== -->
+
+                <div class="org-account-switch">
+
+
+                    <!-- =================================================
+                         CANDIDATE
+                    ================================================== -->
+
+                    <a asp-controller="Account"
+                       asp-action="CandidateLogin"
+                       class="org-switch-link">
+
+                        <i class="fa-solid fa-user-graduate"></i>
+
+                        <span>
+                            Candidate
+                        </span>
+
+                    </a>
+
+
+                    <!-- =================================================
+                         ORGANIZATION
+                    ================================================== -->
+
+                    <a asp-controller="Account"
+                       asp-action="OrganizationLogin"
+                       class="org-switch-link active">
+
+                        <i class="fa-solid fa-building"></i>
+
+                        <span>
+                            Organization
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     SECURITY BADGE
+                ================================================== -->
+
+                <div class="org-security-badge">
+
+                    <i class="fas fa-lock"></i>
+
+                    Secure Organization Access
+
+                </div>
+
+
+                <!-- =================================================
+                     ERROR
+                ================================================== -->
+                @if (TempData["Error"] != null)
+                {
+                    <div class="org-login-error">
+
+                        <i class="fas fa-circle-exclamation"></i>
+
+                        <span>
+                            @TempData["Error"]
+                        </span>
+
+                    </div>
+                }
+
+
+                <!-- =================================================
+                     SUCCESS
+                ================================================= -->
+                @if (TempData["Success"] != null)
+                {
+                    <div class="org-login-success">
+
+                        <i class="fas fa-circle-check"></i>
+
+                        <span>
+                            @TempData["Success"]
+                        </span>
+
+                    </div>
+                }
+
+
+                <!-- =================================================
+                     LOGIN FORM
+                ================================================== -->
+
+                <form asp-controller="Account"
+                      asp-action="OrganizationLogin"
+                      method="post">
+
+
+                    <!-- =================================================
+                         VALIDATION SUMMARY
+                    ================================================== -->
+
+                    <div asp-validation-summary="All"
+                         class="org-validation-summary">
+                    </div>
+
+
+                    <!-- =================================================
+                         EMAIL
+                    ================================================== -->
+
+                    <div class="org-form-group">
+
+                        <label asp-for="sEmail"
+                               class="org-form-label">
+
+                            Email Address
+
+                        </label>
+
+
+                        <div class="org-input-wrapper">
+
+                            <i class="fas fa-envelope org-input-icon"></i>
+
+
+                            <input asp-for="sEmail"
+                                   type="email"
+                                   class="org-input"
+                                   placeholder="Email address"
+                                   autocomplete="username" />
+
+                        </div>
+
+
+                        <span asp-validation-for="sEmail"
+                              class="org-field-validation">
+                        </span>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PASSWORD
+                    ================================================== -->
+
+                    <div class="org-form-group">
+
+                        <label asp-for="sPassword"
+                               class="org-form-label">
+
+                            Password
+
+                        </label>
+
+
+                        <div class="org-input-wrapper">
+
+                            <i class="fas fa-lock org-input-icon"></i>
+
+
+                            <input asp-for="sPassword"
+                                   id="orgPassword"
+                                   class="org-input"
+                                   type="password"
+                                   placeholder="Password"
+                                   autocomplete="current-password" />
+
+
+                            <!-- PASSWORD TOGGLE -->
+
+                            <button type="button"
+                                    class="org-password-toggle"
+                                    id="orgTogglePassword"
+                                    aria-label="Show password">
+
+                                <i class="fas fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+
+                        <span asp-validation-for="sPassword"
+                              class="org-field-validation">
+                        </span>
+
+                    </div>
+
+                    <div class="text-end mb-3">
+                        <a asp-controller="Account"
+                           asp-action="OrganizationResetPassword"
+                           class="text-primary text-decoration-none fw-semibold">
+                            <i class="fas fa-key me-1"></i>
+                            Reset Password
+                        </a>
+                    </div>
+
+                    <div class="text-end mb-3">
+                        <a asp-controller="Account"
+                           asp-action="OrganizationForgotPassword"
+                           class="text-primary text-decoration-none fw-semibold">
+
+                            <i class="fas fa-key me-1"></i>
+                            Forgot Password?
+
+                        </a>
+                    </div>
+
+
+
+
+                    <!-- =================================================
+                         LOGIN BUTTON
+                    ================================================== -->
+
+                    <button type="submit"
+                            class="org-login-button">
+
+                        <i class="fas fa-right-to-bracket"></i>
+
+                        <span>
+                            Login
+                        </span>
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- =================================================
+                     FOOTER
+                ================================================== -->
+
+                <div class="org-login-footer">
+
+                    <i class="fas fa-building"></i>
+
+                    Don't have an organization account?
+
+                    <a asp-controller="Account"
+                       asp-action="OrganizationRegister">
+
+                        Register
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         PASSWORD TOGGLE
+    ========================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const passwordInput =
+                document.getElementById("orgPassword");
+
+            const toggleButton =
+                document.getElementById("orgTogglePassword");
+
+
+            if (!passwordInput || !toggleButton) {
+                return;
+            }
+
+
+            toggleButton.addEventListener("click", function () {
+
+                const icon =
+                    this.querySelector("i");
+
+
+                if (passwordInput.type === "password") {
+
+                    passwordInput.type = "text";
+
+                    icon.classList.remove("fa-eye");
+
+                    icon.classList.add("fa-eye-slash");
+
+                    this.setAttribute(
+                        "aria-label",
+                        "Hide password"
+                    );
+
+                }
+                else {
+
+                    passwordInput.type = "password";
+
+                    icon.classList.remove("fa-eye-slash");
+
+                    icon.classList.add("fa-eye");
+
+                    this.setAttribute(
+                        "aria-label",
+                        "Show password"
+                    );
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+
+    <partial name="_ValidationScriptsPartial" />
+
+</body>
+
+</html>

@@ -1,0 +1,5235 @@
+﻿@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Edit Profile";
+    ViewData["Panel"] = "Candidate";
+    ViewData["UserName"] = "Candidate";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Edit Profile — 1Trainee</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+		  rel="stylesheet">
+
+	<style>
+
+		/* =========================================================
+						   ROOT
+						========================================================= */
+
+		:root {
+			--navy: #152A4A;
+			--navy-deep: #0E1E38;
+			--teal: #0E8C82;
+			--teal-dark: #0B786F;
+			--teal-light: #E4F5F3;
+			--teal-soft: #F1FBFA;
+			--amber: #D98A2B;
+			--bg: #F5F7FA;
+			--card: #FFFFFF;
+			--line: #E3E8EF;
+			--text: #1F2937;
+			--muted: #6B7686;
+			--danger: #D64545;
+			--success: #198754;
+			--radius: 12px;
+			--shadow: 0 1px 2px rgba(21,42,74,.04), 0 8px 24px -12px rgba(21,42,74,.12);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			background: var(--bg);
+			color: var(--text);
+			font-family: 'Inter', system-ui, sans-serif;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		.brand {
+			font-family: 'Sora', system-ui, sans-serif;
+		}
+
+
+		/* =========================================================
+						   TOP BAR
+						========================================================= */
+
+		.topbar {
+			background: var(--navy-deep);
+			color: #fff;
+			padding: 16px 32px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 20px;
+		}
+
+		.brand {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-weight: 700;
+			font-size: 17px;
+			letter-spacing: .2px;
+		}
+
+		.brand-mark {
+			width: 34px;
+			height: 34px;
+			border-radius: 8px;
+			background: linear-gradient( 135deg, var(--teal), #0BB8AB );
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 14px;
+			font-weight: 700;
+			color: #04211E;
+		}
+
+		.profile-chip {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 6px 12px;
+			background: rgba(255,255,255,.06);
+			border: 1px solid rgba(255,255,255,.12);
+			border-radius: 999px;
+			color: #C7D0E0;
+			font-size: 12.5px;
+		}
+
+		.profile-mini {
+			width: 28px;
+			height: 28px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: var(--teal);
+			color: white;
+			font-size: 11px;
+			font-weight: 700;
+		}
+
+
+		/* =========================================================
+						   PAGE HEADER
+						========================================================= */
+
+		.page-header {
+			background: linear-gradient( 180deg, var(--navy) 0%, var(--navy-deep) 100% );
+			color: #fff;
+			padding: 40px 32px 64px;
+		}
+
+		.page-header-inner {
+			max-width: 1180px;
+			margin: auto;
+		}
+
+		.eyebrow {
+			text-transform: uppercase;
+			font-size: 11.5px;
+			letter-spacing: 1.6px;
+			color: #8FE0D6;
+			font-weight: 600;
+			margin-bottom: 10px;
+		}
+
+		.page-header h1 {
+			margin: 0 0 8px;
+			font-size: 30px;
+			font-weight: 700;
+		}
+
+		.page-header p {
+			margin: 0;
+			color: #B9C4D6;
+			font-size: 14.5px;
+			max-width: 650px;
+			line-height: 1.6;
+		}
+
+
+		/* =========================================================
+						   MAIN LAYOUT
+						========================================================= */
+
+		.layout {
+			max-width: 1180px;
+			margin: -40px auto 60px;
+			padding: 0 32px;
+			display: grid;
+			grid-template-columns: 250px 1fr;
+			gap: 28px;
+			align-items: start;
+		}
+
+
+		/* =========================================================
+						   SIDE NAVIGATION
+						========================================================= */
+
+		.side-nav {
+			position: sticky;
+			top: 24px;
+			background: var(--card);
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			padding: 10px;
+			border: 1px solid var(--line);
+		}
+
+			.side-nav a {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				text-decoration: none;
+				color: var(--muted);
+				font-size: 13px;
+				font-weight: 500;
+				padding: 10px 12px;
+				border-radius: 8px;
+				transition: background .15s ease, color .15s ease;
+			}
+
+				.side-nav a:hover {
+					background: var(--teal-light);
+					color: var(--navy);
+				}
+
+				.side-nav a.active {
+					background: var(--teal-light);
+					color: var(--teal);
+					font-weight: 600;
+				}
+
+		.nav-number {
+			width: 23px;
+			height: 23px;
+			border-radius: 7px;
+			background: #F0F2F5;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 10px;
+			font-weight: 700;
+			color: var(--muted);
+		}
+
+		.side-nav a.active .nav-number {
+			background: var(--teal);
+			color: white;
+		}
+
+		.side-note {
+			margin-top: 14px;
+			padding: 14px;
+			background: #FBF6EC;
+			border: 1px solid #F0E1BE;
+			border-radius: 10px;
+			font-size: 12px;
+			color: #8A6416;
+			line-height: 1.5;
+		}
+
+
+		/* =========================================================
+						   FORM
+						========================================================= */
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 22px;
+		}
+
+		.section {
+			background: var(--card);
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			padding: 26px 28px 28px;
+			scroll-margin-top: 24px;
+		}
+
+
+		/* =========================================================
+						   SECTION HEADER
+						========================================================= */
+
+		.section-head {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-bottom: 22px;
+		}
+
+		.section-icon {
+			width: 36px;
+			height: 36px;
+			border-radius: 9px;
+			background: var(--teal-light);
+			color: var(--teal);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+		}
+
+		.section-head h2 {
+			margin: 0;
+			font-size: 16.5px;
+			font-weight: 600;
+			color: var(--navy);
+		}
+
+		.section-head .sub {
+			margin: 3px 0 0;
+			font-size: 12px;
+			color: var(--muted);
+			font-weight: 400;
+		}
+
+
+		/* =========================================================
+						   GRID
+						========================================================= */
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 18px;
+		}
+
+		.span-2 {
+			grid-column: span 2;
+		}
+
+		.span-3 {
+			grid-column: span 3;
+		}
+
+		.span-4 {
+			grid-column: span 4;
+		}
+
+
+		/* =========================================================
+						   FIELD
+						========================================================= */
+
+		.field label {
+			display: block;
+			font-size: 13px;
+			font-weight: 600;
+			color: var(--text);
+			margin-bottom: 7px;
+		}
+
+		.req {
+			color: var(--danger);
+			margin-left: 2px;
+		}
+
+		.field input,
+		.field select,
+		.field textarea {
+			width: 100%;
+			padding: 10px 12px;
+			font-size: 13px;
+			font-family: 'Inter', sans-serif;
+			color: var(--text);
+			background: #fff;
+			border: 1.5px solid var(--line);
+			border-radius: 8px;
+			outline: none;
+			transition: border-color .15s ease, box-shadow .15s ease;
+		}
+
+		.field textarea {
+			resize: vertical;
+			min-height: 100px;
+			line-height: 1.5;
+		}
+
+		.field select {
+			appearance: none;
+			background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%236B7686'/></svg>");
+			background-repeat: no-repeat;
+			background-position: right 12px center;
+			padding-right: 30px;
+		}
+
+			.field input:focus,
+			.field select:focus,
+			.field textarea:focus {
+				border-color: var(--teal);
+				box-shadow: 0 0 0 3px rgba(14,140,130,.13);
+			}
+
+			.field input:disabled,
+			.field select:disabled {
+				background: #F2F4F7;
+				color: var(--muted);
+				cursor: not-allowed;
+			}
+
+		.hint {
+			display: block;
+			font-size: 11px;
+			color: var(--muted);
+			margin-top: 6px;
+		}
+
+
+		/* =========================================================
+						   PROFILE PHOTO
+						========================================================= */
+
+		.photo-box {
+			display: flex;
+			align-items: center;
+			gap: 18px;
+			padding: 16px;
+			background: var(--teal-soft);
+			border: 1px solid #D7EEEA;
+			border-radius: 10px;
+		}
+
+		.profile-photo {
+			width: 76px;
+			height: 76px;
+			border-radius: 50%;
+			background: linear-gradient( 135deg, var(--teal), #0BB8AB );
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			font-size: 22px;
+			font-weight: 700;
+			flex: none;
+			overflow: hidden;
+		}
+
+			.profile-photo img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+		.photo-info strong {
+			display: block;
+			font-size: 13px;
+			color: var(--navy);
+			margin-bottom: 5px;
+		}
+
+		.photo-info span {
+			display: block;
+			font-size: 11.5px;
+			color: var(--muted);
+			margin-bottom: 9px;
+		}
+
+		.upload-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 7px 12px;
+			border-radius: 7px;
+			border: 1px solid var(--teal);
+			background: white;
+			color: var(--teal);
+			font-size: 11.5px;
+			font-weight: 600;
+			cursor: pointer;
+		}
+
+			.upload-btn:hover {
+				background: var(--teal-light);
+			}
+
+
+		/* =========================================================
+						   ACCORDION / CHECKBOX
+						========================================================= */
+
+		.acc {
+			border: 1.5px solid var(--line);
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+			.acc + .acc {
+				margin-top: 12px;
+			}
+
+			.acc summary {
+				list-style: none;
+				cursor: pointer;
+				padding: 13px 16px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				font-size: 13px;
+				font-weight: 600;
+				color: var(--navy);
+				background: #FAFBFC;
+			}
+
+				.acc summary::-webkit-details-marker {
+					display: none;
+				}
+
+				.acc summary:after {
+					content: '▾';
+					color: var(--muted);
+					transition: transform .15s ease;
+				}
+
+			.acc[open] summary:after {
+				transform: rotate(180deg);
+			}
+
+		.acc-body {
+			padding: 16px;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 10px;
+			border-top: 1px solid var(--line);
+		}
+
+		.chk {
+			display: flex;
+			align-items: center;
+			gap: 9px;
+			background: #fff;
+			border: 1.5px solid var(--line);
+			border-radius: 8px;
+			padding: 10px 12px;
+			font-size: 12.5px;
+			font-weight: 500;
+			color: var(--text);
+			cursor: pointer;
+			transition: border-color .15s ease, background .15s ease;
+		}
+
+			.chk:hover {
+				border-color: var(--teal);
+				background: var(--teal-soft);
+			}
+
+			.chk input {
+				width: 16px;
+				height: 16px;
+				accent-color: var(--teal);
+				flex: none;
+			}
+
+		.count {
+			font-size: 10.5px;
+			font-weight: 600;
+			color: var(--teal);
+			background: var(--teal-light);
+			padding: 3px 8px;
+			border-radius: 999px;
+			margin-left: auto;
+			margin-right: 10px;
+		}
+
+
+		/* =========================================================
+						   INLINE OPTIONS
+						========================================================= */
+
+		.radio-group {
+			display: flex;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+
+		.radio-option {
+			position: relative;
+			flex: 1;
+			min-width: 100px;
+		}
+
+			.radio-option input {
+				position: absolute;
+				opacity: 0;
+			}
+
+			.radio-option label {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 10px 12px;
+				border: 1.5px solid var(--line);
+				border-radius: 8px;
+				font-size: 12px;
+				font-weight: 600;
+				cursor: pointer;
+				background: white;
+				color: var(--muted);
+			}
+
+			.radio-option input:checked + label {
+				border-color: var(--teal);
+				background: var(--teal-light);
+				color: var(--teal);
+			}
+
+
+		/* =========================================================
+						   EDUCATION / INTERNSHIP CARDS
+						========================================================= */
+
+		.repeat-card {
+			border: 1px solid var(--line);
+			border-radius: 10px;
+			padding: 18px;
+			background: #FCFDFE;
+			margin-bottom: 14px;
+		}
+
+		.repeat-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 16px;
+		}
+
+		.repeat-title {
+			font-size: 13px;
+			font-weight: 700;
+			color: var(--navy);
+		}
+
+		.repeat-number {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 24px;
+			height: 24px;
+			border-radius: 7px;
+			background: var(--teal-light);
+			color: var(--teal);
+			margin-right: 8px;
+			font-size: 10px;
+		}
+
+
+		/* =========================================================
+						   REMOVE BUTTON
+						========================================================= */
+
+		.remove-btn {
+			border: 1px solid #F0CACA;
+			background: #FFF7F7;
+			color: var(--danger);
+			border-radius: 7px;
+			padding: 6px 10px;
+			font-size: 11px;
+			cursor: pointer;
+		}
+
+			.remove-btn:hover {
+				background: #FDECEC;
+			}
+
+
+		/* =========================================================
+						   ADD BUTTON
+						========================================================= */
+
+		.add-btn {
+			border: 1.5px dashed var(--teal);
+			background: var(--teal-soft);
+			color: var(--teal);
+			border-radius: 8px;
+			padding: 10px 14px;
+			font-size: 12px;
+			font-weight: 600;
+			cursor: pointer;
+			    width: 30%; 
+    margin: 0 auto;
+    display: block;
+		}
+
+			.add-btn:hover {
+				background: var(--teal-light);
+			}
+
+
+		/* =========================================================
+						   PROFILE COMPLETION
+						========================================================= */
+
+		.completion-box {
+			padding: 15px 16px;
+			border-radius: 10px;
+			background: var(--teal-soft);
+			border: 1px solid #D8EEEA;
+			margin-bottom: 20px;
+		}
+
+		.completion-top {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 9px;
+		}
+
+			.completion-top strong {
+				font-size: 12px;
+				color: var(--navy);
+			}
+
+		.completion-percent {
+			font-size: 12px;
+			font-weight: 700;
+			color: var(--teal);
+		}
+
+		.progress {
+			height: 7px;
+			background: #DDEBE9;
+			border-radius: 999px;
+			overflow: hidden;
+		}
+
+		.progress-bar {
+			height: 100%;
+			width: 70%;
+			background: var(--teal);
+			border-radius: 999px;
+			transition: width .3s ease;
+		}
+
+
+		/* =========================================================
+						   SUBMIT BAR
+						========================================================= */
+
+		.submit-bar {
+			position: sticky;
+			bottom: 0;
+			background: var(--card);
+			border: 1px solid var(--line);
+			border-radius: var(--radius);
+			box-shadow: 0 -5px 25px rgba(21,42,74,.08);
+			padding: 16px 20px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+			flex-wrap: wrap;
+			z-index: 10;
+		}
+
+			.submit-bar p {
+				margin: 0;
+				font-size: 11.5px;
+				color: var(--muted);
+				max-width: 450px;
+				line-height: 1.5;
+			}
+
+		.btn-row {
+			display: flex;
+			gap: 10px;
+		}
+
+		.btn {
+			border: none;
+			border-radius: 8px;
+			padding: 10px 18px;
+			font-size: 12.5px;
+			font-weight: 600;
+			font-family: 'Inter', sans-serif;
+			cursor: pointer;
+			transition: transform .1s ease, background .15s ease;
+		}
+
+			.btn:active {
+				transform: translateY(1px);
+			}
+
+		.btn-primary {
+			background: var(--teal);
+			color: white;
+		}
+
+			.btn-primary:hover {
+				background: var(--teal-dark);
+			}
+
+		.btn-secondary {
+			background: transparent;
+			color: var(--navy);
+			border: 1.5px solid var(--line);
+		}
+
+			.btn-secondary:hover {
+				border-color: var(--navy);
+			}
+
+
+		/* =========================================================
+						   FOOTER
+						========================================================= */
+
+		footer {
+			text-align: center;
+			padding: 26px 20px 40px;
+			font-size: 11.5px;
+			color: var(--muted);
+		}
+
+			footer a {
+				color: var(--teal);
+				text-decoration: none;
+				font-weight: 600;
+			}
+
+
+		/* =========================================================
+						   RESPONSIVE
+						========================================================= */
+
+		@@media (max-width: 1000px) {
+			.layout {
+				grid-template-columns: 1fr;
+			}
+
+			.side-nav {
+				position: static;
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 5px;
+			}
+
+			.side-note {
+				grid-column: 1 / -1;
+			}
+
+			.grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			.span-3,
+			.span-4 {
+				grid-column: span 2;
+			}
+
+			.acc-body {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+
+		@@media (max-width: 700px) {
+			.topbar {
+				padding: 12px 16px;
+			}
+
+			.profile-chip {
+				display: none;
+			}
+
+			.page-header {
+				padding: 30px 18px 55px;
+			}
+
+				.page-header h1 {
+					font-size: 24px;
+				}
+
+			.layout {
+				margin-top: -30px;
+				padding: 0 14px;
+			}
+
+			.side-nav {
+				display: flex;
+				overflow-x: auto;
+				flex-wrap: nowrap;
+				padding: 7px;
+			}
+
+				.side-nav a {
+					white-space: nowrap;
+				}
+
+			.side-note {
+				display: none;
+			}
+
+			.section {
+				padding: 20px 16px;
+			}
+
+			.grid {
+				grid-template-columns: 1fr;
+			}
+
+			.span-2,
+			.span-3,
+			.span-4 {
+				grid-column: span 1;
+			}
+
+			.acc-body {
+				grid-template-columns: 1fr;
+			}
+
+			.photo-box {
+				align-items: flex-start;
+			}
+
+			.submit-bar {
+				position: static;
+			}
+
+			.submit-bar,
+			.btn-row {
+				width: 100%;
+			}
+
+				.btn-row .btn {
+					flex: 1;
+				}
+		}
+
+		/* =====================================================
+   RESUME PROFILE PREVIEW
+===================================================== */
+
+.profile-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding: 18px;
+}
+
+
+/* PROFILE CARD */
+
+.resume-profile-card {
+    display: block;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: 12px;
+    transition: .2s ease;
+}
+
+
+/* TITLE */
+
+.resume-profile-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.resume-profile-title input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--teal);
+}
+
+
+/* PREVIEW */
+
+.resume-preview {
+    width: 100%;
+    aspect-ratio: 0.72;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+}
+
+.resume-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+/* SELECTED PROFILE */
+
+.resume-profile-card:has(
+    input[type="radio"]:checked
+) {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 2px rgba(0, 128, 128, .12);
+}
+
+
+/* RESPONSIVE */
+
+@@media (max-width: 1100px) {
+
+    .profile-preview-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@@media (max-width: 800px) {
+
+    .profile-preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@@media (max-width: 500px) {
+
+    .profile-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+	</style>
+</head>
+
+<body>
+
+
+	<!-- =========================================================
+		 TOP BAR
+	========================================================== -->
+
+	<div class="topbar">
+
+		<div class="brand">
+
+			<div class="brand-mark">
+				1T
+			</div>
+
+			1Trainee
+
+		</div>
+
+		<div class="profile-chip">
+
+			<div class="profile-mini">
+				JD
+			</div>
+
+			Edit Candidate Profile
+
+		</div>
+
+	</div>
+
+
+	<!-- =========================================================
+		 PAGE HEADER
+	========================================================== -->
+
+	<div class="page-header">
+
+		<div class="page-header-inner">
+
+			<div class="eyebrow">
+				Candidate Profile
+			</div>
+
+			<h1>
+				Edit your profile
+			</h1>
+
+			<p>
+				Keep your profile complete and up to date so employers can
+				understand your education, skills, experience and career interests.
+			</p>
+
+		</div>
+
+	</div>
+
+
+	<!-- =========================================================
+		 MAIN
+	========================================================== -->
+
+	<div class="layout">
+
+
+		<!-- =====================================================
+			 SIDE NAV
+		====================================================== -->
+
+		<nav class="side-nav">
+
+			<a href="#personal" class="active">
+				<span class="nav-number">01</span>
+				Personal Details
+			</a>
+
+			<a href="#contact">
+				<span class="nav-number">02</span>
+				Contact Details
+			</a>
+
+			<a href="#education">
+				<span class="nav-number">03</span>
+				Education
+			</a>
+
+			<a href="#experience">
+				<span class="nav-number">04</span>
+				Experience
+			</a>
+
+			<a href="#internship">
+				<span class="nav-number">05</span>
+				Internships
+			</a>
+
+			<a href="#skills">
+				<span class="nav-number">06</span>
+				Skills
+			</a>
+
+			<a href="#languages">
+				<span class="nav-number">07</span>
+				Languages
+			</a>
+
+			<a href="#hobbies">
+				<span class="nav-number">08</span>
+				Hobbies
+			</a>
+
+		<a href="#references">
+    <span class="nav-number">09</span>
+    References
+</a>
+
+<a href="#achievements">
+    <span class="nav-number">10</span>
+    Achievements / Certification
+</a>
+
+<a href="#social">
+    <span class="nav-number">11</span>
+    Social / Links
+</a>
+<a href="#objective">
+    <span class="nav-number">12</span>
+    Add Objective
+</a>
+
+			<div class="side-note">
+
+				Fields marked
+				<strong style="color:#D64545">*</strong>
+				are required.
+
+			</div>
+
+		</nav>
+
+
+		<!-- =====================================================
+			 FORM
+		====================================================== -->
+
+		<form id="profileForm">
+
+
+			<!-- =================================================
+				 01 PERSONAL DETAILS
+			================================================== -->
+
+			<section class="section" id="personal">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<circle cx="12"
+									cy="8"
+									r="4"
+									stroke="currentColor"
+									stroke-width="2" />
+
+							<path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7"
+								  stroke="currentColor"
+								  stroke-width="2"
+								  stroke-linecap="round" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Personal Details
+						</h2>
+
+						<p class="sub">
+							Basic information about you
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<div class="completion-box">
+
+					<div class="completion-top">
+
+						<strong>
+							Profile Completion
+						</strong>
+
+						<span class="completion-percent">
+							70%
+						</span>
+
+					</div>
+
+					<div class="progress">
+
+						<div class="progress-bar"></div>
+
+					</div>
+
+				</div>
+
+
+				<div class="photo-box">
+
+					<div class="profile-photo">
+						JD
+					</div>
+
+					<div class="photo-info">
+
+						<strong>
+							Profile Photo
+						</strong>
+
+						<span>
+							JPG or PNG · Recommended 300 × 300 px
+						</span>
+
+						<label class="upload-btn">
+
+							Upload Photo
+
+							<input type="file"
+								   hidden
+								   accept="image/*"
+								   id="profilePhoto">
+
+						</label>
+
+					</div>
+
+				</div>
+				<br>
+				<div class="grid" style="margin-top:18px;">
+
+    <!-- RESUME -->
+    <div class="field span-2">
+
+        <label>
+            Upload Resume
+        </label>
+
+        <label class="upload-btn">
+
+            <span>
+                Choose Resume
+            </span>
+
+            <input type="file"
+                   hidden
+                   id="Resume"
+                   name="Resume"
+                   accept=".pdf,.doc,.docx"
+                   onchange="showFileName(this, 'resumeFileName')">
+
+        </label>
+
+        <span class="hint"
+              id="resumeFileName">
+            PDF, DOC or DOCX
+        </span>
+
+    </div>
+
+
+    <!-- PHOTO -->
+    <div class="field">
+
+        <label>
+            Upload Photo <span class="req">*</span>
+        </label>
+
+        <label class="upload-btn">
+
+            <span>
+                Choose Photo
+            </span>
+
+            <input type="file"
+                   hidden
+                   id="Photo"
+                   name="Photo"
+                   accept=".jpg,.jpeg,.png"
+                   onchange="showFileName(this, 'photoFileName')">
+
+        </label>
+
+        <span class="hint"
+              id="photoFileName">
+            JPG / JPEG / PNG
+        </span>
+
+    </div>
+
+
+    <!-- SIGNATURE -->
+    <div class="field">
+
+        <label>
+            Upload Signature
+        </label>
+
+        <label class="upload-btn">
+
+            <span>
+                Choose Signature
+            </span>
+
+            <input type="file"
+                   hidden
+                   id="Signature"
+                   name="Signature"
+                   accept=".jpg,.jpeg,.png"
+                   onchange="showFileName(this, 'signatureFileName')">
+
+        </label>
+
+        <span class="hint"
+              id="signatureFileName">
+            JPG / JPEG / PNG
+        </span>
+
+    </div>
+
+</div>
+
+
+				<br />
+
+
+				<div class="grid">
+
+					<div class="field">
+
+						<label>
+							First Name <span class="req">*</span>
+						</label>
+
+						<input type="text"
+							   id="FirstName"
+							   placeholder="Enter first name" />
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Middle Name
+						</label>
+
+						<input type="text"
+							   id="MiddleName"
+							   placeholder="Enter middle name" />
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Last Name <span class="req">*</span>
+						</label>
+
+						<input type="text"
+							   id="LastName"
+							   placeholder="Enter last name" />
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Gender <span class="req">*</span>
+						</label>
+
+						<select id="Gender">
+
+							<option value="">
+								-- Select Gender --
+							</option>
+
+							<option>Male</option>
+
+							<option>Female</option>
+
+							<option>Other</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Date of Birth <span class="req">*</span>
+						</label>
+
+						<input type="date"
+							   id="DateOfBirth" />
+
+					</div>
+
+
+				 
+
+
+					<div class="field">
+
+						<label>
+							Marital Status
+						</label>
+
+						<select>
+
+							<option>-- Select Status --</option>
+
+							<option>Single</option>
+
+							<option>Married</option>
+
+							<option>Other</option>
+
+						</select>
+
+					</div>
+
+					@* <div class="grid"
+     style="margin-top:18px;"> *@
+
+    <div class="field">
+
+        <label>
+            Divyang <span class="req">*</span>
+        </label>
+
+        <select id="Divyang"
+                name="Divyang">
+
+            <option value="">
+                -- Select --
+            </option>
+
+            <option value="No">
+                No
+            </option>
+
+            <option value="Yes">
+                Yes
+            </option>
+
+        </select>
+
+    </div>
+
+@* </div> *@
+
+
+				</div>
+
+			</section>
+
+
+			<!-- =================================================
+				 02 CONTACT
+			================================================== -->
+
+			<section class="section" id="contact">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<path d="M4 4h16v16H4z"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+							<path d="M4 7l8 6 8-6"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Contact Details
+						</h2>
+
+						<p class="sub">
+							Your communication and address information
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<div class="grid">
+
+					<div class="field span-2">
+
+						<label>
+							Email Address <span class="req">*</span>
+						</label>
+
+						<input type="email"
+							   placeholder="example@email.com" />
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Mobile Number <span class="req">*</span>
+						</label>
+
+						<input type="tel"
+							   maxlength="10"
+							   placeholder="10 digit mobile number" />
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Alternate Mobile
+						</label>
+
+						<input type="tel"
+							   maxlength="10"
+							   placeholder="Alternate number" />
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Country <span class="req">*</span>
+						</label>
+
+						<select>
+
+							<option>
+								-- Select Country --
+							</option>
+
+							<option>India</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							State <span class="req">*</span>
+						</label>
+
+						<select>
+
+							<option>
+								-- Select State --
+							</option>
+
+							<option>Maharashtra</option>
+
+							<option>Delhi</option>
+
+							<option>Karnataka</option>
+
+							<option>Gujarat</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							City <span class="req">*</span>
+						</label>
+
+						<select>
+
+							<option>
+								-- Select City --
+							</option>
+
+							<option>Nagpur</option>
+
+							<option>Pune</option>
+
+							<option>Mumbai</option>
+
+							<option>Bangalore</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Pincode
+						</label>
+
+						<input type="text"
+							   maxlength="6"
+							   placeholder="Enter pincode" />
+
+					</div>
+
+
+					<div class="field span-4">
+
+						<label>
+							Address
+						</label>
+
+						<textarea placeholder="Enter your complete address"></textarea>
+
+					</div>
+
+				</div>
+
+			</section>
+
+
+			<!-- =================================================
+				 03 EDUCATION
+			================================================== -->
+
+			<section class="section" id="education">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<path d="M3 9l9-5 9 5-9 5-9-5z"
+								  stroke="currentColor"
+								  stroke-width="2"
+								  stroke-linejoin="round" />
+
+							<path d="M7 12v5c3 2 7 2 10 0v-5"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Education
+						</h2>
+
+						<p class="sub">
+							Add your academic qualifications
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<div id="educationContainer">
+
+
+					<!-- EDUCATION 1 -->
+
+					<div class="repeat-card">
+
+						<div class="repeat-header">
+
+							<div class="repeat-title">
+
+								<span class="repeat-number">
+									01
+								</span>
+
+								Highest / Current Qualification
+
+							</div>
+
+						</div>
+
+
+						<div class="grid">
+
+							<div class="field">
+
+								<label>
+									Qualification <span class="req">*</span>
+								</label>
+
+								<select>
+
+									<option>
+										-- Select Qualification --
+									</option>
+
+									<option>10th</option>
+
+									<option>12th</option>
+
+									<option>Diploma</option>
+
+									<option>ITI</option>
+
+									<option>Graduation</option>
+
+									<option>Post Graduation</option>
+
+								</select>
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Course / Degree <span class="req">*</span>
+								</label>
+
+								<input type="text"
+									   placeholder="B.Tech / BCA / MBA..." />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Specialization
+								</label>
+
+								<input type="text"
+									   placeholder="Computer Science..." />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Passing Year <span class="req">*</span>
+								</label>
+
+								<select>
+
+									<option>
+										-- Select Year --
+									</option>
+
+									<option>2026</option>
+
+									<option>2025</option>
+
+									<option>2024</option>
+
+									<option>2023</option>
+
+									<option>2022</option>
+
+								</select>
+
+							</div>
+
+
+							<div class="field span-2">
+
+								<label>
+									College / Institute <span class="req">*</span>
+								</label>
+
+								<input type="text"
+									   placeholder="Enter college / institute" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									University / Board
+								</label>
+
+								<input type="text"
+									   placeholder="University / Board" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Percentage / CGPA
+								</label>
+
+								<input type="text"
+									   placeholder="e.g. 8.2 CGPA / 78%" />
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<!-- =================================================
+     ACADEMIC HISTORY FROM SSC TO PhD
+================================================== -->
+
+<div class="repeat-card">
+
+    <div class="repeat-header">
+
+        <div class="repeat-title">
+
+            <span class="repeat-number">
+                02
+            </span>
+
+            Academic History
+
+        </div>
+
+    </div>
+
+
+    <div class="grid">
+
+        <!-- SSC -->
+
+        <div class="field">
+
+            <label>
+                SSC (10th) Year <span class="req">*</span>
+            </label>
+
+            <input type="number"
+                   id="SSCYear"
+                   name="SSCYear"
+                   min="1900"
+                   max="2100"
+                   placeholder="e.g. 2016">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                SSC (10th) Division <span class="req">*</span>
+            </label>
+
+            <select id="SSCDivision"
+                    name="SSCDivision">
+
+                <option value="">
+                    -- Select Division --
+                </option>
+
+                <option value="Distinction">
+                    Distinction
+                </option>
+
+                <option value="First">
+                    First
+                </option>
+
+                <option value="Second">
+                    Second
+                </option>
+
+                <option value="Pass">
+                    Pass
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- HSC / DIPLOMA -->
+
+        <div class="field">
+
+            <label>
+                HSC / Diploma Year
+            </label>
+
+            <input type="number"
+                   id="HSCDiplomaYear"
+                   name="HSCDiplomaYear"
+                   min="1900"
+                   max="2100"
+                   placeholder="e.g. 2018">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                HSC / Diploma Division
+            </label>
+
+            <select id="HSCDiplomaDivision"
+                    name="HSCDiplomaDivision">
+
+                <option value="">
+                    -- Select Division --
+                </option>
+
+                <option value="Distinction">
+                    Distinction
+                </option>
+
+                <option value="First">
+                    First
+                </option>
+
+                <option value="Second">
+                    Second
+                </option>
+
+                <option value="Pass">
+                    Pass
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- GRADUATION -->
+
+        <div class="field">
+
+            <label>
+                Graduation Year
+            </label>
+
+            <input type="number"
+                   id="GraduationYear"
+                   name="GraduationYear"
+                   min="1900"
+                   max="2100"
+                   placeholder="e.g. 2022">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Graduation Division
+            </label>
+
+            <select id="GraduationDivision"
+                    name="GraduationDivision">
+
+                <option value="">
+                    -- Select Division --
+                </option>
+
+                <option value="Distinction">
+                    Distinction
+                </option>
+
+                <option value="First">
+                    First
+                </option>
+
+                <option value="Second">
+                    Second
+                </option>
+
+                <option value="Pass">
+                    Pass
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Graduation Stream
+            </label>
+
+            <select id="GraduationStream"
+                    name="GraduationStream">
+
+                <option value="">
+                    -- Select Stream --
+                </option>
+
+                <option value="Engineering & Tech">
+                    Engineering & Tech
+                </option>
+
+                <option value="Science">
+                    Science
+                </option>
+
+                <option value="Commerce">
+                    Commerce
+                </option>
+
+                <option value="Arts">
+                    Arts
+                </option>
+
+                <option value="Management">
+                    Management
+                </option>
+
+                <option value="Computer Applications">
+                    Computer Applications
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Other Stream
+            </label>
+
+            <input type="text"
+                   id="OtherStream"
+                   name="OtherStream"
+                   placeholder="Enter other stream">
+
+        </div>
+
+
+        <!-- POST GRADUATION -->
+
+        <div class="field">
+
+            <label>
+                PG Year
+            </label>
+
+            <input type="number"
+                   id="PGYear"
+                   name="PGYear"
+                   min="1900"
+                   max="2100"
+                   placeholder="e.g. 2024">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                PG Division
+            </label>
+
+            <select id="PGDivision"
+                    name="PGDivision">
+
+                <option value="">
+                    -- Select Division --
+                </option>
+
+                <option value="Distinction">
+                    Distinction
+                </option>
+
+                <option value="First">
+                    First
+                </option>
+
+                <option value="Second">
+                    Second
+                </option>
+
+                <option value="Pass">
+                    Pass
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                PG Stream
+            </label>
+
+            <select id="PGStream"
+                    name="PGStream">
+
+                <option value="">
+                    -- Select Stream --
+                </option>
+
+                <option value="Engineering & Tech">
+                    Engineering & Tech
+                </option>
+
+                <option value="Science">
+                    Science
+                </option>
+
+                <option value="Commerce">
+                    Commerce
+                </option>
+
+                <option value="Arts">
+                    Arts
+                </option>
+
+                <option value="Management">
+                    Management
+                </option>
+
+                <option value="Computer Applications">
+                    Computer Applications
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Other Specialization
+            </label>
+
+            <input type="text"
+                   id="OtherSpecialization"
+                   name="OtherSpecialization"
+                   placeholder="Enter specialization">
+
+        </div>
+
+
+        <!-- PhD -->
+
+        <div class="field">
+
+            <label>
+                PhD Year
+            </label>
+
+            <input type="number"
+                   id="PhDYear"
+                   name="PhDYear"
+                   min="1900"
+                   max="2100"
+                   placeholder="e.g. 2025">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                PhD Status
+            </label>
+
+            <select id="PhDStatus"
+                    name="PhDStatus">
+
+                <option value="">
+                    -- Select PhD Status --
+                </option>
+
+                <option value="Pursuing">
+                    Pursuing
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+                <option value="Submitted">
+                    Thesis Submitted
+                </option>
+
+                <option value="Not Pursuing">
+                    Not Pursuing
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                PhD Topic
+            </label>
+
+            <input type="text"
+                   id="PhDTopic"
+                   name="PhDTopic"
+                   placeholder="Enter PhD topic">
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Previous PhD Topic / Year
+            </label>
+
+            <input type="text"
+                   id="PreviousPhDTopicYear"
+                   name="PreviousPhDTopicYear"
+                   placeholder="Title / 2018">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+				</div>
+
+
+				<button type="button"
+						class="add-btn"
+						onclick="addEducation()">
+
+					+ Add Another Education
+
+				</button>
+
+			</section>
+
+
+			<!-- =================================================
+				 04 EXPERIENCE
+			================================================== -->
+
+			<section class="section" id="experience">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<path d="M4 7h16v13H4z"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+							<path d="M8 7V4h8v3"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+							<path d="M4 12h16"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Work Experience
+						</h2>
+
+						<p class="sub">
+							Add your previous professional experience
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<div id="experienceContainer">
+
+					<div class="repeat-card">
+
+						<div class="repeat-header">
+
+							<div class="repeat-title">
+
+								<span class="repeat-number">
+									01
+								</span>
+
+								Work Experience
+
+							</div>
+
+						</div>
+
+
+						<div class="grid">
+
+							<div class="field span-2">
+
+								<label>
+									Company Name
+								</label>
+
+								<input type="text"
+									   placeholder="Company / Organization" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Job Title
+								</label>
+
+								<input type="text"
+									   placeholder="Software Developer..." />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Employment Type
+								</label>
+
+								<select>
+
+									<option>
+										-- Select Type --
+									</option>
+
+									<option>Full Time</option>
+
+									<option>Part Time</option>
+
+									<option>Contract</option>
+
+									<option>Internship</option>
+
+								</select>
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Start Date
+								</label>
+
+								<input type="date" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									End Date
+								</label>
+
+								<input type="date" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Currently Working
+								</label>
+
+								<select>
+
+									<option>No</option>
+
+									<option>Yes</option>
+
+								</select>
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Location
+								</label>
+
+								<input type="text"
+									   placeholder="City / Remote" />
+
+							</div>
+
+
+							<div class="field span-4">
+
+								<label>
+									Job Description
+								</label>
+
+								<textarea placeholder="Describe your responsibilities, achievements and work..."></textarea>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<button type="button"
+						class="add-btn"
+						onclick="addExperience()">
+
+					+ Add Another Experience
+
+				</button>
+
+			</section>
+
+
+			<!-- =================================================
+				 05 INTERNSHIPS
+			================================================== -->
+
+			<section class="section" id="internship">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<path d="M4 6h16v14H4z"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+							<path d="M8 6V3h8v3"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+							<path d="M4 11h16"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Internship Experience
+						</h2>
+
+						<p class="sub">
+							Add up to three internship experiences
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<div id="internshipContainer">
+
+
+					<!-- INTERNSHIP 1 -->
+
+					<div class="repeat-card">
+
+						<div class="repeat-header">
+
+							<div class="repeat-title">
+
+								<span class="repeat-number">
+									01
+								</span>
+
+								Internship 1
+
+							</div>
+
+						</div>
+
+
+						<div class="grid">
+
+							<div class="field span-2">
+
+								<label>
+									Organization / Company
+								</label>
+
+								<input type="text"
+									   placeholder="Company name" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Internship Role
+								</label>
+
+								<input type="text"
+									   placeholder="Intern / Developer Intern" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Internship Mode
+								</label>
+
+								<select>
+
+									<option>
+										-- Select Mode --
+									</option>
+
+									<option>Online</option>
+
+									<option>Offline</option>
+
+									<option>Hybrid</option>
+
+								</select>
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Start Date
+								</label>
+
+								<input type="date" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									End Date
+								</label>
+
+								<input type="date" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Duration
+								</label>
+
+								<input type="text"
+									   placeholder="e.g. 3 Months" />
+
+							</div>
+
+
+							<div class="field">
+
+								<label>
+									Stipend
+								</label>
+
+								<input type="text"
+									   placeholder="e.g. ₹8,000/month" />
+
+							</div>
+
+
+							<div class="field span-2">
+
+								<label>
+									Skills Used
+								</label>
+
+								<input type="text"
+									   placeholder="HTML, CSS, React, SQL..." />
+
+							</div>
+
+
+							<div class="field span-2">
+
+								<label>
+									Certificate / Project Link
+								</label>
+
+								<input type="url"
+									   placeholder="https://..." />
+
+							</div>
+
+
+							<div class="field span-4">
+
+								<label>
+									Internship Description
+								</label>
+
+								<textarea placeholder="Describe your internship work, projects and responsibilities..."></textarea>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="field">
+
+    <label>
+        Internship / Fellowship Type <span class="req">*</span>
+    </label>
+
+    <select id="InternshipFellowshipType"
+            name="InternshipFellowshipType">
+
+        <option value="">
+            -- Select Type --
+        </option>
+
+        <option value="Free">
+            Free
+        </option>
+
+        <option value="Paid">
+            Paid
+        </option>
+
+        <option value="Fellowship">
+            Fellowship
+        </option>
+
+        <option value="Stipend">
+            Stipend Based
+        </option>
+
+    </select>
+
+</div>
+
+
+				</div>
+
+
+				<button type="button"
+						class="add-btn"
+						onclick="addInternship()">
+
+					+ Add Internship
+
+				</button>
+
+			</section>
+
+
+			<!-- =================================================
+				 06 SKILLS
+			================================================== -->
+
+			<section class="section" id="skills">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<path d="M12 2l2.6 6.6L21 9.3l-5 4.7 1.4 6.8L12 17.6 6.6 20.8 8 14 3 9.3l6.4-.7L12 2z"
+								  stroke="currentColor"
+								  stroke-width="2"
+								  stroke-linejoin="round" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Skills
+						</h2>
+
+						<p class="sub">
+							Select the skills you currently have
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<details class="acc">
+
+					<summary>
+
+						Technical Skills
+
+						<span class="count"
+							  id="technicalCount">
+							0 selected
+						</span>
+
+					</summary>
+
+					<div class="acc-body"
+						 id="technicalSkills">
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							HTML
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							CSS
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							JavaScript
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							React.js
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							Angular
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							ASP.NET
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							C#
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							Java
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							Python
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							SQL
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							Git
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateSkillCount()">
+							Bootstrap
+						</label>
+
+					</div>
+
+				</details>
+
+
+				<details class="acc">
+
+					<summary>
+
+						Professional Skills
+
+						<span class="count"
+							  id="professionalCount">
+							0 selected
+						</span>
+
+					</summary>
+
+					<div class="acc-body"
+						 id="professionalSkills">
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateProfessionalCount()">
+							Communication
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateProfessionalCount()">
+							Teamwork
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateProfessionalCount()">
+							Leadership
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateProfessionalCount()">
+							Problem Solving
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateProfessionalCount()">
+							Time Management
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateProfessionalCount()">
+							Presentation
+						</label>
+
+					</div>
+
+				</details>
+
+
+				<div class="grid"
+					 style="margin-top:18px;">
+
+					<div class="field span-4">
+
+						<label>
+							Other Skills
+						</label>
+
+						<input type="text"
+							   placeholder="Enter additional skills separated by comma" />
+
+					</div>
+
+				</div>
+
+			</section>
+
+
+			<!-- =================================================
+				 07 LANGUAGES
+			================================================== -->
+
+			<section class="section" id="languages">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<circle cx="12"
+									cy="12"
+									r="9"
+									stroke="currentColor"
+									stroke-width="2" />
+
+							<path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"
+								  stroke="currentColor"
+								  stroke-width="2" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Languages
+						</h2>
+
+						<p class="sub">
+							Add languages you know and your proficiency
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<details class="acc"
+						 open>
+
+					<summary>
+						Languages Known
+					</summary>
+
+					<div class="acc-body"
+						 id="languageGroup">
+
+						<label class="chk">
+
+							<input type="checkbox">
+
+							English
+
+						</label>
+
+						<label class="chk">
+
+							<input type="checkbox">
+
+							Hindi
+
+						</label>
+
+						<label class="chk">
+
+							<input type="checkbox">
+
+							Marathi
+
+						</label>
+
+						<label class="chk">
+
+							<input type="checkbox">
+
+							Gujarati
+
+						</label>
+
+						<label class="chk">
+
+							<input type="checkbox">
+
+							Bengali
+
+						</label>
+
+						<label class="chk">
+
+							<input type="checkbox">
+
+							Telugu
+
+						</label>
+
+						<label class="chk">
+
+							<input type="checkbox">
+
+							Tamil
+
+						</label>
+
+						<label class="chk">
+
+							<input type="checkbox">
+
+							Kannada
+
+						</label>
+
+					</div>
+
+				</details>
+
+
+				<div class="grid"
+					 style="margin-top:18px;">
+
+					<div class="field">
+
+						<label>
+							Primary Language
+						</label>
+
+						<select>
+
+							<option>
+								-- Select --
+							</option>
+
+							<option>English</option>
+
+							<option>Hindi</option>
+
+							<option>Marathi</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							English Proficiency
+						</label>
+
+						<select>
+
+							<option>
+								-- Select --
+							</option>
+
+							<option>Basic</option>
+
+							<option>Intermediate</option>
+
+							<option>Advanced</option>
+
+							<option>Fluent</option>
+
+						</select>
+
+					</div>
+
+				</div>
+
+			</section>
+
+
+			<!-- =================================================
+				 08 HOBBIES
+			================================================== -->
+
+			<section class="section" id="hobbies">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<path d="M12 2l2.5 6.5L21 9l-5 4.5 1.5 6.5L12 17l-5.5 3 1.5-6.5L3 9l6.5-.5L12 2z"
+								  stroke="currentColor"
+								  stroke-width="2"
+								  stroke-linejoin="round" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Hobbies & Interests
+						</h2>
+
+						<p class="sub">
+							Tell employers a little more about your interests
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<details class="acc">
+
+					<summary>
+
+						Select Hobbies
+
+						<span class="count"
+							  id="hobbyCount">
+							0 selected
+						</span>
+
+					</summary>
+
+					<div class="acc-body"
+						 id="hobbyGroup">
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateHobbyCount()">
+							Reading
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateHobbyCount()">
+							Travelling
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateHobbyCount()">
+							Photography
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateHobbyCount()">
+							Music
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateHobbyCount()">
+							Dancing
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateHobbyCount()">
+							Sports
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateHobbyCount()">
+							Drawing
+						</label>
+
+						<label class="chk">
+							<input type="checkbox"
+								   onchange="updateHobbyCount()">
+							Writing
+						</label>
+
+					</div>
+
+				</details>
+
+
+				<div class="grid"
+					 style="margin-top:18px;">
+
+					<div class="field span-4">
+
+						<label>
+							Other Interests
+						</label>
+
+						<input type="text"
+							   placeholder="Enter other hobbies or interests" />
+
+					</div>
+
+				</div>
+
+			</section>
+
+
+		<!-- =================================================
+     09 REFERENCES
+================================================== -->
+
+<section class="section" id="references">
+
+    <div class="section-head">
+
+        <div class="section-icon">
+
+            <svg width="17"
+                 height="17"
+                 viewBox="0 0 24 24"
+                 fill="none">
+
+                <circle cx="9"
+                        cy="8"
+                        r="3"
+                        stroke="currentColor"
+                        stroke-width="2" />
+
+                <circle cx="17"
+                        cy="9"
+                        r="2.5"
+                        stroke="currentColor"
+                        stroke-width="2" />
+
+                <path d="M3 21c0-3.5 2.7-6 6-6s6 2.5 6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round" />
+
+                <path d="M15 15.5c.7-.3 1.4-.5 2.2-.5
+                         2.7 0 4.8 2 4.8 5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round" />
+
+            </svg>
+
+        </div>
+
+        <div>
+
+            <h2>
+                References
+            </h2>
+
+            <p class="sub">
+                Provide two professional or academic references
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         REFERENCE 1
+    ================================================== -->
+
+    <div class="repeat-card">
+
+        <div class="repeat-header">
+
+            <div class="repeat-title">
+
+                <span class="repeat-number">
+                    01
+                </span>
+
+                Reference 1
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="field">
+
+                <label>
+                    Reference Name <span class="req">*</span>
+                </label>
+
+                <input type="text"
+                       id="Reference1Name"
+                       name="Reference1Name"
+                       placeholder="Enter reference name"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Relationship  
+                    <span class="req">*</span>
+                </label>
+
+                <input type="text"
+                       id="Reference1Designation"
+                       name="Reference1Designation"
+                       placeholder="Manager / Professor / HR"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field span-2">
+
+                <label>
+                    Company / Organization
+                    <span class="req">*</span>
+                </label>
+
+                <input type="text"
+                       id="Reference1Company"
+                       name="Reference1Company"
+                       placeholder="Company / College / Organization"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Mobile Number <span class="req">*</span>
+                </label>
+
+                <input type="tel"
+                       id="Reference1Mobile"
+                       name="Reference1Mobile"
+                       maxlength="10"
+                       pattern="[0-9]{10}"
+                       placeholder="10 digit mobile number"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Email Address <span class="req">*</span>
+                </label>
+
+                <input type="email"
+                       id="Reference1Email"
+                       name="Reference1Email"
+                       placeholder="reference@email.com"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field span-2">
+
+                <label>
+                    Address
+                </label>
+
+                <textarea id="Reference1Address"
+                          name="Reference1Address"
+                          placeholder="Reference address"></textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         REFERENCE 2
+    ================================================== -->
+
+    <div class="repeat-card">
+
+        <div class="repeat-header">
+
+            <div class="repeat-title">
+
+                <span class="repeat-number">
+                    02
+                </span>
+
+                Reference 2
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="field">
+
+                <label>
+                    Reference Name <span class="req">*</span>
+                </label>
+
+                <input type="text"
+                       id="Reference2Name"
+                       name="Reference2Name"
+                       placeholder="Enter reference name"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Relationship  
+                    <span class="req">*</span>
+                </label>
+
+                <input type="text"
+                       id="Reference2Designation"
+                       name="Reference2Designation"
+                       placeholder="Manager / Professor / HR"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field span-2">
+
+                <label>
+                    Company / Organization
+                    <span class="req">*</span>
+                </label>
+
+                <input type="text"
+                       id="Reference2Company"
+                       name="Reference2Company"
+                       placeholder="Company / College / Organization"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Mobile Number <span class="req">*</span>
+                </label>
+
+                <input type="tel"
+                       id="Reference2Mobile"
+                       name="Reference2Mobile"
+                       maxlength="10"
+                       pattern="[0-9]{10}"
+                       placeholder="10 digit mobile number"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Email Address <span class="req">*</span>
+                </label>
+
+                <input type="email"
+                       id="Reference2Email"
+                       name="Reference2Email"
+                       placeholder="reference@email.com"
+                       autocomplete="off">
+
+            </div>
+
+
+            <div class="field span-2">
+
+                <label>
+                    Address
+                </label>
+
+                <textarea id="Reference2Address"
+                          name="Reference2Address"
+                          placeholder="Reference address"></textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- REFERENCE VALIDATION MESSAGE -->
+
+    <div id="referenceError"
+         style="
+             display:none;
+             margin-top:14px;
+             padding:12px 14px;
+             border-radius:8px;
+             background:#FFF7F7;
+             border:1px solid #F0CACA;
+             color:#D64545;
+             font-size:12px;
+             font-weight:500;
+         ">
+    </div>
+
+</section>
+
+
+		 <!-- =================================================
+     10 ACHIEVEMENTS / CERTIFICATION
+================================================== -->
+
+<section class="section" id="achievements">
+
+    <div class="section-head">
+
+        <div class="section-icon">
+            <svg width="17"
+                 height="17"
+                 viewBox="0 0 24 24"
+                 fill="none">
+
+                <path d="M12 3l2.5 5.5L20 9l-4 4
+                         .5 5.5L12 16l-4.5 2.5L8 13
+                         4 9l5.5-.5L12 3z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"/>
+
+            </svg>
+        </div>
+
+        <div>
+            <h2>
+                Achievements / Certification
+            </h2>
+
+            <p class="sub">
+                Add whichever applicable
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ACHIEVEMENT / CERTIFICATION 1
+    ================================================== -->
+
+    <div class="repeat-card">
+
+        <div class="repeat-header">
+
+            <div class="repeat-title">
+
+                <span class="repeat-number">
+                    01
+                </span>
+
+                Achievement / Certification 1
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="field span-2">
+
+                <label>
+                    Achievement / Certification Name
+                </label>
+
+                <input type="text"
+                       name="Achievement1Name"
+                       placeholder="Enter achievement or certification">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Issuing Organization
+                </label>
+
+                <input type="text"
+                       name="Achievement1Organization"
+                       placeholder="Organization / Institute">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Year
+                </label>
+
+                <input type="text"
+                       name="Achievement1Year"
+                       placeholder="2026">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ACHIEVEMENT / CERTIFICATION 2
+    ================================================== -->
+
+    <div class="repeat-card">
+
+        <div class="repeat-header">
+
+            <div class="repeat-title">
+
+                <span class="repeat-number">
+                    02
+                </span>
+
+                Achievement / Certification 2
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="field span-2">
+
+                <label>
+                    Achievement / Certification Name
+                </label>
+
+                <input type="text"
+                       name="Achievement2Name"
+                       placeholder="Enter achievement or certification">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Issuing Organization
+                </label>
+
+                <input type="text"
+                       name="Achievement2Organization"
+                       placeholder="Organization / Institute">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Year
+                </label>
+
+                <input type="text"
+                       name="Achievement2Year"
+                       placeholder="2026">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ACHIEVEMENT / CERTIFICATION 3
+    ================================================== -->
+
+    <div class="repeat-card">
+
+        <div class="repeat-header">
+
+            <div class="repeat-title">
+
+                <span class="repeat-number">
+                    03
+                </span>
+
+                Achievement / Certification 3
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="field span-2">
+
+                <label>
+                    Achievement / Certification Name
+                </label>
+
+                <input type="text"
+                       name="Achievement3Name"
+                       placeholder="Enter achievement or certification">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Issuing Organization
+                </label>
+
+                <input type="text"
+                       name="Achievement3Organization"
+                       placeholder="Organization / Institute">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Year
+                </label>
+
+                <input type="text"
+                       name="Achievement3Year"
+                       placeholder="2026">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+			<!-- =================================================
+				 10 SOCIAL LINKS
+			================================================== -->
+
+			<section class="section" id="social">
+
+				<div class="section-head">
+
+					<div class="section-icon">
+
+						<svg width="17"
+							 height="17"
+							 viewBox="0 0 24 24"
+							 fill="none">
+
+							<path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1.1 1.1"
+								  stroke="currentColor"
+								  stroke-width="2"
+								  stroke-linecap="round" />
+
+							<path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1.1-1.1"
+								  stroke="currentColor"
+								  stroke-width="2"
+								  stroke-linecap="round" />
+
+						</svg>
+
+					</div>
+
+					<div>
+
+						<h2>
+							Social & Professional Links
+						</h2>
+
+						<p class="sub">
+							Add your professional online presence
+						</p>
+
+					</div>
+
+				</div>
+
+
+				<div class="grid">
+
+					<div class="field span-2">
+
+						<label>
+							LinkedIn Profile
+						</label>
+
+						<input type="url"
+							   placeholder="https://linkedin.com/in/yourname" />
+
+					</div>
+
+
+					<div class="field span-2">
+
+						<label>
+							GitHub Profile
+						</label>
+
+						<input type="url"
+							   placeholder="https://github.com/yourname" />
+
+					</div>
+
+
+					<div class="field span-2">
+
+						<label>
+							Portfolio Website
+						</label>
+
+						<input type="url"
+							   placeholder="https://yourportfolio.com" />
+
+					</div>
+
+
+					<div class="field span-2">
+
+						<label>
+							Resume Link
+						</label>
+
+						<input type="url"
+							   placeholder="Resume / Google Drive / Portfolio link" />
+
+					</div>
+
+
+					<div class="field span-4">
+
+						<label>
+							About Me
+						</label>
+
+						<textarea placeholder="Write a short introduction about yourself, your strengths and career interests..."></textarea>
+
+					</div>
+
+				</div>
+
+			</section>
+
+			<!-- =================================================
+     11 OBJECTIVE & RESUME PROFILE
+================================================== -->
+
+<section class="section" id="objective">
+
+    <div class="section-head">
+
+        <div class="section-icon">
+            <svg width="17"
+                 height="17"
+                 viewBox="0 0 24 24"
+                 fill="none">
+
+                <path d="M4 19V5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"/>
+
+                <path d="M4 5h14l-3 4 3 4H4"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"/>
+
+            </svg>
+        </div>
+
+        <div>
+            <h2>
+                Add Objective
+            </h2>
+
+            <p class="sub">
+                Add your career objective and select your resume profile
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- OBJECTIVE -->
+
+    <div class="grid">
+
+        <div class="field span-4">
+
+            <label>
+                Career Objective <span class="req">*</span>
+            </label>
+
+            <textarea
+                id="CareerObjective"
+                name="CareerObjective"
+                placeholder="Write your career objective..."></textarea>
+
+        </div>
+
+    </div>
+
+
+  <!-- =================================================
+     SELECT RESUME PROFILE
+================================================== -->
+
+<div class="field span-4" style="margin-top:18px;">
+
+    <label>
+        Select Resume Profile
+    </label>
+
+    <details class="acc">
+
+        <summary>
+            Profile Preview
+        </summary>
+
+        <div class="acc-body profile-preview-grid">
+
+            <!-- PROFILE 1 -->
+            <label class="resume-profile-card">
+
+                <div class="resume-profile-title">
+
+                    <input type="radio"
+                           name="ResumeProfile"
+                           value="profile1"
+                           required>
+
+                    <span>
+                        Profile Preview 1
+                    </span>
+
+                </div>
+
+                <div class="resume-preview">
+                    <img src="images/profile1.png"
+                         alt="Resume Profile 1">
+                </div>
+
+            </label>
+
+
+            <!-- PROFILE 2 -->
+            <label class="resume-profile-card">
+
+                <div class="resume-profile-title">
+
+                    <input type="radio"
+                           name="ResumeProfile"
+                           value="profile2">
+
+                    <span>
+                        Profile Preview 2
+                    </span>
+
+                </div>
+
+                <div class="resume-preview">
+                    <img src="images/profile2.png"
+                         alt="Resume Profile 2">
+                </div>
+
+            </label>
+
+
+            <!-- PROFILE 3 -->
+            <label class="resume-profile-card">
+
+                <div class="resume-profile-title">
+
+                    <input type="radio"
+                           name="ResumeProfile"
+                           value="profile3">
+
+                    <span>
+                        Profile Preview 3
+                    </span>
+
+                </div>
+
+                <div class="resume-preview">
+                    <img src="images/profile3.png"
+                         alt="Resume Profile 3">
+                </div>
+
+            </label>
+
+
+            <!-- PROFILE 4 -->
+            <label class="resume-profile-card">
+
+                <div class="resume-profile-title">
+
+                    <input type="radio"
+                           name="ResumeProfile"
+                           value="profile4">
+
+                    <span>
+                        Profile Preview 4
+                    </span>
+
+                </div>
+
+                <div class="resume-preview">
+                    <img src="images/profile4.png"
+                         alt="Resume Profile 4">
+                </div>
+
+            </label>
+
+        </div>
+
+    </details>
+
+</div>
+
+
+    <!-- SELECT SKILL TYPE -->
+
+ <!-- =================================================
+     SELECT SKILL TYPE
+================================================== -->
+
+<div class="field span-4" style="margin-top:18px;">
+
+    <label>
+        Select Skill Type (Any 1)
+        <span class="req">*</span>
+    </label>
+
+    <!-- MEDICAL SKILLS -->
+    <details class="acc">
+
+        <summary>
+            Medical Skills
+
+            <span class="count">
+                0 selected
+            </span>
+        </summary>
+
+        <div class="acc-body">
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="MedicalSkills"
+                       value="3D Slicer">
+
+                3D Slicer
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="MedicalSkills"
+                       value="B.Pharm">
+
+                B.Pharm
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="MedicalSkills"
+                       value="Auditory">
+
+                Auditory
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="MedicalSkills"
+                       value="Clinical Research">
+
+                Clinical Research
+            </label>
+
+        </div>
+
+    </details>
+
+
+    <!-- TECHNICAL SKILLS -->
+    <details class="acc">
+
+        <summary>
+            Technical Skills
+
+            <span class="count">
+                0 selected
+            </span>
+        </summary>
+
+        <div class="acc-body">
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="TechnicalSkills"
+                       value="HTML">
+
+                HTML
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="TechnicalSkills"
+                       value="CSS">
+
+                CSS
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="TechnicalSkills"
+                       value="JavaScript">
+
+                JavaScript
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="TechnicalSkills"
+                       value="Python">
+
+                Python
+            </label>
+
+        </div>
+
+    </details>
+
+
+    <!-- NON TECHNICAL SKILLS -->
+    <details class="acc">
+
+        <summary>
+            Non Technical Skills
+
+            <span class="count">
+                0 selected
+            </span>
+        </summary>
+
+        <div class="acc-body">
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="NonTechnicalSkills"
+                       value="Communication">
+
+                Communication
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="NonTechnicalSkills"
+                       value="Teamwork">
+
+                Teamwork
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="NonTechnicalSkills"
+                       value="Leadership">
+
+                Leadership
+            </label>
+
+            <label class="chk">
+                <input type="checkbox"
+                       name="NonTechnicalSkills"
+                       value="Problem Solving">
+
+                Problem Solving
+            </label>
+
+        </div>
+
+    </details>
+
+</div>
+			<!-- =================================================
+				 SUBMIT
+			================================================== -->
+
+			<div class="submit-bar">
+
+				<p>
+
+					Review your profile before saving.
+					Fields marked with
+					<strong style="color:#D64545">*</strong>
+					are required.
+
+				</p>
+
+
+				<div class="btn-row">
+
+					<button type="button"
+							class="btn btn-secondary"
+							onclick="window.history.back()">
+
+						Cancel
+
+					</button>
+
+					<button type="submit"
+							class="btn btn-primary">
+
+						Save Profile
+
+					</button>
+
+				</div>
+
+			</div>
+
+
+		</form>
+
+	</div>
+
+
+	<!-- =========================================================
+		 FOOTER
+	========================================================== -->
+
+	<footer>
+
+		Copyright © 2026 — All Rights Reserved with
+
+		<a href="http://itninfosystems.com"
+		   target="_blank">
+
+			IIPL
+
+		</a>
+
+	</footer>
+
+
+	<!-- =========================================================
+		 JAVASCRIPT
+	========================================================== -->
+
+	<script>
+
+		/* =====================================================
+		   SIDEBAR ACTIVE SECTION
+		===================================================== */
+
+		const navLinks =
+			document.querySelectorAll('.side-nav a');
+
+		const profileSections =
+			[...navLinks]
+				.map(link =>
+					document.querySelector(
+						link.getAttribute('href')
+					)
+				);
+
+		window.addEventListener('scroll', function () {
+
+			let current = profileSections[0];
+
+			profileSections.forEach(section => {
+
+				if (
+					section &&
+					window.scrollY >=
+					section.offsetTop - 130
+				) {
+					current = section;
+				}
+
+			});
+
+			navLinks.forEach(link => {
+
+				link.classList.toggle(
+					'active',
+					link.getAttribute('href') ===
+					'#' + current.id
+				);
+
+			});
+
+		});
+
+
+		/* =====================================================
+		   SKILL COUNTER
+		===================================================== */
+
+		function updateSkillCount() {
+
+			const count =
+				document.querySelectorAll(
+					'#technicalSkills input:checked'
+				).length;
+
+			document.getElementById(
+				'technicalCount'
+			).textContent =
+				count + ' selected';
+
+		}
+
+
+		/* =====================================================
+		   PROFESSIONAL SKILL COUNTER
+		===================================================== */
+
+		function updateProfessionalCount() {
+
+			const count =
+				document.querySelectorAll(
+					'#professionalSkills input:checked'
+				).length;
+
+			document.getElementById(
+				'professionalCount'
+			).textContent =
+				count + ' selected';
+
+		}
+
+
+		/* =====================================================
+		   HOBBY COUNTER
+		===================================================== */
+
+		function updateHobbyCount() {
+
+			const count =
+				document.querySelectorAll(
+					'#hobbyGroup input:checked'
+				).length;
+
+			document.getElementById(
+				'hobbyCount'
+			).textContent =
+				count + ' selected';
+
+		}
+
+
+		/* =====================================================
+		   ADD EDUCATION
+		===================================================== */
+
+		let educationCount = 1;
+
+		function addEducation() {
+
+			if (educationCount >= 5) {
+
+				alert(
+					'You can add maximum 5 education records.'
+				);
+
+				return;
+
+			}
+
+			educationCount++;
+
+			const container =
+				document.getElementById(
+					'educationContainer'
+				);
+
+			const div =
+				document.createElement('div');
+
+			div.className = 'repeat-card';
+
+			div.innerHTML = `
+
+				<div class="repeat-header">
+
+					<div class="repeat-title">
+
+						<span class="repeat-number">
+							${String(educationCount).padStart(2,'0')}
+						</span>
+
+						Education ${educationCount}
+
+					</div>
+
+					<button type="button"
+							class="remove-btn"
+							onclick="this.closest('.repeat-card').remove()">
+
+						Remove
+
+					</button>
+
+				</div>
+
+
+				<div class="grid">
+
+					<div class="field">
+
+						<label>
+							Qualification
+						</label>
+
+						<select>
+
+							<option>
+								-- Select Qualification --
+							</option>
+
+							<option>10th</option>
+							<option>12th</option>
+							<option>Diploma</option>
+							<option>Graduation</option>
+							<option>Post Graduation</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Course / Degree
+						</label>
+
+						<input type="text"
+							   placeholder="Course / Degree">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Specialization
+						</label>
+
+						<input type="text"
+							   placeholder="Specialization">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Passing Year
+						</label>
+
+						<input type="text"
+							   placeholder="2026">
+
+					</div>
+
+
+					<div class="field span-2">
+
+						<label>
+							College / Institute
+						</label>
+
+						<input type="text"
+							   placeholder="College / Institute">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							University / Board
+						</label>
+
+						<input type="text"
+							   placeholder="University / Board">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Percentage / CGPA
+						</label>
+
+						<input type="text"
+							   placeholder="Percentage / CGPA">
+
+					</div>
+
+				</div>
+			`;
+
+			container.appendChild(div);
+
+		}
+
+
+		/* =====================================================
+		   ADD EXPERIENCE
+		===================================================== */
+
+		let experienceCount = 1;
+
+		function addExperience() {
+
+			if (experienceCount >= 5) {
+
+				alert(
+					'You can add maximum 5 experiences.'
+				);
+
+				return;
+
+			}
+
+			experienceCount++;
+
+			const container =
+				document.getElementById(
+					'experienceContainer'
+				);
+
+			const div =
+				document.createElement('div');
+
+			div.className = 'repeat-card';
+
+			div.innerHTML = `
+
+				<div class="repeat-header">
+
+					<div class="repeat-title">
+
+						<span class="repeat-number">
+
+							${String(experienceCount).padStart(2,'0')}
+
+						</span>
+
+						Work Experience ${experienceCount}
+
+					</div>
+
+					<button type="button"
+							class="remove-btn"
+							onclick="this.closest('.repeat-card').remove()">
+
+						Remove
+
+					</button>
+
+				</div>
+
+
+				<div class="grid">
+
+					<div class="field span-2">
+
+						<label>
+							Company Name
+						</label>
+
+						<input type="text"
+							   placeholder="Company">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Job Title
+						</label>
+
+						<input type="text"
+							   placeholder="Job Title">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Employment Type
+						</label>
+
+						<select>
+
+							<option>Full Time</option>
+							<option>Part Time</option>
+							<option>Contract</option>
+							<option>Internship</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Start Date
+						</label>
+
+						<input type="date">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							End Date
+						</label>
+
+						<input type="date">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Currently Working
+						</label>
+
+						<select>
+
+							<option>No</option>
+							<option>Yes</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Location
+						</label>
+
+						<input type="text"
+							   placeholder="Location">
+
+					</div>
+
+
+					<div class="field span-4">
+
+						<label>
+							Job Description
+						</label>
+
+						<textarea
+							placeholder="Describe your responsibilities..."></textarea>
+
+					</div>
+
+				</div>
+			`;
+
+			container.appendChild(div);
+
+		}
+
+
+		/* =====================================================
+		   ADD INTERNSHIP
+		===================================================== */
+
+		let internshipCount = 1;
+
+		function addInternship() {
+
+			if (internshipCount >= 3) {
+
+				alert(
+					'Maximum 3 internships are allowed.'
+				);
+
+				return;
+
+			}
+
+			internshipCount++;
+
+			const container =
+				document.getElementById(
+					'internshipContainer'
+				);
+
+			const div =
+				document.createElement('div');
+
+			div.className = 'repeat-card';
+
+			div.innerHTML = `
+
+				<div class="repeat-header">
+
+					<div class="repeat-title">
+
+						<span class="repeat-number">
+
+							${String(internshipCount).padStart(2,'0')}
+
+						</span>
+
+						Internship ${internshipCount}
+
+					</div>
+
+					<button type="button"
+							class="remove-btn"
+							onclick="this.closest('.repeat-card').remove()">
+
+						Remove
+
+					</button>
+
+				</div>
+
+
+				<div class="grid">
+
+					<div class="field span-2">
+
+						<label>
+							Organization / Company
+						</label>
+
+						<input type="text"
+							   placeholder="Company name">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Internship Role
+						</label>
+
+						<input type="text"
+							   placeholder="Role">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Internship Mode
+						</label>
+
+						<select>
+
+							<option>Online</option>
+							<option>Offline</option>
+							<option>Hybrid</option>
+
+						</select>
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Start Date
+						</label>
+
+						<input type="date">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							End Date
+						</label>
+
+						<input type="date">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Duration
+						</label>
+
+						<input type="text"
+							   placeholder="3 Months">
+
+					</div>
+
+
+					<div class="field">
+
+						<label>
+							Stipend
+						</label>
+
+						<input type="text"
+							   placeholder="₹8,000">
+
+					</div>
+
+
+					<div class="field span-2">
+
+						<label>
+							Skills Used
+						</label>
+
+						<input type="text"
+							   placeholder="HTML, CSS, React...">
+
+					</div>
+
+
+					<div class="field span-2">
+
+						<label>
+							Certificate / Project Link
+						</label>
+
+						<input type="url"
+							   placeholder="https://...">
+
+					</div>
+
+
+					<div class="field span-4">
+
+						<label>
+							Internship Description
+						</label>
+
+						<textarea
+							placeholder="Describe your internship..."></textarea>
+
+					</div>
+
+				</div>
+			`;
+
+			container.appendChild(div);
+
+		}
+
+
+		/* =====================================================
+		   PROFILE PHOTO PREVIEW
+		===================================================== */
+
+		document
+			.getElementById('profilePhoto')
+			.addEventListener('change', function (event) {
+
+				const file = event.target.files[0];
+
+				if (!file) return;
+
+				const reader =
+					new FileReader();
+
+				reader.onload = function (e) {
+
+					const photo =
+						document.querySelector(
+							'.profile-photo'
+						);
+
+					photo.innerHTML =
+						`<img src="${e.target.result}" alt="Profile Photo">`;
+
+				};
+
+				reader.readAsDataURL(file);
+
+			});
+
+
+		/* =====================================================
+		   FORM SUBMIT
+		===================================================== */
+
+		/* =====================================================
+   FORM SUBMIT
+===================================================== */
+
+document
+    .getElementById('profileForm')
+    .addEventListener('submit', function (e) {
+
+        e.preventDefault();
+
+
+        /* Validate references */
+
+        if (!validateReferences()) {
+
+            document
+                .getElementById('references')
+                .scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+            return;
+
+        }
+
+
+        alert(
+            'Profile updated successfully!'
+        );
+
+    });
+
+
+	</script>
+
+	<script>
+		/* =====================================================
+   PROFILE PHOTO PREVIEW
+===================================================== */
+
+function setupPhotoPreview(inputId) {
+
+    const input = document.getElementById(inputId);
+
+    if (!input) return;
+
+    input.addEventListener('change', function (event) {
+
+        const file = event.target.files[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+
+            alert('Please select a valid image file.');
+
+            input.value = '';
+
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            const photo =
+                document.querySelector('.profile-photo');
+
+            if (photo) {
+
+                photo.innerHTML =
+                    `<img src="${e.target.result}"
+                          alt="Profile Photo">`;
+
+            }
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+setupPhotoPreview('profilePhoto');
+setupPhotoPreview('Photo');
+
+
+document
+    .getElementById('GraduationStream')
+    .addEventListener('change', function () {
+
+        const otherStream =
+            document.getElementById('OtherStream');
+
+        if (this.value === 'Other') {
+
+            otherStream.disabled = false;
+
+            otherStream.focus();
+
+        } else {
+
+            otherStream.value = '';
+
+            otherStream.disabled = true;
+
+        }
+
+    });
+
+document
+    .getElementById('OtherStream')
+    .disabled = true;
+
+
+	document
+    .getElementById('PGStream')
+    .addEventListener('change', function () {
+
+        const otherSpecialization =
+            document.getElementById('OtherSpecialization');
+
+        if (this.value === 'Other') {
+
+            otherSpecialization.disabled = false;
+
+            otherSpecialization.focus();
+
+        } else {
+
+            otherSpecialization.value = '';
+
+            otherSpecialization.disabled = true;
+
+        }
+
+    });
+
+document
+    .getElementById('OtherSpecialization')
+    .disabled = true;
+
+
+	/* =====================================================
+   REFERENCE VALIDATION
+   Reference 1 and Reference 2 must be different
+===================================================== */
+
+function normalizeReference(value) {
+
+    return value
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, ' ');
+
+}
+
+
+function validateReferences() {
+
+    const name1 =
+        normalizeReference(
+            document.getElementById('Reference1Name').value
+        );
+
+    const name2 =
+        normalizeReference(
+            document.getElementById('Reference2Name').value
+        );
+
+    const mobile1 =
+        document.getElementById('Reference1Mobile').value
+            .replace(/\D/g, '');
+
+    const mobile2 =
+        document.getElementById('Reference2Mobile').value
+            .replace(/\D/g, '');
+
+    const email1 =
+        normalizeReference(
+            document.getElementById('Reference1Email').value
+        );
+
+    const email2 =
+        normalizeReference(
+            document.getElementById('Reference2Email').value
+        );
+
+    const error =
+        document.getElementById('referenceError');
+
+
+    /*
+       Consider references the same if:
+       - Name is same
+       - Mobile number is same
+       - Email is same
+    */
+
+    const sameName =
+        name1 !== '' &&
+        name2 !== '' &&
+        name1 === name2;
+
+    const sameMobile =
+        mobile1 !== '' &&
+        mobile2 !== '' &&
+        mobile1 === mobile2;
+
+    const sameEmail =
+        email1 !== '' &&
+        email2 !== '' &&
+        email1 === email2;
+
+
+    if (sameName || sameMobile || sameEmail) {
+
+        error.textContent =
+            'Reference 1 and Reference 2 must be different persons. Please provide two different references.';
+
+        error.style.display = 'block';
+
+        return false;
+
+    }
+
+
+    error.textContent = '';
+
+    error.style.display = 'none';
+
+    return true;
+
+}
+
+
+</script>
+
+</body>
+</html>

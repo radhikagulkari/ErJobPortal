@@ -1,0 +1,160 @@
+﻿@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    ViewData["Title"] = "Super Admin Dashboard";
+
+    ViewData["Panel"] = "SuperAdmin";
+
+    ViewData["UserName"] = "Super Admin";
+}
+
+@{
+    ViewData["Title"] = "Add Objective";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="card-header">
+            <h4 class="mb-0">Add Objective</h4>
+        </div>
+
+        <div class="card-body">
+
+            <div class="mb-3">
+                <label for="nGenderID" class="form-label">
+                    Gender <span class="text-danger">*</span>
+                </label>
+
+                <select id="nGenderID" class="form-select">
+                    <option value="">-- Select Gender --</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+
+                <span id="genderError" class="text-danger"></span>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="sObjective" class="form-label">
+                    Objective <span class="text-danger">*</span>
+                </label>
+
+                <textarea id="sObjective"
+                          class="form-control"
+                          rows="4"
+                          placeholder="Enter objective"></textarea>
+
+                <span id="objectiveError" class="text-danger"></span>
+            </div>
+
+
+            <button type="button"
+                    id="btnAddObjective"
+                    class="btn btn-primary">
+                Add Objective
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+
+        $("#btnAddObjective").click(function () {
+            debugger;
+        // Clear previous errors
+        $("#genderError").text("");
+        $("#objectiveError").text("");
+
+        var genderID = $("#nGenderID").val();
+        var objective = $("#sObjective").val().trim();
+
+        var isValid = true;
+
+
+        // Gender validation
+        if (genderID === "") {
+        $("#genderError").text("Please select gender.");
+        isValid = false;
+        }
+
+
+        // Objective validation
+        if (objective === "") {
+        $("#objectiveError").text("Please enter objective.");
+        isValid = false;
+        }
+
+
+        if (!isValid) {
+        return;
+        }
+
+
+        // Disable button
+        $("#btnAddObjective")
+        .prop("disabled", true)
+        .text("Saving...");
+
+
+        $.ajax({
+
+        url: '@Url.Action("AddObjective", "SuperAdmin")',
+
+        type: 'POST',
+
+        data: {
+        nGenderID: parseInt(genderID),
+        sObjective: objective
+        },
+
+        success: function (response) {
+
+        if (response.success) {
+
+        alert(response.message);
+
+        // Clear form
+        $("#nGenderID").val("");
+        $("#sObjective").val("");
+
+        }
+        else {
+
+        alert(response.message);
+
+        }
+        },
+
+        error: function (xhr) {
+
+        console.log(xhr.responseText);
+
+        alert("Something went wrong while saving objective.");
+
+        },
+
+        complete: function () {
+
+        $("#btnAddObjective")
+        .prop("disabled", false)
+        .text("Add Objective");
+
+        }
+
+        });
+
+        });
+
+    </script>
+}

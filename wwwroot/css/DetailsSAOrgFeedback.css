@@ -1,0 +1,559 @@
+﻿/* =========================================================
+   1TRAINEE - ORGANIZATION FEEDBACK DETAILS
+   DESIGN ONLY
+   ========================================================= */
+
+.feedback-details-container {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 30px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.feedback-details-card {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+.feedback-title {
+    position: relative;
+    margin: 0 0 24px;
+    padding-left: 14px;
+    color: #0f172a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+    .feedback-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 4px;
+        height: 28px;
+        background: #0d9488;
+        border-radius: 4px;
+    }
+
+
+/* =========================================================
+   QUESTION CARD
+   ========================================================= */
+
+.feedback-section {
+    position: relative;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 18px 21px 22px;
+    background: #ffffff;
+    border: 1px solid #dbe4ea;
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.035);
+}
+
+
+/* =========================================================
+   QUESTION LABEL
+   ========================================================= */
+
+.question-label {
+    display: block;
+    margin: 0;
+    padding: 1px 0 0 35px;
+    color: #0f172a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.55;
+    position: relative;
+}
+
+
+    /* Question number visual */
+
+    .question-label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ccfbf1;
+        border-radius: 7px;
+    }
+
+
+/* =========================================================
+   QUESTION NUMBER TEXT
+   ========================================================= */
+
+/*
+   Hide the original "Question X." visually and
+   recreate the number inside the badge.
+*/
+
+.question-label {
+    font-size: 0;
+}
+
+    .question-label::after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0d9488;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+
+/* =========================================================
+   QUESTION NUMBER VALUES
+   ========================================================= */
+
+.feedback-section:nth-child(2)
+.question-label::after {
+    content: "1.";
+}
+
+.feedback-section:nth-child(3)
+.question-label::after {
+    content: "2.";
+}
+
+.feedback-section:nth-child(4)
+.question-label::after {
+    content: "3.";
+}
+
+.feedback-section:nth-child(5)
+.question-label::after {
+    content: "4.";
+}
+
+.feedback-section:nth-child(6)
+.question-label::after {
+    content: "5.";
+}
+
+
+/* =========================================================
+   QUESTION BOX
+   ========================================================= */
+
+.question-box {
+    width: 100%;
+    min-height: auto;
+    margin: 10px 0 0;
+    padding: 0 0 0 35px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    color: #0f172a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.55;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   ANSWER LABEL
+   ========================================================= */
+
+.answer-label {
+    margin: 15px 0 8px 35px;
+    color: #64748b;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   ANSWER BOX
+   ========================================================= */
+
+.answer-box {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 0 0 35px;
+    color: #334155;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   TRUE / FALSE / YES / NO BUTTON
+   ========================================================= */
+
+.answer-radio {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-width: 99px;
+    height: 52px;
+    margin: 0 8px 0 0;
+    padding: 0 18px 0 45px;
+    background: #ffffff;
+    border: 1px solid #d6e0e8;
+    border-radius: 10px;
+    color: #0f172a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+
+    /* =========================================================
+   RADIO INPUT
+   ========================================================= */
+
+    .answer-radio input {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        transform: translateY(-50%);
+        appearance: none;
+        -webkit-appearance: none;
+        background: #ffffff;
+        border: 1.5px solid #9aabbc;
+        border-radius: 50%;
+        box-sizing: border-box;
+    }
+
+
+        /* Selected radio */
+
+        .answer-radio input:checked {
+            border: 1.5px solid #0d9488;
+        }
+
+
+            /* Inner selected circle */
+
+            .answer-radio input:checked::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 10px;
+                height: 10px;
+                background: #0d9488;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+
+/* =========================================================
+   STAR RATING
+   ========================================================= */
+
+.detail-stars {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0 0 0 35px;
+    padding: 0;
+}
+
+
+/* Individual star */
+
+.detail-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 30px;
+    color: #f59e0b;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+
+/* =========================================================
+   EMOJI RATING
+   ========================================================= */
+
+.detail-emojis {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 0 35px;
+    padding: 0;
+}
+
+
+/* Individual emoji circle */
+
+.detail-emoji {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #d6e0e8;
+    border-radius: 50%;
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+    font-size: 20px;
+    opacity: 0.45;
+    box-sizing: border-box;
+}
+
+
+    /* Active emoji */
+
+    .detail-emoji.active {
+        opacity: 1;
+        border-color: #0d9488;
+        background: #f0fdfa;
+    }
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.description-box {
+    width: calc(100% - 35px);
+    min-height: 91px;
+    margin: 0 0 0 35px;
+    padding: 11px 13px;
+    background: #ffffff;
+    border: 1px solid #d2dde6;
+    border-radius: 8px;
+    color: #334155;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .feedback-title {
+        font-size: 24px;
+    }
+
+    .feedback-section {
+        padding: 17px 18px 20px;
+    }
+
+    .question-label {
+        font-size: 0;
+    }
+
+    .question-box {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .feedback-details-container {
+        padding-bottom: 25px;
+    }
+
+    .feedback-title {
+        margin-bottom: 18px;
+        padding-left: 12px;
+        font-size: 22px;
+    }
+
+        .feedback-title::before {
+            height: 25px;
+        }
+
+    .feedback-section {
+        margin-bottom: 12px;
+        padding: 16px;
+        border-radius: 11px;
+    }
+
+    .question-label {
+        padding-left: 32px;
+    }
+
+        .question-label::before,
+        .question-label::after {
+            width: 23px;
+            height: 23px;
+        }
+
+        .question-label::after {
+            font-size: 12px;
+        }
+
+    .question-box {
+        margin-top: 10px;
+        padding-left: 32px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .answer-label {
+        margin: 14px 0 8px 32px;
+        font-size: 12px;
+    }
+
+    .answer-box {
+        margin-left: 32px;
+    }
+
+    .answer-radio {
+        min-width: 85px;
+        height: 46px;
+        padding: 0 15px 0 39px;
+        font-size: 15px;
+        border-radius: 9px;
+    }
+
+        .answer-radio input {
+            left: 14px;
+            width: 18px;
+            height: 18px;
+        }
+
+            .answer-radio input:checked::after {
+                width: 9px;
+                height: 9px;
+            }
+
+    .detail-stars {
+        margin-left: 32px;
+        gap: 5px;
+    }
+
+    .detail-star {
+        width: 23px;
+        font-size: 26px;
+    }
+
+    .detail-emojis {
+        margin-left: 32px;
+        gap: 8px;
+    }
+
+    .detail-emoji {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+
+    .description-box {
+        width: calc(100% - 32px);
+        margin-left: 32px;
+        min-height: 100px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .feedback-section {
+        padding: 14px;
+    }
+
+    .question-label {
+        padding-left: 31px;
+    }
+
+    .question-box {
+        padding-left: 31px;
+        font-size: 12.5px;
+    }
+
+    .answer-label {
+        margin-left: 31px;
+    }
+
+    .answer-box {
+        margin-left: 31px;
+    }
+
+    .answer-radio {
+        min-width: 80px;
+        height: 44px;
+        padding-left: 37px;
+        font-size: 14px;
+    }
+
+        .answer-radio input {
+            left: 13px;
+        }
+
+    .detail-stars {
+        margin-left: 31px;
+        gap: 3px;
+    }
+
+    .detail-star {
+        font-size: 25px;
+    }
+
+    .detail-emojis {
+        margin-left: 31px;
+        gap: 6px;
+    }
+
+    .description-box {
+        width: calc(100% - 31px);
+        margin-left: 31px;
+    }
+}

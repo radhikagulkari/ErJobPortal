@@ -1,0 +1,3656 @@
+﻿@model ErJobPortal.Models.CandidateProfileViewModel
+
+<style>
+    /* ========================================================= */
+    /* SKILLS SECTION */
+    /* ========================================================= */
+
+    .skills-section {
+        width: 100%;
+        margin-top: 25px;
+        margin-bottom: 30px;
+    }
+
+
+    /* ========================================================= */
+    /* TITLE */
+    /* ========================================================= */
+
+    .skills-title {
+        margin-bottom: 15px;
+    }
+
+        .skills-title label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #102a43;
+        }
+
+        .skills-title .required {
+            color: #dc3545;
+            font-weight: 700;
+        }
+
+
+    /* ========================================================= */
+    /* ACCORDION */
+    /* ========================================================= */
+
+    .skills-section .skill-accordion {
+        width: 100%;
+        margin-bottom: 15px;
+        background: #ffffff;
+        border: 1px solid #dce3eb;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+
+    /* ========================================================= */
+    /* ACCORDION HEADER */
+    /* ========================================================= */
+
+    .skills-section .skill-header {
+        min-height: 70px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        background: #f8fafc;
+        list-style: none;
+        transition: background 0.2s ease;
+    }
+
+
+        /* Remove default details arrow */
+
+        .skills-section .skill-header::-webkit-details-marker {
+            display: none;
+        }
+
+        .skills-section .skill-header::marker {
+            display: none;
+        }
+
+
+        /* Header hover */
+
+        .skills-section .skill-header:hover {
+            background: #f1f5f9;
+        }
+
+
+    /* ========================================================= */
+    /* SKILL HEADING */
+    /* ========================================================= */
+
+    .skills-section .skill-heading {
+        font-size: 16px;
+        font-weight: 600;
+        color: #102a43;
+    }
+
+
+    /* ========================================================= */
+    /* RIGHT SIDE */
+    /* ========================================================= */
+
+    .skills-section .skill-header-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+
+    /* ========================================================= */
+    /* SELECTED COUNT */
+    /* ========================================================= */
+
+    .skills-section .selected-count {
+        min-width: 90px;
+        padding: 8px 14px;
+        text-align: center;
+        border-radius: 30px;
+        background: #e5f5f3;
+        color: #0d9488;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+
+    /* ========================================================= */
+    /* ARROW */
+    /* ========================================================= */
+
+    .skills-section .accordion-arrow {
+        width: 20px;
+        text-align: center;
+        color: #718096;
+        font-size: 13px;
+        transition: transform 0.2s ease;
+    }
+
+
+    /* ========================================================= */
+    /* ACCORDION BODY */
+    /* ========================================================= */
+
+    .skills-section .skill-body {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        border-top: 1px solid #dce3eb;
+        background: #ffffff;
+    }
+
+
+    /* ========================================================= */
+    /* SKILL ITEM */
+    /* ========================================================= */
+
+    .skills-section .skill-item {
+        min-height: 58px;
+        padding: 0 14px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        border: 1px solid #dce3eb;
+        border-radius: 9px;
+        background: #ffffff;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        color: #172b4d;
+        transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+
+        /* ========================================================= */
+        /* CHECKBOX */
+        /* ========================================================= */
+
+        .skills-section .skill-item input[type="checkbox"] {
+            width: 19px;
+            height: 19px;
+            margin: 0;
+            flex-shrink: 0;
+            cursor: pointer;
+            accent-color: #0d9488;
+        }
+
+
+        /* ========================================================= */
+        /* SKILL TEXT */
+        /* ========================================================= */
+
+        .skills-section .skill-item span {
+            line-height: 1.3;
+        }
+
+
+        /* ========================================================= */
+        /* HOVER */
+        /* ========================================================= */
+
+        .skills-section .skill-item:hover {
+            border-color: #0d9488;
+            background: #f8fffe;
+            box-shadow: 0 3px 8px rgba(13, 148, 136, 0.08);
+            transform: translateY(-1px);
+        }
+
+
+        /* ========================================================= */
+        /* SELECTED */
+        /* ========================================================= */
+
+        .skills-section .skill-item:has(input[type="checkbox"]:checked) {
+            border-color: #0d9488;
+            background: #f0fdfa;
+            box-shadow: 0 2px 6px rgba(13, 148, 136, 0.10);
+        }
+
+
+        /* ========================================================= */
+        /* SELECTED CHECKBOX */
+        /* ========================================================= */
+
+        .skills-section
+        .skill-item
+        input[type="checkbox"]:checked {
+            accent-color: #0d9488;
+        }
+
+
+    /* ========================================================= */
+    /* OPEN ACCORDION */
+    /* ========================================================= */
+
+    .skills-section
+    .skill-accordion[open]
+    .skill-header {
+        background: #f8fafc;
+    }
+
+
+    /* ========================================================= */
+    /* RESPONSIVE - TABLET */
+    /* ========================================================= */
+
+    @@media (max-width: 992px) {
+
+        .skills-section .skill-body {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+
+    /* ========================================================= */
+    /* RESPONSIVE - SMALL TABLET */
+    /* ========================================================= */
+
+    @@media (max-width: 768px) {
+
+        .skills-section .skill-body {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .skills-section .skill-header {
+            min-height: 65px;
+            padding: 0 16px;
+        }
+
+        .skills-section .skill-heading {
+            font-size: 15px;
+        }
+    }
+
+
+    /* ========================================================= */
+    /* RESPONSIVE - MOBILE */
+    /* ========================================================= */
+
+    @@media (max-width: 576px) {
+
+        .skills-section {
+            margin-top: 20px;
+        }
+
+            .skills-section .skill-body {
+                grid-template-columns: 1fr;
+                padding: 14px;
+                gap: 10px;
+            }
+
+            .skills-section .skill-header {
+                min-height: 62px;
+                padding: 0 14px;
+            }
+
+            .skills-section .skill-header-right {
+                gap: 8px;
+            }
+
+            .skills-section .selected-count {
+                min-width: 75px;
+                padding: 7px 9px;
+                font-size: 11px;
+            }
+
+            .skills-section .skill-heading {
+                font-size: 14px;
+            }
+
+            .skills-section .skill-item {
+                min-height: 54px;
+                font-size: 14px;
+            }
+    }
+
+
+    /* ========================================================= */
+    /* VERY SMALL MOBILE */
+    /* ========================================================= */
+
+    @@media (max-width: 400px) {
+
+        .skills-section .skill-header {
+            padding: 0 12px;
+        }
+
+        .skills-section .skill-heading {
+            font-size: 13px;
+        }
+
+        .skills-section .selected-count {
+            min-width: 65px;
+            font-size: 10px;
+        }
+
+        .skills-section .accordion-arrow {
+            width: 14px;
+        }
+    }
+
+    /* ========================================================= */
+    /* UPDATE SKILLS BUTTON */
+    /* ========================================================= */
+
+    #btnUpdateSkills {
+        min-width: 150px;
+        min-height: 42px;
+        font-weight: 600;
+        border-radius: 8px;
+    }
+
+        #btnUpdateSkills:disabled {
+            cursor: not-allowed;
+            opacity: 0.75;
+        }
+
+
+    /* ========================================================= */
+    /* VALIDATION */
+    /* ========================================================= */
+
+    #skillValidationMessage {
+        font-size: 14px;
+        font-weight: 500;
+    }
+</style>
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Candidate Profile";
+    ViewData["Panel"] = "Candidate";
+    ViewData["UserName"] = "Candidate";
+}
+
+
+<div class="container-fluid mt-4">
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <!-- ================================================= -->
+    <!-- PROFILE HEADER -->
+    <!-- ================================================= -->
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4 class="mb-0">Candidate Profile</h4>
+        </div>
+    </div>
+
+
+    <!-- ================= ADDRESS ================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h4 class="mb-0">Address</h4>
+        </div>
+
+        <div class="card-body">
+            <form id="addressForm"
+                  asp-action="UpdateAddress"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+
+                    <!-- COUNTRY -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            Country
+                        </label>
+
+                        <select asp-for="Profile.CountryID"
+                                class="form-control"
+                                id="CountryID">
+
+                            <option value="">
+                                -- Select Country --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- STATE -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            State
+                        </label>
+
+                        <select asp-for="Profile.StateID"
+                                class="form-control"
+                                id="StateID"
+                                disabled>
+
+                            <option value="">
+                                -- Select State --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- CITY -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            City
+                        </label>
+
+                        <select asp-for="Profile.CityID"
+                                class="form-control"
+                                id="CityID"
+                                disabled>
+
+                            <option value="">
+                                -- Select City --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- PINCODE -->
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            Pincode
+                        </label>
+
+                        <input asp-for="Profile.Pincode"
+                               class="form-control"
+                               placeholder="Enter Pincode" />
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-end">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update Address
+
+                    </button>
+
+                </div>
+
+            </form>
+            @* <form asp-action="UpdateAddress"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">Country</label>
+
+                        <select asp-for="Profile.CountryID"
+                                class="form-control"
+                                id="CountryID">
+
+                            <option value="">
+                                -- Select Country --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">State</label>
+
+                        <select asp-for="Profile.StateID"
+                                class="form-control"
+                                id="StateID"
+                                disabled>
+
+                            <option value="">
+                                -- Select State --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">City</label>
+
+                        <select asp-for="Profile.CityID"
+                                class="form-control"
+                                id="CityID"
+                                disabled>
+
+                            <option value="">
+                                -- Select City --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            Pincode
+                        </label>
+
+                        <input asp-for="Profile.Pincode"
+                               class="form-control"
+                               placeholder="Enter Pincode" />
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-end">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update Address
+
+                    </button>
+
+                </div>
+
+            </form> *@
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= EDUCATION ================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+
+            <h4 class="mb-0">
+                Education
+            </h4>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <form asp-action="UpdateEducation"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+
+                <!-- ================= SSC ================= -->
+
+                <h5>SSC / 10th</h5>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>SSC Year</label>
+
+                        <input asp-for="Profile.SSC_YEAR"
+                               type="number"
+                               class="form-control" />
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>SSC Division</label>
+
+                        <select asp-for="Profile.SSC_DIVISION"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.Divisions, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Division --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <hr />
+
+
+                <!-- ================= HSC ================= -->
+
+                <h5>HSC / Diploma</h5>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>HSC / Diploma Year</label>
+
+                        <input asp-for="Profile.HSC_DIPLOMA_YEAR"
+                               type="number"
+                               class="form-control" />
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>HSC / Diploma Division</label>
+
+                        <select asp-for="Profile.HSC_DIPLOMA_DIVISION"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.Divisions, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Division --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <hr />
+
+
+                <!-- ================= GRADUATION ================= -->
+
+                <h5>Graduation</h5>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>Graduation Year</label>
+
+                        <input asp-for="Profile.Graduation_Year"
+                               type="number"
+                               class="form-control" />
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>Graduation Division</label>
+
+                        <select asp-for="Profile.Graduation_Division"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.Divisions, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Division --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>Graduation Stream</label>
+
+                        <select asp-for="Profile.Graduation_Stream"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.Streams, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Stream --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>Other Stream</label>
+
+                        <input asp-for="Profile.Other_Stream"
+                               class="form-control" />
+
+                    </div>
+
+                </div>
+
+
+                <hr />
+
+
+                <!-- ================= PG ================= -->
+
+                <h5>Post Graduation</h5>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>PG Year</label>
+
+                        <input asp-for="Profile.PG_Year"
+                               type="number"
+                               class="form-control" />
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>PG Division</label>
+
+                        <select asp-for="Profile.PG_Division"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.Divisions, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Division --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>PG Stream</label>
+
+                        <select asp-for="Profile.PG_Stream"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.Streams, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Stream --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>Other Specialization</label>
+
+                        <input asp-for="Profile.Other_Specialization"
+                               class="form-control" />
+
+                    </div>
+
+                </div>
+
+
+                <hr />
+
+
+                <!-- ================= PHD ================= -->
+
+                <h5>PhD</h5>
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>PhD Year</label>
+
+                        <input asp-for="Profile.PhD_Year"
+                               type="number"
+                               class="form-control" />
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>PhD Status</label>
+
+                        <select asp-for="Profile.PhD_Status"
+                                class="form-control"
+                                asp-items="@(new SelectList(Model.GraduationStatuses, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Status --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>PhD Topic</label>
+
+                        <input asp-for="Profile.PhD_Topic"
+                               class="form-control" />
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label>Previous PhD Topic / Year</label>
+
+                        <input asp-for="Profile.Previous_PhD_Topic_Year"
+                               class="form-control" />
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-end">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update Education
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- INTERNSHIP / FELLOWSHIP PREFERENCE -->
+    <!-- ================================================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                Internship / Fellowship Preference
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="UpdateInternshipPreference"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            Internship / Fellowship Type
+                        </label>
+
+                        <select asp-for="Profile.Internship_FellowshipType"
+                                class="form-control"
+                                asp-items="@(new SelectList(
+                                                                                         Model.InternshipFellowshipType,
+                                                                                         "ID",
+                                                                                         "Name"
+                                                                                     ))">
+
+                            <option value="">
+                                -- Select Type --
+                            </option>
+
+                        </select>
+
+                        <span asp-validation-for="Profile.Internship_FellowshipType"
+                              class="text-danger"></span>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            Preferred Country
+                        </label>
+
+                        <input asp-for="Profile.Preferred_Country"
+                               class="form-control" />
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            Preferred State
+                        </label>
+
+                        <input asp-for="Profile.Preferred_State"
+                               class="form-control" />
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+
+                        <label class="form-label">
+                            Preferred City
+                        </label>
+
+                        <input asp-for="Profile.Preferred_City"
+                               class="form-control" />
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-end">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update Preference
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <!-- ================================================= -->
+    <!-- DOCUMENTS -->
+    <!-- ================================================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                Documents & Personal Details
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-controller="Candidate"
+                  asp-action="UpdateDocuments"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+
+                    <!-- Resume -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Resume</label>
+
+                        <input type="file"
+                               name="ResumeFile"
+                               class="form-control"
+                               accept=".pdf,.doc,.docx" />
+
+                        @if (!string.IsNullOrEmpty(Model.Profile?.sResume))
+                        {
+                            <small class="text-success d-block mt-2">
+                                ✓ Resume already uploaded
+                            </small>
+
+                            <a href="@Model.Profile.sResume"
+                               target="_blank"
+                               class="btn btn-sm btn-outline-primary mt-1">
+                                View Resume
+                            </a>
+                        }
+                    </div>
+
+                    <!-- Photo -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Photo</label>
+
+                        <input type="file"
+                               name="PhotoFile"
+                               class="form-control"
+                               accept=".jpg,.jpeg,.png" />
+
+                        @if (!string.IsNullOrEmpty(Model.Profile?.sPhoto))
+                        {
+                            <small class="text-success d-block mt-2">
+                                ✓ Photo already uploaded
+                            </small>
+
+                            <img src="@Model.Profile.sPhoto"
+                                 alt="Photo"
+                                 class="mt-1"
+                                 style="width:80px;height:80px;object-fit:cover;" />
+                        }
+                    </div>
+
+                    <!-- Signature -->
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label fw-bold">Signature</label>
+
+                        <input type="file"
+                               name="SignatureFile"
+                               class="form-control"
+                               accept=".jpg,.jpeg,.png" />
+
+                        @if (!string.IsNullOrEmpty(Model.Profile?.sSignature))
+                        {
+                            <small class="text-success d-block mt-2">
+                                ✓ Signature already uploaded
+                            </small>
+
+                            <br />
+
+                            <img src="@Model.Profile.sSignature"
+                                 alt="Signature"
+                                 class="mt-1"
+                                 style="width:150px;
+                              height:60px;
+                              object-fit:contain;
+                              border:1px solid #ddd;" />
+                        }
+                    </div>
+
+                    <!-- Divyang -->
+                    <div class="col-md-6 mb-3">
+
+                        <label asp-for="Profile.sDivyang"
+                               class="form-label">
+                            Divyang
+                        </label>
+
+                        <select asp-for="Profile.sDivyang"
+                                class="form-select">
+
+                            <option value="">-- Select --</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Hobbies -->
+                    <div class="col-md-6 mb-3">
+
+                        <label asp-for="Profile.sHobbies"
+                               class="form-label">
+                            Hobbies
+                        </label>
+
+                        <input asp-for="Profile.sHobbies"
+                               class="form-control"
+                               placeholder="Enter your hobbies" />
+
+                    </div>
+
+                </div>
+
+                <div class="text-end mt-3">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Update Personal Details
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- INTERNSHIP DETAILS -->
+    <!-- ================================================= -->
+    <!-- =========================================================
+     INTERNSHIP DETAILS
+     ========================================================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                Internship Details
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-controller="Candidate"
+                  asp-action="UpdateInternshipDetails"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Profile.CandidateID" />
+
+
+                <!-- =====================================================
+                 INTERNSHIP 1
+                 ===================================================== -->
+
+                <h6 class="mt-2 mb-3">
+                    Internship 1
+                </h6>
+
+                <div class="row">
+
+                    <!-- Organization -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgName1"
+                               class="form-label">
+                            Organization Name
+                        </label>
+
+                        <input asp-for="Profile.sOrgName1"
+                               class="form-control"
+                               placeholder="Organization Name" />
+
+                    </div>
+
+
+                    <!-- Title -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntTitle1"
+                               class="form-label">
+                            Internship Title
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntTitle1"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipTitles, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Title --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Duration -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntDuration1"
+                               class="form-label">
+                            Duration
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntDuration1"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipDurations, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Duration --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Status -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntStatus1"
+                               class="form-label">
+                            Status
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntStatus1"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipStatuses, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Status --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                 INTERNSHIP 2
+                 ===================================================== -->
+
+                <h6 class="mt-3 mb-3">
+                    Internship 2
+                </h6>
+
+                <div class="row">
+
+                    <!-- Organization -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgName2"
+                               class="form-label">
+                            Organization Name
+                        </label>
+
+                        <input asp-for="Profile.sOrgName2"
+                               class="form-control"
+                               placeholder="Organization Name" />
+
+                    </div>
+
+
+                    <!-- Title -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntTitle2"
+                               class="form-label">
+                            Internship Title
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntTitle2"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipTitles, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Title --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Duration -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntDuration2"
+                               class="form-label">
+                            Duration
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntDuration2"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipDurations, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Duration --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Status -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntStatus2"
+                               class="form-label">
+                            Status
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntStatus2"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipStatuses, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Status --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                 INTERNSHIP 3
+                 ===================================================== -->
+
+                <h6 class="mt-3 mb-3">
+                    Internship 3
+                </h6>
+
+                <div class="row">
+
+                    <!-- Organization -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgName3"
+                               class="form-label">
+                            Organization Name
+                        </label>
+
+                        <input asp-for="Profile.sOrgName3"
+                               class="form-control"
+                               placeholder="Organization Name" />
+
+                    </div>
+
+
+                    <!-- Title -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntTitle3"
+                               class="form-label">
+                            Internship Title
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntTitle3"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipTitles, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Title --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Duration -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntDuration3"
+                               class="form-label">
+                            Duration
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntDuration3"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipDurations, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Duration --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Status -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntStatus3"
+                               class="form-label">
+                            Status
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntStatus3"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipStatuses, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Status --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                 INTERNSHIP 4
+                 ===================================================== -->
+
+                <h6 class="mt-3 mb-3">
+                    Internship 4
+                </h6>
+
+                <div class="row">
+
+                    <!-- Organization -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgName4"
+                               class="form-label">
+                            Organization Name
+                        </label>
+
+                        <input asp-for="Profile.sOrgName4"
+                               class="form-control"
+                               placeholder="Organization Name" />
+
+                    </div>
+
+
+                    <!-- Title -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntTitle4"
+                               class="form-label">
+                            Internship Title
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntTitle4"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipTitles, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Title --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Duration -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntDuration4"
+                               class="form-label">
+                            Duration
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntDuration4"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipDurations, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Duration --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Status -->
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Profile.sOrgIntStatus4"
+                               class="form-label">
+                            Status
+                        </label>
+
+                        <select asp-for="Profile.sOrgIntStatus4"
+                                class="form-select"
+                                asp-items="@(new SelectList(Model.InternshipStatuses, "ID", "Name"))">
+
+                            <option value="">
+                                -- Select Status --
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================================================
+                 UPDATE BUTTON
+                 ===================================================== -->
+
+                <div class="text-end mt-3">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update Internship Details
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- LANGUAGES -->
+    <!-- ================================================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">Languages Known</h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="UpdateLanguages"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Profile.CandidateID" />
+
+
+                <!-- ================================================= -->
+                <!-- LANGUAGE 1 -->
+                <!-- ================================================= -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Language 1
+                        </label>
+
+                        <input asp-for="Profile.sLanguage1"
+                               class="form-control"
+                               placeholder="Enter language" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <select asp-for="Profile.sLanguageStar1"
+                                class="form-control">
+
+                            <option value="">
+                                -- Rating --
+                            </option>
+
+                            <option value="1">
+                                1 Star
+                            </option>
+
+                            <option value="2">
+                                2 Stars
+                            </option>
+
+                            <option value="3">
+                                3 Stars
+                            </option>
+
+                            <option value="4">
+                                4 Stars
+                            </option>
+
+                            <option value="5">
+                                5 Stars
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LANGUAGE 2 -->
+                <!-- ================================================= -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Language 2
+                        </label>
+
+                        <input asp-for="Profile.sLanguage2"
+                               class="form-control"
+                               placeholder="Enter language" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <select asp-for="Profile.sLanguageStar2"
+                                class="form-control">
+
+                            <option value="">
+                                -- Rating --
+                            </option>
+
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LANGUAGE 3 -->
+                <!-- ================================================= -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Language 3
+                        </label>
+
+                        <input asp-for="Profile.sLanguage3"
+                               class="form-control"
+                               placeholder="Enter language" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <select asp-for="Profile.sLanguageStar3"
+                                class="form-control">
+
+                            <option value="">
+                                -- Rating --
+                            </option>
+
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LANGUAGE 4 -->
+                <!-- ================================================= -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Language 4
+                        </label>
+
+                        <input asp-for="Profile.sLanguage4"
+                               class="form-control"
+                               placeholder="Enter language" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <select asp-for="Profile.sLanguageStar4"
+                                class="form-control">
+
+                            <option value="">
+                                -- Rating --
+                            </option>
+
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LANGUAGE 5 -->
+                <!-- ================================================= -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Language 5
+                        </label>
+
+                        <input asp-for="Profile.sLanguage5"
+                               class="form-control"
+                               placeholder="Enter language" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <select asp-for="Profile.sLanguageStar5"
+                                class="form-control">
+
+                            <option value="">
+                                -- Rating --
+                            </option>
+
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LANGUAGE 6 -->
+                <!-- ================================================= -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Language 6
+                        </label>
+
+                        <input asp-for="Profile.sLanguage6"
+                               class="form-control"
+                               placeholder="Enter language" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <select asp-for="Profile.sLanguageStar6"
+                                class="form-control">
+
+                            <option value="">
+                                -- Rating --
+                            </option>
+
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LANGUAGE 7 -->
+                <!-- ================================================= -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Language 7
+                        </label>
+
+                        <input asp-for="Profile.sLanguage7"
+                               class="form-control"
+                               placeholder="Enter language" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <select asp-for="Profile.sLanguageStar7"
+                                class="form-control">
+
+                            <option value="">
+                                -- Rating --
+                            </option>
+
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- LANGUAGE 8 -->
+                <!-- ================================================= -->
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Language 8
+                        </label>
+
+                        <input asp-for="Profile.sLanguage8"
+                               class="form-control"
+                               placeholder="Enter language" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <select asp-for="Profile.sLanguageStar8"
+                                class="form-control">
+
+                            <option value="">
+                                -- Rating --
+                            </option>
+
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================================= -->
+                <!-- UPDATE BUTTON -->
+                <!-- ================================================= -->
+
+                <div class="text-end">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update Languages
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- REFERENCES -->
+    <!-- ================================================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">References</h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="UpdateReferences"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Profile.CandidateID" />
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <h6>Reference 1</h6>
+
+                        <div class="mb-3">
+
+                            <label>Name</label>
+
+                            <input asp-for="Profile.sRefName1"
+                                   class="form-control" />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Relationship</label>
+
+                            <select asp-for="Profile.sRefRelationName1"
+                                    class="form-control"
+                                    asp-items="@(new SelectList(Model.Relationships, "ID", "Name"))">
+
+                                <option value="">
+                                    -- Select Relationship --
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Location</label>
+
+                            <input asp-for="Profile.sLocation1"
+                                   class="form-control" />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Mobile</label>
+
+                            <input asp-for="Profile.sMobile1"
+                                   class="form-control" />
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <h6>Reference 2</h6>
+
+                        <div class="mb-3">
+
+                            <label>Name</label>
+
+                            <input asp-for="Profile.sRefName2"
+                                   class="form-control" />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Relationship</label>
+
+                            <select asp-for="Profile.sRefRelationName2"
+                                    class="form-control"
+                                    asp-items="@(new SelectList(Model.Relationships, "ID", "Name"))">
+
+                                <option value="">
+                                    -- Select Relationship --
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Location</label>
+
+                            <input asp-for="Profile.sLocation2"
+                                   class="form-control" />
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Mobile</label>
+
+                            <input asp-for="Profile.sMobile2"
+                                   class="form-control" />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-end">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update References
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACHIEVEMENTS -->
+    <!-- ================================================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                Achievements / Certifications
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="UpdateAchievements"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Profile.CandidateID" />
+
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+
+                        <label>Achievement / Certificate 1</label>
+
+                        <textarea asp-for="Profile.Achievements_Certification1"
+                                  class="form-control"
+                                  rows="3"></textarea>
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label>Achievement / Certificate 2</label>
+
+                        <textarea asp-for="Profile.Achievements_Certification2"
+                                  class="form-control"
+                                  rows="3"></textarea>
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <label>Achievement / Certificate 3</label>
+
+                        <textarea asp-for="Profile.Achievements_Certification3"
+                                  class="form-control"
+                                  rows="3"></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-end">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update Achievements
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SOCIAL LINKS -->
+    <!-- ================================================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">Social Links</h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="UpdateSocialLinks"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Profile.CandidateID" />
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>GitHub</label>
+
+                        <input asp-for="Profile.GitHub"
+                               class="form-control"
+                               placeholder="GitHub URL" />
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label>LinkedIn</label>
+
+                        <input asp-for="Profile.Linkedin"
+                               class="form-control"
+                               placeholder="LinkedIn URL" />
+
+                    </div>
+
+                </div>
+
+
+                <div class="text-end">
+
+                    <button type="submit"
+                            class="btn btn-primary">
+
+                        Update Links
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- OBJECTIVE -->
+    <!-- ================================================= -->
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">Career Objective</h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="UpdateSocialLinks"
+                  asp-controller="Candidate"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Profile.CandidateID" />
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>GitHub</label>
+
+                        <input asp-for="Profile.GitHub"
+                               class="form-control"
+                               placeholder="GitHub URL" />
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>LinkedIn</label>
+
+                        <input asp-for="Profile.Linkedin"
+                               class="form-control"
+                               placeholder="LinkedIn URL" />
+                    </div>
+
+                </div>
+
+                <div class="text-end">
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Update Links
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SKILLS -->
+    <!-- ================================================= -->
+    <!-- ========================================================= -->
+    <!-- SKILLS -->
+    <!-- ========================================================= -->
+    @* =========================================================
+   SKILLS SECTION
+   ========================================================= *@
+
+    @{
+        var selectedMedicalSkills = new HashSet<string>(
+        (Model.Profile?.sMedicalSkillIDs ?? "")
+        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+        .Select(x => x.Trim()),
+        StringComparer.OrdinalIgnoreCase
+        );
+
+        var selectedTechnicalSkills = new HashSet<string>(
+        (Model.Profile?.sTechnicalSkillIDs ?? "")
+        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+        .Select(x => x.Trim()),
+        StringComparer.OrdinalIgnoreCase
+        );
+
+        var selectedNonTechnicalSkills = new HashSet<string>(
+        (Model.Profile?.sNonTechnicalSkillIDs ?? "")
+        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+        .Select(x => x.Trim()),
+        StringComparer.OrdinalIgnoreCase
+        );
+    }
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+            <h5 class="mb-0">
+                Skills
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-controller="Candidate"
+                  asp-action="UpdateSkills"
+                  method="post"
+                  id="skillsForm">
+
+                @Html.AntiForgeryToken()
+
+                <input type="hidden"
+                       asp-for="Profile.CandidateID" />
+
+                <section class="skills-section" id="skills">
+
+                    <!-- ================================================= -->
+                    <!-- TITLE -->
+                    <!-- ================================================= -->
+
+                    <div class="skills-title">
+
+                        <label>
+                            Select Skill Type (Any 1)
+                            <span class="required">*</span>
+                        </label>
+
+                        <small class="text-muted d-block mt-1">
+                            Select one or more skills from any category.
+                        </small>
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- MEDICAL SKILLS -->
+                    <!-- ================================================= -->
+
+                    <details class="skill-accordion" open>
+
+                        <summary class="skill-header">
+
+                            <span class="skill-heading">
+                                Medical Skills
+                            </span>
+
+                            <span class="skill-header-right">
+
+                                <span class="selected-count"
+                                      id="medicalCount">
+                                    0 selected
+                                </span>
+
+                                <span class="accordion-arrow">
+                                    ▴
+                                </span>
+
+                            </span>
+
+                        </summary>
+
+
+                        <div class="skill-body"
+                             id="medicalSkills">
+
+
+                            <!-- 3D Slicer -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="medical-skill"
+                                       value="3D Slicer"
+                                       @(selectedMedicalSkills.Contains("3D Slicer") ? "checked" : "") />
+
+                                <span>
+                                    3D Slicer
+                                </span>
+
+                            </label>
+
+
+                            <!-- B.Pharm -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="medical-skill"
+                                       value="B.Pharm"
+                                       @(selectedMedicalSkills.Contains("B.Pharm") ? "checked" : "") />
+
+                                <span>
+                                    B.Pharm
+                                </span>
+
+                            </label>
+
+
+                            <!-- Auditory -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="medical-skill"
+                                       value="Auditory"
+                                       @(selectedMedicalSkills.Contains("Auditory") ? "checked" : "") />
+
+                                <span>
+                                    Auditory
+                                </span>
+
+                            </label>
+
+
+                            <!-- Clinical Research -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="medical-skill"
+                                       value="Clinical Research"
+                                       @(selectedMedicalSkills.Contains("Clinical Research") ? "checked" : "") />
+
+                                <span>
+                                    Clinical Research
+                                </span>
+
+                            </label>
+
+
+                            <!-- Anatomy -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="medical-skill"
+                                       value="Anatomy"
+                                       @(selectedMedicalSkills.Contains("Anatomy") ? "checked" : "") />
+
+                                <span>
+                                    Anatomy
+                                </span>
+
+                            </label>
+
+
+                            <!-- Biochemistry -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="medical-skill"
+                                       value="Biochemistry"
+                                       @(selectedMedicalSkills.Contains("Biochemistry") ? "checked" : "") />
+
+                                <span>
+                                    Biochemistry
+                                </span>
+
+                            </label>
+
+
+                            <!-- Pharmacology -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="medical-skill"
+                                       value="Pharmacology"
+                                       @(selectedMedicalSkills.Contains("Pharmacology") ? "checked" : "") />
+
+                                <span>
+                                    Pharmacology
+                                </span>
+
+                            </label>
+
+
+                            <!-- Medical Coding -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="medical-skill"
+                                       value="Medical Coding"
+                                       @(selectedMedicalSkills.Contains("Medical Coding") ? "checked" : "") />
+
+                                <span>
+                                    Medical Coding
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </details>
+
+
+                    <!-- ================================================= -->
+                    <!-- TECHNICAL SKILLS -->
+                    <!-- ================================================= -->
+
+                    <details class="skill-accordion">
+
+                        <summary class="skill-header">
+
+                            <span class="skill-heading">
+                                Technical Skills
+                            </span>
+
+                            <span class="skill-header-right">
+
+                                <span class="selected-count"
+                                      id="technicalCount">
+                                    0 selected
+                                </span>
+
+                                <span class="accordion-arrow">
+                                    ▾
+                                </span>
+
+                            </span>
+
+                        </summary>
+
+
+                        <div class="skill-body"
+                             id="technicalSkills">
+
+
+                            <!-- HTML -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="HTML"
+                                       @(selectedTechnicalSkills.Contains("HTML") ? "checked" : "") />
+
+                                <span>
+                                    HTML
+                                </span>
+
+                            </label>
+
+
+                            <!-- CSS -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="CSS"
+                                       @(selectedTechnicalSkills.Contains("CSS") ? "checked" : "") />
+
+                                <span>
+                                    CSS
+                                </span>
+
+                            </label>
+
+
+                            <!-- JavaScript -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="JavaScript"
+                                       @(selectedTechnicalSkills.Contains("JavaScript") ? "checked" : "") />
+
+                                <span>
+                                    JavaScript
+                                </span>
+
+                            </label>
+
+
+                            <!-- React -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="React.js"
+                                       @(selectedTechnicalSkills.Contains("React.js") ? "checked" : "") />
+
+                                <span>
+                                    React.js
+                                </span>
+
+                            </label>
+
+
+                            <!-- Angular -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="Angular"
+                                       @(selectedTechnicalSkills.Contains("Angular") ? "checked" : "") />
+
+                                <span>
+                                    Angular
+                                </span>
+
+                            </label>
+
+
+                            <!-- ASP.NET -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="ASP.NET"
+                                       @(selectedTechnicalSkills.Contains("ASP.NET") ? "checked" : "") />
+
+                                <span>
+                                    ASP.NET
+                                </span>
+
+                            </label>
+
+
+                            <!-- C# -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="C#"
+                                       @(selectedTechnicalSkills.Contains("C#") ? "checked" : "") />
+
+                                <span>
+                                    C#
+                                </span>
+
+                            </label>
+
+
+                            <!-- Java -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="Java"
+                                       @(selectedTechnicalSkills.Contains("Java") ? "checked" : "") />
+
+                                <span>
+                                    Java
+                                </span>
+
+                            </label>
+
+
+                            <!-- Python -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="Python"
+                                       @(selectedTechnicalSkills.Contains("Python") ? "checked" : "") />
+
+                                <span>
+                                    Python
+                                </span>
+
+                            </label>
+
+
+                            <!-- SQL -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="SQL"
+                                       @(selectedTechnicalSkills.Contains("SQL") ? "checked" : "") />
+
+                                <span>
+                                    SQL
+                                </span>
+
+                            </label>
+
+
+                            <!-- Git -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="Git"
+                                       @(selectedTechnicalSkills.Contains("Git") ? "checked" : "") />
+
+                                <span>
+                                    Git
+                                </span>
+
+                            </label>
+
+
+                            <!-- Bootstrap -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="technical-skill"
+                                       value="Bootstrap"
+                                       @(selectedTechnicalSkills.Contains("Bootstrap") ? "checked" : "") />
+
+                                <span>
+                                    Bootstrap
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </details>
+
+
+                    <!-- ================================================= -->
+                    <!-- NON TECHNICAL SKILLS -->
+                    <!-- ================================================= -->
+
+                    <details class="skill-accordion">
+
+                        <summary class="skill-header">
+
+                            <span class="skill-heading">
+                                Non Technical Skills
+                            </span>
+
+                            <span class="skill-header-right">
+
+                                <span class="selected-count"
+                                      id="nonTechnicalCount">
+                                    0 selected
+                                </span>
+
+                                <span class="accordion-arrow">
+                                    ▾
+                                </span>
+
+                            </span>
+
+                        </summary>
+
+
+                        <div class="skill-body"
+                             id="nonTechnicalSkills">
+
+
+                            <!-- Communication -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="nontechnical-skill"
+                                       value="Communication"
+                                       @(selectedNonTechnicalSkills.Contains("Communication") ? "checked" : "") />
+
+                                <span>
+                                    Communication
+                                </span>
+
+                            </label>
+
+
+                            <!-- Teamwork -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="nontechnical-skill"
+                                       value="Teamwork"
+                                       @(selectedNonTechnicalSkills.Contains("Teamwork") ? "checked" : "") />
+
+                                <span>
+                                    Teamwork
+                                </span>
+
+                            </label>
+
+
+                            <!-- Leadership -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="nontechnical-skill"
+                                       value="Leadership"
+                                       @(selectedNonTechnicalSkills.Contains("Leadership") ? "checked" : "") />
+
+                                <span>
+                                    Leadership
+                                </span>
+
+                            </label>
+
+
+                            <!-- Problem Solving -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="nontechnical-skill"
+                                       value="Problem Solving"
+                                       @(selectedNonTechnicalSkills.Contains("Problem Solving") ? "checked" : "") />
+
+                                <span>
+                                    Problem Solving
+                                </span>
+
+                            </label>
+
+
+                            <!-- Time Management -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="nontechnical-skill"
+                                       value="Time Management"
+                                       @(selectedNonTechnicalSkills.Contains("Time Management") ? "checked" : "") />
+
+                                <span>
+                                    Time Management
+                                </span>
+
+                            </label>
+
+
+                            <!-- Presentation -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="nontechnical-skill"
+                                       value="Presentation"
+                                       @(selectedNonTechnicalSkills.Contains("Presentation") ? "checked" : "") />
+
+                                <span>
+                                    Presentation
+                                </span>
+
+                            </label>
+
+
+                            <!-- Adaptability -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="nontechnical-skill"
+                                       value="Adaptability"
+                                       @(selectedNonTechnicalSkills.Contains("Adaptability") ? "checked" : "") />
+
+                                <span>
+                                    Adaptability
+                                </span>
+
+                            </label>
+
+
+                            <!-- Creativity -->
+
+                            <label class="skill-item">
+
+                                <input type="checkbox"
+                                       class="nontechnical-skill"
+                                       value="Creativity"
+                                       @(selectedNonTechnicalSkills.Contains("Creativity") ? "checked" : "") />
+
+                                <span>
+                                    Creativity
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </details>
+
+
+                    <!-- ================================================= -->
+                    <!-- HIDDEN DATABASE FIELDS -->
+                    <!-- ================================================= -->
+
+                    <input type="hidden"
+                           asp-for="Profile.sMedicalSkillIDs"
+                           id="sMedicalSkillIDs" />
+
+                    <input type="hidden"
+                           asp-for="Profile.sTechnicalSkillIDs"
+                           id="sTechnicalSkillIDs" />
+
+                    <input type="hidden"
+                           asp-for="Profile.sNonTechnicalSkillIDs"
+                           id="sNonTechnicalSkillIDs" />
+
+
+                    <!-- ================================================= -->
+                    <!-- VALIDATION MESSAGE -->
+                    <!-- ================================================= -->
+
+                    <div id="skillValidationMessage"
+                         class="text-danger mt-3"
+                         style="display:none;">
+
+                        Please select at least one skill.
+
+                    </div>
+
+
+                    <!-- ================================================= -->
+                    <!-- UPDATE BUTTON -->
+                    <!-- ================================================= -->
+
+                    <div class="text-end mt-4">
+
+                        <button type="submit"
+                                class="btn btn-primary px-4"
+                                id="btnUpdateSkills">
+
+                            <span id="updateSkillsText">
+                                Update Skills
+                            </span>
+
+                            <span id="updateSkillsLoader"
+                                  class="spinner-border spinner-border-sm ms-2"
+                                  style="display:none;"
+                                  role="status">
+
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <script>
+
+        $('#addressForm').on('submit', function () {
+
+            $('#StateID').prop('disabled', false);
+
+            $('#CityID').prop('disabled', false);
+
+        });
+
+    </script>
+    <script>
+
+        $(document).ready(function () {
+
+            var selectedCountryID = '@Model.Profile.CountryID';
+            var selectedStateID = '@Model.Profile.StateID';
+            var selectedCityID = '@Model.Profile.CityID';
+
+
+            // ============================================
+            // IMPORTANT:
+            // Disabled select values are not submitted.
+            // Enable them before Address form submit.
+            // ============================================
+
+            $('form[action*="UpdateAddress"]').submit(function () {
+
+                $('#StateID').prop('disabled', false);
+                $('#CityID').prop('disabled', false);
+
+            });
+
+
+            $('#addressForm').on('submit', function () {
+
+                console.log("CountryID:", $('#CountryID').val());
+                console.log("StateID:", $('#StateID').val());
+                console.log("CityID:", $('#CityID').val());
+                console.log("Pincode:", $('#Profile_Pincode').val());
+
+                // Disabled controls are NOT submitted.
+                $('#StateID').prop('disabled', false);
+
+                $('#CityID').prop('disabled', false);
+
+            });
+            // ============================================
+            // LOAD COUNTRIES
+            // ============================================
+
+            function loadCountries() {
+
+                $.ajax({
+
+                    url: '/Location/GetCountries',
+
+                    type: 'GET',
+
+                    success: function (data) {
+
+                        $('#CountryID').empty();
+
+                        $('#CountryID').append(
+                            '<option value="">-- Select Country --</option>'
+                        );
+
+
+                        $.each(data, function (index, item) {
+
+                            $('#CountryID').append(
+
+                                $('<option>', {
+
+                                    value: item.id,
+                                    text: item.name
+
+                                }).attr(
+                                    'data-code',
+                                    item.iso2
+                                )
+
+                            );
+
+                        });
+
+
+                        if (selectedCountryID !== '') {
+
+                            $('#CountryID')
+                                .val(selectedCountryID)
+                                .trigger('change');
+
+                        }
+
+                    },
+
+                    error: function (xhr) {
+
+                        console.log(
+                            "Country Error:",
+                            xhr.responseText
+                        );
+
+                    }
+
+                });
+
+            }
+
+
+            // ============================================
+            // COUNTRY CHANGE
+            // ============================================
+
+            $('#CountryID').change(function () {
+
+                var countryID = $(this).val();
+
+                var countryCode =
+                    $('#CountryID option:selected')
+                        .attr('data-code');
+
+
+                $('#StateID').empty();
+
+                $('#StateID').append(
+                    '<option value="">-- Select State --</option>'
+                );
+
+
+                $('#CityID').empty();
+
+                $('#CityID').append(
+                    '<option value="">-- Select City --</option>'
+                );
+
+                $('#CityID').prop('disabled', true);
+
+
+                if (!countryID || !countryCode) {
+
+                    $('#StateID').prop('disabled', true);
+
+                    return;
+
+                }
+
+
+                $('#StateID').prop('disabled', false);
+
+
+                $.ajax({
+
+                    url: '/Location/GetStates',
+
+                    type: 'GET',
+
+                    data: {
+
+                        countryCode: countryCode
+
+                    },
+
+                    success: function (data) {
+
+                        $('#StateID').empty();
+
+                        $('#StateID').append(
+                            '<option value="">-- Select State --</option>'
+                        );
+
+                                $.each(data, function (index, item) {
+
+            var stateCode = item.stateCode;
+
+            if (!stateCode && item.id) {
+
+                var parts = item.id.split(':');
+
+                stateCode =
+                    parts.length > 1
+                        ? parts[1]
+                        : item.id;
+            }
+
+            $('#StateID').append(
+
+                $('<option>', {
+
+                    value: item.id,
+                    text: item.name
+
+                }).attr(
+                    'data-code',
+                    stateCode
+                )
+
+            );
+
+        });
+
+                        // $.each(data, function (index, item) {
+
+                        //     var stateCode = item.stateCode;
+
+                        //     if (!stateCode && item.id) {
+
+                        //         var parts =
+                        //             item.id.split(':');
+
+                        //         stateCode =
+                        //             parts.length > 1
+                        //                 ? parts[1]
+                        //                 : item.id;
+
+                        //     }
+
+
+                        //     $('#StateID').append(
+
+                        //         $('<option>', {
+
+                        //             value: item.id,
+                        //             text: item.name
+
+                        //         }).attr(
+                        //             'data-code',
+                        //             stateCode
+                        //         )
+
+                        //     );
+
+                        // });
+
+
+                        if (selectedStateID !== '') {
+
+                            $('#StateID')
+                                .val(selectedStateID)
+                                .trigger('change');
+
+                            selectedStateID = '';
+
+                        }
+
+                    },
+
+                    error: function (xhr) {
+
+                        console.log(
+                            "State Error:",
+                            xhr.responseText
+                        );
+
+                    }
+
+                });
+
+            });
+
+
+            // ============================================
+            // STATE CHANGE
+            // ============================================
+
+            $('#StateID').change(function () {
+
+                var stateID = $(this).val();
+
+                var stateCode =
+                    $('#StateID option:selected')
+                        .attr('data-code');
+
+                var countryCode =
+                    $('#CountryID option:selected')
+                        .attr('data-code');
+
+
+                $('#CityID').empty();
+
+                $('#CityID').append(
+                    '<option value="">-- Select City --</option>'
+                );
+
+
+                if (!stateID ||
+                    !stateCode ||
+                    !countryCode) {
+
+                    $('#CityID').prop(
+                        'disabled',
+                        true
+                    );
+
+                    return;
+
+                }
+
+
+                $('#CityID').prop(
+                    'disabled',
+                    false
+                );
+
+
+                $.ajax({
+
+                    url: '/Location/GetCities',
+
+                    type: 'GET',
+
+                    data: {
+
+                        countryCode: countryCode,
+                        stateCode: stateCode
+
+                    },
+
+                    success: function (data) {
+
+                        $('#CityID').empty();
+
+                        $('#CityID').append(
+                            '<option value="">-- Select City --</option>'
+                        );
+
+
+                        $.each(data, function (index, item) {
+
+                            $('#CityID').append(
+
+                                $('<option>', {
+
+                                    value: item.id,
+                                    text: item.name
+
+                                })
+
+                            );
+
+                        });
+
+
+                        if (selectedCityID) {
+
+                            $('#CityID')
+                                .val(selectedCityID);
+
+                            selectedCityID = '';
+
+                        }
+
+                    },
+
+                    error: function (xhr) {
+
+                        console.log(
+                            "City Error:",
+                            xhr.responseText
+                        );
+
+                    }
+
+                });
+
+            });
+
+
+            // ============================================
+            // INITIAL LOAD
+            // ============================================
+
+            loadCountries();
+
+        });
+        //         $(document).ready(function () {
+
+
+        // });
+    </script>
+
+    <script>
+
+        /* =========================================================
+           UPDATE SKILL COUNT + HIDDEN FIELD
+           ========================================================= */
+
+        function updateSkillCount(type) {
+
+            let selector = "";
+            let countElement = "";
+            let hiddenField = "";
+
+            if (type === "medical") {
+
+                selector = ".medical-skill:checked";
+                countElement = "medicalCount";
+                hiddenField = "sMedicalSkillIDs";
+
+            }
+            else if (type === "technical") {
+
+                selector = ".technical-skill:checked";
+                countElement = "technicalCount";
+                hiddenField = "sTechnicalSkillIDs";
+
+            }
+            else if (type === "nonTechnical") {
+
+                selector = ".nontechnical-skill:checked";
+                countElement = "nonTechnicalCount";
+                hiddenField = "sNonTechnicalSkillIDs";
+
+            }
+
+
+            const selected =
+                document.querySelectorAll(selector);
+
+
+            /* UPDATE COUNT */
+
+            document.getElementById(countElement).innerText =
+                selected.length + " selected";
+
+
+            /* UPDATE HIDDEN FIELD */
+
+            const values = [];
+
+
+            selected.forEach(function(checkbox) {
+
+                values.push(checkbox.value);
+
+            });
+
+
+            document.getElementById(hiddenField).value =
+                values.join(",");
+
+        }
+
+
+        /* =========================================================
+           UPDATE ALL SKILLS
+           ========================================================= */
+
+        function updateAllSkillCounts() {
+
+            updateSkillCount("medical");
+
+            updateSkillCount("technical");
+
+            updateSkillCount("nonTechnical");
+
+        }
+
+
+        /* =========================================================
+           CHECKBOX CHANGE
+           ========================================================= */
+
+        document.addEventListener("change", function(event) {
+
+            if (event.target.classList.contains("medical-skill")) {
+
+                updateSkillCount("medical");
+
+            }
+
+
+            if (event.target.classList.contains("technical-skill")) {
+
+                updateSkillCount("technical");
+
+            }
+
+
+            if (event.target.classList.contains("nontechnical-skill")) {
+
+                updateSkillCount("nonTechnical");
+
+            }
+
+        });
+
+
+        /* =========================================================
+           SKILLS FORM SUBMIT
+           ========================================================= */
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            updateAllSkillCounts();
+
+
+            const skillsForm =
+                document.getElementById("skillsForm");
+
+
+            if (!skillsForm) {
+                return;
+            }
+
+
+            skillsForm.addEventListener("submit", function(event) {
+
+                /* Make sure hidden fields contain latest values */
+
+                updateAllSkillCounts();
+
+
+                const medical =
+                    document.querySelectorAll(
+                        ".medical-skill:checked"
+                    ).length;
+
+
+                const technical =
+                    document.querySelectorAll(
+                        ".technical-skill:checked"
+                    ).length;
+
+
+                const nonTechnical =
+                    document.querySelectorAll(
+                        ".nontechnical-skill:checked"
+                    ).length;
+
+
+                const total =
+                    medical +
+                    technical +
+                    nonTechnical;
+
+
+                /* =================================================
+                   VALIDATION
+                   ================================================= */
+
+                if (total === 0) {
+
+                    event.preventDefault();
+
+
+                    document.getElementById(
+                        "skillValidationMessage"
+                    ).style.display = "block";
+
+
+                    document.getElementById(
+                        "skillValidationMessage"
+                    ).scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+
+                    return false;
+                }
+
+
+                /* Hide validation */
+
+                document.getElementById(
+                    "skillValidationMessage"
+                ).style.display = "none";
+
+
+                /* =================================================
+                   DISABLE BUTTON
+                   ================================================= */
+
+                const button =
+                    document.getElementById(
+                        "btnUpdateSkills"
+                    );
+
+
+                const text =
+                    document.getElementById(
+                        "updateSkillsText"
+                    );
+
+
+                const loader =
+                    document.getElementById(
+                        "updateSkillsLoader"
+                    );
+
+
+                button.disabled = true;
+
+
+                text.innerText =
+                    "Updating...";
+
+
+                loader.style.display =
+                    "inline-block";
+
+            });
+
+        });
+
+
+        /* =========================================================
+           ACCORDION ARROW
+           ========================================================= */
+
+        document.querySelectorAll(
+            ".skill-accordion"
+        ).forEach(function(accordion) {
+
+            accordion.addEventListener(
+                "toggle",
+                function() {
+
+                    const arrow =
+                        accordion.querySelector(
+                            ".accordion-arrow"
+                        );
+
+
+                    if (!arrow) {
+                        return;
+                    }
+
+
+                    if (accordion.open) {
+
+                        arrow.innerHTML = "▴";
+
+                    }
+                    else {
+
+                        arrow.innerHTML = "▾";
+
+                    }
+
+                }
+            );
+
+        });
+
+    </script>
+
+}

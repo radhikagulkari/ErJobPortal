@@ -1,0 +1,743 @@
+﻿@{
+    ViewData["Title"] = "Transformation";
+}
+
+<style>
+
+    /* =========================================================
+           TRANSFORMATION PAGE
+           ========================================================= */
+
+    .transformation-page {
+        width: 100%;
+        margin-top: 100px;
+        padding: 0 15px 70px;
+        background: #f8fafc;
+        color: #1f2937;
+    }
+
+    /* =========================================================
+           HERO / MAIN HEADING
+           ========================================================= */
+
+    .transformation-hero {
+        position: relative;
+        overflow: hidden;
+        max-width: 1180px;
+        margin: 0 auto 35px;
+        padding: 45px 40px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, #0d9488, #0f766e);
+        box-shadow: 0 15px 35px rgba(13, 148, 136, .16);
+    }
+
+        .transformation-hero::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            right: -80px;
+            top: -100px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.08);
+        }
+
+        .transformation-hero::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            left: -70px;
+            bottom: -80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.06);
+        }
+
+    .transformation-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 850px;
+    }
+
+    .transformation-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 13px;
+        padding: 7px 13px;
+        border: 1px solid rgba(255,255,255,.22);
+        border-radius: 30px;
+        background: rgba(255,255,255,.10);
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+        .transformation-badge i {
+            font-size: 11px;
+        }
+
+    .transformation-hero h1 {
+        margin: 0 0 12px;
+        color: #ffffff !important;
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    .transformation-hero p {
+        max-width: 780px;
+        margin: 0;
+        color: rgba(255,255,255,.90);
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+
+    /* =========================================================
+           CONTENT WRAPPER
+           ========================================================= */
+
+    .transformation-content {
+        max-width: 1180px;
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+           CONTENT GRID
+           ========================================================= */
+
+    .transformation-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+
+    /* =========================================================
+           CONTENT CARD
+           ========================================================= */
+
+    .transformation-card {
+        position: relative;
+        overflow: hidden;
+        padding: 25px;
+        background: #ffffff;
+        border: 1px solid #e6eeec;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(15,42,39,.055);
+        transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+        .transformation-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(13,148,136,.25);
+            box-shadow: 0 15px 32px rgba(15,42,39,.09);
+        }
+
+
+    /* =========================================================
+           CARD TOP
+           ========================================================= */
+
+    .transformation-card-top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+
+    .transformation-number {
+        flex: 0 0 42px;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #e7f7f4;
+        color: #0d9488;
+        font-size: 15px;
+        font-weight: 800;
+    }
+
+    .transformation-card h2 {
+        margin: 0;
+        color: #172033;
+        font-size: 19px;
+        font-weight: 750;
+        line-height: 1.35;
+    }
+
+
+    /* =========================================================
+           CARD CONTENT
+           ========================================================= */
+
+    .transformation-card p {
+        margin: 0;
+        color: #667085;
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .transformation-point {
+        margin-top: 13px;
+        padding: 12px 14px;
+        border-left: 3px solid #0d9488;
+        border-radius: 0 8px 8px 0;
+        background: #f7fbfa;
+    }
+
+        .transformation-point strong {
+            color: #0f766e;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .transformation-point span {
+            color: #667085;
+            font-size: 13.5px;
+            line-height: 1.65;
+        }
+
+
+    /* =========================================================
+           FULL WIDTH CARDS
+           ========================================================= */
+
+    .transformation-card.full-width {
+        grid-column: 1 / -1;
+    }
+
+
+    /* =========================================================
+           CONCLUSION
+           ========================================================= */
+
+    .transformation-conclusion {
+        margin-top: 25px;
+        padding: 25px 28px;
+        border-radius: 16px;
+        background: #ffffff;
+        border: 1px solid #dcebe8;
+        box-shadow: 0 8px 25px rgba(15,42,39,.05);
+    }
+
+        .transformation-conclusion h2 {
+            margin: 0 0 10px;
+            color: #0d9488;
+            font-size: 20px;
+            font-weight: 750;
+        }
+
+        .transformation-conclusion p {
+            margin: 0;
+            color: #667085;
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+
+    /* =========================================================
+           TABLET
+           ========================================================= */
+
+    @@media (max-width: 991px) {
+
+        .transformation-page {
+            margin-top: 100px;
+            padding: 0 20px 55px;
+        }
+
+        .transformation-hero {
+            padding: 38px 30px;
+        }
+
+            .transformation-hero h1 {
+                font-size: 30px;
+            }
+
+        .transformation-grid {
+            gap: 18px;
+        }
+
+        .transformation-card {
+            padding: 22px;
+        }
+    }
+
+
+    /* =========================================================
+           MOBILE
+           ========================================================= */
+
+    @@media (max-width: 767px) {
+
+        .transformation-page {
+            margin-top: 100px;
+            padding: 0 14px 45px;
+        }
+
+        .transformation-hero {
+            margin-bottom: 25px;
+            padding: 30px 22px;
+            border-radius: 17px;
+        }
+
+            .transformation-hero h1 {
+                font-size: 26px;
+            }
+
+            .transformation-hero p {
+                font-size: 13px;
+                line-height: 1.65;
+            }
+
+        .transformation-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .transformation-card {
+            padding: 20px;
+        }
+
+            .transformation-card h2 {
+                font-size: 17px;
+            }
+
+            .transformation-card p {
+                font-size: 13px;
+            }
+
+        .transformation-point span {
+            font-size: 13px;
+        }
+
+        .transformation-conclusion {
+            padding: 20px;
+        }
+
+            .transformation-conclusion h2 {
+                font-size: 18px;
+            }
+
+            .transformation-conclusion p {
+                font-size: 13px;
+            }
+    }
+
+
+    /* =========================================================
+           SMALL MOBILE
+           ========================================================= */
+
+    @@media (max-width: 480px) {
+
+        .transformation-page {
+            margin-top: 100px;
+            padding: 0 10px 35px;
+        }
+
+        .transformation-hero {
+            padding: 25px 18px;
+            border-radius: 15px;
+        }
+
+        .transformation-badge {
+            font-size: 10px;
+            padding: 6px 10px;
+        }
+
+        .transformation-hero h1 {
+            font-size: 23px;
+        }
+
+        .transformation-hero p {
+            font-size: 12px;
+        }
+
+        .transformation-card {
+            padding: 17px;
+            border-radius: 13px;
+        }
+
+        .transformation-card-top {
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .transformation-number {
+            flex-basis: 36px;
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            font-size: 13px;
+        }
+
+        .transformation-card h2 {
+            font-size: 16px;
+        }
+
+        .transformation-card p,
+        .transformation-point span {
+            font-size: 12px;
+        }
+
+        .transformation-point strong {
+            font-size: 12px;
+        }
+
+        .transformation-conclusion {
+            padding: 17px;
+        }
+    }
+
+</style>
+
+
+<!-- =========================================================
+     TRANSFORMATION PAGE
+========================================================= -->
+
+<div class="transformation-page">
+
+    <!-- HERO -->
+    <section class="transformation-hero">
+
+        <div class="transformation-hero-content">
+
+            <div class="transformation-badge">
+                <i class="fa-solid fa-arrow-up-right-dots"></i>
+                Career Transformation
+            </div>
+
+            <h1>Transformation</h1>
+
+            <p>
+                Becoming industry-ready involves a mix of technical skills,
+                soft skills, and real-world experience. Here are some tips for
+                students to prepare for a successful transition into the
+                professional world:
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTENT -->
+    <div class="transformation-content">
+
+        <div class="transformation-grid">
+
+
+            <!-- 01 -->
+            <article class="transformation-card">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        01
+                    </div>
+
+                    <h2>Build a Strong Foundation</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Master the Basics:</strong>
+                    <span>
+                        Ensure a solid understanding of core concepts in 
+                        field, whether it's programming, design, engineering, etc.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Stay Updated:</strong>
+                    <span>
+                        Follow industry trends and advancements to keep 
+                        knowledge current.
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- 02 -->
+            <article class="transformation-card">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        02
+                    </div>
+
+                    <h2>Gain Practical Experience</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Internships:</strong>
+                    <span>
+                        Apply for internships to gain hands-on experience and
+                        understand industry workflows.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Projects:</strong>
+                    <span>
+                        Work on personal or academic projects that showcase
+                         skills and creativity.
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- 03 -->
+            <article class="transformation-card">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        03
+                    </div>
+
+                    <h2>Develop Technical Skills</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Communication:</strong>
+                    <span>
+                        Develop strong written and verbal communication skills
+                        for clear and effective interactions.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Teamwork:</strong>
+                    <span>
+                        Collaborate on group projects to build  ability
+                        to work well in a team.
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- 04 -->
+            <article class="transformation-card">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        04
+                    </div>
+
+                    <h2>Network Actively</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Professional Networking:</strong>
+                    <span>
+                        Attend industry events, webinars, and conferences to
+                        meet professionals and peers.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>LinkedIn:</strong>
+                    <span>
+                        Create and maintain a polished LinkedIn profile to
+                        connect with industry professionals and potential employers.
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- 05 -->
+            <article class="transformation-card">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        05
+                    </div>
+
+                    <h2>Build a Strong Resume and Portfolio</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Resume:</strong>
+                    <span>
+                        Craft a resume that highlights  skills,
+                        experiences, and accomplishments.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Portfolio:</strong>
+                    <span>
+                        Create an online portfolio to showcase  projects,
+                        skills, and achievements.
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- 06 -->
+            <article class="transformation-card">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        06
+                    </div>
+
+                    <h2>Prepare for Interviews</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Mock Interviews:</strong>
+                    <span>
+                        Practice with mock interviews to improve  responses
+                        and gain confidence.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Research:</strong>
+                    <span>
+                        Research common interview questions and prepare
+                        thoughtful answers.
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- 07 -->
+            <article class="transformation-card">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        07
+                    </div>
+
+                    <h2>Develop Problem-Solving Skills</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Critical Thinking:</strong>
+                    <span>
+                        Work on developing analytical and problem-solving skills
+                        that are highly valued in any industry.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Challenge Yourself:</strong>
+                    <span>
+                        Engage in activities that push you to think creatively
+                        and solve complex problems.
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- 08 -->
+            <article class="transformation-card">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        08
+                    </div>
+
+                    <h2>Seek Feedback</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Mentors:</strong>
+                    <span>
+                        Find mentors who can provide guidance and constructive
+                        feedback on  progress.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Peer Reviews:</strong>
+                    <span>
+                        Participate in peer reviews to learn from others and
+                        improve  work.
+                    </span>
+                </div>
+
+            </article>
+
+
+            <!-- 09 -->
+            <article class="transformation-card full-width">
+
+                <div class="transformation-card-top">
+
+                    <div class="transformation-number">
+                        09
+                    </div>
+
+                    <h2>Stay Adaptable and Curious</h2>
+
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Continuous Learning:</strong>
+                    <span>
+                        Embrace lifelong learning to adapt to new technologies
+                        and methods.
+                    </span>
+                </div>
+
+                <div class="transformation-point">
+                    <strong>Flexibility:</strong>
+                    <span>
+                        Be open to different roles and responsibilities as you
+                        navigate  career path.
+                    </span>
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- CONCLUSION -->
+        <div class="transformation-conclusion">
+
+            <h2>
+                Your Professional Transformation
+            </h2>
+
+            <p>
+                By focusing on these areas, students can better position
+                themselves to enter the workforce with confidence and competence.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

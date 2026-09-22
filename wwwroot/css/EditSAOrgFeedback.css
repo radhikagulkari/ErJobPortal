@@ -1,0 +1,621 @@
+﻿/* =========================================================
+   1TRAINEE - EDIT ORGANIZATION FEEDBACK
+   DESIGN ONLY
+   ========================================================= */
+
+.feedback-edit-card {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 30px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
+.feedback-title {
+    position: relative;
+    margin: 0 0 24px;
+    padding-left: 14px;
+    color: #0f172a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+    .feedback-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 4px;
+        height: 28px;
+        background: #0d9488;
+        border-radius: 4px;
+    }
+
+
+/* =========================================================
+   QUESTION LABEL
+   ========================================================= */
+
+.question-label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 30px;
+    margin: 10px 0 10px;
+    padding: 0 0 0 42px;
+    color: #0f172a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 30px;
+    box-sizing: border-box;
+}
+
+
+    /* =========================================================
+   QUESTION NUMBER BADGE
+   ========================================================= */
+
+    .question-label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        background: #ccfbf1;
+        border-radius: 8px;
+    }
+
+
+    /* =========================================================
+   NUMBER INSIDE BADGE
+   ========================================================= */
+
+    .question-label::after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0d9488;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+
+/* =========================================================
+   QUESTION NUMBERS
+   ========================================================= */
+
+.question-section:nth-of-type(1)
+.question-label::after {
+    content: "1.";
+}
+
+.question-section:nth-of-type(2)
+.question-label::after {
+    content: "2.";
+}
+
+.question-section:nth-of-type(3)
+.question-label::after {
+    content: "3.";
+}
+
+.question-section:nth-of-type(4)
+.question-label::after {
+    content: "4.";
+}
+
+.question-section:nth-of-type(5)
+.question-label::after {
+    content: "5.";
+}
+
+
+/* =========================================================
+   QUESTION TEXTAREA
+   ========================================================= */
+
+.question-textarea {
+    width: 100%;
+    min-height: 76px;
+    display: block;
+    margin: 0;
+    padding: 11px 13px;
+    background: #ffffff;
+    border: 1px solid #d2dde6;
+    border-radius: 8px;
+    outline: none;
+    color: #0f172a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+    .question-textarea:focus {
+        border-color: #0d9488;
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.08);
+    }
+
+
+/* =========================================================
+   ANSWER AREA
+   ========================================================= */
+
+.answer-area {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    margin: 15px 0 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   TRUE / FALSE / YES / NO
+   ========================================================= */
+
+.radio-option {
+    position: relative;
+    min-width: 99px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 8px 0 0;
+    padding: 0 18px 0 45px;
+    background: #ffffff;
+    border: 1px solid #d6e0e8;
+    border-radius: 10px;
+    color: #0f172a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+
+    /* =========================================================
+   RADIO INPUT
+   ========================================================= */
+
+    .radio-option input {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        transform: translateY(-50%);
+        appearance: none;
+        -webkit-appearance: none;
+        background: #ffffff;
+        border: 1.5px solid #9aabbc;
+        border-radius: 50%;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+
+        /* Selected radio */
+
+        .radio-option input:checked {
+            border-color: #0d9488;
+        }
+
+
+            /* Inner circle */
+
+            .radio-option input:checked::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 10px;
+                height: 10px;
+                background: #0d9488;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+
+    /* Selected button */
+
+    .radio-option:has(input:checked) {
+        border-color: #0d9488;
+        background: #f0fdfa;
+    }
+
+
+/* =========================================================
+   STAR RATING
+   ========================================================= */
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+}
+
+
+/* Individual star */
+
+.star {
+    width: 25px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #c7c7c7;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+
+    /* Active star */
+
+    .star.active {
+        color: #f59e0b;
+    }
+
+
+    /* Hover */
+
+    .star:hover {
+        transform: scale(1.08);
+    }
+
+
+/* =========================================================
+   EMOJI RATING
+   ========================================================= */
+
+.emoji-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* =========================================================
+   COLORED EMOJI
+   ========================================================= */
+
+.emoji {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #d6e0e8;
+    border-radius: 50%;
+    /* Important for Windows Chrome */
+    font-family: "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    font-size: 23px;
+    font-weight: normal;
+    /* Do NOT use opacity/filter on emoji */
+    opacity: 1;
+    filter: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+    /* =========================================================
+   HOVER
+   ========================================================= */
+
+    .emoji:hover {
+        background: #f0fdfa;
+        border-color: #0d9488;
+        transform: scale(1.12);
+        box-shadow: 0 3px 8px rgba(13, 148, 136, 0.15);
+    }
+
+
+    /* =========================================================
+   SELECTED
+   ========================================================= */
+
+    .emoji.active {
+        opacity: 1;
+        filter: none;
+        background: #ccfbf1;
+        border: 2px solid #0d9488;
+        transform: scale(1.08);
+        box-shadow: 0 3px 8px rgba(13, 148, 136, 0.18);
+    }
+
+
+        /* =========================================================
+   SELECTED + HOVER
+   ========================================================= */
+
+        .emoji.active:hover {
+            background: #ccfbf1;
+            border-color: #0f766e;
+            transform: scale(1.14);
+        }
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .emoji {
+        width: 35px;
+        height: 35px;
+        font-size: 21px;
+    }
+
+    .emoji-rating {
+        gap: 8px;
+    }
+}
+
+/* =========================================================
+   DESCRIPTION LABEL
+   ========================================================= */
+
+.description-label {
+    margin: 15px 0 8px;
+    color: #64748b;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+
+    /* =========================================================
+   DESCRIPTION TEXTAREA
+   ========================================================= */
+
+    .description-label + .question-textarea {
+        min-height: 100px;
+    }
+
+
+/* =========================================================
+   SAVE AREA
+   ========================================================= */
+
+.save-area {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+   ========================================================= */
+
+.save-button {
+    min-width: 104px;
+    height: 37px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 7px;
+    background: #0d9488;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(13, 148, 136, 0.18);
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+    .save-button:hover {
+        background: #0f766e;
+        box-shadow: 0 5px 13px rgba(13, 148, 136, 0.22);
+    }
+
+    .save-button:active {
+        transform: translateY(1px);
+    }
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .feedback-title {
+        font-size: 24px;
+    }
+
+    .question-section {
+        padding: 17px 18px 20px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    .feedback-edit-card {
+        padding-bottom: 25px;
+    }
+
+    .feedback-title {
+        margin-bottom: 18px;
+        padding-left: 12px;
+        font-size: 22px;
+    }
+
+        .feedback-title::before {
+            height: 25px;
+        }
+
+    .question-section {
+        margin-bottom: 12px;
+        padding: 16px;
+        border-radius: 11px;
+    }
+
+    .question-label {
+        margin-bottom: 10px;
+        padding-left: 32px;
+        font-size: 13px;
+    }
+
+        .question-label::before,
+        .question-label::after {
+            width: 23px;
+            height: 23px;
+        }
+
+        .question-label::after {
+            font-size: 12px;
+        }
+
+    .question-textarea {
+        min-height: 75px;
+        padding: 9px 11px;
+        font-size: 13px;
+    }
+
+    .answer-area {
+        min-height: 46px;
+        margin-top: 14px;
+    }
+
+    .radio-option {
+        min-width: 85px;
+        height: 46px;
+        padding: 0 15px 0 39px;
+        font-size: 15px;
+        border-radius: 9px;
+    }
+
+        .radio-option input {
+            left: 14px;
+            width: 18px;
+            height: 18px;
+        }
+
+            .radio-option input:checked::after {
+                width: 9px;
+                height: 9px;
+            }
+
+    .star-rating {
+        gap: 5px;
+    }
+
+    .star {
+        width: 23px;
+        font-size: 26px;
+    }
+
+    .emoji-rating {
+        gap: 8px;
+    }
+
+    .emoji {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+
+    .description-label {
+        margin-top: 14px;
+        font-size: 12px;
+    }
+
+        .description-label + .question-textarea {
+            min-height: 100px;
+        }
+
+    .save-area {
+        margin-top: 17px;
+    }
+
+    .save-button {
+        width: 100%;
+        height: 40px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .question-section {
+        padding: 14px;
+    }
+
+    .question-label {
+        padding-left: 31px;
+    }
+
+    .question-textarea {
+        font-size: 12.5px;
+    }
+
+    .radio-option {
+        min-width: 80px;
+        height: 44px;
+        padding-left: 37px;
+        font-size: 14px;
+    }
+
+        .radio-option input {
+            left: 13px;
+        }
+
+    .star-rating {
+        gap: 3px;
+    }
+
+    .star {
+        font-size: 25px;
+    }
+
+    .emoji-rating {
+        gap: 6px;
+    }
+}

@@ -1,0 +1,1797 @@
+﻿@*
+    View Organization Profile
+*@
+@{
+    ViewData["Title"] = "View Organization Profile";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>View Organization Profile - 1Trainee</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+
+        /* =========================================================
+           1TRAINEE COLOR SYSTEM
+        ========================================================= */
+
+        :root {
+
+            --brand: #0d9488;
+            --brand-dark: #0f766e;
+            --brand-deep: #115e59;
+            --brand-light: #14b8a6;
+            --brand-lighter: #2dd4bf;
+
+            --brand-soft: #ccfbf1;
+            --brand-bg: #f0fdfa;
+
+            --ink: #0f172a;
+            --text: #334155;
+            --muted: #64748b;
+
+            --white: #ffffff;
+
+            --page-bg: #f4f7f7;
+
+            --border: #dce5e5;
+
+            --shadow-sm:
+                0 5px 18px rgba(15, 23, 42, 0.05);
+
+            --shadow-md:
+                0 14px 40px rgba(15, 23, 42, 0.09);
+
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: var(--page-bg);
+
+            color: var(--ink);
+
+            min-height: 100vh;
+
+        }
+
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================================================
+           TOP ACTIONS
+        ========================================================= */
+
+        .profile-actions {
+
+            position: fixed;
+
+            top: 20px;
+
+            right: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            z-index: 1000;
+
+        }
+
+
+        .profile-action-btn {
+
+            width: 44px;
+
+            height: 40px;
+
+            border: 1px solid rgba(13, 148, 136, 0.12);
+
+            border-radius: 9px;
+
+            background: #ffffff;
+
+            color: var(--brand-dark);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 13px;
+
+            cursor: pointer;
+
+            box-shadow: var(--shadow-sm);
+
+            transition: all 0.2s ease;
+
+        }
+
+
+        .profile-action-btn:hover {
+
+            background: var(--brand);
+
+            color: #ffffff;
+
+            border-color: var(--brand);
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
+        .profile-page {
+
+            width: min(1050px, calc(100% - 30px));
+
+            margin: 0 auto;
+
+            padding-top: 80px;
+
+            padding-bottom: 45px;
+
+        }
+
+
+        /* =========================================================
+           MAIN PROFILE CARD
+        ========================================================= */
+
+        .profile-card {
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            box-shadow: var(--shadow-md);
+
+            overflow: hidden;
+
+        }
+
+
+        /* =========================================================
+           COVER
+        ========================================================= */
+
+        .profile-cover {
+
+            height: 130px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255, 255, 255, 0.20),
+                    transparent 27%
+                ),
+                radial-gradient(
+                    circle at 85% 10%,
+                    rgba(45, 212, 191, 0.24),
+                    transparent 31%
+                ),
+                linear-gradient(
+                    120deg,
+                    var(--brand-deep),
+                    var(--brand),
+                    var(--brand-light)
+                );
+
+        }
+
+
+        /* =========================================================
+           COVER DECORATION
+        ========================================================= */
+
+        .cover-circle-one {
+
+            position: absolute;
+
+            width: 250px;
+
+            height: 250px;
+
+            right: -65px;
+
+            top: -125px;
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            border-radius: 50%;
+
+        }
+
+
+        .cover-circle-two {
+
+            position: absolute;
+
+            width: 175px;
+
+            height: 175px;
+
+            right: 75px;
+
+            bottom: -115px;
+
+            border: 1px solid rgba(255, 255, 255, 0.14);
+
+            border-radius: 50%;
+
+        }
+
+
+        .cover-circle-three {
+
+            position: absolute;
+
+            width: 120px;
+
+            height: 120px;
+
+            left: -55px;
+
+            bottom: -65px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            border-radius: 50%;
+
+        }
+
+
+        /* =========================================================
+           COVER CONTENT
+        ========================================================= */
+
+        .cover-content {
+
+            position: absolute;
+
+            left: 30px;
+
+            bottom: 25px;
+
+            color: #ffffff;
+
+            max-width: 650px;
+
+        }
+
+
+        .cover-label {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 5px 9px;
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            background: rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(8px);
+
+            border-radius: 7px;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .cover-title {
+
+            font-size: 26px;
+
+            line-height: 1.2;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .cover-subtitle {
+
+            font-size: 11px;
+
+            color: rgba(255, 255, 255, 0.82);
+
+        }
+
+
+        /* =========================================================
+           ORGANIZATION IDENTITY
+        ========================================================= */
+
+        .organization-section {
+
+            padding: 0 30px;
+
+            background: #ffffff;
+
+        }
+
+
+        .organization-main {
+
+            min-height: 112px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            position: relative;
+
+            border-bottom: 1px solid #edf2f2;
+
+        }
+
+
+        /* =========================================================
+           LOGO
+        ========================================================= */
+
+        .organization-logo {
+
+           width: 75px;
+    height: 75px;
+    margin-top: 1px;
+
+            flex-shrink: 0;
+
+            border-radius: 18px;
+
+            background: #ffffff;
+
+            border: 5px solid #ffffff;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.12);
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .organization-logo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
+        }
+
+
+        .organization-logo-placeholder {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #ffffff;
+
+            color: var(--brand);
+
+            font-size: 30px;
+
+        }
+
+
+        /* =========================================================
+           ORGANIZATION INFORMATION
+        ========================================================= */
+
+        .organization-info {
+
+            min-width: 0;
+
+            padding-top: 6px;
+
+        }
+
+
+        .organization-name {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: var(--ink);
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .verified-icon {
+
+            width: 18px;
+
+            height: 18px;
+
+            border-radius: 50%;
+
+            background: var(--brand);
+
+            color: #ffffff;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 8px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .organization-meta {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+        }
+
+
+        .organization-meta i {
+
+            color: var(--brand);
+
+            font-size: 9px;
+
+        }
+
+
+        .meta-dot {
+
+            color: #cbd5e1;
+
+        }
+
+
+        /* =========================================================
+           BODY
+        ========================================================= */
+
+        .profile-body {
+
+            padding: 0 30px 28px;
+
+        }
+
+
+        /* =========================================================
+           DETAILS HEADER
+        ========================================================= */
+
+        .details-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 20px 0 14px;
+
+        }
+
+
+        .details-icon {
+
+            width: 30px;
+
+            height: 30px;
+
+            border-radius: 8px;
+
+            background: var(--brand-soft);
+
+            color: var(--brand-dark);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 11px;
+
+        }
+
+
+        .details-title {
+
+            color: var(--ink);
+
+            font-size: 15px;
+
+            font-weight: 750;
+
+        }
+
+
+        /* =========================================================
+           INFORMATION GRID
+        ========================================================= */
+
+        .information-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                minmax(0, 1fr);
+
+            gap: 10px;
+
+        }
+
+
+        /* =========================================================
+           INFORMATION CARD
+        ========================================================= */
+
+        .information-card {
+
+            min-height: 82px;
+
+            position: relative;
+
+            padding: 14px 15px;
+
+            background: #ffffff;
+
+            border: 1px solid #dce4ed;
+
+            border-radius: 11px;
+
+            overflow: hidden;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.2s ease;
+
+        }
+
+
+        .information-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 17px;
+
+            bottom: 17px;
+
+            width: 3px;
+
+            background: var(--brand);
+
+            border-radius: 0 3px 3px 0;
+
+        }
+
+
+        .information-card:hover {
+
+            border-color: #a7e5dd;
+
+            box-shadow: var(--shadow-sm);
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* =========================================================
+           INFORMATION TOP
+        ========================================================= */
+
+        .information-top {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .information-icon {
+
+            width: 28px;
+
+            height: 28px;
+
+            border-radius: 8px;
+
+            background: var(--brand-bg);
+
+            color: var(--brand-dark);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 10px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .information-label {
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            font-weight: 750;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.35px;
+
+        }
+
+
+        .information-value {
+
+            padding-left: 37px;
+
+            color: var(--ink);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            font-weight: 650;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .profile-footer {
+
+            padding: 13px 30px;
+
+            background: #fafcfc;
+
+            border-top: 1px solid #edf2f2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: end;
+
+            gap: 15px;
+
+        }
+
+
+        .powered-by {
+
+            color: #8b96a3;
+
+            font-size: 10px;
+
+        }
+
+
+        .powered-by strong {
+
+            color: var(--brand);
+
+            font-weight: 750;
+
+        }
+
+
+        .footer-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 4px;
+
+        }
+
+
+        .footer-button {
+
+            height: 30px;
+
+            padding: 0 9px;
+
+            border: 0;
+
+            border-radius: 7px;
+
+            background: transparent;
+
+            color: var(--muted);
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+
+            font-size: 9px;
+
+            font-weight: 650;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .footer-button:hover {
+
+            color: var(--brand-dark);
+
+            background: var(--brand-bg);
+
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @@media (max-width: 800px) {
+
+            .profile-actions {
+
+                top: 15px;
+
+                right: 15px;
+
+            }
+
+
+            .profile-page {
+
+                width: calc(100% - 24px);
+
+                padding-top: 70px;
+
+            }
+
+
+            .profile-cover {
+
+                height: 190px;
+
+            }
+
+
+            .cover-content {
+
+                left: 23px;
+
+                bottom: 22px;
+
+            }
+
+
+            .organization-section {
+
+                padding: 0 23px;
+
+            }
+
+
+            .profile-body {
+
+                padding-left: 23px;
+
+                padding-right: 23px;
+
+            }
+
+
+            .profile-footer {
+
+                padding-left: 23px;
+
+                padding-right: 23px;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @@media (max-width: 600px) {
+
+            .profile-actions {
+
+                position: absolute;
+
+                top: 14px;
+
+                right: 12px;
+
+            }
+
+
+            .profile-action-btn {
+
+                width: 39px;
+
+                height: 36px;
+
+                font-size: 12px;
+
+            }
+
+
+            .profile-page {
+
+                width: calc(100% - 12px);
+
+                padding-top: 65px;
+
+                padding-bottom: 25px;
+
+            }
+
+
+            .profile-card {
+
+                border-radius: 15px;
+
+            }
+
+
+            .profile-cover {
+
+                height: 180px;
+
+            }
+
+
+            .cover-content {
+
+                left: 18px;
+
+                right: 18px;
+
+                bottom: 20px;
+
+            }
+
+
+            .cover-title {
+
+                font-size: 21px;
+
+            }
+
+
+            .cover-subtitle {
+
+                font-size: 10px;
+
+            }
+
+
+            .organization-section {
+
+                padding: 0 17px;
+
+            }
+
+
+            .organization-main {
+
+                min-height: 102px;
+
+                gap: 12px;
+
+            }
+
+
+            .organization-logo {
+
+                width: 70px;
+
+                height: 70px;
+
+                margin-top: -34px;
+
+                border-radius: 15px;
+
+            }
+
+
+            .organization-logo-placeholder {
+
+                font-size: 24px;
+
+            }
+
+
+            .organization-name {
+
+                font-size: 16px;
+
+            }
+
+
+            .organization-meta {
+
+                font-size: 9px;
+
+            }
+
+
+            .profile-body {
+
+                padding:
+                    0
+                    17px
+                    22px;
+
+            }
+
+
+            .details-header {
+
+                padding-top: 18px;
+
+                padding-bottom: 12px;
+
+            }
+
+
+            .information-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .information-card {
+
+                min-height: 78px;
+
+            }
+
+
+            .profile-footer {
+
+                padding:
+                    12px
+                    17px;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+            }
+
+
+            .powered-by {
+
+                text-align: center;
+
+            }
+
+
+            .footer-actions {
+
+                justify-content: center;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           SMALL MOBILE
+        ========================================================= */
+
+        @@media (max-width: 390px) {
+
+            .cover-title {
+
+                font-size: 19px;
+
+            }
+
+
+            .organization-logo {
+
+                width: 62px;
+
+                height: 62px;
+
+            }
+
+
+            .organization-name {
+
+                font-size: 14px;
+
+            }
+
+
+            .organization-meta {
+
+                font-size: 8px;
+
+            }
+
+
+            .information-card {
+
+                padding: 13px;
+
+            }
+
+
+            .information-value {
+
+                font-size: 11px;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           PRINT
+        ========================================================= */
+
+        @@media print {
+
+            body {
+
+                background: #ffffff;
+
+            }
+
+
+            .profile-page {
+
+                width: 100%;
+
+                padding: 0;
+
+            }
+
+
+            .profile-actions {
+
+                display: none !important;
+
+            }
+
+
+            .profile-card {
+
+                box-shadow: none;
+
+                border: 1px solid #dce4ed;
+
+            }
+
+
+            .footer-actions {
+
+                display: none !important;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         ACTION BUTTONS
+    ========================================================= -->
+
+    <div class="profile-actions">
+
+
+        <button type="button"
+                class="profile-action-btn"
+                title="Home"
+                onclick="goHome();">
+
+            <i class="fa-solid fa-house"></i>
+
+        </button>
+
+
+        <button type="button"
+                class="profile-action-btn"
+                title="Print"
+                onclick="printProfile();">
+
+            <i class="fa-solid fa-print"></i>
+
+        </button>
+
+
+        <button type="button"
+                class="profile-action-btn"
+                title="Download"
+                onclick="downloadProfile();">
+
+            <i class="fa-solid fa-download"></i>
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- =========================================================
+         PAGE
+    ========================================================= -->
+
+    <main class="profile-page">
+
+
+        <!-- =====================================================
+             PROFILE CARD
+        ====================================================== -->
+
+        <article class="profile-card">
+
+
+            <!-- =================================================
+                 COVER
+            ================================================== -->
+
+            <section class="profile-cover">
+
+
+                <div class="cover-circle-one"></div>
+
+                <div class="cover-circle-two"></div>
+
+                <div class="cover-circle-three"></div>
+
+
+                <div class="cover-content">
+
+
+                    <div class="cover-label">
+
+                        <i class="fa-solid fa-building"></i>
+
+                        Organization Profile
+
+                    </div>
+
+
+                    <h1 class="cover-title">
+
+                        View Organization Profile
+
+                    </h1>
+
+
+                    <div class="cover-subtitle">
+
+                        Organization information on 1Trainee
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ORGANIZATION HEADER
+            ================================================== -->
+
+            <section class="organization-section">
+
+
+                <div class="organization-main">
+
+
+                    <!-- LOGO -->
+
+                    <div class="organization-logo">
+
+                        <div class="organization-logo-placeholder">
+
+                            <i class="fa-solid fa-building"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- NAME -->
+
+                    <div class="organization-info">
+
+
+                        <div class="organization-name">
+
+                            Organization Name
+
+                            <span class="verified-icon">
+
+                                <i class="fa-solid fa-check"></i>
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="organization-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-building"></i>
+
+                                Organization
+
+                            </span>
+
+
+                            <span class="meta-dot">
+
+                                •
+
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                India
+
+                            </span>
+
+
+                            <span class="meta-dot">
+
+                                •
+
+                            </span>
+
+
+                            <span>
+
+                                1Trainee
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROFILE BODY
+            ================================================== -->
+
+            <section class="profile-body">
+
+
+                <!-- =================================================
+                     SECTION TITLE
+                ================================================== -->
+
+                <div class="details-header">
+
+
+                    <div class="details-icon">
+
+                        <i class="fa-solid fa-list"></i>
+
+                    </div>
+
+
+                    <div class="details-title">
+
+                        Organization Information
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     INFORMATION GRID
+                ================================================== -->
+
+                <div class="information-grid">
+
+
+                    <!-- CONTACT PERSON -->
+
+                    <div class="information-card">
+
+
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                Contact Person Name
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-value">
+
+                            Contact Person Name
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- DESIGNATION -->
+
+                    <div class="information-card">
+
+
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-briefcase"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                Designation
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-value">
+
+                            Designation
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- COMPANY ADDRESS -->
+
+                    <div class="information-card">
+
+
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                Company Address
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-value">
+
+                            Company Address
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ESTABLISHMENT YEAR -->
+
+                    <div class="information-card">
+
+
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-calendar"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                Establishment Year
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-value">
+
+                            Establishment Year
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- VERIFICATION EMAIL -->
+
+                    <div class="information-card">
+
+
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                Verification Email
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-value">
+
+                            Verification Email
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- GST -->
+
+                    <div class="information-card">
+
+
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-file-invoice"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                GST No.
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-value">
+
+                            GST No.
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- CIN -->
+
+                    <div class="information-card">
+
+
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-file-lines"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                CIN No.
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-value">
+
+                            CIN No.
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- EMPLOYEE STRENGTH -->
+
+                    <div class="information-card">
+
+
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-users"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                Current Employee Strength
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="information-value">
+
+                            Current Employee Strength
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="profile-footer">
+
+
+                <div class="powered-by">
+
+                    Powered by
+
+                    <strong>
+                        www.1trainee.com
+                    </strong>
+
+                </div>
+
+ 
+
+
+            </footer>
+
+
+        </article>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        function goHome() {
+
+            window.location.href = "/";
+
+        }
+
+
+        function printProfile() {
+
+            window.print();
+
+        }
+
+
+        function downloadProfile() {
+
+            window.print();
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
