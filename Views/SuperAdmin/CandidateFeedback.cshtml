@@ -21,214 +21,50 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 35px;
+        margin-bottom: 25px;
     }
 
     .feedback-title {
         margin: 0;
-        font-size: 34px;
-        font-weight: 500;
-        color: #111827;
-    }
-
-    .back-button {
-        width: 70px;
-        height: 54px;
-        border-radius: 10px;
-        background: #4169e1;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        font-size: 27px;
+        font-size: 30px;
+        font-weight: 600;
+        color: #142238;
     }
 
     .feedback-subtitle {
-        margin-top: 12px;
-        font-size: 22px;
-        color: #6b7280;
+        margin-top: 8px;
+        font-size: 16px;
+        color: #888;
     }
 
-    .feedback-card {
-        width: 100%;
-        border: 1px solid #d7d7d7;
-        border-radius: 10px;
-        background: white;
-        overflow: hidden;
-    }
-
-    .feedback-card-header {
-        height: 58px;
-        display: flex;
-        align-items: center;
-        padding: 0 22px;
-        background: #f7f7f7;
-        border-bottom: 1px solid #d7d7d7;
-        font-size: 22px;
-        color: #252525;
-    }
-
-        .feedback-card-header i {
-            margin-right: 12px;
-        }
-
-    .feedback-controls {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 22px;
-    }
-
-    .entries-section {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 20px;
-    }
-
-    .entries-select {
-        width: 140px;
-        height: 50px;
-        border: 1px solid #999;
-        border-radius: 4px;
-        padding: 0 12px;
-        font-size: 18px;
-        background: white;
-    }
-
-    .search-input {
-        width: 290px;
-        height: 54px;
-        border: 1px solid #d2d8e0;
-        border-radius: 10px;
-        padding: 0 18px;
-        font-size: 18px;
-        outline: none;
-    }
-
-    .feedback-table-wrapper {
-        padding: 0 22px 25px 22px;
-        overflow-x: auto;
-    }
-
-    .feedback-table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-        .feedback-table th {
-            background: #ffffff;
-            border: 1px solid #dce1e6;
-            padding: 17px 12px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 700;
-            color: #171717;
-        }
-
-        .feedback-table td {
-            border: 1px solid #dce1e6;
-            padding: 17px 12px;
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-            height: 40px;
-        }
-
-        .feedback-table th:nth-child(1) {
-            width: 13%;
-        }
-
-        .feedback-table th:nth-child(2) {
-            width: 27%;
-        }
-
-        .feedback-table th:nth-child(3) {
-            width: 27%;
-        }
-
-        .feedback-table th:nth-child(4) {
-            width: 18%;
-        }
-
-        .feedback-table th:nth-child(5) {
-            width: 15%;
-        }
-
-    .status-enabled {
-        display: inline-block;
-        background: #198754;
-        color: white;
-        padding: 12px 20px;
+    .back-button {
+        width: 42px;
+        height: 42px;
         border-radius: 8px;
-        font-size: 18px;
-    }
-
-    .status-disabled {
-        display: inline-block;
-        background: #dc3545;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-size: 18px;
-    }
-
-    .view-button {
+        background: #1e7b67;
+        color: #ffffff;
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 40px;
-        height: 40px;
-        color: #1473e6;
         text-decoration: none;
-        font-size: 24px;
+        font-size: 16px;
+        transition: 0.2s ease;
     }
 
-        .view-button:hover {
-            color: #0056b3;
-        }
-
-    .no-data {
-        padding: 35px !important;
-        text-align: center;
-        color: #777;
-    }
-
-    @@media (max-width: 768px) {
-
-        .feedback-title {
-            font-size: 25px;
-        }
-
-        .feedback-subtitle {
-            font-size: 18px;
-        }
-
-        .feedback-controls {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 15px;
-        }
-
-        .search-input {
-            width: 100%;
-        }
-
-        .feedback-table {
-            min-width: 850px;
-        }
+    .back-button:hover {
+        background: #155d4e;
+        color: #ffffff;
+        text-decoration: none;
     }
 
     .status-button {
         border: none;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-size: 18px;
+        color: #ffffff;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 12px;
         cursor: pointer;
-        min-width: 120px;
+        min-width: 75px;
     }
 
     .status-enabled {
@@ -243,267 +79,264 @@
         opacity: 0.9;
     }
 
-</style>
+    @@media (max-width: 768px) {
 
+        .feedback-page {
+            padding: 10px;
+        }
+
+      
+
+        .feedback-title {
+            font-size: 24px;
+        }
+
+        .feedback-subtitle {
+            font-size: 14px;
+        }
+
+        .back-button {
+            width: 40px;
+            height: 40px;
+        }
+
+    }
+    .feedback-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.feedback-title {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 600;
+    color: #142238;
+}
+
+.feedback-subtitle {
+    margin-top: 8px;
+    font-size: 16px;
+    color: #888;
+}
+
+.back-button {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: #1e7b67;
+    color: #ffffff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.back-button:hover {
+    background: #155d4e;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+
+</style>
 
 <div class="feedback-page">
 
     <!-- TITLE -->
-    <div class="feedback-title-row">
 
-        <div>
-            <h1 class="feedback-title">
-                Trainee Feedback Details
-            </h1>
+   
 
-            <div class="feedback-subtitle">
-                ItNetworkZ
-            </div>
+
+    <!-- MASTER TABLE -->
+
+    <div class="master-table-container">
+       <div class="feedback-title-row">
+
+    <!-- LEFT SIDE -->
+    <div>
+
+        <h1 class="feedback-title">
+            Trainee Feedback Details
+        </h1>
+
+        <div class="feedback-subtitle">
+            ItNetworkZ
         </div>
-
-        <a href="javascript:history.back();"
-           class="back-button"
-           title="Back">
-            <i class="fas fa-arrow-left"></i>
-        </a>
 
     </div>
 
 
-    <!-- CARD -->
-    <div class="feedback-card">
+    <!-- RIGHT SIDE -->
+    <a href="javascript:history.back();"
+       class="back-button"
+       title="Back">
 
-        <div class="feedback-card-header">
-            <i class="fas fa-table"></i>
-            Feedback
-        </div>
+        <i class="fas fa-arrow-left"></i>
 
+    </a>
 
-        <!-- CONTROLS -->
-        <div class="feedback-controls">
+</div>
+        <table id="feedbackTable"
+               class="master-data-table"
+               data-mobile-scroll="true">
 
-            <div class="entries-section">
+            <thead>
 
-                <select id="entriesSelect"
-                        class="entries-select">
+                <tr>
 
-                    <option value="10">10</option>
-                    <option value="25" selected>25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
+                    <th>
+                        Sr. No
+                    </th>
 
-                </select>
+                    <th>
+                        Trainee ID
+                    </th>
 
-                <span>entries per page</span>
+                    <th>
+                        Trainee Name
+                    </th>
 
-            </div>
+                    <th>
+                        Status
+                    </th>
 
+                    <th>
+                        Action
+                    </th>
 
-            <div>
+                </tr>
 
-                <input type="text"
-                       id="searchInput"
-                       class="search-input"
-                       placeholder="Search..." />
-
-            </div>
-
-        </div>
-
-
-        <!-- TABLE -->
-        <div class="feedback-table-wrapper">
-
-            <table class="feedback-table"
-                   id="feedbackTable">
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Sr. No
-                        </th>
-
-                        <th>
-                            Trainee ID
-                        </th>
-
-                        <th>
-                            Trainee Name
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    @{
-                        int srNo = 1;
-                    }
-
-                    @if (Model != null && Model.Any())
-                    {
-                        foreach (var item in Model)
-                        {
-                            <tr>
-
-                                <td>
-                                    @srNo
-                                </td>
-
-                                <td>
-                                    @item.nID
-                                </td>
-
-                                <td>
-                                    @item.sFName @item.sLName
-                                </td>
-
-                                <td>
+            </thead>
 
 
+            <tbody>
 
-                                    <form asp-controller="SuperAdmin"
-                                          asp-action="ToggleCandidateFeedback"
-                                          method="post"
-                                          style="display:inline;">
+                @{
+                    int srNo = 1;
+                }
 
-                                        @Html.AntiForgeryToken()
-
-                                        <input type="hidden"
-                                               name="id"
-                                               value="@item.nID" />
-
-                                        @if (item.nSABit == 1)
-                                        {
-                                            <button type="submit"
-                                                    class="status-button status-enabled"
-                                                    onclick="return confirm('Are you sure you want to disable this feedback?');">
-                                                Enabled
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button type="submit"
-                                                    class="status-button status-disabled"
-                                                    onclick="return confirm('Are you sure you want to enable this feedback?');">
-                                                Disabled
-                                            </button>
-                                        }
-
-                                    </form>
-
-
-
-                                </td>
-
-                                <td>
-
-                                    <a asp-controller="SuperAdmin"
-                                       asp-action="DetailsCandidateFeedback"
-                                       asp-route-id="@item.nID"
-                                       class="view-button"
-                                       title="View">
-
-                                        <i class="fas fa-eye"></i>
-
-                                    </a>
-
-                                </td>
-
-                            </tr>
-
-                            srNo++;
-                        }
-                    }
-                    else
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
                     {
                         <tr>
-                            <td colspan="5"
-                                class="no-data">
-                                No trainee feedback found.
+
+                            <!-- SR NO -->
+
+                            <td>
+                                @srNo
                             </td>
+
+
+                            <!-- TRAINEE ID -->
+
+                            <td>
+                                @item.nID
+                            </td>
+
+
+                            <!-- TRAINEE NAME -->
+
+                            <td>
+                                @item.sFName @item.sLName
+                            </td>
+
+
+                            <!-- STATUS -->
+
+                            <td>
+
+                                <form asp-controller="SuperAdmin"
+                                      asp-action="ToggleCandidateFeedback"
+                                      method="post"
+                                      style="display:inline;">
+
+                                    @Html.AntiForgeryToken()
+
+                                    <input type="hidden"
+                                           name="id"
+                                           value="@item.nID" />
+
+                                    @if (item.nSABit == 1)
+                                    {
+                                        <button type="submit"
+                                                class="status-button status-enabled"
+                                                onclick="return confirm('Are you sure you want to disable this feedback?');">
+
+                                            Enabled
+
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit"
+                                                class="status-button status-disabled"
+                                                onclick="return confirm('Are you sure you want to enable this feedback?');">
+
+                                            Disabled
+
+                                        </button>
+                                    }
+
+                                </form>
+
+                            </td>
+
+
+                            <!-- ACTION -->
+
+                            <td>
+
+                                <a asp-controller="SuperAdmin"
+                                   asp-action="DetailsCandidateFeedback"
+                                   asp-route-id="@item.nID"
+                                   class="master-action-btn"
+                                   title="View">
+
+                                    <i class="fas fa-eye"></i>
+
+                                </a>
+
+                            </td>
+
                         </tr>
+
+                        srNo++;
                     }
+                }
+                else
+                {
+                    <tr>
 
-                </tbody>
+                        <td colspan="5"
+                            class="text-center">
 
-            </table>
+                            No trainee feedback found.
 
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+
+        <!-- MASTER PAGE INFO -->
+
+        <div id="feedbackPageInfo"
+             class="master-page-info text-center d-none">
         </div>
 
     </div>
 
 </div>
 
-
-<script>
-
-    const searchInput =
-        document.getElementById("searchInput");
-
-    const entriesSelect =
-        document.getElementById("entriesSelect");
-
-    const table =
-        document.getElementById("feedbackTable");
-
-    const rows =
-        table.querySelectorAll("tbody tr");
-
-    function filterTable() {
-
-        const searchValue =
-            searchInput.value.toLowerCase();
-
-        const maxRows =
-            parseInt(entriesSelect.value);
-
-        let visibleCount = 0;
-
-        rows.forEach(function (row) {
-
-            const rowText =
-                row.innerText.toLowerCase();
-
-            if (
-                rowText.includes(searchValue) &&
-                visibleCount < maxRows
-            ) {
-
-                row.style.display = "";
-
-                visibleCount++;
-
-            }
-            else {
-
-                row.style.display = "none";
-
-            }
-
-        });
-
-    }
-
-    searchInput.addEventListener(
-        "keyup",
-        filterTable
-    );
-
-    entriesSelect.addEventListener(
-        "change",
-        filterTable
-    );
-
-</script>
+ 

@@ -23,10 +23,7 @@
 
 }
 
-<link rel="stylesheet"
-      href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
- 
-
+  
 
 <div class="feedback-container">
 
@@ -34,9 +31,6 @@
          PAGE TITLE
          ===================================================== -->
 
-    <h1 class="feedback-title">
-        Trainee Feedback Details
-    </h1>
 
 
     <!-- =====================================================
@@ -46,17 +40,7 @@
     <div class="feedback-card">
 
 
-        <!-- =================================================
-             CARD HEADER
-             ================================================= -->
-
-        <div class="feedback-card-header">
-
-            <i class="fas fa-table"></i>
-
-            Feedback
-
-        </div>
+     
 
 
         <!-- =================================================
@@ -65,13 +49,20 @@
 
         <div class="feedback-card-body">
 
-
+   
             <!-- =================================================
                  TABLE
                  ================================================= -->
 
-            <table id="feedbackTable"
-                   class="table table-bordered">
+       <div class="master-table-container">
+                    
+    <h1 class="feedback-title">
+        Trainee Feedback Details
+    </h1>
+
+    <table id="feedbackTable"
+           class="master-data-table"
+           data-mobile-scroll="true">
 
 
                 <!-- =================================================
@@ -347,107 +338,13 @@
 
             </table>
 
+                <div id="feedbackPageInfo"
+         class="master-page-info text-center d-none">
+    </div>
         </div>
 
     </div>
 
 </div>
 
-
-<!-- =========================================================
-     JQUERY
-     ========================================================= -->
-
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-
-<!-- =========================================================
-     DATATABLE
-     ========================================================= -->
-
-<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-
-
-@* <script>
-
-    $(document).ready(function () {
-
-    $('#feedbackTable').DataTable({
-
-    pageLength: 25,
-
-    lengthMenu: [
-    [10, 25, 50, 100],
-    [10, 25, 50, 100]
-    ],
-
-    ordering: true,
-
-    searching: true,
-
-    paging: true,
-
-    autoWidth: false,
-
-    scrollX: false,
-
-    responsive: false,
-
-    language: {
-
-    search: "",
-
-    searchPlaceholder: "Search..."
-
-    }
-
-    });
-
-    });
-
-</script> *@
-@section Scripts {
-
-    <link rel="stylesheet"
-          href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
-
-    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-
-        $('#feedbackTable').DataTable({
-
-        pageLength: 25,
-
-        lengthMenu: [
-        [10, 25, 50, 100, -1],
-        [10, 25, 50, 100, "All"]
-        ],
-
-        ordering: true,
-
-        searching: true,
-
-        paging: true,
-
-        info: true,
-
-        autoWidth: false,
-
-        language: {
-
-        search: "",
-
-        searchPlaceholder: "Search..."
-
-        }
-
-        });
-
-        });
-
-    </script>
-
-}
+ 

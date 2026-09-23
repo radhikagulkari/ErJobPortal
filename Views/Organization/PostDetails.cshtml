@@ -7,8 +7,7 @@
     ViewData["UserName"] = "Organization";
 }
 
-<link rel="stylesheet"
-      href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
+ 
 
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
@@ -17,7 +16,7 @@
 
     .page-title {
         margin: 25px 18px 4px;
-        font-size: 21px;
+        font-size: 28px;
         font-weight: 600;
     }
 
@@ -145,7 +144,17 @@
 </style>
 
 
-<h2 class="page-title">
+
+
+<div class="post-box">
+
+     
+
+
+  <!-- MASTER TABLE CARD -->
+    <div class="master-table-container">
+
+       <h2 class="page-title">
     All Post Details
 </h2>
 
@@ -154,21 +163,12 @@
 </div>
 
 
-<div class="post-box">
 
-    <div class="post-header">
+        <!-- MASTER TABLE -->
+        <div class="table-responsive">
 
-        <i class="fa-solid fa-table"></i>
-
-        Post Details
-
-    </div>
-
-
-    <div class="table-area">
-
-        <table id="postTable"
-               class="display">
+            <table id="organizationJobsTable"
+                   class="master-data-table">
 
             <thead>
 
@@ -273,7 +273,7 @@
                         </td>
 
 
-                        <!-- Required  -->
+                        <!-- Required Trainees -->
                         <td>
                             @item.nRequiredTrainees
                         </td>

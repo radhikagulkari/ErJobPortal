@@ -1,11 +1,8 @@
-﻿@*
-    View Organization Profile
-*@
-@{
+﻿@{
     ViewData["Title"] = "View Organization Profile";
+    Layout = null;
 }
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,44 +13,39 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0" />
 
-    <title>
-        Organization Profile - IT-NetworkZ Infosystems Pvt Ltd
-    </title>
-
-
-    <!-- Font Awesome -->
+    <title>View Organization Profile - 1Trainee</title>
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-
     <style>
 
         /* =========================================================
-                               ROOT
-                            ========================================================= */
+                   1TRAINEE COLOR SYSTEM
+                ========================================================= */
 
         :root {
-            --primary: #0d9488;
-            --primary-dark: #0f766e;
-            --primary-deep: #115e59;
-            --primary-light: #14b8a6;
-            --primary-soft: #2dd4bf;
-            --gradient: linear-gradient( 135deg, #0f766e, #14b8a6 );
-            --dark: #0f172a;
-            --text: #475569;
+            --brand: #0d9488;
+            --brand-dark: #0f766e;
+            --brand-deep: #115e59;
+            --brand-light: #14b8a6;
+            --brand-lighter: #2dd4bf;
+            --brand-soft: #ccfbf1;
+            --brand-bg: #f0fdfa;
+            --ink: #0f172a;
+            --text: #334155;
             --muted: #64748b;
-            --light: #f7faf9;
-            --light-teal: #f0fdfa;
-            --border: #e6ecef;
             --white: #ffffff;
-            --shadow: 0 15px 45px rgba(15, 42, 39, 0.09);
+            --page-bg: #f4f7f7;
+            --border: #dce5e5;
+            --shadow-sm: 0 5px 18px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 14px 40px rgba(15, 23, 42, 0.09);
         }
 
 
         /* =========================================================
-                               RESET
-                            ========================================================= */
+                   RESET
+                ========================================================= */
 
         * {
             margin: 0;
@@ -62,782 +54,783 @@
         }
 
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+
         body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: #f7faf9;
-            color: var(--text);
             min-height: 100vh;
+            background: var(--page-bg);
+            color: var(--ink);
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        }
+
+
+        button,
+        a {
+            font-family: inherit;
         }
 
 
         /* =========================================================
-                               TOP ACTION BAR
-                            ========================================================= */
+                   TOP ACTION BUTTONS
+                ========================================================= */
 
-        .profile-toolbar {
-            width: 100%;
-            height: 62px;
-            display: flex;
-            align-items: center;
-            justify-content: end;
-            padding: 0 32px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-
-        /* =========================================================
-                               LEFT
-                            ========================================================= */
-
-        .toolbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-        }
-
-
-        .toolbar-logo {
-            width: 38px;
-            height: 38px;
-            border-radius: 9px;
-            border: 1px solid var(--border);
-            background: var(--white);
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-
-            .toolbar-logo img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
-
-
-        .toolbar-title {
-            color: var(--dark);
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-
-        .toolbar-subtitle {
-            display: block;
-            color: var(--muted);
-            font-size: 10px;
-            margin-top: 2px;
-        }
-
-
-        /* =========================================================
-                               ACTIONS
-                            ========================================================= */
-
-        .toolbar-actions {
+        .profile-actions {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
 
-        .toolbar-btn {
-            height: 36px;
-            padding: 0 13px;
-            border-radius: 9px;
-            border: 1px solid var(--border);
-            background: var(--white);
-            color: var(--text);
+        .profile-action-btn {
+            width: 44px;
+            height: 40px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
-            font-size: 12px;
-            font-weight: 600;
+            border: 1px solid rgba(13, 148, 136, 0.15);
+            border-radius: 9px;
+            background: var(--white);
+            color: var(--brand-dark);
             text-decoration: none;
+            font-size: 13px;
             cursor: pointer;
-            transition: border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
 
-            .toolbar-btn i {
-                font-size: 12px;
-            }
-
-
-            .toolbar-btn:hover {
-                border-color: rgba(13, 148, 136, .30);
-                color: var(--primary-dark);
-                transform: translateY(-1px);
-                box-shadow: 0 5px 15px rgba(13, 148, 136, .08);
-            }
-
-
-            /* =========================================================
-                               DOWNLOAD BUTTON
-                            ========================================================= */
-
-            .toolbar-btn.download {
+            .profile-action-btn:hover {
+                background: var(--brand);
+                border-color: var(--brand);
                 color: var(--white);
-                border: none;
-                background: var(--gradient);
-                box-shadow: 0 6px 15px rgba(13, 148, 136, .20);
+                transform: translateY(-1px);
+                box-shadow: 0 8px 20px rgba(13, 148, 136, 0.18);
             }
 
 
-                .toolbar-btn.download:hover {
-                    color: var(--white);
-                    box-shadow: 0 9px 20px rgba(13, 148, 136, .28);
-                }
+            .profile-action-btn i {
+                font-size: 13px;
+            }
 
 
         /* =========================================================
-                               PAGE
-                            ========================================================= */
+                   PAGE
+         ========================================================= */
 
-        .profile-wrapper {
-            width: 100%;
-            max-width: 920px;
-            margin: 28px auto;
-            padding: 0 16px;
+        .profile-page {
+            width: min(1050px, calc(100% - 30px));
+            margin: 0 auto;
+            padding-top:70px;
+            padding-bottom: 45px;
         }
 
 
         /* =========================================================
-                               PROFILE CARD
-                            ========================================================= */
+                   MAIN PROFILE CARD
+                ========================================================= */
 
-        .organization-card {
+        .profile-card {
+            width: 100%;
             background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-
-        /* =========================================================
-                               CARD HEADER
-                            ========================================================= */
-
-        .organization-header {
-            min-height: 180px;
-            background: var(--gradient);
-            padding: 28px 38px;
-            display: flex;
-            align-items: center;
-            position: relative;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
             overflow: hidden;
         }
 
 
         /* =========================================================
-                               SUBTLE DECORATION
-                            ========================================================= */
+                   COVER SECTION
+                ========================================================= */
 
-        .header-circle {
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,.14);
-            right: -100px;
-            top: -145px;
-        }
-
-
-        .header-circle-two {
-            position: absolute;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,.11);
-            right: 120px;
-            bottom: -100px;
-        }
-
-
-        .organization-header-content {
-            display: flex;
-            align-items: center;
-            gap: 22px;
+        .profile-cover {
             position: relative;
-            z-index: 2;
+            height: 130px;
+            overflow: hidden;
+            background: radial-gradient( circle at 15% 20%, rgba(255, 255, 255, 0.20), transparent 27% ), radial-gradient( circle at 85% 10%, rgba(45, 212, 191, 0.24), transparent 31% ), linear-gradient( 120deg, var(--brand-deep), var(--brand), var(--brand-light) );
         }
 
 
         /* =========================================================
-                               COMPANY LOGO
-                            ========================================================= */
+                   COVER DECORATIVE CIRCLES
+                ========================================================= */
 
-        .company-logo {
-            width: 100px;
-            height: 100px;
-            flex-shrink: 0;
-            border-radius: 16px;
+        .cover-circle-one {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            right: -65px;
+            top: -125px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+        }
+
+
+        .cover-circle-two {
+            position: absolute;
+            width: 175px;
+            height: 175px;
+            right: 75px;
+            bottom: -115px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+        }
+
+
+        .cover-circle-three {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            left: -55px;
+            bottom: -65px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+        }
+
+
+        /* =========================================================
+                   COVER CONTENT
+                ========================================================= */
+
+        .cover-content {
+            position: absolute;
+            left: 30px;
+            bottom: 24px;
+            max-width: 650px;
+            color: var(--white);
+        }
+
+
+        .cover-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 8px;
+            padding: 5px 9px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 7px;
+            backdrop-filter: blur(8px);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+
+            .cover-label i {
+                font-size: 9px;
+            }
+
+
+        .cover-title {
+            margin: 0 0 5px;
+            color: var(--white);
+            font-size: 26px;
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+
+        .cover-subtitle {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+                   ORGANIZATION IDENTITY SECTION
+                ========================================================= */
+
+        .organization-section {
+            padding: 0 30px;
             background: var(--white);
-            border: 4px solid rgba(255,255,255,.25);
-            padding: 9px;
+        }
+
+
+        .organization-main {
+            min-height: 112px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border-bottom: 1px solid #edf2f2;
+        }
+
+
+        /* =========================================================
+                   ORGANIZATION LOGO
+                ========================================================= */
+
+        .organization-logo {
+            width: 75px;
+            height: 75px;
+            margin-top: 1px;
+            flex: 0 0 75px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(15, 42, 39, .18);
             overflow: hidden;
+            background: var(--white);
+            border: 5px solid var(--white);
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.12);
         }
 
 
-            .company-logo img {
+            .organization-logo img {
                 width: 100%;
                 height: 100%;
+                display: block;
                 object-fit: contain;
             }
 
 
-        /* =========================================================
-                               COMPANY INFORMATION
-                            ========================================================= */
-
-        .company-information {
-            color: var(--white);
-            min-width: 0;
-        }
-
-
-        .verified-label {
-            display: inline-flex;
+        .organization-logo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            opacity: .9;
-        }
-
-
-            .verified-label i {
-                font-size: 11px;
-            }
-
-
-        .company-information h1 {
+            justify-content: center;
+            background: var(--brand-bg);
+            color: var(--brand);
             font-size: 27px;
-            line-height: 1.2;
-            font-weight: 750;
-            letter-spacing: -.4px;
-            margin-bottom: 6px;
-        }
-
-
-        .company-information p {
-            font-size: 12px;
-            opacity: .85;
         }
 
 
         /* =========================================================
-                               BODY
-                            ========================================================= */
+                   ORGANIZATION INFORMATION
+                ========================================================= */
 
-        .organization-body {
-            padding: 25px 38px 28px;
-        }
-
-
-        /* =========================================================
-                               SECTION TITLE
-                            ========================================================= */
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 17px;
-        }
-
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-
-        .section-title-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 9px;
-            background: var(--light-teal);
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(13,148,136,.08);
-        }
-
-
-            .section-title-icon i {
-                font-size: 14px;
-            }
-
-
-        .section-title-text h2 {
-            color: var(--dark);
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-
-        .section-title-text span {
-            display: block;
-            color: var(--muted);
-            font-size: 10px;
-            margin-top: 2px;
-        }
-
-
-        /* =========================================================
-                               DETAILS BADGE
-                            ========================================================= */
-
-        .details-badge {
-            background: var(--light-teal);
-            color: var(--primary-dark);
-            padding: 5px 9px;
-            border-radius: 20px;
-            font-size: 9px;
-            font-weight: 700;
-            border: 1px solid rgba(13,148,136,.08);
-        }
-
-
-        /* =========================================================
-                               DETAILS GRID
-                            ========================================================= */
-
-        .details-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-
-        /* =========================================================
-                               DETAIL CARD
-                            ========================================================= */
-
-        .detail-card {
+        .organization-info {
             min-width: 0;
-            min-height: 82px;
-            padding: 13px;
-            border: 1px solid var(--border);
-            border-radius: 11px;
-            background: var(--white);
+            padding-top: 6px;
+        }
+
+
+        .organization-name {
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
-        }
-
-
-            .detail-card:hover {
-                border-color: rgba(13,148,136,.28);
-                transform: translateY(-2px);
-                box-shadow: 0 8px 20px rgba(13,148,136,.08);
-            }
-
-
-        /* =========================================================
-                               ICON
-                            ========================================================= */
-
-        .detail-icon {
-            width: 35px;
-            height: 35px;
-            flex-shrink: 0;
-            border-radius: 9px;
-            background: var(--light-teal);
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(13,148,136,.07);
-        }
-
-
-            .detail-icon i {
-                font-size: 13px;
-            }
-
-
-        /* =========================================================
-                               TEXT
-                            ========================================================= */
-
-        .detail-content {
-            min-width: 0;
-        }
-
-
-        .detail-label {
-            display: block;
-            color: #94a3b8;
-            font-size: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .55px;
-            margin-bottom: 4px;
-        }
-
-
-        .detail-value {
-            display: block;
-            color: var(--text);
-            font-size: 12px;
+            gap: 7px;
+            margin-bottom: 5px;
+            color: var(--ink);
+            font-size: 18px;
             line-height: 1.35;
-            font-weight: 650;
+            font-weight: 800;
             word-break: break-word;
         }
 
 
-        /* =========================================================
-                               FOOTER
-                            ========================================================= */
-
-        .organization-footer {
-            min-height: 48px;
-            padding: 10px 38px;
-            border-top: 1px solid var(--border);
-            background: #fbfdfd;
-            display: flex;
+        .verified-icon {
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
+            display: inline-flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--brand);
+            color: var(--white);
+            font-size: 8px;
         }
 
 
-        .powered-text {
-            color: #94a3b8;
+        .organization-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 7px;
+            color: var(--muted);
             font-size: 10px;
         }
 
 
-            .powered-text strong {
-                color: var(--primary-dark);
-                font-weight: 700;
-            }
-
-
-        .footer-right {
-            color: #a0a9b5;
-            font-size: 9px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-
-            .footer-right i {
-                color: var(--primary);
+            .organization-meta i {
+                color: var(--brand);
                 font-size: 9px;
             }
 
 
+        .meta-dot {
+            color: #cbd5e1;
+        }
+
+
         /* =========================================================
-                               TABLET
-                            ========================================================= */
+                   PROFILE BODY
+                ========================================================= */
 
-        @@media (max-width: 850px) {
+        .profile-body {
+            padding: 0 30px 28px;
+        }
 
-            .profile-toolbar {
-                padding: 0 18px;
+
+        /* =========================================================
+                   DETAILS HEADER
+                ========================================================= */
+
+        .details-header {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 20px 0 14px;
+        }
+
+
+        .details-icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: var(--brand-soft);
+            color: var(--brand-dark);
+            font-size: 11px;
+        }
+
+
+        .details-title {
+            color: var(--ink);
+            font-size: 15px;
+            font-weight: 750;
+        }
+
+
+        /* =========================================================
+                   INFORMATION GRID
+                ========================================================= */
+
+        .information-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 10px;
+        }
+
+
+        /* =========================================================
+                   INFORMATION CARD
+                ========================================================= */
+
+        .information-card {
+            min-height: 82px;
+            position: relative;
+            padding: 14px 15px;
+            background: var(--white);
+            border: 1px solid #dce4ed;
+            border-radius: 11px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+
+            .information-card::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 17px;
+                bottom: 17px;
+                width: 3px;
+                background: var(--brand);
+                border-radius: 0 3px 3px 0;
             }
 
 
-            .profile-wrapper {
-                max-width: 760px;
-                margin-top: 20px;
+            .information-card:hover {
+                border-color: #a7e5dd;
+                box-shadow: var(--shadow-sm);
+                transform: translateY(-1px);
             }
 
 
-            .organization-header {
-                padding: 25px 28px;
+        /* =========================================================
+                   INFORMATION TOP
+                ========================================================= */
+
+        .information-top {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 9px;
+        }
+
+
+        .information-icon {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: var(--brand-bg);
+            color: var(--brand-dark);
+            font-size: 10px;
+        }
+
+
+        .information-label {
+            color: var(--muted);
+            font-size: 9px;
+            line-height: 1.3;
+            font-weight: 750;
+            text-transform: uppercase;
+            letter-spacing: 0.35px;
+        }
+
+
+        .information-value {
+            padding-left: 37px;
+            color: var(--ink);
+            font-size: 12px;
+            line-height: 1.5;
+            font-weight: 650;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+
+        /* =========================================================
+                   FOOTER
+                ========================================================= */
+
+        .profile-footer {
+            min-height: 50px;
+            padding: 13px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            background: #fafcfc;
+            border-top: 1px solid #edf2f2;
+        }
+
+
+        .powered-by {
+            color: #8b96a3;
+            font-size: 10px;
+        }
+
+
+            .powered-by strong {
+                color: var(--brand);
+                font-weight: 750;
             }
 
 
-            .organization-body {
-                padding: 22px 28px 25px;
+        /* =========================================================
+                   TABLET
+                ========================================================= */
+
+        @@media (max-width: 800px) {
+
+            .profile-actions {
+                top: 15px;
+                right: 15px;
             }
 
 
-            .organization-footer {
-                padding-left: 28px;
-                padding-right: 28px;
+            .profile-page {
+                width: calc(100% - 24px);
+                padding-top: 70px;
             }
 
 
-            .details-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .profile-cover {
+                height: 180px;
+            }
+
+
+            .cover-content {
+                left: 23px;
+                bottom: 22px;
+            }
+
+
+            .organization-section {
+                padding: 0 23px;
+            }
+
+
+            .profile-body {
+                padding-left: 23px;
+                padding-right: 23px;
+            }
+
+
+            .profile-footer {
+                padding-left: 23px;
+                padding-right: 23px;
             }
         }
 
 
         /* =========================================================
-                               MOBILE
-                            ========================================================= */
+                   MOBILE
+                ========================================================= */
 
         @@media (max-width: 600px) {
 
-            .profile-toolbar {
-                height: 58px;
-                padding: 0 12px;
+            .profile-actions {
+                position: absolute;
+                top: 14px;
+                right: 12px;
+                gap: 6px;
             }
 
 
-            .toolbar-logo {
-                width: 34px;
-                height: 34px;
-            }
-
-
-            .toolbar-title {
+            .profile-action-btn {
+                width: 39px;
+                height: 36px;
+                border-radius: 8px;
                 font-size: 12px;
             }
 
 
-            .toolbar-subtitle {
-                display: none;
+            .profile-page {
+                width: calc(100% - 12px);
+                padding-top: 65px;
+                padding-bottom: 25px;
             }
 
 
-            .toolbar-actions {
-                gap: 5px;
-            }
-
-
-            .toolbar-btn {
-                width: 36px;
-                height: 36px;
-                padding: 0;
-            }
-
-
-                .toolbar-btn span {
-                    display: none;
-                }
-
-
-                .toolbar-btn i {
-                    font-size: 13px;
-                }
-
-
-            .profile-wrapper {
-                margin: 12px auto 25px;
-                padding: 0 9px;
-            }
-
-
-            .organization-card {
+            .profile-card {
                 border-radius: 15px;
             }
 
 
-            .organization-header {
-                padding: 22px 18px;
-                min-height: 145px;
+            .profile-cover {
+                height: 180px;
             }
 
 
-            .organization-header-content {
-                gap: 15px;
+            .cover-content {
+                left: 18px;
+                right: 18px;
+                bottom: 20px;
             }
 
 
-            .company-logo {
-                width: 72px;
-                height: 72px;
-                border-radius: 12px;
-                padding: 6px;
-                border-width: 3px;
+            .cover-title {
+                font-size: 21px;
             }
 
 
-            .verified-label {
-                font-size: 7px;
-                margin-bottom: 5px;
-            }
-
-
-            .company-information h1 {
-                font-size: 18px;
-                line-height: 1.2;
-            }
-
-
-            .company-information p {
+            .cover-subtitle {
                 font-size: 10px;
             }
 
 
-            .organization-body {
-                padding: 19px 14px 20px;
+            .organization-section {
+                padding: 0 17px;
             }
 
 
-            .section-header {
-                margin-bottom: 12px;
+            .organization-main {
+                min-height: 102px;
+                gap: 12px;
             }
 
 
-            .section-title-icon {
-                width: 31px;
-                height: 31px;
+            .organization-logo {
+                width: 70px;
+                height: 70px;
+                flex-basis: 70px;
+                margin-top: -34px;
+                border-radius: 15px;
             }
 
 
-            .section-title-text h2 {
-                font-size: 13px;
-            }
-
-
-            .section-title-text span {
-                font-size: 9px;
-            }
-
-
-            .details-badge {
-                display: none;
-            }
-
-
-            .details-grid {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-
-            .detail-card {
-                min-height: 64px;
-                padding: 10px;
-            }
-
-
-            .detail-icon {
-                width: 34px;
-                height: 34px;
-            }
-
-
-            .detail-value {
-                font-size: 12px;
-            }
-
-
-            .organization-footer {
-                min-height: 43px;
-                padding: 9px 14px;
-                justify-content: center;
-            }
-
-
-            .footer-right {
-                display: none;
-            }
-        }
-
-
-        /* =========================================================
-                               SMALL MOBILE
-                            ========================================================= */
-
-        @@media (max-width: 390px) {
-
-            .toolbar-brand {
-                gap: 7px;
-            }
-
-
-            .toolbar-title {
-                display: none;
-            }
-
-
-            .organization-header-content {
-                align-items: flex-start;
-            }
-
-
-            .company-logo {
-                width: 62px;
-                height: 62px;
-            }
-
-
-            .company-information h1 {
+            .organization-name {
                 font-size: 16px;
             }
 
 
-            .detail-value {
-                font-size: 11px;
+            .organization-meta {
+                font-size: 9px;
+            }
+
+
+            .profile-body {
+                padding: 0 17px 22px;
+            }
+
+
+            .details-header {
+                padding-top: 18px;
+                padding-bottom: 12px;
+            }
+
+
+            .information-grid {
+                grid-template-columns: 1fr;
+                gap: 9px;
+            }
+
+
+            .information-card {
+                min-height: 78px;
+            }
+
+
+            .profile-footer {
+                padding: 12px 17px;
+               
             }
         }
 
 
         /* =========================================================
-                               PRINT
-                            ========================================================= */
+                   SMALL MOBILE
+                ========================================================= */
+
+        @@media (max-width: 390px) {
+
+            .profile-actions {
+                right: 9px;
+                gap: 5px;
+            }
+
+
+            .profile-action-btn {
+                width: 35px;
+                height: 35px;
+            }
+
+
+            .profile-page {
+                width: calc(100% - 16px);
+            }
+
+
+            .profile-cover {
+                height: 170px;
+            }
+
+
+            .cover-content {
+                left: 15px;
+                right: 15px;
+                bottom: 17px;
+            }
+
+
+            .cover-title {
+                font-size: 19px;
+            }
+
+
+            .cover-label {
+                font-size: 8px;
+            }
+
+
+            .organization-section {
+                padding: 0 14px;
+            }
+
+
+            .organization-logo {
+                width: 62px;
+                height: 62px;
+                flex-basis: 62px;
+            }
+
+
+            .organization-name {
+                font-size: 14px;
+            }
+
+
+            .organization-meta {
+                font-size: 8px;
+            }
+
+
+            .profile-body {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+
+            .information-card {
+                padding: 13px;
+            }
+
+
+            .information-value {
+                font-size: 11px;
+            }
+
+
+            .profile-footer {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+        }
+
+
+        /* =========================================================
+                   PRINT
+                ========================================================= */
 
         @@media print {
 
             body {
-                background: var(--white);
+                background: #ffffff;
             }
 
 
-            .profile-toolbar {
-                display: none !important;
-            }
-
-
-            .profile-wrapper {
-                max-width: 100%;
-                margin: 0;
+            .profile-page {
+                width: 100%;
                 padding: 0;
             }
 
 
-            .organization-card {
+            .profile-actions {
+                display: none !important;
+            }
+
+
+            .profile-card {
+                border: 1px solid #dce4ed;
                 border-radius: 0;
                 box-shadow: none;
-                border: 1px solid #d5dbe2;
-            }
-
-
-            .organization-header {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
 
 
-            .detail-card {
+            .profile-cover {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+
+            .organization-logo,
+            .information-card,
+            .details-icon,
+            .information-icon,
+            .profile-footer {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+
+            .information-card {
                 break-inside: avoid;
-                box-shadow: none;
-            }
-
-
-            .organization-footer {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
             }
         }
 
     </style>
+
 </head>
 
 
@@ -845,101 +838,130 @@
 
 
     <!-- =========================================================
-         TOP TOOLBAR
-    ========================================================== -->
+         ACTION BUTTONS
+    ========================================================= -->
 
-    <header class="profile-toolbar">
-
-
+    <div class="profile-actions">
 
 
-        <!-- ACTIONS -->
+        <!-- HOME -->
 
-        <div class="toolbar-actions">
+        <button type="button"
+                class="profile-action-btn"
+                title="Home"
+                aria-label="Home"
+                onclick="goHome();">
 
+            <i class="fa-solid fa-house"></i>
 
-            <!-- HOME -->
-
-            <a href="/"
-               class="toolbar-btn"
-               title="Home">
-
-                <i class="fa-solid fa-house"></i>
-
-                <span>
-                    Home
-                </span>
-
-            </a>
+        </button>
 
 
-            <!-- PRINT -->
+        <!-- PRINT -->
 
-            <button type="button"
-                    class="toolbar-btn"
-                    title="Print"
-                    onclick="window.print();">
+        <button type="button"
+                class="profile-action-btn"
+                title="Print"
+                aria-label="Print"
+                onclick="printProfile();">
 
-                <i class="fa-solid fa-print"></i>
+            <i class="fa-solid fa-print"></i>
 
-                <span>
-                    Print
-                </span>
-
-            </button>
+        </button>
 
 
-            <!-- DOWNLOAD -->
+        <!-- DOWNLOAD -->
 
-            <button type="button"
-                    class="toolbar-btn download"
-                    title="Download"
-                    onclick="downloadProfile();">
+        <button type="button"
+                class="profile-action-btn"
+                title="Download"
+                aria-label="Download"
+                onclick="downloadProfile();">
 
-                <i class="fa-solid fa-download"></i>
+            <i class="fa-solid fa-download"></i>
 
-                <span>
-                    Download
-                </span>
-
-            </button>
+        </button>
 
 
-        </div>
-
-    </header>
+    </div>
 
 
 
     <!-- =========================================================
-         PROFILE
-    ========================================================== -->
+         PAGE
+    ========================================================= -->
 
-    <main class="profile-wrapper">
+    <main class="profile-page">
 
 
-        <section class="organization-card"
+        <!-- =====================================================
+             PROFILE CARD
+        ====================================================== -->
+
+        <article class="profile-card"
                  id="organizationProfile">
 
 
             <!-- =================================================
-                 HEADER
+                 COVER
             ================================================== -->
 
-            <div class="organization-header">
+            <section class="profile-cover">
 
 
-                <div class="header-circle"></div>
+                <div class="cover-circle-one"></div>
 
-                <div class="header-circle-two"></div>
+                <div class="cover-circle-two"></div>
+
+                <div class="cover-circle-three"></div>
 
 
-                <div class="organization-header-content">
+                <div class="cover-content">
 
 
-                    <!-- COMPANY LOGO -->
+                    <div class="cover-label">
 
-                    <div class="company-logo">
+                        <i class="fa-solid fa-building"></i>
+
+                        Organization Profile
+
+                    </div>
+
+
+                    <h1 class="cover-title">
+
+                        View Organization Profile
+
+                    </h1>
+
+
+                    <div class="cover-subtitle">
+
+                        Organization information on 1Trainee
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ORGANIZATION IDENTITY
+            ================================================== -->
+
+            <section class="organization-section">
+
+
+                <div class="organization-main">
+
+
+                    <!-- ORGANIZATION LOGO -->
+
+                    <div class="organization-logo">
 
                         <img src="~/images/it-networkz-logo.png"
                              alt="IT-NetworkZ Infosystems Pvt Ltd Logo" />
@@ -947,112 +969,147 @@
                     </div>
 
 
+                    <!-- ORGANIZATION INFORMATION -->
 
-                    <!-- COMPANY NAME -->
-
-                    <div class="company-information">
-
-
-                        <div class="verified-label">
-
-                            <i class="fa-solid fa-circle-check"></i>
-
-                            Verified Organization
-
-                        </div>
+                    <div class="organization-info">
 
 
-                        <h1>
+                        <div class="organization-name">
+
                             IT-NetworkZ Infosystems Pvt Ltd
-                        </h1>
 
 
-                        <p>
-                            Official Organization Profile
-                        </p>
+                            <span class="verified-icon"
+                                  title="Verified Organization">
 
-                    </div>
+                                <i class="fa-solid fa-check"></i>
 
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 BODY
-            ================================================== -->
-
-            <div class="organization-body">
-
-
-                <!-- SECTION HEADER -->
-
-                <div class="section-header">
-
-
-                    <div class="section-title">
-
-
-                        <div class="section-title-icon">
-
-                            <i class="fa-solid fa-building"></i>
-
-                        </div>
-
-
-                        <div class="section-title-text">
-
-                            <h2>
-                                Organization Information
-                            </h2>
-
-                            <span>
-                                Official organization details
                             </span>
 
                         </div>
 
+
+                        <div class="organization-meta">
+
+
+                            <span>
+
+                                <i class="fa-solid fa-building"></i>
+
+                                Organization
+
+                            </span>
+
+
+                            <span class="meta-dot">
+                                •
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                Nagpur, India
+
+                            </span>
+
+
+                            <span class="meta-dot">
+                                •
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-globe"></i>
+
+                                1Trainee
+
+                            </span>
+
+
+                        </div>
+
+
                     </div>
 
 
-                    <div class="details-badge">
-                        8 DETAILS
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROFILE BODY
+            ================================================== -->
+
+            <section class="profile-body">
+
+
+                <!-- =================================================
+                     DETAILS HEADER
+                ================================================== -->
+
+                <div class="details-header">
+
+
+                    <div class="details-icon">
+
+                        <i class="fa-solid fa-list"></i>
+
                     </div>
+
+
+                    <div class="details-title">
+
+                        Organization Information
+
+                    </div>
+
 
                 </div>
 
 
 
                 <!-- =================================================
-                     DETAILS
+                     INFORMATION GRID
                 ================================================== -->
 
-                <div class="details-grid">
+                <div class="information-grid">
 
 
                     <!-- CONTACT PERSON -->
 
-                    <div class="detail-card">
+                    <div class="information-card">
 
-                        <div class="detail-icon">
 
-                            <i class="fa-solid fa-user"></i>
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                Contact Person Name
+
+                            </div>
 
                         </div>
 
 
-                        <div class="detail-content">
+                        <div class="information-value">
 
-                            <span class="detail-label">
-                                Contact Person
-                            </span>
-
-                            <span class="detail-value">
-                                Harshada Girhe
-                            </span>
+                            Harshada Girhe
 
                         </div>
+
 
                     </div>
 
@@ -1060,107 +1117,135 @@
 
                     <!-- DESIGNATION -->
 
-                    <div class="detail-card">
-
-                        <div class="detail-icon">
-
-                            <i class="fa-solid fa-id-badge"></i>
-
-                        </div>
+                    <div class="information-card">
 
 
-                        <div class="detail-content">
+                        <div class="information-top">
 
-                            <span class="detail-label">
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-briefcase"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
                                 Designation
-                            </span>
 
-                            <span class="detail-value">
-                                Hrm
-                            </span>
+                            </div>
 
                         </div>
+
+
+                        <div class="information-value">
+
+                            HRM
+
+                        </div>
+
 
                     </div>
 
 
 
-                    <!-- ADDRESS -->
+                    <!-- COMPANY ADDRESS -->
 
-                    <div class="detail-card">
-
-                        <div class="detail-icon">
-
-                            <i class="fa-solid fa-location-dot"></i>
-
-                        </div>
+                    <div class="information-card">
 
 
-                        <div class="detail-content">
+                        <div class="information-top">
 
-                            <span class="detail-label">
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
                                 Company Address
-                            </span>
 
-                            <span class="detail-value">
-                                Laxmi Nagar Nagpur
-                            </span>
+                            </div>
 
                         </div>
+
+
+                        <div class="information-value">
+
+                            Laxmi Nagar, Nagpur
+
+                        </div>
+
 
                     </div>
 
 
 
-                    <!-- ESTABLISHMENT -->
+                    <!-- ESTABLISHMENT YEAR -->
 
-                    <div class="detail-card">
-
-                        <div class="detail-icon">
-
-                            <i class="fa-solid fa-calendar-days"></i>
-
-                        </div>
+                    <div class="information-card">
 
 
-                        <div class="detail-content">
+                        <div class="information-top">
 
-                            <span class="detail-label">
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-calendar-days"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
                                 Establishment Year
-                            </span>
 
-                            <span class="detail-value">
-                                2007
-                            </span>
+                            </div>
 
                         </div>
+
+
+                        <div class="information-value">
+
+                            2007
+
+                        </div>
+
 
                     </div>
 
 
 
-                    <!-- EMAIL -->
+                    <!-- VERIFICATION EMAIL -->
 
-                    <div class="detail-card">
-
-                        <div class="detail-icon">
-
-                            <i class="fa-solid fa-envelope"></i>
-
-                        </div>
+                    <div class="information-card">
 
 
-                        <div class="detail-content">
+                        <div class="information-top">
 
-                            <span class="detail-label">
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
                                 Verification Email
-                            </span>
 
-                            <span class="detail-value">
-                                contact@it-networkz.com
-                            </span>
+                            </div>
 
                         </div>
+
+
+                        <div class="information-value">
+
+                            contact@it-networkz.com
+
+                        </div>
+
 
                     </div>
 
@@ -1168,26 +1253,33 @@
 
                     <!-- GST -->
 
-                    <div class="detail-card">
-
-                        <div class="detail-icon">
-
-                            <i class="fa-solid fa-file-invoice"></i>
-
-                        </div>
+                    <div class="information-card">
 
 
-                        <div class="detail-content">
+                        <div class="information-top">
 
-                            <span class="detail-label">
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-file-invoice"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
                                 GST No.
-                            </span>
 
-                            <span class="detail-value">
-                                27AADCI8640L1Z6
-                            </span>
+                            </div>
 
                         </div>
+
+
+                        <div class="information-value">
+
+                            27AADCI8640L1Z6
+
+                        </div>
+
 
                     </div>
 
@@ -1195,60 +1287,75 @@
 
                     <!-- CIN -->
 
-                    <div class="detail-card">
-
-                        <div class="detail-icon">
-
-                            <i class="fa-solid fa-file-lines"></i>
-
-                        </div>
+                    <div class="information-card">
 
 
-                        <div class="detail-content">
+                        <div class="information-top">
 
-                            <span class="detail-label">
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-file-lines"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
                                 CIN No.
-                            </span>
 
-                            <span class="detail-value">
-                                U72200MH2015PTC266007
-                            </span>
+                            </div>
 
                         </div>
+
+
+                        <div class="information-value">
+
+                            U72200MH2015PTC266007
+
+                        </div>
+
 
                     </div>
 
 
 
-                    <!-- EMPLOYEE -->
+                    <!-- EMPLOYEE STRENGTH -->
 
-                    <div class="detail-card">
+                    <div class="information-card">
 
-                        <div class="detail-icon">
 
-                            <i class="fa-solid fa-users"></i>
+                        <div class="information-top">
+
+                            <div class="information-icon">
+
+                                <i class="fa-solid fa-users"></i>
+
+                            </div>
+
+
+                            <div class="information-label">
+
+                                Current Employee Strength
+
+                            </div>
 
                         </div>
 
 
-                        <div class="detail-content">
+                        <div class="information-value">
 
-                            <span class="detail-label">
-                                Employee Strength
-                            </span>
-
-                            <span class="detail-value">
-                                11-100
-                            </span>
+                            11-100
 
                         </div>
+
 
                     </div>
 
 
                 </div>
 
-            </div>
+
+            </section>
 
 
 
@@ -1256,25 +1363,16 @@
                  FOOTER
             ================================================== -->
 
-            <footer class="organization-footer">
+            <footer class="profile-footer">
 
 
-                <div class="powered-text">
+                <div class="powered-by">
 
                     Powered by
 
                     <strong>
-                        www.1trainee.com
+                        1Trainee
                     </strong>
-
-                </div>
-
-
-                <div class="footer-right">
-
-                    <i class="fa-solid fa-shield-halved"></i>
-
-                    Organization Profile
 
                 </div>
 
@@ -1282,408 +1380,36 @@
             </footer>
 
 
-        </section>
+        </article>
+
 
     </main>
 
 
 
     <!-- =========================================================
-         DOWNLOAD
-    ========================================================== -->
+         JAVASCRIPT
+    ========================================================= -->
 
     <script>
 
+        function goHome() {
+
+            window.location.href = "/";
+
+        }
+
+            
+        function printProfile() {
+
+            window.print();
+
+        }
+
+
         function downloadProfile() {
 
-            const printWindow =
-                window.open("", "_blank");
-
-
-            if (!printWindow) {
-
-                alert(
-                    "Please allow pop-ups to download the profile."
-                );
-
-                return;
-            }
-
-
-            printWindow.document.write(`
-
-                <!DOCTYPE html>
-
-                <html>
-
-                <head>
-
-                    <title>
-                        IT-NetworkZ Infosystems Pvt Ltd
-                    </title>
-
-
-                    <style>
-
-                        * {
-                            box-sizing: border-box;
-                        }
-
-
-                        body {
-
-                            margin: 0;
-
-                            padding: 30px;
-
-                            font-family:
-                                Arial,
-                                sans-serif;
-
-                            background: #ffffff;
-
-                            color: #334155;
-                        }
-
-
-                        .profile {
-
-                            max-width: 900px;
-
-                            margin: auto;
-
-                            border:
-                                1px solid #e2e8f0;
-
-                            border-radius: 18px;
-
-                            overflow: hidden;
-                        }
-
-
-                        .header {
-
-                            padding: 30px;
-
-                            color: #ffffff;
-
-                            background:
-                                linear-gradient(
-                                    135deg,
-                                    #2563eb,
-                                    #4f46e5
-                                );
-                        }
-
-
-                        .logo {
-
-                            width: 82px;
-
-                            height: 82px;
-
-                            padding: 8px;
-
-                            border-radius: 14px;
-
-                            background: #ffffff;
-
-                            margin-bottom: 15px;
-                        }
-
-
-                        .logo img {
-
-                            width: 100%;
-
-                            height: 100%;
-
-                            object-fit: contain;
-                        }
-
-
-                        h1 {
-
-                            margin: 0;
-
-                            font-size: 26px;
-                        }
-
-
-                        .subtitle {
-
-                            margin-top: 6px;
-
-                            font-size: 12px;
-
-                            opacity: .9;
-                        }
-
-
-                        .content {
-
-                            padding: 25px;
-                        }
-
-
-                        .grid {
-
-                            display: grid;
-
-                            grid-template-columns:
-                                repeat(2, 1fr);
-
-                            gap: 10px;
-                        }
-
-
-                        .item {
-
-                            padding: 15px;
-
-                            border:
-                                1px solid #e2e8f0;
-
-                            border-radius: 10px;
-                        }
-
-
-                        .label {
-
-                            display: block;
-
-                            color: #94a3b8;
-
-                            font-size: 9px;
-
-                            font-weight: bold;
-
-                            text-transform:
-                                uppercase;
-
-                            margin-bottom: 5px;
-                        }
-
-
-                        .value {
-
-                            font-size: 13px;
-
-                            font-weight: 650;
-                        }
-
-
-                        .footer {
-
-                            padding: 15px;
-
-                            text-align: center;
-
-                            background: #fafbfd;
-
-                            color: #64748b;
-
-                            font-size: 10px;
-                        }
-
-
-                        @@media print {
-
-                            body {
-
-                                padding: 0;
-                            }
-
-                        }
-
-                    </style>
-
-                </head>
-
-
-                <body>
-
-
-                    <div class="profile">
-
-
-                        <div class="header">
-
-
-                            <div class="logo">
-
-                                <img
-                                    src="${window.location.origin}/images/it-networkz-logo.png"
-                                    alt="IT-NetworkZ Logo"
-                                />
-
-                            </div>
-
-
-                            <h1>
-                                IT-NetworkZ Infosystems Pvt Ltd
-                            </h1>
-
-
-                            <div class="subtitle">
-                                Verified Organization Profile
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="content">
-
-
-                            <div class="grid">
-
-
-                                <div class="item">
-
-                                    <span class="label">
-                                        Contact Person
-                                    </span>
-
-                                    <span class="value">
-                                        Harshada Girhe
-                                    </span>
-
-                                </div>
-
-
-                                <div class="item">
-
-                                    <span class="label">
-                                        Designation
-                                    </span>
-
-                                    <span class="value">
-                                        Hrm
-                                    </span>
-
-                                </div>
-
-
-                                <div class="item">
-
-                                    <span class="label">
-                                        Company Address
-                                    </span>
-
-                                    <span class="value">
-                                        Laxmi Nagar Nagpur
-                                    </span>
-
-                                </div>
-
-
-                                <div class="item">
-
-                                    <span class="label">
-                                        Establishment Year
-                                    </span>
-
-                                    <span class="value">
-                                        2007
-                                    </span>
-
-                                </div>
-
-
-                                <div class="item">
-
-                                    <span class="label">
-                                        Verification Email
-                                    </span>
-
-                                    <span class="value">
-                                        contact@it-networkz.com
-                                    </span>
-
-                                </div>
-
-
-                                <div class="item">
-
-                                    <span class="label">
-                                        GST No.
-                                    </span>
-
-                                    <span class="value">
-                                        27AADCI8640L1Z6
-                                    </span>
-
-                                </div>
-
-
-                                <div class="item">
-
-                                    <span class="label">
-                                        CIN No.
-                                    </span>
-
-                                    <span class="value">
-                                        U72200MH2015PTC266007
-                                    </span>
-
-                                </div>
-
-
-                                <div class="item">
-
-                                    <span class="label">
-                                        Employee Strength
-                                    </span>
-
-                                    <span class="value">
-                                        11-100
-                                    </span>
-
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="footer">
-
-                            Powered by
-                            <strong>
-                                www.1trainee.com
-                            </strong>
-
-                        </div>
-
-
-                    </div>
-
-
-                    <script>
-
-                        window.onload = function () {
-
-                            setTimeout(function () {
-
-                                window.print();
-
-                            }, 400);
-
-                        };
-
-                    <\/script>
-
-
-                </body>
-
-                </html>
-
-            `);
-
-
-            printWindow.document.close();
+            window.print();
 
         }
 

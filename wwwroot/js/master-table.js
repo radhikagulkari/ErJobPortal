@@ -1,215 +1,4 @@
-﻿//$(document).ready(function () {
-
-//    /*
-//     * Find every table having:
-//     *
-//     * class="master-data-table"
-//     *
-//     * and automatically convert it into
-//     * a DataTable.
-//     */
-
-//    $('.master-data-table').each(function () {
-
-//        var tableElement = $(this);
-
-//        var tableId = tableElement.attr('id');
-
-
-//        /*
-//         * Page information ID
-//         *
-//         * candidateTable
-//         *      ↓
-//         * candidatePageInfo
-//         *
-//         * organizationTable
-//         *      ↓
-//         * organizationPageInfo
-//         */
-
-//        var pageInfoId = tableId.replace(
-//            'Table',
-//            'PageInfo'
-//        );
-
-
-//        /*
-//         * Initialize DataTable
-//         */
-
-//        var masterTable = tableElement.DataTable({
-
-//            /* =========================================
-//               RECORDS PER PAGE
-//               ========================================= */
-
-//            pageLength: 5,
-
-
-//            /* =========================================
-//               DROPDOWN
-//               ========================================= */
-
-//            lengthMenu: [
-//                [5, 10, 25, 50, 100],
-//                [5, 10, 25, 50, 100]
-//            ],
-
-
-//            /* =========================================
-//               SORT BY FIRST COLUMN
-//               ========================================= */
-
-//            order: [
-//                [0, 'asc']
-//            ],
-
-
-//            /* =========================================
-//               SEARCH
-//               ========================================= */
-
-//            searching: true,
-
-
-//            /* =========================================
-//               PAGINATION
-//               ========================================= */
-
-//            paging: true,
-
-
-//            /* =========================================
-//               INFORMATION
-//               ========================================= */
-
-//            info: true,
-
-
-//            /* =========================================
-//               HORIZONTAL SCROLL
-
-//               ONLY TABLE WILL SCROLL
-//               ========================================= */
-
-//            scrollX: true,
-
-
-//            /*
-//             * Keep column width under control
-//             */
-
-//            autoWidth: false,
-
-
-//            /*
-//             * Previous + Number + Next
-//             */
-
-//            pagingType: "simple_numbers",
-
-
-//            /* =========================================
-//               TEXT
-//               ========================================= */
-
-//            language: {
-
-//                search: "Search:",
-
-//                lengthMenu: "Show _MENU_ entries",
-
-//                info: "Showing _START_ to _END_ of _TOTAL_ records",
-
-//                infoEmpty: "Showing 0 to 0 of 0 records",
-
-//                zeroRecords: "No matching records found",
-
-//                emptyTable: "No records found",
-
-//                paginate: {
-
-//                    next: "Next",
-
-//                    previous: "Previous"
-
-//                }
-
-//            }
-
-//        });
-
-
-//        /* =========================================
-//           PAGE X OF Y
-//           ========================================= */
-
-//        function updatePageInfo() {
-
-//            var pageInfo =
-//                masterTable.page.info();
-
-
-//            var currentPage =
-//                pageInfo.page + 1;
-
-
-//            var totalPages =
-//                pageInfo.pages;
-
-
-//            if (totalPages === 0) {
-
-//                $('#' + pageInfoId)
-//                    .text('Page 0 of 0');
-
-//            }
-//            else {
-
-//                $('#' + pageInfoId)
-//                    .text(
-//                        'Page ' +
-//                        currentPage +
-//                        ' of ' +
-//                        totalPages
-//                    );
-
-//            }
-
-//        }
-
-
-//        /* =========================================
-//           INITIAL PAGE INFORMATION
-//           ========================================= */
-
-//        updatePageInfo();
-
-
-//        /* =========================================
-//           UPDATE AFTER:
-
-//           Search
-//           Pagination
-//           Sorting
-//           ========================================= */
-
-//        masterTable.on('draw', function () {
-
-//            updatePageInfo();
-
-//        });
-
-//    });
-
-//});
-
-
-
-
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     $('.master-data-table').each(function () {
 
@@ -282,14 +71,33 @@ $(document).ready(function () {
 
                 autoWidth: true,
 
+                // =================================================
+                // PAGINATION
+                // < 1 2 >
+                // =================================================
+
                 pagingType: "simple_numbers",
 
                 language: {
 
-                    search: "Search:",
+                    // ==============================
+                    // SEARCH
+                    // ==============================
+
+                    search: "",
+
+                    searchPlaceholder: "Search...",
+
+                    // ==============================
+                    // ENTRIES
+                    // ==============================
 
                     lengthMenu:
-                        "Show _MENU_ entries",
+                        "_MENU_ entries per page",
+
+                    // ==============================
+                    // TABLE INFO
+                    // ==============================
 
                     info:
                         "Showing _START_ to _END_ of _TOTAL_ records",
@@ -303,9 +111,13 @@ $(document).ready(function () {
                     emptyTable:
                         "No records found",
 
+                    // ==============================
+                    // PAGINATION
+                    // ==============================
+
                     paginate: {
-                        next: "Next",
-                        previous: "Previous"
+                        next: ">",
+                        previous: "<"
                     }
                 },
 
@@ -314,6 +126,22 @@ $(document).ready(function () {
                     this.api()
                         .columns
                         .adjust();
+
+                    // Make search placeholder work
+                    var searchInput =
+                        $(this)
+                            .closest('.dataTables_wrapper')
+                            .find('.dataTables_filter input');
+
+                    searchInput.attr(
+                        'placeholder',
+                        'Search...'
+                    );
+
+                    searchInput.attr(
+                        'aria-label',
+                        'Search'
+                    );
                 }
             });
 

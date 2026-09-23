@@ -1,10 +1,13 @@
-﻿
-
-.feedback-page {
+﻿.feedback-page {
     width: 100%;
     padding: 0;
     margin: 0;
 }
+
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
 
 .feedback-title {
     font-size: 30px;
@@ -13,143 +16,21 @@
     margin: 0 0 10px 0;
 }
 
+
+/* =========================================================
+   ORGANIZATION NAME
+   ========================================================= */
+
 .organization-name {
-    font-size: 21px;
-    color: #555;
-    margin-bottom: 38px;
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 22px;
 }
 
-.feedback-card {
-    width: 100%;
-    border: 1px solid #d7d7d7;
-    border-radius: 7px;
-    background: #fff;
-    overflow: hidden;
-}
 
-/* CARD HEADER (teal theme) */
-
-.feedback-card-header {
-    height: auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 15px 22px;
-    background: #e7f3ef;
-    border-bottom: 1px solid #d7e8e3;
-    font-size: 22px;
-    color: #0f5d52;
-}
-
-    .feedback-card-header i {
-        font-size: 22px;
-        color: #0f5d52;
-    }
-
-.feedback-card-body {
-    padding: 20px 15px 30px 15px;
-}
-
-/* DataTable */
-
-#feedbackTable {
-    width: 100% !important;
-    border-collapse: collapse !important;
-    table-layout: fixed;
-}
-
-    /* TABLE HEADER (teal theme) */
-
-    #feedbackTable thead th {
-        background: #0f5d52;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 600;
-        text-align: center;
-        vertical-align: middle;
-        border: 1px solid #0f5d52 !important;
-        padding: 12px 4px;
-        white-space: normal !important;
-        word-break: break-word;
-    }
-
-    #feedbackTable tbody td {
-        background: #fff;
-        color: #222;
-        font-size: 13px;
-        text-align: center;
-        vertical-align: middle;
-        border: 1px solid #ddd !important;
-        padding: 12px 4px;
-        line-height: 1.4;
-        white-space: normal !important;
-        word-break: break-word;
-    }
-
-    /* TABLE ROW HOVER (teal tint) */
-
-    #feedbackTable tbody tr:hover td {
-        background: #f2faf8;
-    }
-
-    /* Question columns */
-
-    #feedbackTable th:nth-child(1),
-    #feedbackTable td:nth-child(1) {
-        width: 15%;
-    }
-
-    #feedbackTable th:nth-child(2),
-    #feedbackTable td:nth-child(2) {
-        width: 3.5%;
-    }
-
-    #feedbackTable th:nth-child(3),
-    #feedbackTable td:nth-child(3) {
-        width: 15%;
-    }
-
-    #feedbackTable th:nth-child(4),
-    #feedbackTable td:nth-child(4) {
-        width: 3.5%;
-    }
-
-    #feedbackTable th:nth-child(5),
-    #feedbackTable td:nth-child(5) {
-        width: 15%;
-    }
-
-    #feedbackTable th:nth-child(6),
-    #feedbackTable td:nth-child(6) {
-        width: 3.5%;
-    }
-
-    #feedbackTable th:nth-child(7),
-    #feedbackTable td:nth-child(7) {
-        width: 15%;
-    }
-
-    #feedbackTable th:nth-child(8),
-    #feedbackTable td:nth-child(8) {
-        width: 3.5%;
-    }
-
-    #feedbackTable th:nth-child(9),
-    #feedbackTable td:nth-child(9) {
-        width: 15%;
-    }
-
-    #feedbackTable th:nth-child(10),
-    #feedbackTable td:nth-child(10) {
-        width: 3.5%;
-    }
-
-    #feedbackTable th:nth-child(11),
-    #feedbackTable td:nth-child(11) {
-        width: 7.5%;
-    }
-
-/* ACTION (circular icons) */
+/* =========================================================
+   ACTION ICONS
+   ========================================================= */
 
 .action-icons {
     display: flex;
@@ -171,7 +52,9 @@
     transition: 0.2s ease;
 }
 
-/* VIEW - solid brighter teal circle */
+
+/* VIEW */
+
 .view-icon {
     background: #17a589;
     color: #ffffff;
@@ -183,7 +66,9 @@
         transform: scale(1.08);
     }
 
-/* EDIT - solid deep teal circle */
+
+/* EDIT */
+
 .edit-icon {
     background: #0f5d52;
     color: #ffffff;
@@ -195,7 +80,9 @@
         transform: scale(1.08);
     }
 
-/* DELETE - white circle, red outline (for future use) */
+
+/* DELETE - FUTURE USE */
+
 .delete-icon {
     display: inline-flex;
     align-items: center;
@@ -217,75 +104,12 @@
         transform: scale(1.08);
     }
 
-/* DataTables */
 
-.dataTables_length {
-    margin-bottom: 15px !important;
-}
+/* =========================================================
+   RESPONSIVE ACTION ICONS
+   ========================================================= */
 
-    .dataTables_length label {
-        font-size: 14px;
-        color: #333;
-    }
-
-    .dataTables_length select {
-        width: auto !important;
-        height: auto;
-        padding: 7px 28px 7px 8px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-        background: #fff;
-        font-size: 14px;
-    }
-
-.dataTables_filter {
-    margin-bottom: 20px !important;
-}
-
-    .dataTables_filter label {
-        font-size: 0;
-    }
-
-    .dataTables_filter input {
-        width: auto !important;
-        height: auto;
-        padding: 9px 12px;
-        border: 1px solid #d5dbe0;
-        border-radius: 8px;
-        font-size: 14px;
-        outline: none;
-    }
-
-        .dataTables_filter input::placeholder {
-            color: #718096;
-        }
-
-.dataTables_info {
-    font-size: 14px;
-    color: #333;
-    padding-top: 15px !important;
-}
-
-.dataTables_paginate {
-    padding-top: 15px !important;
-}
-
-@@media (max-width: 1200px) {
-
-    .feedback-card-body {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-    #feedbackTable thead th {
-        font-size: 12px;
-        padding: 9px 3px;
-    }
-
-    #feedbackTable tbody td {
-        font-size: 11px;
-        padding: 9px 3px;
-    }
+@media (max-width: 1200px) {
 
     .action-icons {
         gap: 5px;
@@ -300,23 +124,11 @@
     }
 }
 
-@@media (max-width: 900px) {
 
-    .feedback-page {
-        padding-left: 2px;
-        padding-right: 2px;
-    }
+@media (max-width: 900px) {
 
     .feedback-title {
         font-size: 25px;
-    }
-
-    #feedbackTable thead th {
-        font-size: 11px;
-    }
-
-    #feedbackTable tbody td {
-        font-size: 10px;
     }
 
     .view-icon,
@@ -327,4 +139,3 @@
         font-size: 11px;
     }
 }
-

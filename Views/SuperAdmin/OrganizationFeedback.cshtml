@@ -30,23 +30,7 @@
         color: #111827;
     }
 
-    .back-button {
-        width: 70px;
-        height: 54px;
-        border-radius: 10px;
-        background: #4169e1;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        font-size: 27px;
-    }
-
-        .back-button:hover {
-            color: white;
-            opacity: 0.9;
-        }
+   
 
     .feedback-subtitle {
         margin-top: 12px;
@@ -116,10 +100,28 @@
             box-shadow: 0 0 0 2px rgba(0, 123, 255, .1);
         }
 
-    .feedback-table-wrapper {
-        padding: 0 22px 25px 22px;
-        overflow-x: auto;
-    }
+   .feedback-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 22px 25px 22px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.feedback-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.feedback-table-wrapper::-webkit-scrollbar-thumb {
+    background: #1e7b67;
+    border-radius: 10px;
+}
+
+.feedback-table-wrapper::-webkit-scrollbar-track {
+    background: #eeeeee;
+}
 
     .feedback-table {
         width: 100%;
@@ -237,7 +239,16 @@
 
 <div class="feedback-page">
 
-    <!-- TITLE -->
+ 
+
+
+  <!-- CARD -->
+<div class="feedback-card">
+
+    
+
+    <div class="master-table-container">
+           <!-- TITLE -->
     <div class="feedback-title-row">
 
         <div>
@@ -252,205 +263,141 @@
 
         </div>
 
-        <a href="javascript:history.back();"
-           class="back-button"
-           title="Back">
-
-            <i class="fas fa-arrow-left"></i>
-
-        </a>
+        <!-- RIGHT SIDE -->
+  <a asp-controller="SuperAdmin"
+   asp-action="Dashboard"
+   class="master-back-btn"
+   title="Back to Dashboard">
+    <i class="fas fa-arrow-left"></i>
+</a>
 
     </div>
+        <table id="organizationFeedbackTable"
+               class="master-data-table"
+               data-mobile-scroll="true">
 
+            <thead>
+                <tr>
 
-    <!-- CARD -->
-    <div class="feedback-card">
+                    <th>
+                        Sr. No
+                    </th>
 
-        <div class="feedback-card-header">
+                    <th>
+                        Organization Name
+                    </th>
 
-            <i class="fas fa-table"></i>
+                    <th>
+                        Status
+                    </th>
 
-            Feedback
+                    <th>
+                        Action
+                    </th>
 
-        </div>
+                </tr>
+            </thead>
 
+            <tbody>
 
-        <!-- CONTROLS -->
-        <div class="feedback-controls">
+                @if (Model != null && Model.Any())
+                {
+                    int srNo = 1;
 
-            <div class="entries-section">
-
-                <select id="entriesSelect"
-                        class="entries-select">
-
-                    <option value="10">10</option>
-
-                    <option value="25" selected>
-                        25
-                    </option>
-
-                    <option value="50">
-                        50
-                    </option>
-
-                    <option value="100">
-                        100
-                    </option>
-
-                </select>
-
-                <span>
-                    entries per page
-                </span>
-
-            </div>
-
-
-            <div>
-
-                <input type="text"
-                       id="searchInput"
-                       class="search-input"
-                       placeholder="Search..." />
-
-            </div>
-
-        </div>
-
-
-        <!-- TABLE -->
-        <div class="feedback-table-wrapper">
-
-            <table class="feedback-table"
-                   id="feedbackTable">
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Sr. No
-                        </th>
-
-                        <th>
-                            Organization Name
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    @if (Model != null && Model.Any())
-                    {
-                        int srNo = 1;
-
-                        foreach (var item in Model)
-                        {
-                            <tr>
-
-                                <td>
-                                    @srNo
-                                </td>
-
-
-                                <td>
-                                    @item.sOrgName
-                                </td>
-
-
-                                <td>
-
-                                    <form asp-controller="SuperAdmin"
-                                          asp-action="ToggleOrganizationFeedback"
-                                          method="post"
-                                          style="display:inline;">
-
-                                        @Html.AntiForgeryToken()
-
-                                        <input type="hidden"
-                                               name="id"
-                                               value="@item.nID" />
-
-                                        @if (item.nSABit == 1)
-                                        {
-                                            <button type="submit"
-                                                    class="status-button status-enabled"
-                                                    onclick="return confirm('Are you sure you want to disable this feedback?');">
-
-                                                Enabled
-
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button type="submit"
-                                                    class="status-button status-disabled"
-                                                    onclick="return confirm('Are you sure you want to enable this feedback?');">
-
-                                                Disabled
-
-                                            </button>
-                                        }
-
-                                    </form>
-
-                                </td>
-
-
-                                <td>
-
-                                    <a asp-controller="SuperAdmin"
-                                       asp-action="DetailsOrgFeedback"
-                                       asp-route-id="@item.nID"
-                                       class="view-button"
-                                       title="View">
-
-                                        <i class="fas fa-eye"></i>
-
-                                    </a>
-
-                                </td>
-
-                            </tr>
-
-                            srNo++;
-                        }
-                    }
-                    else
+                    foreach (var item in Model)
                     {
                         <tr>
 
-                            <td colspan="4"
-                                class="no-data">
+                            <td>
+                                @srNo
+                            </td>
 
-                                No organization feedback found.
+                            <td>
+                                @item.sOrgName
+                            </td>
+
+                            <td>
+
+                                <form asp-controller="SuperAdmin"
+                                      asp-action="ToggleOrganizationFeedback"
+                                      method="post"
+                                      style="display:inline;">
+
+                                    @Html.AntiForgeryToken()
+
+                                    <input type="hidden"
+                                           name="id"
+                                           value="@item.nID" />
+
+                                    @if (item.nSABit == 1)
+                                    {
+                                        <button type="submit"
+                                                class="status-button status-enabled"
+                                                onclick="return confirm('Are you sure you want to disable this feedback?');">
+
+                                            Enabled
+
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit"
+                                                class="status-button status-disabled"
+                                                onclick="return confirm('Are you sure you want to enable this feedback?');">
+
+                                            Disabled
+
+                                        </button>
+                                    }
+
+                                </form>
+
+                            </td>
+
+                            <td>
+
+                                <a asp-controller="SuperAdmin"
+                                   asp-action="DetailsOrgFeedback"
+                                   asp-route-id="@item.nID"
+                                   class="view-button"
+                                   title="View">
+
+                                    <i class="fas fa-eye"></i>
+
+                                </a>
 
                             </td>
 
                         </tr>
+
+                        srNo++;
                     }
+                }
+                else
+                {
+                    <tr>
 
-                </tbody>
+                        <td colspan="4"
+                            class="text-center">
 
-            </table>
+                            No organization feedback found.
 
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+        <div id="organizationFeedbackPageInfo"
+             class="master-page-info text-center d-none">
         </div>
 
     </div>
 
 </div>
-
 
 <script>
 
